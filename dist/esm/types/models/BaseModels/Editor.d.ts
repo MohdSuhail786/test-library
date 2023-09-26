@@ -1,0 +1,81 @@
+/// <reference types="react" />
+import Konva from "konva";
+import { Vector2d } from "konva/lib/types";
+import { Image } from "./Image";
+import { KonvaEventObject } from "konva/lib/Node";
+import { AppMode, Filter } from "../Types";
+import { Rect } from "konva/lib/shapes/Rect";
+import { Box } from "../Box";
+import { Anchor } from "../Anchor";
+import { Polygon } from "../Polygon";
+import { Line } from "konva/lib/shapes/Line";
+import { Label } from "../Label";
+import { ViewportListRef } from "react-viewport-list";
+export interface EditorConfig extends Konva.StageConfig {
+    spacingLeft?: number;
+    spacingRight?: number;
+    editorSpacingTop?: number;
+    editorSpacingLeft?: number;
+}
+export declare class Editor<ImageType, Config extends EditorConfig = EditorConfig> extends Konva.Stage {
+    filter: Filter;
+    crosshairLayer: Konva.Layer;
+    imageLayer: Konva.Layer;
+    images: ImageType[];
+    listContainerRef: React.RefObject<ViewportListRef>;
+    activeImage: ImageType | null;
+    labels: Label[];
+    _zoomStep: number;
+    spacingLeft: number;
+    spacingRight: number;
+    editorSpacingLeft: number;
+    editorSpacingTop: number;
+    appMode: AppMode;
+    backgroundRect: Konva.Rect;
+    crosshairLines: [Konva.Line, Konva.Line];
+    imageMask: Konva.Rect;
+    shapeMask: Konva.Line;
+    shapeAnchorsMask: [Konva.Rect, Konva.Rect, Konva.Rect, Konva.Rect];
+    cursorTextElementRef: React.RefObject<HTMLSpanElement>;
+    constructor(config: Config);
+    setCursorTextElement(cursorRef: React.RefObject<HTMLSpanElement>): void;
+    showCursorTextElement(config: {
+        x: number;
+        y: number;
+        text: string;
+    }): void;
+    hideCursorTextElement(): void;
+    addLabel(label: Label): void;
+    removeEventListeners(): void;
+    init(config: Config): void;
+    loadFirstImageIfRequired(): Promise<void>;
+    updateFilter(filter: Filter): void;
+    syncFilter(): void;
+    switchAppMode(): void;
+    keyDownAction: (event: KeyboardEvent) => Promise<void>;
+    keyUpAction: (event: KeyboardEvent) => void;
+    mouseMoveAction: (event: MouseEvent) => void;
+    dragStartAction(event: KonvaEventObject<DragEvent>): void;
+    dragMoveAction(event: KonvaEventObject<DragEvent>): void;
+    dragEndAction(event: KonvaEventObject<DragEvent>): void;
+    renderCrossHair(): void;
+    removeActiveImage(): void;
+    loadImage(image: ImageType): Promise<void>;
+    zoomInOutStage: (event: WheelEvent, position?: Vector2d, newPosition?: Vector2d) => void;
+    renderBackground(): void;
+    resetZoom(): void;
+    fitToScreen(): void;
+    syncActiveImage(image: ImageType): void;
+    syncLabels(): void;
+    syncImageList(): void;
+    getRelativeBBoxOfStage(): {
+        l: number;
+        r: number;
+        t: number;
+        b: number;
+    };
+    hideCrossHairs(): void;
+    showCrossHairs(): void;
+    updateCursorStyle(target?: Image | Box | Polygon | Rect | Line | Anchor | null): void;
+    setMode(appMode: AppMode): void;
+}
