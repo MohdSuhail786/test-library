@@ -45866,6 +45866,10 @@ const directions = [
         value: "W"
     },
 ];
+const LabelList = {
+    DrawingArea: ["graphic-area"],
+    MetaDataArea: ["title", "project", "document_no.", "address"]
+};
 
 const padding = 10;
 const modalWidthHeight = 320;
@@ -65243,5 +65247,243 @@ function useHumanAnnotator() {
     return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'ha-editor', style: { width: '100%', height: '100%' } }), editor && props && jsx(HumanAnnotation, { ...props, editor: editor })] })] })), init, handleSave];
 }
 
-export { useHumanAnnotator };
+function DrawingAreaAnnotation({ editor, labelMappings, drawingAreaState }) {
+    const setLoader = Recoil_index_24(loaderAtom);
+    const cursorTextRef = useRef$6(null);
+    useEffect$5(() => {
+        async function initEditor() {
+            if (!editor || !cursorTextRef.current)
+                return;
+            editor.setCursorTextElement(cursorTextRef);
+            editor.container().focus();
+            setLoader({ visible: true, title: "Loading editor..." });
+            try {
+                await editor.importDrawingAreaState(drawingAreaState, labelMappings);
+            }
+            catch (error) {
+                console.log(error);
+            }
+            setLoader({ visible: false });
+        }
+        initEditor();
+    }, [editor, cursorTextRef, labelMappings, drawingAreaState]);
+    return (jsxs(Fragment, { children: [jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: false, allowLabelUpdate: false }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: false, allowLabelUpdate: false } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 })] }));
+}
+
+class DrawingAreaImage extends Image {
+    drawingAreas = new Set();
+    createBoxAction = null;
+    constructor(config) {
+        super(config);
+        this.init(config);
+        this.on("mousedown", this.mouseDownAction.bind(this));
+        this.on("mousemove", this.mouseMoveAction.bind(this));
+        this.on("mouseup", this.mouseUpAction.bind(this));
+    }
+    init(config) {
+        super.init(config);
+    }
+    async mouseDownAction(event) {
+        try {
+            if (!["DRAWING_MODE"].includes(this.editor?.appMode.mode || "") || this.createBoxAction !== null || event.evt.which !== 1)
+                return;
+            this.editor?.hideCrossHairs();
+            const pos = this.editor?.getRelativePointerPosition();
+            if (this.editor.appMode.mode === "DRAWING_MODE") {
+                this.createBoxAction = new CreateBoxAction({ pos, image: this, actionsStore: this.actionStore });
+                await this.createBoxAction.build();
+                const label = this.editor.labels.find(label => label.name === LabelList.DrawingArea[0]);
+                if (label)
+                    this.createBoxAction.subject.updateLabel(label);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async mouseMoveAction(event) {
+        try {
+            if (!["DRAWING_MODE"].includes(this.editor?.appMode.mode || ""))
+                return;
+            const pos = this.editor?.getRelativePointerPosition();
+            if (this.createBoxAction) {
+                await this.createBoxAction.execute(pos);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async mouseUpAction(event) {
+        try {
+            if (this.editor?.appMode.mode !== "DRAWING_MODE" || this.createBoxAction === null)
+                return;
+            this.editor?.showCrossHairs();
+            await this.createBoxAction.finish();
+            if (this.createBoxAction.subject?.rect?.width() === 0 || this.createBoxAction.subject?.rect?.height() === 0) {
+                await this.createBoxAction.undo();
+                await this.createBoxAction.destroy();
+                this.createBoxAction = null;
+                return;
+            }
+            this.createBoxAction = null;
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    addImBox(imBox) {
+        const label = this.editor.labels.find(label => label.id === imBox.labelId);
+        const box = new Box({
+            ...imBox,
+            draggable: true,
+            listening: false,
+            image: this,
+            label
+        });
+        this.addBox(box);
+    }
+    addBox(box) {
+        this.drawingAreas.add(box);
+        this.editor.drawingAreaLayer.add(box);
+        this.syncBoxs();
+    }
+    deleteBox(box) {
+        this.drawingAreas.delete(box);
+        box.remove();
+        this.syncBoxs();
+    }
+    syncBoxs() {
+        setRecoil_1(entityListAtom, [...this.drawingAreas]);
+    }
+}
+
+class DrawingAreaEditor extends Editor {
+    drawingAreaLayer;
+    constructor(config) {
+        super(config);
+        this.init(config);
+    }
+    init(config) {
+        super.init(config);
+        this.drawingAreaLayer = new Konva.Layer();
+        this.drawingAreaLayer.canvas._canvas.setAttribute('id', 'DRAWING-AREA-LAYER');
+    }
+    async importDrawingAreaState(drawingAreaState, labelMappings) {
+        if (drawingAreaState.length === 0)
+            return;
+        await this.addImage(drawingAreaState[0].image);
+        this.syncImageList();
+        this.loadFirstImageIfRequired();
+        labelMappings.forEach(label => {
+            const newLabel = new Label({
+                id: label.id,
+                name: label.name,
+                type: label.type
+            });
+            this.addLabel(newLabel);
+        });
+        this.syncLabels();
+        console.log(this.labels, drawingAreaState[0].bounding_box);
+        drawingAreaState[0].bounding_box.forEach(box => {
+            const imBox = {
+                x: box.x,
+                y: box.y,
+                width: box.width,
+                height: box.height,
+                labelId: this.labels.find(label => label.name === box.label)?.id ?? -1,
+                direction: 'E',
+                humanAnnotated: false,
+                indexId: box.id || -1
+            };
+            this.activeImage?.addImBox(imBox);
+        });
+        this.renderAnnotations();
+    }
+    addImage(imImage) {
+        return new Promise((resolve, reject) => {
+            let pos = { x: 0, y: 0 };
+            const image = new window.Image();
+            image.crossOrigin = 'Anonymous';
+            image.src = imImage.src;
+            image.onload = (e) => {
+                const img = new DrawingAreaImage({
+                    id: imImage.id,
+                    name: imImage.name,
+                    src: imImage.src,
+                    x: pos.x,
+                    y: pos.y,
+                    fill: 'white',
+                    draggable: false,
+                    image: image,
+                    editor: this,
+                });
+                this.images.unshift(img);
+                resolve();
+            };
+            image.onerror = () => reject("Failed to load image.");
+        });
+    }
+    async renderAnnotations() {
+        if (!this.drawingAreaLayer)
+            return;
+        this.add(this.drawingAreaLayer);
+        this.drawingAreaLayer.moveToTop();
+        this.crosshairLayer.moveToTop();
+    }
+    setSelectionBoxesListening(listen) {
+        this.activeImage?.drawingAreas.forEach(entity => { entity.listening(listen); entity.hideAnchors(); });
+    }
+    setMode(appMode) {
+        super.setMode(appMode);
+        if (this.activeImage?.createBoxAction)
+            return;
+        if (appMode.mode === 'DRAG_SELECTION_MODE') {
+            this.setSelectionBoxesListening(true);
+        }
+        else if (appMode.mode === 'EDIT_MODE') {
+            this.setSelectionBoxesListening(false);
+        }
+        else if (appMode.mode === 'DRAWING_MODE') {
+            this.activeImage?.drawingAreas.forEach(entity => entity.hideAnchors());
+            this.setSelectionBoxesListening(false);
+        }
+    }
+}
+
+function useDrawingAreaAnnotator() {
+    const [editor, setEditor] = useState$3(null);
+    const editorRef = useRef$6(null);
+    const [props, setProps] = useState$3(null);
+    const init = (config) => {
+        if (props)
+            return;
+        setProps(config);
+    };
+    useEffect$5(() => {
+        (async (e) => {
+            if (e || !props)
+                return;
+            const editor = new DrawingAreaEditor({
+                container: 'drawing-area-editor',
+                width: window.innerWidth - (props.editorSpacingLeft || 0),
+                height: window.innerHeight - (props.editorSpacingTop || 0),
+                spacingRight: 0,
+                editorSpacingLeft: props.editorSpacingLeft,
+                editorSpacingTop: props.editorSpacingTop
+            });
+            editorRef.current = editor;
+            setEditor(editor);
+            window.editor = editor;
+        })(editor);
+        return () => {
+            editorRef.current?.removeEventListeners();
+        };
+    }, [props]);
+    const handleSave = () => {
+    };
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), editor && props && jsx(DrawingAreaAnnotation, { ...props, editor: editor })] })] })), init, handleSave];
+}
+
+export { useDrawingAreaAnnotator, useHumanAnnotator };
 //# sourceMappingURL=index.js.map

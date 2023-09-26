@@ -1,5 +1,10 @@
 import { ReactNode } from 'react';
 
+type IMImage = {
+    src: string;
+    id: string;
+    name: string;
+};
 type Direction = "" | "N" | "S" | "E" | "W";
 type HumanAnnotations = {
     bbox: {
@@ -63,8 +68,21 @@ type LabelMappings = {
     name: string;
     type: number;
 }[];
+type ProjectSetupBBox = {
+    id: number | null;
+    label: string;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+};
+type ProjectSetupState = {
+    image: IMImage;
+    bounding_box: ProjectSetupBBox[];
+};
+type DrawingAreaState = ProjectSetupState[];
 
-interface IProps {
+interface IProps$1 {
     humanAnnotations: HumanAnnotations;
     graphJSON: GraphJSON;
     labelMappings: LabelMappings;
@@ -72,6 +90,14 @@ interface IProps {
     editorSpacingLeft?: number;
     editorSpacingTop?: number;
 }
-declare function useHumanAnnotator(): [ReactNode, (config: IProps) => any, () => any];
+declare function useHumanAnnotator(): [ReactNode, (config: IProps$1) => any, () => any];
 
-export { useHumanAnnotator };
+interface IProps {
+    drawingAreaState: DrawingAreaState;
+    labelMappings: LabelMappings;
+    editorSpacingLeft?: number;
+    editorSpacingTop?: number;
+}
+declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any];
+
+export { useDrawingAreaAnnotator, useHumanAnnotator };
