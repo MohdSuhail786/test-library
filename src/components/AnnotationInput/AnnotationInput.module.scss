@@ -1,0 +1,54 @@
+.label-input-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    &:hover {
+        background-color: #f5f5f5;
+        .selector {
+            .ant-select-selector {
+                .ant-select-selection-item {
+                    background-color: #f5f5f5;
+                }
+            }
+        }
+    }
+    &.active {
+        background-color: #d7d7d7;
+        .selector {
+            .ant-select-selector {
+                .ant-select-selection-item {
+                    background-color: #d7d7d7;
+                }
+            }
+        }
+    }
+    padding: 5px 10px;
+    .color {
+        width: 30px;
+        height: 30px;
+    }
+    .selector {
+        .ant-select-selector {
+            padding: 0px;
+            .ant-select-selection-item {
+                transition: none;
+                padding: 0;
+            }
+        }
+        &.ant-select-focused {
+            .ant-select-selector {
+                box-shadow: none !important;
+            }
+        }
+    }
+    .label-selector {
+        width: 170px;
+    }
+    .direction-selector {
+        cursor: pointer;
+        color: rgb(66, 72, 255);
+        display: flex;
+        justify-content: center;
+        width: 20px;
+    }
+}
