@@ -258,7 +258,7 @@ export class Box<Config extends GroupConfig = GroupConfig> extends Konva.Group {
     }
 
     mouseMoveAction(event: KonvaEventObject<MouseEvent>) {
-        this.editor?.showCursorTextElement({x: event.evt.clientX + 10, y: event.evt.clientY + 10, text: this.label?.name || ""})
+        this.editor?.showCursorTextElement({x: event.evt.offsetX + 10, y: event.evt.offsetY + 10, text: this.label?.name || ""})
     }
     
     mouseEnterAction(event: KonvaEventObject<MouseEvent>) {

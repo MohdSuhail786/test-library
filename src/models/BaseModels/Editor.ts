@@ -70,8 +70,8 @@ export class Editor<ImageType,Config extends EditorConfig = EditorConfig> extend
     showCursorTextElement(config: {x:number,y: number, text: string}) {
         if(!this.cursorTextElementRef.current) return;
         this.cursorTextElementRef.current.style.display = 'block';
-        this.cursorTextElementRef.current.style.left = `${config.x - this.editorSpacingLeft}px`;
-        this.cursorTextElementRef.current.style.top = `${config.y - this.editorSpacingTop}px`;
+        this.cursorTextElementRef.current.style.left = `${config.x}px`;
+        this.cursorTextElementRef.current.style.top = `${config.y}px`;
         this.cursorTextElementRef.current.innerHTML = `${config.text}`;
     }
 
