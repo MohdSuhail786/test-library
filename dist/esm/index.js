@@ -21665,7 +21665,7 @@ class Box extends Konva.Group {
         }
     }
     mouseMoveAction(event) {
-        this.editor?.showCursorTextElement({ x: event.evt.clientX + 10, y: event.evt.clientY + 10, text: this.label?.name || "" });
+        this.editor?.showCursorTextElement({ x: event.evt.offsetX + 10, y: event.evt.offsetY + 10, text: this.label?.name || "" });
     }
     mouseEnterAction(event) {
         this.editor?.updateCursorStyle(this);
@@ -22064,7 +22064,7 @@ class Polygon extends Konva.Group {
         virtualList.current.scrollToIndex({ index: this.getAttr('virtualIndex') });
     }
     mouseMoveAction(event) {
-        this.editor?.showCursorTextElement({ x: event.evt.clientX + 10, y: event.evt.clientY + 10, text: this.label?.name || "" });
+        this.editor?.showCursorTextElement({ x: event.evt.offsetX + 10, y: event.evt.offsetY + 10, text: this.label?.name || "" });
     }
     mouseEnterAction(event) {
         this.editor?.updateCursorStyle(this);
@@ -64147,8 +64147,8 @@ class Editor extends Konva.Stage {
         if (!this.cursorTextElementRef.current)
             return;
         this.cursorTextElementRef.current.style.display = 'block';
-        this.cursorTextElementRef.current.style.left = `${config.x - this.editorSpacingLeft}px`;
-        this.cursorTextElementRef.current.style.top = `${config.y - this.editorSpacingTop}px`;
+        this.cursorTextElementRef.current.style.left = `${config.x}px`;
+        this.cursorTextElementRef.current.style.top = `${config.y}px`;
         this.cursorTextElementRef.current.innerHTML = `${config.text}`;
     }
     hideCursorTextElement() {
