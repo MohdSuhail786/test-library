@@ -2,13 +2,13 @@ import Konva from "konva";
 import { KonvaEventObject } from "konva/lib/Node";
 import ActionsStore from "../../actions/ActionStore";
 import { HumanAnnotationEditor } from "../HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "../DrawingAreaModels/DrawingAreaEditor";
+import { EditorTypes } from "../Types";
 
 export interface ImageConfig extends Konva.ImageConfig {
     src: string
 }
 
-export class Image<EditorType = HumanAnnotationEditor | DrawingAreaEditor,Config extends ImageConfig = ImageConfig> extends Konva.Image {
+export class Image<EditorType = EditorTypes,Config extends ImageConfig = ImageConfig> extends Konva.Image {
 
     src: string = "";
     editor!: EditorType;

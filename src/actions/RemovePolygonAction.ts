@@ -1,7 +1,8 @@
 import { Action } from "./AbstractAction";
-import { Editor } from "../models/HumanAnnotationModels/HumanAnnotationEditor";
 import ActionsStore from "./ActionStore";
 import { Polygon } from "../models/Polygon";
+import { EditorTypes } from "../models/Types";
+import { HumanAnnotationImage } from "../models/HumanAnnotationModels/HumanAnnotationImage";
 
 interface RemovePolygonActionIProps {
     parent?: Action<any>;
@@ -11,12 +12,12 @@ interface RemovePolygonActionIProps {
 
 export class RemovePolygonAction extends Action<Polygon> {
 
-    editor: Editor | null = null;
+    editor: EditorTypes | null = null;
 
     constructor(config: RemovePolygonActionIProps) {
         super(config.polygon, config.actionsStore, config.parent)
         this.image = this.subject.image;
-        this.editor = this.subject.image?.editor as Editor;
+        this.editor = this.subject.image?.editor as EditorTypes;
     }
 
     build(): Promise<void> {
@@ -37,7 +38,7 @@ export class RemovePolygonAction extends Action<Polygon> {
                 return reject("Unable to create box.");
             }
 
-            this.image?.deletePolygon(this.subject);
+            (this.image as HumanAnnotationImage)?.deletePolygon(this.subject);
             
             this.status = 'executing'
             resolve()
@@ -51,7 +52,7 @@ export class RemovePolygonAction extends Action<Polygon> {
                 return reject("Unable to undo, action execution is not finished yet.");
             }
 
-            this.image?.addPolygon(this.subject);
+            (this.image as HumanAnnotationImage)?.addPolygon(this.subject);
 
             this.status = 'undo'
             resolve()
@@ -65,7 +66,7 @@ export class RemovePolygonAction extends Action<Polygon> {
                 return reject("Unable to redo. Undo is not finished yet.")
             }
 
-            this.image?.deletePolygon(this.subject);
+            (this.image as HumanAnnotationImage)?.deletePolygon(this.subject);
 
             this.status = 'finish'
             resolve();

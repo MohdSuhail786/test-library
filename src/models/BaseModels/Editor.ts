@@ -4,7 +4,7 @@ import { Image } from "./Image";
 import { getRecoil, setRecoil } from "recoil-nexus";
 import { activeImageAtom, appModeAtom, cursorTextAtom, filterAtom, imageListAtom, labelListAtom, loaderAtom } from "../../state/editor";
 import { KonvaEventObject } from "konva/lib/Node";
-import { AppMode, IMImage, IMBox, COCOObj, Filter, IMPolygon } from "../Types";
+import { AppMode, IMImage, IMBox, COCOObj, Filter, IMPolygon, ImageTypes } from "../Types";
 import { RemoveBoxAction } from "../../actions/RemoveBoxAction";
 import ActionsStore from "../../actions/ActionStore";
 import { Rect } from "konva/lib/shapes/Rect";
@@ -24,7 +24,7 @@ export interface EditorConfig extends Konva.StageConfig {
     editorSpacingTop?: number
     editorSpacingLeft?: number
 }
-
+Konva.pixelRatio = 1
 export class Editor<ImageType,Config extends EditorConfig = EditorConfig> extends Konva.Stage {
     
     filter: Filter = {annotationType: 'entity',entityClass: '',entityType:''}
@@ -371,7 +371,7 @@ export class Editor<ImageType,Config extends EditorConfig = EditorConfig> extend
 
 
     syncActiveImage(image: ImageType) {
-        setRecoil(activeImageAtom, image as HumanAnnotationImage | DrawingAreaImage)
+        setRecoil(activeImageAtom, image as ImageTypes)
     }
 
     syncLabels() {
@@ -379,7 +379,7 @@ export class Editor<ImageType,Config extends EditorConfig = EditorConfig> extend
     }
 
     syncImageList() {
-        setRecoil(imageListAtom,[...this.images]  as (HumanAnnotationImage | DrawingAreaImage)[])
+        setRecoil(imageListAtom,[...this.images]  as (ImageTypes)[])
     }
 
     getRelativeBBoxOfStage() {

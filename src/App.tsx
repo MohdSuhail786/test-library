@@ -1,7 +1,7 @@
 import { LabelList, graphJSON, humanAnnotations, imageSrc, labelMappings } from "./constants/Constants"
 import { ReactNode, useEffect } from "react";
 import useDrawingAreaAnnotator from "./exportableComponents/useDrawingAreaAnnotator";
-import { DrawingAreaState, GraphJSON, HumanAnnotations } from "./models/Types";
+import { DrawingAreaState, GraphJSON, HumanAnnotations, MetaSelectionState } from "./models/Types";
 import { useHumanAnnotator } from "./exportableComponents";
 
 
@@ -62,13 +62,14 @@ export default function App() {
 
 import { Modal } from "antd";
 import { FiX } from "react-icons/fi";
+import useMetaExtractionAnnotator from "./exportableComponents/useMetaExtractionAnnotator";
 
 interface IProps {
 }
 
 export function DrawingAreaModal(props: IProps) {
 
-    const [DrawingAreaAnnotator, init, handleSave, setLoader] = useDrawingAreaAnnotator()
+    const [DrawingAreaAnnotator, init, handleSave, setLoader] = useMetaExtractionAnnotator()
 
     const handleCancel = (e: any) => {
         e.stopPropagation();
@@ -76,7 +77,7 @@ export function DrawingAreaModal(props: IProps) {
 
     useEffect(()=>{
         init({
-            drawingAreaState: [
+            metaExtractionState: [
         //         {image: {id: '1', name: 'Any Name', src: imageSrc}, bounding_box: [
         //     //     {
         //     //     "id": 131,
@@ -87,17 +88,17 @@ export function DrawingAreaModal(props: IProps) {
         //     //     "height": 4550
         //     // }
         // ]}
-    ] as DrawingAreaState,
+    ] as MetaSelectionState,
             editorSpacingLeft:492,
             editorSpacingTop:100,
-            labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
+            labelMappings: LabelList.MetaDataArea.map((label,index) => ({id: index, name: label, type: index})),
             uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
             onUploadSubmit: () => new Promise(r => setTimeout(r,2000))
         })
 
         setTimeout(() => {
             init({
-                drawingAreaState: [
+                metaExtractionState: [
                     {image: {id: '1', name: 'Any Name', src: imageSrc}, bounding_box: [
                     {
                     "id": 131,
@@ -108,10 +109,10 @@ export function DrawingAreaModal(props: IProps) {
                     "height": 4550
                 }
             ]}
-        ] as DrawingAreaState,
+        ] as MetaSelectionState,
                 editorSpacingLeft:492,
                 editorSpacingTop:100,
-                labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
+                labelMappings: LabelList.MetaDataArea.map((label,index) => ({id: index, name: label, type: index})),
                 uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
                 onUploadSubmit: () => new Promise(r => r())
             })

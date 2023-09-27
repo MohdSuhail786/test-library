@@ -3,13 +3,9 @@ import { KonvaEventObject } from "konva/lib/Node";
 import { BoxTransformAction } from "../actions/BoxTransformAction";
 import { BoxMoveAction } from "../actions/BoxMoveAction";
 import { Label } from "./Label";
-import { Direction } from "./Types";
-import { HumanAnnotationEditor } from "./HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "./DrawingAreaModels/DrawingAreaEditor";
-import { HumanAnnotationImage } from "./HumanAnnotationModels/HumanAnnotationImage";
-import { DrawingAreaImage } from "./DrawingAreaModels/DrawingAreaImage";
+import { Direction, EditorTypes, ImageTypes } from "./Types";
 export interface GroupConfig extends Konva.GroupConfig {
-    image: HumanAnnotationImage | DrawingAreaImage;
+    image: ImageTypes;
     indexId: number;
     humanAnnotated: boolean;
     label?: Label | null;
@@ -19,10 +15,10 @@ export declare class Box<Config extends GroupConfig = GroupConfig> extends Konva
     rect: Konva.Rect;
     label: Label | null;
     direction: Direction;
-    image: HumanAnnotationImage | DrawingAreaImage | null;
+    image: ImageTypes | null;
     indexId: number;
     humanAnnotated: boolean;
-    editor: HumanAnnotationEditor | DrawingAreaEditor | null;
+    editor: EditorTypes | null;
     anchors: {
         rect?: Konva.Rect;
         pos: [number, number];

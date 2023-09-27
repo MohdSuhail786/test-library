@@ -1,6 +1,10 @@
 import { Box } from "./Box"
+import { DrawingAreaEditor } from "./DrawingAreaModels/DrawingAreaEditor"
 import { DrawingAreaImage } from "./DrawingAreaModels/DrawingAreaImage"
+import { HumanAnnotationEditor } from "./HumanAnnotationModels/HumanAnnotationEditor"
 import { HumanAnnotationImage } from "./HumanAnnotationModels/HumanAnnotationImage"
+import { MetaSelectionEditor } from "./MetaSelectionModels/MetaSelectionEditor"
+import { MetaSelectionImage } from "./MetaSelectionModels/MetaSelectionImage"
 import { Polygon } from "./Polygon"
 
 export type  User = {
@@ -208,6 +212,9 @@ export type ProjectSetupState = {
 }
 
 export type DrawingAreaState = ProjectSetupState[]
-export type MetaDataAreaState = ProjectSetupState[]
+export type MetaSelectionState = ProjectSetupState[]
 
-export type ImageTypes = DrawingAreaImage | HumanAnnotationImage
+export type ImageTypes = DrawingAreaImage | HumanAnnotationImage | MetaSelectionImage
+
+export type EditorTypesExceptHA = DrawingAreaEditor | MetaSelectionEditor
+export type EditorTypes = HumanAnnotationEditor | EditorTypesExceptHA

@@ -1,10 +1,9 @@
 import "./UploadDragger.scss";
-import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
-import { IMImage } from "../../models/Types";
+import { EditorTypesExceptHA, IMImage } from "../../models/Types";
 interface IProps {
     allowMultiple?: boolean;
     spacingLeft?: number;
-    editor: DrawingAreaEditor;
+    editor: EditorTypesExceptHA;
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
 }

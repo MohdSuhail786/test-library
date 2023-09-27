@@ -9866,6 +9866,7 @@ class RemoveBoxAction extends Action {
                 this.status = 'executionFailed';
                 return reject("Unable to create box.");
             }
+            this.subject.unFocus();
             this.image?.deleteBox(this.subject);
             this.status = 'executing';
             resolve();
@@ -22145,6 +22146,22 @@ class RemovePolygonAction extends Action {
             this.status = 'finish';
             resolve();
         });
+    }
+}
+
+class Label {
+    id;
+    name;
+    type;
+    stroke = 'rgb(255, 178, 29)';
+    fill = 'rgb(255, 178, 29, 0.2)';
+    constructor(config) {
+        this.id = config.id;
+        this.name = config.name;
+        this.type = config.type;
+        if (config.name !== 'TEXT') {
+            [this.stroke, this.fill] = getLabelColors();
+        }
     }
 }
 
@@ -48308,6 +48325,15 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
         }
         handleClose();
     };
+    const createNewLabel = () => {
+        const label = new Label({
+            id: editor.labels.length,
+            name: labelSearch.key,
+            type: editor.labels.length
+        });
+        editor.addLabel(label);
+        editor.syncLabels();
+    };
     const handleSave = () => {
         if (direction !== appMode.shapeInEditMode.direction) {
             appMode.shapeInEditMode.updateDirection(direction);
@@ -48327,7 +48353,8 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
                                             })),
                                             selectable: true,
                                             selectedKeys: [direction]
-                                        }, children: jsx("span", { children: direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), filter.annotationType !== 'text' || !allowLabelUpdate && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), filter.annotationType !== 'text' || !allowLabelUpdate && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); updateLabel(label); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: labelSearch.key === "" ? "Type a lable for this box." : "Try using different search key." }) : jsx(Fragment, { children: jsxs("p", { style: { cursor: "pointer" }, onClick: handleSave, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })) })] })] }) }));
+                                        }, children: jsx("span", { children: direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? "Type a label for this box." : "Try using different search key." }) : jsx(Fragment, { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? jsx("p", { children: "Type a label for this box." }) :
+                                        jsxs("p", { style: { cursor: "pointer" }, onClick: createNewLabel, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })) })] })] }) }));
 }
 
 var css_248z$5 = ".Toolbar-module__toolbar__9pZF0 {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: white;\n  display: flex;\n  padding: 10px 5px;\n  flex-direction: column;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  border-radius: 15px;\n  gap: 5px;\n  align-items: center;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__divider__1Dj6r {\n  border-bottom: 1px solid rgba(187, 187, 187, 0.7333333333);\n  width: 100%;\n  margin: 8px 6px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC {\n  padding: 7px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 10px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU {\n  background-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU svg {\n  color: white;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n  border-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover svg {\n  color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC svg {\n  width: 22px;\n  height: 22px;\n}";
@@ -48541,6 +48568,8 @@ function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDi
         else if (shape instanceof Polygon) {
             await new RemovePolygonAction({ polygon: shape, actionsStore: shape.image?.actionStore }).directExecute();
         }
+        let newMode = editor.filter.annotationType === "polygon" ? "POLYGON_MODE" : "DRAWING_MODE";
+        editor.setMode({ mode: newMode });
     };
     const handleLabelChange = (_, { instance }) => {
         shape.updateLabel(instance);
@@ -66427,6 +66456,7 @@ let Image$1 = class Image extends Konva.Image {
     }
 };
 
+Konva.pixelRatio = 1;
 class Editor extends Konva.Stage {
     filter = { annotationType: 'entity', entityClass: '', entityType: '' };
     crosshairLayer;
@@ -66837,22 +66867,6 @@ class Editor extends Konva.Stage {
         setTimeout(() => {
             this.updateCursorStyle();
         }, 50);
-    }
-}
-
-class Label {
-    id;
-    name;
-    type;
-    stroke = 'rgb(255, 178, 29)';
-    fill = 'rgb(255, 178, 29, 0.2)';
-    constructor(config) {
-        this.id = config.id;
-        this.name = config.name;
-        this.type = config.type;
-        if (config.name !== 'TEXT') {
-            [this.stroke, this.fill] = getLabelColors();
-        }
     }
 }
 

@@ -1,10 +1,9 @@
-import { DrawingAreaImage } from "../models/DrawingAreaModels/DrawingAreaImage";
-import { HumanAnnotationImage } from "../models/HumanAnnotationModels/HumanAnnotationImage";
+import { ImageTypes } from "../models/Types";
 import ActionsStore from "./ActionStore";
 export declare abstract class Action<T> {
     childActions: Action<any>[];
     parentAction?: Action<any> | null;
-    image: HumanAnnotationImage | DrawingAreaImage | null;
+    image: ImageTypes | null;
     subject: T;
     status: 'finish' | 'awaitingExecute' | 'awaitingBuild' | 'executing' | 'undo' | 'buildFailed' | 'executionFailed' | 'undoFailed' | 'redoFailed';
     actionID: string;

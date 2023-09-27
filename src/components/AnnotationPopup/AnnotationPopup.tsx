@@ -13,16 +13,14 @@ import { RemovePolygonAction } from "../../actions/RemovePolygonAction";
 import { Label } from "../../models/Label";
 import { MdOutlineDirections } from "react-icons/md";
 import { Dropdown } from "antd";
-import { Direction } from "../../models/Types";
+import { Direction, EditorTypes } from "../../models/Types";
 import { directions } from "../../constants/Constants";
-import { HumanAnnotationEditor } from "../../models/HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
 
 const padding = 10;
 const modalWidthHeight = 320;
 
 interface IProps {
-    editor: HumanAnnotationEditor | DrawingAreaEditor
+    editor: EditorTypes
     matchEmptyString?: boolean
     allowCustomLabels?: boolean
     allowLabelUpdate?: boolean
@@ -150,6 +148,16 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
         handleClose()
     }
 
+    const createNewLabel = () => {
+        const label = new Label({
+            id: editor.labels.length,
+            name: labelSearch.key,
+            type: editor.labels.length
+        })
+        editor.addLabel(label)
+        editor.syncLabels()
+    }
+
     const handleSave = () => {
         if(direction !== appMode.shapeInEditMode.direction) {
             appMode.shapeInEditMode.updateDirection(direction as Direction); 
@@ -194,25 +202,28 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
                     </div>
                     <div className={styles["button-group"]}>
                         <button className={styles["delete"]} onClick={handleDelete}>Delete</button>
-                        {filter.annotationType !== 'text' || !allowLabelUpdate && <button className={styles["save"]} onClick={handleSave}>Save <IoMdReturnLeft size={18} /></button>}
+                        {(filter.annotationType !== 'text' || allowLabelUpdate) && <button className={styles["save"]} onClick={handleSave}>Save <IoMdReturnLeft size={18} /></button>}
                     </div>
                     <div className={styles["divider"]} />
-                    {filter.annotationType !== 'text' || !allowLabelUpdate && <div className={styles["list-options"]} ref={listRef}>
+                    {(filter.annotationType !== 'text' || allowLabelUpdate) && <div className={styles["list-options"]} ref={listRef}>
                         {
                             matchLables.length !== 0 ? (
                                 <>
                                     {
                                         matchLables.map((label:Label,index:number) => (
                                             <>
-                                                <span ref={(()=>selectedLabel === index ? activeRef : null)()} key={`${label}_${index}`} onClick={() => {setSelectedLabel(index); updateLabel(label);}} className={`${selectedLabel === index ? styles["active"] : ""}`}>{textToHumanReadable(label.name)}</span>
+                                                <span ref={(()=>selectedLabel === index ? activeRef : null)()} key={`${label}_${index}`} onClick={() => {setSelectedLabel(index);}} className={`${selectedLabel === index ? styles["active"] : ""}`}>{textToHumanReadable(label.name)}</span>
                                             </>
                                         ))
                                     }
                                 </>
                             ) : (
                                 <>
-                                    {!allowCustomLabels ? <p>{labelSearch.key === "" ? "Type a lable for this box." : "Try using different search key."}</p> : <>
-                                        <p style={{cursor:"pointer"}} onClick={handleSave}>Create a new label "{labelSearch.key}" </p>
+                                    {!allowCustomLabels ? <p>{(labelSearch.key === "" || !labelSearch.allowFilter)? "Type a label for this box." : "Try using different search key."}</p> : <>
+                                        {
+                                            (labelSearch.key === "" || !labelSearch.allowFilter) ? <p>Type a label for this box.</p> :
+                                            <p style={{cursor:"pointer"}} onClick={createNewLabel}>Create a new label "{labelSearch.key}" </p>
+                                        }
                                     </>}
                                 </>
                             )

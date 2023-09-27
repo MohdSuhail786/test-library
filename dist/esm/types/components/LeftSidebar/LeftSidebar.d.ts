@@ -1,7 +1,6 @@
-import { HumanAnnotationEditor } from "../../models/HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
+import { EditorTypes } from "../../models/Types";
 interface IProps {
-    editor: HumanAnnotationEditor | DrawingAreaEditor;
+    editor: EditorTypes;
     config?: {
         showInput?: boolean;
         showCheckBoxes?: boolean;

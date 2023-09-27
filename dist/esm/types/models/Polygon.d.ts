@@ -5,10 +5,8 @@ import { Anchor } from "./Anchor";
 import { PolygonTransformAction } from "../actions/PolygonTransformAction";
 import { PolygonMoveAction } from "../actions/PolygonMoveAction";
 import { Label } from "./Label";
-import { Direction } from "./Types";
+import { Direction, EditorTypes } from "./Types";
 import { HumanAnnotationImage } from "./HumanAnnotationModels/HumanAnnotationImage";
-import { HumanAnnotationEditor } from "./HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "./DrawingAreaModels/DrawingAreaEditor";
 export interface GroupConfig extends Konva.GroupConfig {
     image: HumanAnnotationImage;
     label?: Label;
@@ -21,7 +19,7 @@ export declare class Polygon<Config extends GroupConfig = GroupConfig> extends K
     dummyLine: Konva.Line;
     label: Label | null;
     image: HumanAnnotationImage | null;
-    editor: HumanAnnotationEditor | DrawingAreaEditor | null;
+    editor: EditorTypes | null;
     anchors: Anchor[];
     polygonTransformAction: PolygonTransformAction | null;
     polygonMoveAction: PolygonMoveAction | null;

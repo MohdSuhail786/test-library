@@ -1,9 +1,8 @@
 import { Box } from "../../models/Box";
 import { Polygon } from "../../models/Polygon";
-import { HumanAnnotationEditor } from "../../models/HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
+import { EditorTypes } from "../../models/Types";
 interface IProps {
-    editor: HumanAnnotationEditor | DrawingAreaEditor;
+    editor: EditorTypes;
     shape: Box | Polygon;
     index: number;
     showDirection?: boolean;

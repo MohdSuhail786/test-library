@@ -8,14 +8,10 @@ import ActionsStore from "../actions/ActionStore";
 import { BoxMoveAction } from "../actions/BoxMoveAction";
 import { Anchor } from "./Anchor";
 import { Label } from "./Label";
-import { Direction } from "./Types";
-import { HumanAnnotationEditor } from "./HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "./DrawingAreaModels/DrawingAreaEditor";
-import { HumanAnnotationImage } from "./HumanAnnotationModels/HumanAnnotationImage";
-import { DrawingAreaImage } from "./DrawingAreaModels/DrawingAreaImage";
+import { Direction, EditorTypes, ImageTypes } from "./Types";
 
 export interface GroupConfig extends Konva.GroupConfig {
-    image: HumanAnnotationImage | DrawingAreaImage,
+    image: ImageTypes,
     indexId: number,
     humanAnnotated: boolean,
     label?: Label | null
@@ -27,10 +23,10 @@ export class Box<Config extends GroupConfig = GroupConfig> extends Konva.Group {
     rect: Konva.Rect = new Konva.Rect();
     label: Label | null = null;
     direction!: Direction;
-    image: HumanAnnotationImage | DrawingAreaImage | null = null;
+    image: ImageTypes | null = null;
     indexId!: number;
     humanAnnotated!: boolean;
-    editor: HumanAnnotationEditor | DrawingAreaEditor | null = null;
+    editor: EditorTypes | null = null;
     anchors: {rect?: Konva.Rect, pos: [number,number], name: string}[] =  [{pos: [0,0], name: 'top-left'}, {pos: [1,0], name: "top-right"}, {pos: [0,1], name: 'bottom-left'}, {pos: [1,1], name: 'bottom-right'}]
     boxTransformAction: BoxTransformAction | null = null;
     boxMoveAction: BoxMoveAction | null = null;

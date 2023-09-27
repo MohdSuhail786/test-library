@@ -1,9 +1,7 @@
-import { Vector2d } from "konva/lib/types";
 import { Action } from "./AbstractAction";
 import { Box } from "../models/Box";
-import { Image } from "../models/Image";
-import { Editor } from "../models/HumanAnnotationModels/HumanAnnotationEditor";
 import ActionsStore from "./ActionStore";
+import { EditorTypes } from "../models/Types";
 
 interface RemoveBoxActionIProps {
     parent?: Action<any>;
@@ -13,12 +11,12 @@ interface RemoveBoxActionIProps {
 
 export class RemoveBoxAction extends Action<Box> {
 
-    editor: Editor | null = null;
+    editor: EditorTypes | null = null;
 
     constructor(config: RemoveBoxActionIProps) {
         super(config.box, config.actionsStore, config.parent)
         this.image = this.subject.image;
-        this.editor = this.subject.image?.editor as Editor;
+        this.editor = this.subject.image?.editor as EditorTypes;
     }
 
     build(): Promise<void> {
@@ -38,7 +36,7 @@ export class RemoveBoxAction extends Action<Box> {
                 this.status = 'executionFailed';
                 return reject("Unable to create box.");
             }
-
+            this.subject.unFocus()
             this.image?.deleteBox(this.subject);
             
             this.status = 'executing'

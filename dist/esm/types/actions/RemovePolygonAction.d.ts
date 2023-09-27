@@ -1,14 +1,14 @@
 import { Action } from "./AbstractAction";
-import { Editor } from "../models/HumanAnnotationModels/HumanAnnotationEditor";
 import ActionsStore from "./ActionStore";
 import { Polygon } from "../models/Polygon";
+import { EditorTypes } from "../models/Types";
 interface RemovePolygonActionIProps {
     parent?: Action<any>;
     polygon: Polygon;
     actionsStore: ActionsStore;
 }
 export declare class RemovePolygonAction extends Action<Polygon> {
-    editor: Editor | null;
+    editor: EditorTypes | null;
     constructor(config: RemovePolygonActionIProps);
     build(): Promise<void>;
     execute(): Promise<void>;

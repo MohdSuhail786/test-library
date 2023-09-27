@@ -5,15 +5,14 @@ import { imageListAtom, loaderAtom, showUploadDraggerAtom } from "../../state/ed
 import { useRef, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { BiX } from "react-icons/bi";
-import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
-import { DrawingAreaState, IMImage, LabelMappings } from "../../models/Types";
+import { EditorTypesExceptHA, IMImage } from "../../models/Types";
 
 const Dragger = Upload.Dragger;
 
 interface IProps {
     allowMultiple?: boolean,
     spacingLeft?: number,
-    editor: DrawingAreaEditor
+    editor: EditorTypesExceptHA
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>
 }

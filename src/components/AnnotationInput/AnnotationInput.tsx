@@ -6,17 +6,15 @@ import { useRecoilValue } from "recoil";
 import { appModeAtom, labelListAtom } from "../../state/editor";
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { MdOutlineDirections } from "react-icons/md";
-import { Direction } from "../../models/Types";
+import { Direction, EditorTypes } from "../../models/Types";
 import { RemoveBoxAction } from "../../actions/RemoveBoxAction";
 import ActionsStore from "../../actions/ActionStore";
 import { RemovePolygonAction } from "../../actions/RemovePolygonAction";
 import { Label } from "../../models/Label";
-import { HumanAnnotationEditor } from "../../models/HumanAnnotationModels/HumanAnnotationEditor";
 import { directions } from "../../constants/Constants";
-import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
 
 interface IProps {
-    editor: HumanAnnotationEditor | DrawingAreaEditor
+    editor: EditorTypes
     shape: Box | Polygon
     index: number
     showDirection?: boolean
@@ -33,6 +31,8 @@ export default function AnnotationInput({shape, index, editor,allowLabelUpdate=t
         } else if(shape instanceof Polygon) {
             await new RemovePolygonAction({polygon: shape, actionsStore: shape.image?.actionStore as ActionsStore}).directExecute();
         }
+        let newMode: "DRAWING_MODE" | "POLYGON_MODE" = editor.filter.annotationType === "polygon" ? "POLYGON_MODE" : "DRAWING_MODE"
+        editor.setMode({mode: newMode})
     }
 
     const handleLabelChange = (_:any,{instance}: any) => {

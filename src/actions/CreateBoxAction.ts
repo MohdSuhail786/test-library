@@ -2,13 +2,12 @@ import { Vector2d } from "konva/lib/types";
 import { Action } from "./AbstractAction";
 import { Box } from "../models/Box";
 import ActionsStore from "./ActionStore";
-import { HumanAnnotationImage } from "../models/HumanAnnotationModels/HumanAnnotationImage";
-import { DrawingAreaImage } from "../models/DrawingAreaModels/DrawingAreaImage";
+import { ImageTypes } from "../models/Types";
 
 interface CreateBoxActionIProps {
     parent?: Action<any>;
     pos: Vector2d
-    image: HumanAnnotationImage | DrawingAreaImage,
+    image: ImageTypes,
     actionsStore: ActionsStore
 }
 

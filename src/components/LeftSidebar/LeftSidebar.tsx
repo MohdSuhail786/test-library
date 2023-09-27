@@ -4,17 +4,15 @@ import { Checkbox, Empty, Input } from "antd";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import AnnotationInput from "../AnnotationInput/AnnotationInput";
-import { AnnotationType, Filter } from "../../models/Types";
+import { AnnotationType, EditorTypes, Filter } from "../../models/Types";
 import { Box } from "../../models/Box";
 import { Polygon } from "../../models/Polygon";
 import { entityListAtom, polygonListAtom, textListAtom } from "../../state/editor";
 import { ViewportList, ViewportListRef } from "react-viewport-list";
 import { debounce } from "lodash";
-import { HumanAnnotationEditor } from "../../models/HumanAnnotationModels/HumanAnnotationEditor";
-import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
 
 interface IProps {
-    editor: HumanAnnotationEditor | DrawingAreaEditor
+    editor: EditorTypes
     config?: {
         showInput?: boolean,
         showCheckBoxes?: boolean,
