@@ -4,6 +4,7 @@ import { DrawingAreaState, IMImage, LabelMappings, LoaderSpinner } from "../mode
 import { ReactNode, useEffect, useRef, useState } from "react";
 import DrawingAreaAnnotation from "../screens/DrawingAreaAnnotation/DrawingAreaAnnotation";
 import { DrawingAreaEditor } from "../models/DrawingAreaModels/DrawingAreaEditor";
+import ImageLoader from "../components/Loader/ImageLoader";
 
 interface IProps {
   drawingAreaState: DrawingAreaState
@@ -47,14 +48,19 @@ export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) 
       },[props])
 
     const handleSave = () => {
+      if(!editorRef.current) return;
+      const editorState = editorRef.current.exportDrawingAreaState()
+      return editorState;
     }
+
+    const emptyEditorStyles = (editor && props) ? {} : {width: window.innerWidth - (props?.editorSpacingLeft || 0),height: window.innerHeight - (props?.editorSpacingTop || 0)}
 
     return [(
         <RecoilRoot>
             <RecoilNexus />
-            <div style={{position: 'relative'}}>
+            <div style={{position: 'relative',...emptyEditorStyles }}>
                 <div id={'drawing-area-editor'} style={{width: '100%', height: '100%'}}/>
-                {editor && props && <DrawingAreaAnnotation {...props} loader={loader} editor={editor} />}
+                {(editor && props) ? <DrawingAreaAnnotation {...props} loader={loader} editor={editor} /> : <ImageLoader spacingRight={300} forceShow/>}
             </div>
         </RecoilRoot>
     ), init, handleSave, setLoader]

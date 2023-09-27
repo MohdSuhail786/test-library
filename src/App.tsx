@@ -115,6 +115,9 @@ export function DrawingAreaModal(props: IProps) {
                 uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
                 onUploadSubmit: () => new Promise(r => r())
             })
+            setTimeout(() => {
+                console.log(handleSave())
+            }, 1000);
         }, 3000);
     },[])
 

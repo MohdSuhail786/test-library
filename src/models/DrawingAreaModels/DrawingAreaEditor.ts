@@ -58,6 +58,24 @@ export class DrawingAreaEditor<Config extends DrawingAreaConfig = DrawingAreaCon
         this.renderAnnotations()
     }
 
+    exportDrawingAreaState():DrawingAreaState {
+        return [{
+            image: {
+                id: this.activeImage?.id() || '',
+                src: this.activeImage?.src || '',
+                name: this.activeImage?.name() || ''
+            },
+            bounding_box: [...this.activeImage?.drawingAreas || []].map(box => ({
+                x: box.x(),
+                y: box.y(),
+                width: box.rect.width(),
+                height: box.rect.height(),
+                id: box.indexId === -1 ? null : box.indexId,
+                label: box.label?.name || ""
+            }))
+        }]
+    }
+
     addImage(imImage: IMImage): Promise<void> {
         return new Promise((resolve,reject) => {
             let pos:Vector2d = { x:0, y:0 };

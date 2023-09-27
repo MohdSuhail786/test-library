@@ -69,7 +69,7 @@ export class Box<Config extends GroupConfig = GroupConfig> extends Konva.Group {
     init(config: Config) {
         this.direction = config.direction
         this.humanAnnotated = config.humanAnnotated
-        this.indexId = config.indexId
+        this.indexId = config.indexId ?? -1
         this.image = config.image;
         this.editor = this.image.editor;
         this.label = config?.label || null;

@@ -9,6 +9,7 @@ export declare class DrawingAreaEditor<Config extends DrawingAreaConfig = Drawin
     constructor(config: Config);
     init(config: Config): void;
     importDrawingAreaState(drawingAreaState: DrawingAreaState, labelMappings: LabelMappings): Promise<void>;
+    exportDrawingAreaState(): DrawingAreaState;
     addImage(imImage: IMImage): Promise<void>;
     renderAnnotations(): Promise<void>;
     setSelectionBoxesListening(listen: boolean): void;

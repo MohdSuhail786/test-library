@@ -21494,7 +21494,7 @@ class Box extends Konva.Group {
     init(config) {
         this.direction = config.direction;
         this.humanAnnotated = config.humanAnnotated;
-        this.indexId = config.indexId;
+        this.indexId = config.indexId ?? -1;
         this.image = config.image;
         this.editor = this.image.editor;
         this.label = config?.label || null;
@@ -48503,11 +48503,11 @@ function ClipLoader(_a) {
     return React.createElement("span", __assign({ style: style }, additionalprops));
 }
 
-function ImageLoader({ spacingLeft = 0, spacingRight = 0 }) {
+function ImageLoader({ spacingLeft = 0, spacingRight = 0, forceShow = false }) {
     const LoaderSpinner = Recoil_index_20(loaderAtom);
-    if (!LoaderSpinner.visible)
+    if (!LoaderSpinner.visible && !forceShow)
         return jsx(Fragment, {});
-    return (jsx(Fragment, { children: jsxs("div", { className: styles$2["image-loader-container"], children: [jsx("span", { className: styles$2["title"], children: LoaderSpinner.title }), jsx("div", { className: styles$2["loader"], style: { marginLeft: spacingLeft, marginRight: spacingRight }, children: jsx(ClipLoader, { color: "rgb(66, 72, 255)" }) })] }) }));
+    return (jsx(Fragment, { children: jsxs("div", { className: styles$2["image-loader-container"], children: [jsx("span", { className: styles$2["title"], children: LoaderSpinner?.title || "" }), jsx("div", { className: styles$2["loader"], style: { marginLeft: spacingLeft, marginRight: spacingRight }, children: jsx(ClipLoader, { color: "rgb(66, 72, 255)" }) })] }) }));
 }
 
 var css_248z$3 = "@import 'antd/dist/antd.css';\n::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 2px rgba(48, 48, 48, 0.3);\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar {\n  width: 2px;\n  height: 2px;\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar-thumb {\n  background-color: #646464;\n  border: 2px solid #555555;\n}\n\nspan {\n  font-family: \"Roboto\", sans-serif, Saira Semi Condensed, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}";
@@ -67794,6 +67794,23 @@ class DrawingAreaEditor extends Editor {
         });
         this.renderAnnotations();
     }
+    exportDrawingAreaState() {
+        return [{
+                image: {
+                    id: this.activeImage?.id() || '',
+                    src: this.activeImage?.src || '',
+                    name: this.activeImage?.name() || ''
+                },
+                bounding_box: [...this.activeImage?.drawingAreas || []].map(box => ({
+                    x: box.x(),
+                    y: box.y(),
+                    width: box.rect.width(),
+                    height: box.rect.height(),
+                    id: box.indexId === -1 ? null : box.indexId,
+                    label: box.label?.name || ""
+                }))
+            }];
+    }
     addImage(imImage) {
         return new Promise((resolve, reject) => {
             let pos = { x: 0, y: 0 };
@@ -67876,8 +67893,13 @@ function useDrawingAreaAnnotator() {
         };
     }, [props]);
     const handleSave = () => {
+        if (!editorRef.current)
+            return;
+        const editorState = editorRef.current.exportDrawingAreaState();
+        return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), editor && props && jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor })] })] })), init, handleSave, setLoader];
+    const emptyEditorStyles = (editor && props) ? {} : { width: window.innerWidth - (props?.editorSpacingLeft || 0), height: window.innerHeight - (props?.editorSpacingTop || 0) };
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative', ...emptyEditorStyles }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor }) : jsx(ImageLoader, { spacingRight: 300, forceShow: true })] })] })), init, handleSave, setLoader];
 }
 
 export { useDrawingAreaAnnotator, useHumanAnnotator };
