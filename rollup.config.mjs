@@ -32,11 +32,11 @@ export default [
       nodePolyfills(),
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss({
-        extensions: ['.scss'],
+        extensions: ['.module.scss'],
         modules: {
           generateScopedName: `[name]__[local]__[hash:base64:5]`,
         },
-        autoModules: false,
+        autoModules: true,
       }),
       // scss({ fileName: 'bundle.css' ,outputStyle: 'compressed',autoModules: true,}),
       rollupJson(),
