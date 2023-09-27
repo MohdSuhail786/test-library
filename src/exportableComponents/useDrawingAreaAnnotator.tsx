@@ -53,12 +53,10 @@ export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) 
       return editorState;
     }
 
-    const emptyEditorStyles = (editor && props) ? {} : {width: window.innerWidth - (props?.editorSpacingLeft || 0),height: window.innerHeight - (props?.editorSpacingTop || 0)}
-
     return [(
         <RecoilRoot>
             <RecoilNexus />
-            <div style={{position: 'relative',...emptyEditorStyles }}>
+            <div style={{position: 'relative' }}>
                 <div id={'drawing-area-editor'} style={{width: '100%', height: '100%'}}/>
                 {(editor && props) ? <DrawingAreaAnnotation {...props} loader={loader} editor={editor} /> : <ImageLoader spacingRight={300} forceShow/>}
             </div>
