@@ -71,7 +71,7 @@ export default function AnnotationInput({shape, index, editor,allowLabelUpdate=t
                         }))}
                     /> : 
                     <>
-                        <span style={{flex: 1, cursor: 'default', userSelect: 'none'}}>{shape.label?.name || ""}</span>
+                        <span style={{flex: 1, cursor: 'default', userSelect: 'none', textAlign: 'start'}}>{shape.label?.name || ""}</span>
                     </>
                 }
                   {showDirection && <Dropdown

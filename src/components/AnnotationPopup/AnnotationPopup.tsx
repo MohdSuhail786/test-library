@@ -202,7 +202,7 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
                     </div>
                     <div className={styles["button-group"]}>
                         <button className={styles["delete"]} onClick={handleDelete}>Delete</button>
-                        {(filter.annotationType !== 'text' || allowLabelUpdate) && <button className={styles["save"]} onClick={handleSave}>Save <IoMdReturnLeft size={18} /></button>}
+                        {(filter.annotationType !== 'text' && allowLabelUpdate) && <button className={styles["save"]} onClick={handleSave}>Save <IoMdReturnLeft size={18} /></button>}
                     </div>
                     <div className={styles["divider"]} />
                     {(filter.annotationType !== 'text' || allowLabelUpdate) && <div className={styles["list-options"]} ref={listRef}>

@@ -53,14 +53,12 @@ export default function useMetaExtractionAnnotator(): [ReactNode, (config: IProp
       return editorState;
     }
 
-    const emptyEditorStyles = (editor && props) ? {} : {width: window.innerWidth - (props?.editorSpacingLeft || 0),height: window.innerHeight - (props?.editorSpacingTop || 0)}
-
     return [(
         <RecoilRoot>
             <RecoilNexus />
-            <div style={{position: 'relative',...emptyEditorStyles }}>
+            <div style={{position: 'relative' }}>
                 <div id={'meta-selection-area-editor'} style={{width: '100%', height: '100%'}}/>
-                {(editor && props) ? <MetaSelectionAnnotation {...props} loader={loader} editor={editor} /> : <ImageLoader spacingRight={300} forceShow/>}
+                {(editor && props) ? <MetaSelectionAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: '100vh'}}><ImageLoader spacingRight={300} forceShow/></div>}
             </div>
         </RecoilRoot>
     ), init, handleSave, setLoader]

@@ -48353,7 +48353,7 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
                                             })),
                                             selectable: true,
                                             selectedKeys: [direction]
-                                        }, children: jsx("span", { children: direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? "Type a label for this box." : "Try using different search key." }) : jsx(Fragment, { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? jsx("p", { children: "Type a label for this box." }) :
+                                        }, children: jsx("span", { children: direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), (filter.annotationType !== 'text' && allowLabelUpdate) && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? "Type a label for this box." : "Try using different search key." }) : jsx(Fragment, { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? jsx("p", { children: "Type a label for this box." }) :
                                         jsxs("p", { style: { cursor: "pointer" }, onClick: createNewLabel, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })) })] })] }) }));
 }
 
@@ -48587,7 +48587,7 @@ function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDi
                         value: label.id,
                         instance: label
                     })) }) :
-                    jsx(Fragment, { children: jsx("span", { style: { flex: 1, cursor: 'default', userSelect: 'none' }, children: shape.label?.name || "" }) }), showDirection && jsx(Dropdown$1, { placement: "bottom", className: styles["direction-selector"], menu: {
+                    jsx(Fragment, { children: jsx("span", { style: { flex: 1, cursor: 'default', userSelect: 'none', textAlign: 'start' }, children: shape.label?.name || "" }) }), showDirection && jsx(Dropdown$1, { placement: "bottom", className: styles["direction-selector"], menu: {
                         onSelect: (s) => { shape.updateDirection(s.key); },
                         items: directions.map(d => ({
                             key: d.value,
@@ -67912,8 +67912,291 @@ function useDrawingAreaAnnotator() {
         const editorState = editorRef.current.exportDrawingAreaState();
         return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor }) : jsx(ImageLoader, { spacingRight: 300, forceShow: true })] })] })), init, handleSave, setLoader];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: '100vh' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
 }
 
-export { useDrawingAreaAnnotator, useHumanAnnotator };
+class MetaSelectionImage extends Image$1 {
+    metaSelections = new Set();
+    createBoxAction = null;
+    constructor(config) {
+        super(config);
+        this.init(config);
+        this.on("mousedown", this.mouseDownAction.bind(this));
+        this.on("mousemove", this.mouseMoveAction.bind(this));
+        this.on("mouseup", this.mouseUpAction.bind(this));
+    }
+    init(config) {
+        super.init(config);
+    }
+    async mouseDownAction(event) {
+        try {
+            if (!["DRAWING_MODE"].includes(this.editor?.appMode.mode || "") || this.createBoxAction !== null || event.evt.which !== 1)
+                return;
+            this.editor?.hideCrossHairs();
+            const pos = this.editor?.getRelativePointerPosition();
+            if (this.editor.appMode.mode === "DRAWING_MODE") {
+                this.createBoxAction = new CreateBoxAction({ pos, image: this, actionsStore: this.actionStore });
+                await this.createBoxAction.build();
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async mouseMoveAction(event) {
+        try {
+            if (!["DRAWING_MODE"].includes(this.editor?.appMode.mode || ""))
+                return;
+            const pos = this.editor?.getRelativePointerPosition();
+            if (this.createBoxAction) {
+                await this.createBoxAction.execute(pos);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async mouseUpAction(event) {
+        try {
+            if (this.editor?.appMode.mode !== "DRAWING_MODE" || this.createBoxAction === null)
+                return;
+            this.editor?.showCrossHairs();
+            await this.createBoxAction.finish();
+            if (this.createBoxAction.subject?.rect?.width() === 0 || this.createBoxAction.subject?.rect?.height() === 0) {
+                await this.createBoxAction.undo();
+                await this.createBoxAction.destroy();
+                this.createBoxAction = null;
+                return;
+            }
+            const box = this.createBoxAction.subject;
+            this.createBoxAction = null;
+            this.editor?.setMode({
+                mode: "EDIT_MODE",
+                shapeInEditMode: box,
+                visible: true,
+                scrollIntoView: true
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    addImBox(imBox) {
+        const label = this.editor.labels.find(label => label.id === imBox.labelId);
+        const box = new Box({
+            ...imBox,
+            draggable: true,
+            listening: false,
+            image: this,
+            label
+        });
+        this.addBox(box);
+    }
+    addBox(box) {
+        this.metaSelections.add(box);
+        this.editor.metaSelectionLayer.add(box);
+        this.syncBoxs();
+    }
+    deleteBox(box) {
+        this.metaSelections.delete(box);
+        box.remove();
+        this.syncBoxs();
+    }
+    syncBoxs() {
+        setRecoil_1(entityListAtom, [...this.metaSelections]);
+    }
+}
+
+class MetaSelectionEditor extends Editor {
+    metaSelectionLayer;
+    constructor(config) {
+        super(config);
+        this.init(config);
+    }
+    init(config) {
+        super.init(config);
+        this.metaSelectionLayer = new Konva.Layer();
+        this.metaSelectionLayer.canvas._canvas.setAttribute('id', 'META-SELECTION-LAYER');
+    }
+    async importMetaSelectionState(metaSelectionState, labelMappings) {
+        if (metaSelectionState.length === 0)
+            return;
+        await this.addImage(metaSelectionState[0].image);
+        this.syncImageList();
+        this.loadFirstImageIfRequired();
+        labelMappings.forEach(label => {
+            const newLabel = new Label({
+                id: label.id,
+                name: label.name,
+                type: label.type
+            });
+            this.addLabel(newLabel);
+        });
+        console.log(this.labels, metaSelectionState[0].bounding_box);
+        metaSelectionState[0].bounding_box.forEach(box => {
+            let label = this.labels.find(label => label.name === box.label);
+            if (!label) {
+                label = new Label({
+                    id: this.labels.length,
+                    name: box.label,
+                    type: this.labels.length
+                });
+                this.addLabel(label);
+            }
+            const imBox = {
+                x: box.x,
+                y: box.y,
+                width: box.width,
+                height: box.height,
+                labelId: label.id,
+                direction: 'E',
+                humanAnnotated: false,
+                indexId: box.id || -1
+            };
+            this.activeImage?.addImBox(imBox);
+        });
+        this.syncLabels();
+        this.renderAnnotations();
+    }
+    exportMetaSelectionState() {
+        return [{
+                image: {
+                    id: this.activeImage?.id() || '',
+                    src: this.activeImage?.src || '',
+                    name: this.activeImage?.name() || ''
+                },
+                bounding_box: [...this.activeImage?.metaSelections || []].map(box => ({
+                    x: box.x(),
+                    y: box.y(),
+                    width: box.rect.width(),
+                    height: box.rect.height(),
+                    id: box.indexId === -1 ? null : box.indexId,
+                    label: box.label?.name || ""
+                }))
+            }];
+    }
+    addImage(imImage) {
+        return new Promise((resolve, reject) => {
+            let pos = { x: 0, y: 0 };
+            const image = new window.Image();
+            image.crossOrigin = 'Anonymous';
+            image.src = imImage.src;
+            image.onload = (e) => {
+                const img = new MetaSelectionImage({
+                    id: imImage.id,
+                    name: imImage.name,
+                    src: imImage.src,
+                    x: pos.x,
+                    y: pos.y,
+                    fill: 'white',
+                    draggable: false,
+                    image: image,
+                    editor: this,
+                });
+                this.images.unshift(img);
+                resolve();
+            };
+            image.onerror = () => reject("Failed to load image.");
+        });
+    }
+    async renderAnnotations() {
+        if (!this.metaSelectionLayer)
+            return;
+        this.add(this.metaSelectionLayer);
+        this.metaSelectionLayer.moveToTop();
+        this.crosshairLayer.moveToTop();
+    }
+    setSelectionBoxesListening(listen) {
+        this.activeImage?.metaSelections.forEach(entity => { entity.listening(listen); entity.hideAnchors(); });
+    }
+    setMode(appMode) {
+        super.setMode(appMode);
+        if (this.activeImage?.createBoxAction)
+            return;
+        if (appMode.mode === 'DRAG_SELECTION_MODE') {
+            this.setSelectionBoxesListening(true);
+        }
+        else if (appMode.mode === 'EDIT_MODE') {
+            this.setSelectionBoxesListening(false);
+        }
+        else if (appMode.mode === 'DRAWING_MODE') {
+            this.activeImage?.metaSelections.forEach(entity => entity.hideAnchors());
+            this.setSelectionBoxesListening(false);
+        }
+    }
+}
+
+function MetaSelectionAnnotation({ editor, labelMappings, metaExtractionState, loader, editorSpacingLeft, uploadRequest, onUploadSubmit }) {
+    const setLoader = Recoil_index_24(loaderAtom);
+    const [showUploadDragger, setShowUploadDragger] = Recoil_index_22(showUploadDraggerAtom);
+    const cursorTextRef = useRef$6(null);
+    useEffect$5(() => {
+        async function initEditor() {
+            if (!editor || !cursorTextRef.current)
+                return;
+            editor.setCursorTextElement(cursorTextRef);
+            editor.container().focus();
+            setLoader({ visible: true, title: "Loading editor..." });
+            try {
+                await editor.importMetaSelectionState(metaExtractionState, labelMappings);
+            }
+            catch (error) {
+                console.log(error);
+            }
+            if (editor.images.length === 0) {
+                setShowUploadDragger(true);
+            }
+            setLoader({ visible: false });
+        }
+        initEditor();
+        return () => {
+            setShowUploadDragger(false);
+        };
+    }, [editor, cursorTextRef, labelMappings, metaExtractionState]);
+    useEffect$5(() => {
+        setLoader(loader);
+    }, [loader]);
+    return (jsxs(Fragment, { children: [showUploadDragger && jsx(UploadDragger, { editor: editor, spacingLeft: editorSpacingLeft, uploadRequest: uploadRequest, onUploadSubmit: onUploadSubmit }), jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: false, allowLabelUpdate: true, allowCustomLabels: true }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: false, allowLabelUpdate: true } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 })] }));
+}
+
+function useMetaExtractionAnnotator() {
+    const [editor, setEditor] = useState$3(null);
+    const editorRef = useRef$6(null);
+    const [props, setProps] = useState$3(null);
+    const [loader, setLoader] = useState$3({ visible: false });
+    const init = (config) => {
+        if (props)
+            return;
+        setProps(config);
+    };
+    useEffect$5(() => {
+        (async (e) => {
+            if (!props)
+                return;
+            const editor = new MetaSelectionEditor({
+                container: 'meta-selection-area-editor',
+                width: window.innerWidth - (props.editorSpacingLeft || 0),
+                height: window.innerHeight - (props.editorSpacingTop || 0),
+                spacingRight: 0,
+                editorSpacingLeft: props.editorSpacingLeft,
+                editorSpacingTop: props.editorSpacingTop
+            });
+            editorRef.current = editor;
+            setEditor(editor);
+            window.editor = editor;
+        })();
+        return () => {
+            editorRef.current?.removeEventListeners();
+        };
+    }, [props]);
+    const handleSave = () => {
+        if (!editorRef.current)
+            return;
+        const editorState = editorRef.current.exportMetaSelectionState();
+        return editorState;
+    };
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'meta-selection-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(MetaSelectionAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: '100vh' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+}
+
+export { useDrawingAreaAnnotator, useHumanAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };
 //# sourceMappingURL=index.js.map

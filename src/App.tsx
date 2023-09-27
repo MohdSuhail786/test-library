@@ -91,7 +91,7 @@ export function DrawingAreaModal(props: IProps) {
     ] as MetaSelectionState,
             editorSpacingLeft:492,
             editorSpacingTop:100,
-            labelMappings: LabelList.MetaDataArea.map((label,index) => ({id: index, name: label, type: index})),
+            labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
             uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
             onUploadSubmit: () => new Promise(r => setTimeout(r,2000))
         })
@@ -112,7 +112,7 @@ export function DrawingAreaModal(props: IProps) {
         ] as MetaSelectionState,
                 editorSpacingLeft:492,
                 editorSpacingTop:100,
-                labelMappings: LabelList.MetaDataArea.map((label,index) => ({id: index, name: label, type: index})),
+                labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
                 uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
                 onUploadSubmit: () => new Promise(r => r())
             })
@@ -123,17 +123,17 @@ export function DrawingAreaModal(props: IProps) {
     },[])
 
     return (
-        <Modal key={'drawing-area-modal'}
-            centered={true}
-            footer={null}
-            keyboard={false}
-            className="attribute-modal project-setup-modal"
-            closeIcon={<></>}
-            open={true} getContainer={false}
-            forceRender focusTriggerAfterClose={false}
-            onCancel={handleCancel}
-            width={'90%'}
-        >
+        // <Modal key={'drawing-area-modal'}
+        //     centered={true}
+        //     footer={null}
+        //     keyboard={false}
+        //     className="attribute-modal project-setup-modal"
+        //     closeIcon={<></>}
+        //     open={true} getContainer={false}
+        //     forceRender focusTriggerAfterClose={false}
+        //     onCancel={handleCancel}
+        //     width={'90%'}
+        // >
             <div className='attribute-modal-body'>
                 <div className='header'>
                     <span className='title'>{"Drawing B Box"}</span>
@@ -141,6 +141,6 @@ export function DrawingAreaModal(props: IProps) {
                 </div>
                 {DrawingAreaAnnotator}
             </div>
-        </Modal>
+        // </Modal>
     )
 }

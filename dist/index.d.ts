@@ -88,8 +88,9 @@ type ProjectSetupState = {
     bounding_box: ProjectSetupBBox[];
 };
 type DrawingAreaState = ProjectSetupState[];
+type MetaSelectionState = ProjectSetupState[];
 
-interface IProps$1 {
+interface IProps$2 {
     humanAnnotations: HumanAnnotations;
     graphJSON: GraphJSON;
     labelMappings: LabelMappings;
@@ -97,9 +98,9 @@ interface IProps$1 {
     editorSpacingLeft?: number;
     editorSpacingTop?: number;
 }
-declare function useHumanAnnotator(): [ReactNode, (config: IProps$1) => any, () => any];
+declare function useHumanAnnotator(): [ReactNode, (config: IProps$2) => any, () => any];
 
-interface IProps {
+interface IProps$1 {
     drawingAreaState: DrawingAreaState;
     labelMappings: LabelMappings;
     editorSpacingLeft?: number;
@@ -107,6 +108,16 @@ interface IProps {
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
 }
-declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps$1) => any, () => any, SetterOrUpdater<LoaderSpinner>];
 
-export { useDrawingAreaAnnotator, useHumanAnnotator };
+interface IProps {
+    metaExtractionState: MetaSelectionState;
+    labelMappings: LabelMappings;
+    editorSpacingLeft?: number;
+    editorSpacingTop?: number;
+    uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
+    onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
+}
+declare function useMetaExtractionAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+
+export { useDrawingAreaAnnotator, useHumanAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };
