@@ -15,6 +15,8 @@ import { Line } from "konva/lib/shapes/Line";
 import { RemovePolygonAction } from "../../actions/RemovePolygonAction";
 import { Label } from "../Label";
 import { ViewportListRef } from "react-viewport-list";
+import { HumanAnnotationImage } from "../HumanAnnotationModels/HumanAnnotationImage";
+import { DrawingAreaImage } from "../DrawingAreaModels/DrawingAreaImage";
 
 export interface EditorConfig extends Konva.StageConfig {
     spacingLeft?: number
@@ -369,7 +371,7 @@ export class Editor<ImageType,Config extends EditorConfig = EditorConfig> extend
 
 
     syncActiveImage(image: ImageType) {
-        setRecoil(activeImageAtom, image)
+        setRecoil(activeImageAtom, image as HumanAnnotationImage | DrawingAreaImage)
     }
 
     syncLabels() {
@@ -377,7 +379,7 @@ export class Editor<ImageType,Config extends EditorConfig = EditorConfig> extend
     }
 
     syncImageList() {
-        setRecoil(imageListAtom,[...this.images])
+        setRecoil(imageListAtom,[...this.images]  as (HumanAnnotationImage | DrawingAreaImage)[])
     }
 
     getRelativeBBoxOfStage() {

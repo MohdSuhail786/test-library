@@ -68,7 +68,7 @@ interface IProps {
 
 export function DrawingAreaModal(props: IProps) {
 
-    const [DrawingAreaAnnotator, init, handleSave] = useDrawingAreaAnnotator()
+    const [DrawingAreaAnnotator, init, handleSave, setLoader] = useDrawingAreaAnnotator()
 
     const handleCancel = (e: any) => {
         e.stopPropagation();
@@ -76,20 +76,46 @@ export function DrawingAreaModal(props: IProps) {
 
     useEffect(()=>{
         init({
-            drawingAreaState: [{image: {id: '1', name: 'Any Name', src: imageSrc}, bounding_box: [
-                {
-                "id": 131,
-                "label": "graphic-area",
-                "x": 0,
-                "y": 0,
-                "width": 5600,
-                "height": 4550
-            }
-        ]}] as DrawingAreaState,
+            drawingAreaState: [
+        //         {image: {id: '1', name: 'Any Name', src: imageSrc}, bounding_box: [
+        //     //     {
+        //     //     "id": 131,
+        //     //     "label": "graphic-area",
+        //     //     "x": 0,
+        //     //     "y": 0,
+        //     //     "width": 5600,
+        //     //     "height": 4550
+        //     // }
+        // ]}
+    ] as DrawingAreaState,
             editorSpacingLeft:492,
             editorSpacingTop:100,
             labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
+            uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
+            onUploadSubmit: () => new Promise(r => setTimeout(r,2000))
         })
+
+        setTimeout(() => {
+            init({
+                drawingAreaState: [
+                    {image: {id: '1', name: 'Any Name', src: imageSrc}, bounding_box: [
+                    {
+                    "id": 131,
+                    "label": "graphic-area",
+                    "x": 0,
+                    "y": 0,
+                    "width": 5600,
+                    "height": 4550
+                }
+            ]}
+        ] as DrawingAreaState,
+                editorSpacingLeft:492,
+                editorSpacingTop:100,
+                labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
+                uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
+                onUploadSubmit: () => new Promise(r => r())
+            })
+        }, 3000);
     },[])
 
     return (

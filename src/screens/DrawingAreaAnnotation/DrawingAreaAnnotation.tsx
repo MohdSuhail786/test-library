@@ -1,13 +1,14 @@
 import { useEffect, useRef } from "react";
-import { useSetRecoilState } from "recoil";
-import { loaderAtom } from "../../state/editor";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { loaderAtom, showUploadDraggerAtom } from "../../state/editor";
 import AnnotationPopup from "../../components/AnnotationPopup/AnnotationPopup";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import ImageLoader from "../../components/Loader/ImageLoader";
-import { DrawingAreaState, LabelMappings } from "../../models/Types";
+import { DrawingAreaState, IMImage, LabelMappings, LoaderSpinner } from "../../models/Types";
 import "../../styles/global.scss"
 import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import { DrawingAreaEditor } from "../../models/DrawingAreaModels/DrawingAreaEditor";
+import UploadDragger from "../../components/UploadDragger/UploadDragger";
 
 interface IProps {
     drawingAreaState: DrawingAreaState
@@ -15,10 +16,14 @@ interface IProps {
     editorSpacingLeft?: number
     editorSpacingTop?: number
     editor: DrawingAreaEditor
+    uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>
+    onUploadSubmit: (imImages: IMImage[]) => Promise<void>
+    loader: LoaderSpinner
 }
 
-export default function DrawingAreaAnnotation({editor, labelMappings, drawingAreaState}: IProps) {
+export default function DrawingAreaAnnotation({editor, labelMappings, drawingAreaState, loader, editorSpacingLeft, uploadRequest, onUploadSubmit}: IProps) {
   const setLoader = useSetRecoilState(loaderAtom)
+  const [showUploadDragger, setShowUploadDragger] = useRecoilState(showUploadDraggerAtom)
   const cursorTextRef = useRef<HTMLSpanElement>(null)
 
   useEffect(()=>{
@@ -32,13 +37,24 @@ export default function DrawingAreaAnnotation({editor, labelMappings, drawingAre
       } catch (error) {
         console.log(error)
       }
+      if(editor.images.length === 0) {
+        setShowUploadDragger(true)
+      }
       setLoader({visible: false})
     }
     initEditor()
+    return () => {
+      setShowUploadDragger(false)
+    }
   },[editor, cursorTextRef, labelMappings, drawingAreaState])
+
+  useEffect(()=>{
+    setLoader(loader)
+  },[loader])
 
   return (
     <>
+      {showUploadDragger && <UploadDragger editor={editor} spacingLeft={editorSpacingLeft} uploadRequest={uploadRequest} onUploadSubmit={onUploadSubmit}/>}
       <span ref={cursorTextRef} style={{position: 'absolute',fontFamily: 'Roboto', fontSize: 12,zIndex: 9999,color: 'white', backgroundColor: 'black',borderRadius: 10, padding: '3px 6px', fontStyle: 'bold'}} />
       <AnnotationPopup editor={editor} showDirection={false} allowLabelUpdate={false}/>
       <LeftSidebar editor={editor} config={{showInput: false,showCheckBoxes: false,showDirection: false, allowLabelUpdate: false}}/>

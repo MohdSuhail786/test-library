@@ -1,6 +1,6 @@
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, SetterOrUpdater } from "recoil";
 import RecoilNexus from "recoil-nexus";
-import { DrawingAreaState, LabelMappings } from "../models/Types";
+import { DrawingAreaState, IMImage, LabelMappings, LoaderSpinner } from "../models/Types";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import DrawingAreaAnnotation from "../screens/DrawingAreaAnnotation/DrawingAreaAnnotation";
 import { DrawingAreaEditor } from "../models/DrawingAreaModels/DrawingAreaEditor";
@@ -10,12 +10,15 @@ interface IProps {
   labelMappings: LabelMappings
   editorSpacingLeft?: number
   editorSpacingTop?: number
+  uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>
+  onUploadSubmit: (imImages: IMImage[]) => Promise<void>
 }
 
-export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any] {
+export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>] {
     const [editor, setEditor] = useState<DrawingAreaEditor | null>(null);
     const editorRef = useRef<DrawingAreaEditor | null>(null)
     const [props, setProps] = useState<IProps | null>(null)
+    const [loader,setLoader] = useState<LoaderSpinner>({visible: false})
 
     const init = (config: IProps) => {
       if(props) return;
@@ -24,7 +27,7 @@ export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) 
 
     useEffect(()=>{
         (async(e)=>{
-          if(e || !props) return;
+          if(!props) return;
           const editor = new DrawingAreaEditor({
             container: 'drawing-area-editor',
             width: window.innerWidth - (props.editorSpacingLeft || 0),
@@ -51,8 +54,8 @@ export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) 
             <RecoilNexus />
             <div style={{position: 'relative'}}>
                 <div id={'drawing-area-editor'} style={{width: '100%', height: '100%'}}/>
-                {editor && props && <DrawingAreaAnnotation {...props} editor={editor} />}
+                {editor && props && <DrawingAreaAnnotation {...props} loader={loader} editor={editor} />}
             </div>
         </RecoilRoot>
-    ), init, handleSave]
+    ), init, handleSave, setLoader]
 }

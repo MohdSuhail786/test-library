@@ -1,5 +1,12 @@
 import { ReactNode } from 'react';
+import { SetterOrUpdater } from 'recoil';
 
+type LoaderSpinner = ({
+    visible: true;
+    title: string;
+} | {
+    visible: false;
+});
 type IMImage = {
     src: string;
     id: string;
@@ -97,7 +104,9 @@ interface IProps {
     labelMappings: LabelMappings;
     editorSpacingLeft?: number;
     editorSpacingTop?: number;
+    uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
+    onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
 }
-declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any];
+declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
 
 export { useDrawingAreaAnnotator, useHumanAnnotator };

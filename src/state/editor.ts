@@ -1,9 +1,10 @@
 import { atom } from "recoil";
 import { Box } from "../models/Box";
 import { AppMode, Filter, LoaderSpinner } from "../models/Types";
-import { Image } from "../models/Image";
 import { Label } from "../models/Label";
 import { Polygon } from "../models/Polygon";
+import { HumanAnnotationImage } from "../models/HumanAnnotationModels/HumanAnnotationImage";
+import { DrawingAreaImage } from "../models/DrawingAreaModels/DrawingAreaImage";
 
 export const entityListAtom = atom<Box[]>({
     key: 'entityListAtom',
@@ -49,12 +50,17 @@ export const loaderAtom = atom<LoaderSpinner>({
     }
 })
 
-export const activeImageAtom = atom<Image | null>({
+export const activeImageAtom = atom<HumanAnnotationImage | DrawingAreaImage | null>({
     key: 'activeImage',
     default: null,
 })
 
-export const imageListAtom = atom<Image[]>({
+export const imageListAtom = atom<(HumanAnnotationImage | DrawingAreaImage)[]>({
     key: 'imageListAtom',
     default: [],
+})
+
+export const showUploadDraggerAtom = atom<boolean>({
+    key: 'showUploadDraggerAtom',
+    default: false
 })

@@ -3,6 +3,57 @@ import { DrawingAreaImage } from "./DrawingAreaModels/DrawingAreaImage"
 import { HumanAnnotationImage } from "./HumanAnnotationModels/HumanAnnotationImage"
 import { Polygon } from "./Polygon"
 
+export type  User = {
+    id_token?: string;
+    session_state?: string;
+    access_token: string;
+    refresh_token?: string;
+    token_type?: string;
+    scope?: string;
+    profile?: UserProfile;
+    expires_at?: number;
+    state?: any;
+
+    // DEPRECATE
+    id?: string
+    email?: string
+    firstName?: string
+    lastName?: string
+    timezone?: string
+    authInfo?: AuthInfo | null
+}
+
+export type AuthInfo = {
+    token: string
+    validTill: number
+}
+
+export type UserProfile = {
+    first_name?: string;
+    last_name?: string;
+    color?: string;
+    name?: string;
+    given_name?: string;
+    family_name?: string;
+    middle_name?: string;
+    nickname?: string;
+    preferred_username?: string;
+    profile?: string;
+    picture?: string;
+    website?: string;
+    email?: string;
+    email_verified?: boolean;
+    gender?: string;
+    birthdate?: string;
+    zoneinfo?: string;
+    locale?: string;
+    phone_number?: string;
+    phone_number_verified?: boolean;
+    address?: any;
+    updated_at?: number;
+    super_user?: boolean
+}
+
 export type AppMode = ( {
     mode: "DRAG_SELECTION_MODE" | "DRAWING_MODE" | "POLYGON_MODE",
 } | {

@@ -1,6 +1,6 @@
 import require$$0$1, { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import * as React from 'react';
-import React__default, { createContext, useContext as useContext$1, useEffect as useEffect$5, useRef as useRef$6, useLayoutEffect as useLayoutEffect$2, useState as useState$3, useMemo as useMemo$4, useCallback as useCallback$5, forwardRef, useImperativeHandle, cloneElement as cloneElement$1 } from 'react';
+import React__default, { createContext, useContext as useContext$1, useEffect as useEffect$5, useRef as useRef$6, useLayoutEffect as useLayoutEffect$2, useState as useState$3, useMemo as useMemo$4, useCallback as useCallback$5, forwardRef, useImperativeHandle, cloneElement as cloneElement$1, Component } from 'react';
 import ReactDOM, { unstable_batchedUpdates as unstable_batchedUpdates$3, flushSync } from 'react-dom';
 
 var global$2 = (typeof global !== "undefined" ? global :
@@ -9589,6 +9589,10 @@ const imageListAtom = Recoil_index_8({
     key: 'imageListAtom',
     default: [],
 });
+const showUploadDraggerAtom = Recoil_index_8({
+    key: 'showUploadDraggerAtom',
+    default: false
+});
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -9617,9 +9621,9 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$5 = ".AnnotationPopup-module__annotation-popup__mT1Zm {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 280px;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  border-radius: 15px;\n  background-color: #ffffff;\n  padding: 15px 10px;\n  z-index: 999;\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI {\n  border-top-left-radius: 15px;\n  border-top-right-radius: 15px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI span {\n  font-size: 16px;\n  font-weight: bold;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC {\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- {\n  display: flex;\n  line-height: 28px;\n  align-items: center;\n  position: relative;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0 {\n  width: 100%;\n  height: 35px;\n  line-height: 28px;\n  padding: 0 1rem;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  border: 2px solid transparent;\n  border-radius: 8px;\n  outline: none;\n  font-size: 15px;\n  background-color: #f3f3f4;\n  color: #0d0c22;\n  transition: 0.3s ease;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0::placeholder {\n  color: #9e9ea7;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0:focus, .AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- input:hover {\n  outline: none;\n  border-color: rgba(86, 76, 234, 0.4);\n  background-color: #fff;\n  box-shadow: 0 0 0 4px rgba(76, 95, 234, 0.1);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon__aDhJa {\n  position: absolute;\n  left: 0.5rem;\n  fill: #9e9ea7;\n  width: 1rem;\n  height: 1rem;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon-right__UDC-r {\n  position: relative;\n  right: 1.5rem;\n  fill: #9e9ea7;\n  color: rgb(66, 72, 255);\n  cursor: pointer;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 3px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__save__3zmlU {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  background: #fff;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  align-items: center;\n  border-color: #d9d9d9;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  letter-spacing: 0.4px;\n  background-color: #4248ff;\n  color: #fff;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__delete__G3EYR {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  transform: scaleX(1.05);\n  background: #fff;\n  text-decoration: none;\n  align-items: center;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  border-color: #ff4242;\n  color: #ff4242;\n  letter-spacing: 0.4px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__divider__5Ii9G {\n  border-bottom: 1px solid #cdcdcd;\n  width: 100%;\n  height: 1px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up {\n  display: flex;\n  flex-direction: column;\n  max-height: 100px;\n  overflow-y: auto;\n  gap: 5px;\n  margin-right: 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span {\n  overflow-wrap: normal;\n  display: block;\n  color: #333;\n  font-size: 0.9em;\n  margin-right: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 3px 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span.AnnotationPopup-module__active__zSmhx {\n  background-color: rgb(66, 72, 255);\n  color: white;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up p {\n  color: #333;\n  font-size: 0.8em;\n  font-style: italic;\n  text-align: center;\n  margin: 0;\n}";
+var css_248z$6 = ".AnnotationPopup-module__annotation-popup__mT1Zm {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 280px;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  border-radius: 15px;\n  background-color: #ffffff;\n  padding: 15px 10px;\n  z-index: 999;\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI {\n  border-top-left-radius: 15px;\n  border-top-right-radius: 15px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI span {\n  font-size: 16px;\n  font-weight: bold;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC {\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- {\n  display: flex;\n  line-height: 28px;\n  align-items: center;\n  position: relative;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0 {\n  width: 100%;\n  height: 35px;\n  line-height: 28px;\n  padding: 0 1rem;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  border: 2px solid transparent;\n  border-radius: 8px;\n  outline: none;\n  font-size: 15px;\n  background-color: #f3f3f4;\n  color: #0d0c22;\n  transition: 0.3s ease;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0::placeholder {\n  color: #9e9ea7;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0:focus, .AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- input:hover {\n  outline: none;\n  border-color: rgba(86, 76, 234, 0.4);\n  background-color: #fff;\n  box-shadow: 0 0 0 4px rgba(76, 95, 234, 0.1);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon__aDhJa {\n  position: absolute;\n  left: 0.5rem;\n  fill: #9e9ea7;\n  width: 1rem;\n  height: 1rem;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon-right__UDC-r {\n  position: relative;\n  right: 1.5rem;\n  fill: #9e9ea7;\n  color: rgb(66, 72, 255);\n  cursor: pointer;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 3px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__save__3zmlU {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  background: #fff;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  align-items: center;\n  border-color: #d9d9d9;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  letter-spacing: 0.4px;\n  background-color: #4248ff;\n  color: #fff;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__delete__G3EYR {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  transform: scaleX(1.05);\n  background: #fff;\n  text-decoration: none;\n  align-items: center;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  border-color: #ff4242;\n  color: #ff4242;\n  letter-spacing: 0.4px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__divider__5Ii9G {\n  border-bottom: 1px solid #cdcdcd;\n  width: 100%;\n  height: 1px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up {\n  display: flex;\n  flex-direction: column;\n  max-height: 100px;\n  overflow-y: auto;\n  gap: 5px;\n  margin-right: 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span {\n  overflow-wrap: normal;\n  display: block;\n  color: #333;\n  font-size: 0.9em;\n  margin-right: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 3px 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span.AnnotationPopup-module__active__zSmhx {\n  background-color: rgb(66, 72, 255);\n  color: white;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up p {\n  color: #333;\n  font-size: 0.8em;\n  font-style: italic;\n  text-align: center;\n  margin: 0;\n}";
 var styles$4 = {"annotation-popup":"AnnotationPopup-module__annotation-popup__mT1Zm","header":"AnnotationPopup-module__header__53WPI","content-container":"AnnotationPopup-module__content-container__fnPMC","inner-container":"AnnotationPopup-module__inner-container__j3mzN","input-group":"AnnotationPopup-module__input-group__PEnY-","input":"AnnotationPopup-module__input__hgtf0","icon":"AnnotationPopup-module__icon__aDhJa","icon-right":"AnnotationPopup-module__icon-right__UDC-r","button-group":"AnnotationPopup-module__button-group__XBln6","save":"AnnotationPopup-module__save__3zmlU","delete":"AnnotationPopup-module__delete__G3EYR","divider":"AnnotationPopup-module__divider__5Ii9G","list-options":"AnnotationPopup-module__list-options__Id6Up","active":"AnnotationPopup-module__active__zSmhx"};
-styleInject(css_248z$5);
+styleInject(css_248z$6);
 
 var DefaultContext = {
   color: undefined,
@@ -9640,7 +9644,7 @@ var __assign$1 = undefined && undefined.__assign || function () {
   };
   return __assign$1.apply(this, arguments);
 };
-var __rest$m = undefined && undefined.__rest || function (s, e) {
+var __rest$p = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -9668,7 +9672,7 @@ function IconBase$1(props) {
     var attr = props.attr,
       size = props.size,
       title = props.title,
-      svgProps = __rest$m(props, ["attr", "size", "title"]);
+      svgProps = __rest$p(props, ["attr", "size", "title"]);
     var computedSize = size || conf.size || "1em";
     var className;
     if (conf.className) className = conf.className;
@@ -15253,7 +15257,7 @@ Object.defineProperty(Animation$1, "__esModule", { value: true });
 Animation$1.Animation = void 0;
 const Global_1$h = Global;
 const Util_1$8 = Util;
-const now = (function () {
+const now$1 = (function () {
     if (Global_1$h.glob.performance && Global_1$h.glob.performance.now) {
         return function () {
             return Global_1$h.glob.performance.now();
@@ -15269,7 +15273,7 @@ class Animation {
         this.frame = {
             time: 0,
             timeDiff: 0,
-            lastTime: now(),
+            lastTime: now$1(),
             frameRate: 0,
         };
         this.func = func;
@@ -15311,7 +15315,7 @@ class Animation {
     start() {
         this.stop();
         this.frame.timeDiff = 0;
-        this.frame.lastTime = now();
+        this.frame.lastTime = now$1();
         Animation._addAnimation(this);
         return this;
     }
@@ -15347,7 +15351,7 @@ class Animation {
             const anim = animations[n];
             const layers = anim.layers;
             const func = anim.func;
-            anim._updateFrameObject(now());
+            anim._updateFrameObject(now$1());
             const layersLen = layers.length;
             let needRedraw;
             if (func) {
@@ -16021,10 +16025,10 @@ Factory_1$v.Factory.addGetterSetter(Arc, 'clockwise', false, (0, Validators_1$u.
 
 var Arrow$1 = {};
 
-var Line$1 = {};
+var Line$3 = {};
 
-Object.defineProperty(Line$1, "__esModule", { value: true });
-var Line_2 = Line$1.Line = void 0;
+Object.defineProperty(Line$3, "__esModule", { value: true });
+var Line_2 = Line$3.Line = void 0;
 const Factory_1$u = Factory;
 const Shape_1$e = Shape;
 const Validators_1$t = Validators;
@@ -16049,7 +16053,7 @@ function expandPoints(p, tension) {
     }
     return allPoints;
 }
-class Line extends Shape_1$e.Shape {
+let Line$2 = class Line extends Shape_1$e.Shape {
     constructor(config) {
         super(config);
         this.on('pointsChange.konva tensionChange.konva closedChange.konva bezierChange.konva', function () {
@@ -16172,15 +16176,15 @@ class Line extends Shape_1$e.Shape {
             height: maxY - minY,
         };
     }
-}
-Line_2 = Line$1.Line = Line;
-Line.prototype.className = 'Line';
-Line.prototype._attrsAffectingSize = ['points', 'bezier', 'tension'];
-(0, Global_1$f._registerNode)(Line);
-Factory_1$u.Factory.addGetterSetter(Line, 'closed', false);
-Factory_1$u.Factory.addGetterSetter(Line, 'bezier', false);
-Factory_1$u.Factory.addGetterSetter(Line, 'tension', 0, (0, Validators_1$t.getNumberValidator)());
-Factory_1$u.Factory.addGetterSetter(Line, 'points', [], (0, Validators_1$t.getNumberArrayValidator)());
+};
+Line_2 = Line$3.Line = Line$2;
+Line$2.prototype.className = 'Line';
+Line$2.prototype._attrsAffectingSize = ['points', 'bezier', 'tension'];
+(0, Global_1$f._registerNode)(Line$2);
+Factory_1$u.Factory.addGetterSetter(Line$2, 'closed', false);
+Factory_1$u.Factory.addGetterSetter(Line$2, 'bezier', false);
+Factory_1$u.Factory.addGetterSetter(Line$2, 'tension', 0, (0, Validators_1$t.getNumberValidator)());
+Factory_1$u.Factory.addGetterSetter(Line$2, 'points', [], (0, Validators_1$t.getNumberArrayValidator)());
 
 var Path$1 = {};
 
@@ -17610,7 +17614,7 @@ Factory_1$t.Factory.addGetterSetter(Path, 'data');
 Object.defineProperty(Arrow$1, "__esModule", { value: true });
 Arrow$1.Arrow = void 0;
 const Factory_1$s = Factory;
-const Line_1$1 = Line$1;
+const Line_1$1 = Line$3;
 const Validators_1$s = Validators;
 const Global_1$d = Global;
 const Path_1$2 = Path$1;
@@ -17710,15 +17714,15 @@ Factory_1$s.Factory.addGetterSetter(Arrow, 'pointerWidth', 10, (0, Validators_1$
 Factory_1$s.Factory.addGetterSetter(Arrow, 'pointerAtBeginning', false);
 Factory_1$s.Factory.addGetterSetter(Arrow, 'pointerAtEnding', true);
 
-var Circle$1 = {};
+var Circle$4 = {};
 
-Object.defineProperty(Circle$1, "__esModule", { value: true });
-Circle$1.Circle = void 0;
+Object.defineProperty(Circle$4, "__esModule", { value: true });
+Circle$4.Circle = void 0;
 const Factory_1$r = Factory;
 const Shape_1$c = Shape;
 const Validators_1$r = Validators;
 const Global_1$c = Global;
-class Circle extends Shape_1$c.Shape {
+let Circle$3 = class Circle extends Shape_1$c.Shape {
     _sceneFunc(context) {
         context.beginPath();
         context.arc(0, 0, this.attrs.radius || 0, 0, Math.PI * 2, false);
@@ -17741,13 +17745,13 @@ class Circle extends Shape_1$c.Shape {
             this.radius(height / 2);
         }
     }
-}
-Circle$1.Circle = Circle;
-Circle.prototype._centroid = true;
-Circle.prototype.className = 'Circle';
-Circle.prototype._attrsAffectingSize = ['radius'];
-(0, Global_1$c._registerNode)(Circle);
-Factory_1$r.Factory.addGetterSetter(Circle, 'radius', 0, (0, Validators_1$r.getNumberValidator)());
+};
+Circle$4.Circle = Circle$3;
+Circle$3.prototype._centroid = true;
+Circle$3.prototype.className = 'Circle';
+Circle$3.prototype._attrsAffectingSize = ['radius'];
+(0, Global_1$c._registerNode)(Circle$3);
+Factory_1$r.Factory.addGetterSetter(Circle$3, 'radius', 0, (0, Validators_1$r.getNumberValidator)());
 
 var Ellipse$1 = {};
 
@@ -17792,16 +17796,16 @@ Factory_1$q.Factory.addComponentsGetterSetter(Ellipse, 'radius', ['x', 'y']);
 Factory_1$q.Factory.addGetterSetter(Ellipse, 'radiusX', 0, (0, Validators_1$q.getNumberValidator)());
 Factory_1$q.Factory.addGetterSetter(Ellipse, 'radiusY', 0, (0, Validators_1$q.getNumberValidator)());
 
-var Image$2 = {};
+var Image$3 = {};
 
-Object.defineProperty(Image$2, "__esModule", { value: true });
-Image$2.Image = void 0;
+Object.defineProperty(Image$3, "__esModule", { value: true });
+Image$3.Image = void 0;
 const Util_1$7 = Util;
 const Factory_1$p = Factory;
 const Shape_1$a = Shape;
 const Global_1$a = Global;
 const Validators_1$p = Validators;
-let Image$1 = class Image extends Shape_1$a.Shape {
+let Image$2 = class Image extends Shape_1$a.Shape {
     constructor(attrs) {
         super(attrs);
         this.on('imageChange.konva', () => {
@@ -17900,16 +17904,16 @@ let Image$1 = class Image extends Shape_1$a.Shape {
         img.src = url;
     }
 };
-Image$2.Image = Image$1;
-Image$1.prototype.className = 'Image';
-(0, Global_1$a._registerNode)(Image$1);
-Factory_1$p.Factory.addGetterSetter(Image$1, 'cornerRadius', 0, (0, Validators_1$p.getNumberOrArrayOfNumbersValidator)(4));
-Factory_1$p.Factory.addGetterSetter(Image$1, 'image');
-Factory_1$p.Factory.addComponentsGetterSetter(Image$1, 'crop', ['x', 'y', 'width', 'height']);
-Factory_1$p.Factory.addGetterSetter(Image$1, 'cropX', 0, (0, Validators_1$p.getNumberValidator)());
-Factory_1$p.Factory.addGetterSetter(Image$1, 'cropY', 0, (0, Validators_1$p.getNumberValidator)());
-Factory_1$p.Factory.addGetterSetter(Image$1, 'cropWidth', 0, (0, Validators_1$p.getNumberValidator)());
-Factory_1$p.Factory.addGetterSetter(Image$1, 'cropHeight', 0, (0, Validators_1$p.getNumberValidator)());
+Image$3.Image = Image$2;
+Image$2.prototype.className = 'Image';
+(0, Global_1$a._registerNode)(Image$2);
+Factory_1$p.Factory.addGetterSetter(Image$2, 'cornerRadius', 0, (0, Validators_1$p.getNumberOrArrayOfNumbersValidator)(4));
+Factory_1$p.Factory.addGetterSetter(Image$2, 'image');
+Factory_1$p.Factory.addComponentsGetterSetter(Image$2, 'crop', ['x', 'y', 'width', 'height']);
+Factory_1$p.Factory.addGetterSetter(Image$2, 'cropX', 0, (0, Validators_1$p.getNumberValidator)());
+Factory_1$p.Factory.addGetterSetter(Image$2, 'cropY', 0, (0, Validators_1$p.getNumberValidator)());
+Factory_1$p.Factory.addGetterSetter(Image$2, 'cropWidth', 0, (0, Validators_1$p.getNumberValidator)());
+Factory_1$p.Factory.addGetterSetter(Image$2, 'cropHeight', 0, (0, Validators_1$p.getNumberValidator)());
 
 var Label$2 = {};
 
@@ -21197,11 +21201,11 @@ _FullInternals.Konva = void 0;
 const _CoreInternals_1 = _CoreInternals;
 const Arc_1 = Arc$1;
 const Arrow_1 = Arrow$1;
-const Circle_1 = Circle$1;
+const Circle_1 = Circle$4;
 const Ellipse_1 = Ellipse$1;
-const Image_1 = Image$2;
+const Image_1 = Image$3;
 const Label_1 = Label$2;
-const Line_1 = Line$1;
+const Line_1 = Line$3;
 const Path_1 = Path$1;
 const Rect_1 = Rect$1;
 const RegularPolygon_1 = RegularPolygon$1;
@@ -22583,7 +22587,7 @@ if (process.env.NODE_ENV === 'production') {
 
 var reactIsExports = reactIs.exports;
 
-function toArray$2(children) {
+function toArray$3(children) {
   var option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var ret = [];
   React__default.Children.forEach(children, function (child) {
@@ -22591,9 +22595,9 @@ function toArray$2(children) {
       return;
     }
     if (Array.isArray(child)) {
-      ret = ret.concat(toArray$2(child));
+      ret = ret.concat(toArray$3(child));
     } else if (reactIsExports.isFragment(child) && child.props) {
-      ret = ret.concat(toArray$2(child.props.children, option));
+      ret = ret.concat(toArray$3(child.props.children, option));
     } else {
       ret.push(child);
     }
@@ -23679,7 +23683,7 @@ var ResizeObserver$1 = /** @class */ (function () {
     };
 });
 
-var index = (function () {
+var index$1 = (function () {
     // Export existing implementation if available.
     if (typeof global$1.ResizeObserver !== 'undefined') {
         return global$1.ResizeObserver;
@@ -23699,7 +23703,7 @@ function onResize(entities) {
   });
 }
 // Note: ResizeObserver polyfill not support option to measure border-box resize
-var resizeObserver = new index(onResize);
+var resizeObserver = new index$1(onResize);
 // Dev env only
 process.env.NODE_ENV !== 'production' ? elementListeners : null; // eslint-disable-line
 process.env.NODE_ENV !== 'production' ? onResize : null; // eslint-disable-line
@@ -23870,7 +23874,7 @@ if (process.env.NODE_ENV !== 'production') {
 var INTERNAL_PREFIX_KEY = 'rc-observer-key';
 function ResizeObserver(props, ref) {
   var children = props.children;
-  var childNodes = typeof children === 'function' ? [children] : toArray$2(children);
+  var childNodes = typeof children === 'function' ? [children] : toArray$3(children);
   if (process.env.NODE_ENV !== 'production') {
     if (childNodes.length > 1) {
       warning$4(false, 'Find more than one child node with `children` in ResizeObserver. Please use ResizeObserver.Collection instead.');
@@ -24278,6 +24282,10 @@ var LocaleReceiver = function LocaleReceiver(props) {
   return children(getLocale, getLocaleCode, antLocale);
 };
 var LocaleReceiver$1 = LocaleReceiver;
+
+// This icon file is generated automatically.
+var CheckCircleFilled$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z" } }] }, "name": "check-circle", "theme": "filled" };
+var CheckCircleFilledSvg = CheckCircleFilled$2;
 
 function _iterableToArrayLimit(r, l) {
   var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
@@ -26227,7 +26235,7 @@ var useInsertStyles = function useInsertStyles() {
   }, []);
 };
 
-var _excluded$r = ["icon", "className", "onClick", "style", "primaryColor", "secondaryColor"];
+var _excluded$t = ["icon", "className", "onClick", "style", "primaryColor", "secondaryColor"];
 var twoToneColorPalette = {
   primaryColor: '#333',
   secondaryColor: '#E6E6E6',
@@ -26250,7 +26258,7 @@ var IconBase = function IconBase(props) {
     style = props.style,
     primaryColor = props.primaryColor,
     secondaryColor = props.secondaryColor,
-    restProps = _objectWithoutProperties(props, _excluded$r);
+    restProps = _objectWithoutProperties(props, _excluded$t);
   var colors = twoToneColorPalette;
   if (primaryColor) {
     colors = {
@@ -26303,7 +26311,7 @@ function getTwoToneColor() {
   return [colors.primaryColor, colors.secondaryColor];
 }
 
-var _excluded$q = ["className", "icon", "spin", "rotate", "tabIndex", "onClick", "twoToneColor"];
+var _excluded$s = ["className", "icon", "spin", "rotate", "tabIndex", "onClick", "twoToneColor"];
 // Initial setting
 // should move it to antd main repo?
 setTwoToneColor('#1890ff');
@@ -26316,7 +26324,7 @@ var Icon$1 = /*#__PURE__*/React.forwardRef(function (props, ref) {
     tabIndex = props.tabIndex,
     onClick = props.onClick,
     twoToneColor = props.twoToneColor,
-    restProps = _objectWithoutProperties(props, _excluded$q);
+    restProps = _objectWithoutProperties(props, _excluded$s);
   var _React$useContext = React.useContext(IconContext$1),
     _React$useContext$pre = _React$useContext.prefixCls,
     prefixCls = _React$useContext$pre === void 0 ? 'anticon' : _React$useContext$pre,
@@ -26353,6 +26361,15 @@ Icon$1.displayName = 'AntdIcon';
 Icon$1.getTwoToneColor = getTwoToneColor;
 Icon$1.setTwoToneColor = setTwoToneColor;
 var AntdIcon = Icon$1;
+
+var CheckCircleFilled = function CheckCircleFilled(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: CheckCircleFilledSvg
+  }));
+};
+CheckCircleFilled.displayName = 'CheckCircleFilled';
+var CheckCircleFilled$1 = /*#__PURE__*/React.forwardRef(CheckCircleFilled);
 
 // This icon file is generated automatically.
 var CloseCircleFilled$2 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64zm127.98 274.82h-.04l-.08.06L512 466.75 384.14 338.88c-.04-.05-.06-.06-.08-.06a.12.12 0 00-.07 0c-.03 0-.05.01-.09.05l-45.02 45.02a.2.2 0 00-.05.09.12.12 0 000 .07v.02a.27.27 0 00.06.06L466.75 512 338.88 639.86c-.05.04-.06.06-.06.08a.12.12 0 000 .07c0 .03.01.05.05.09l45.02 45.02a.2.2 0 00.09.05.12.12 0 00.07 0c.02 0 .04-.01.08-.05L512 557.25l127.86 127.87c.04.04.06.05.08.05a.12.12 0 00.07 0c.03 0 .05-.01.09-.05l45.02-45.02a.2.2 0 00.05-.09.12.12 0 000-.07v-.02a.27.27 0 00-.05-.06L557.25 512l127.87-127.86c.04-.04.05-.06.05-.08a.12.12 0 000-.07c0-.03-.01-.05-.05-.09l-45.02-45.02a.2.2 0 00-.09-.05.12.12 0 00-.07 0z" } }] }, "name": "close-circle", "theme": "filled" };
@@ -27466,7 +27483,7 @@ function diffKeys() {
   return list;
 }
 
-var _excluded$p = ["component", "children", "onVisibleChanged", "onAllRemoved"],
+var _excluded$r = ["component", "children", "onVisibleChanged", "onAllRemoved"],
   _excluded2$5 = ["status"];
 var MOTION_PROP_NAMES = ['eventProps', 'visible', 'children', 'motionName', 'motionAppear', 'motionEnter', 'motionLeave', 'motionLeaveImmediately', 'motionDeadline', 'removeOnLeave', 'leavedClassName', 'onAppearPrepare', 'onAppearStart', 'onAppearActive', 'onAppearEnd', 'onEnterStart', 'onEnterActive', 'onEnterEnd', 'onLeaveStart', 'onLeaveActive', 'onLeaveEnd'];
 /**
@@ -27518,7 +27535,7 @@ function genCSSMotionList(transitionSupport) {
           children = _this$props.children,
           _onVisibleChanged = _this$props.onVisibleChanged,
           onAllRemoved = _this$props.onAllRemoved,
-          restProps = _objectWithoutProperties(_this$props, _excluded$p);
+          restProps = _objectWithoutProperties(_this$props, _excluded$r);
         var Component = component || React.Fragment;
         var motionProps = {};
         MOTION_PROP_NAMES.forEach(function (prop) {
@@ -27582,7 +27599,7 @@ function genCSSMotionList(transitionSupport) {
   });
   return CSSMotionList;
 }
-genCSSMotionList(supportTransition);
+var CSSMotionList = genCSSMotionList(supportTransition);
 
 // This icon file is generated automatically.
 var CloseOutlined$2 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z" } }] }, "name": "close", "theme": "outlined" };
@@ -28440,7 +28457,7 @@ function pickAttrs(props) {
   return attrs;
 }
 
-var _excluded$o = ["prefixCls", "invalidate", "item", "renderItem", "responsive", "responsiveDisabled", "registerSize", "itemKey", "className", "style", "children", "display", "order", "component"];
+var _excluded$q = ["prefixCls", "invalidate", "item", "renderItem", "responsive", "responsiveDisabled", "registerSize", "itemKey", "className", "style", "children", "display", "order", "component"];
 // Use shared variable to save bundle size
 var UNDEFINED = undefined;
 function InternalItem(props, ref) {
@@ -28459,7 +28476,7 @@ function InternalItem(props, ref) {
     order = props.order,
     _props$component = props.component,
     Component = _props$component === void 0 ? 'div' : _props$component,
-    restProps = _objectWithoutProperties(props, _excluded$o);
+    restProps = _objectWithoutProperties(props, _excluded$q);
   var mergedHidden = responsive && !display;
   // ================================ Effect ================================
   function internalRegisterSize(width) {
@@ -28562,7 +28579,7 @@ function useEffectState(notifyEffectUpdate, defaultValue) {
 
 var OverflowContext = /*#__PURE__*/React__default.createContext(null);
 
-var _excluded$n = ["component"],
+var _excluded$p = ["component"],
   _excluded2$4 = ["className"],
   _excluded3$1 = ["className"];
 var InternalRawItem = function InternalRawItem(props, ref) {
@@ -28571,7 +28588,7 @@ var InternalRawItem = function InternalRawItem(props, ref) {
   if (!context) {
     var _props$component = props.component,
       Component = _props$component === void 0 ? 'div' : _props$component,
-      _restProps = _objectWithoutProperties(props, _excluded$n);
+      _restProps = _objectWithoutProperties(props, _excluded$p);
     return /*#__PURE__*/React.createElement(Component, _extends$1({}, _restProps, {
       ref: ref
     }));
@@ -28591,7 +28608,7 @@ var InternalRawItem = function InternalRawItem(props, ref) {
 var RawItem = /*#__PURE__*/React.forwardRef(InternalRawItem);
 RawItem.displayName = 'RawItem';
 
-var _excluded$m = ["prefixCls", "data", "renderItem", "renderRawItem", "itemKey", "itemWidth", "ssr", "style", "className", "maxCount", "renderRest", "renderRawRest", "suffix", "component", "itemComponent", "onVisibleChange"];
+var _excluded$o = ["prefixCls", "data", "renderItem", "renderRawItem", "itemKey", "itemWidth", "ssr", "style", "className", "maxCount", "renderRest", "renderRawRest", "suffix", "component", "itemComponent", "onVisibleChange"];
 var RESPONSIVE = 'responsive';
 var INVALIDATE = 'invalidate';
 function defaultRenderRest(omittedItems) {
@@ -28618,7 +28635,7 @@ function Overflow(props, ref) {
     Component = _props$component === void 0 ? 'div' : _props$component,
     itemComponent = props.itemComponent,
     onVisibleChange = props.onVisibleChange,
-    restProps = _objectWithoutProperties(props, _excluded$m);
+    restProps = _objectWithoutProperties(props, _excluded$o);
   var fullySSR = ssr === 'full';
   var notifyEffectUpdate = useBatcher();
   var _useEffectState = useEffectState(notifyEffectUpdate, null),
@@ -28999,7 +29016,7 @@ var Input$4 = function Input(_ref, ref) {
 var RefInput = /*#__PURE__*/React.forwardRef(Input$4);
 RefInput.displayName = 'Input';
 
-function toArray$1(value) {
+function toArray$2(value) {
   if (Array.isArray(value)) {
     return value;
   }
@@ -29008,7 +29025,7 @@ function toArray$1(value) {
 var isClient = typeof window !== 'undefined' && window.document && window.document.documentElement;
 
 /** Is client side and not jsdom */
-var isBrowserClient$1 = process.env.NODE_ENV !== 'test' && isClient;
+var isBrowserClient$2 = process.env.NODE_ENV !== 'test' && isClient;
 function hasValue(value) {
   return value !== undefined && value !== null;
 }
@@ -29034,7 +29051,7 @@ function getTitle(item) {
  */
 function useLayoutEffect(effect, deps) {
   // Never happen in test env
-  if (isBrowserClient$1) {
+  if (isBrowserClient$2) {
     /* istanbul ignore next */
     React.useLayoutEffect(effect, deps);
   } else {
@@ -30934,7 +30951,7 @@ function monitorResize(element, callback) {
     prevHeight = fixedHeight;
   }
 
-  var resizeObserver = new index(onResize);
+  var resizeObserver = new index$1(onResize);
 
   if (element) {
     resizeObserver.observe(element);
@@ -31510,11 +31527,11 @@ var MobilePopupInner = /*#__PURE__*/React.forwardRef(function (props, ref) {
 });
 MobilePopupInner.displayName = 'MobilePopupInner';
 
-var _excluded$l = ["visible", "mobile"];
+var _excluded$n = ["visible", "mobile"];
 var Popup$1 = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
   var visible = _ref.visible,
       mobile = _ref.mobile,
-      props = _objectWithoutProperties(_ref, _excluded$l);
+      props = _objectWithoutProperties(_ref, _excluded$n);
 
   var _useState = useState$3(visible),
       _useState2 = _slicedToArray(_useState, 2),
@@ -32366,7 +32383,7 @@ function generateTrigger(PortalComponent) {
 }
 var Trigger = generateTrigger(Portal);
 
-var _excluded$k = ["prefixCls", "disabled", "visible", "children", "popupElement", "containerWidth", "animation", "transitionName", "dropdownStyle", "dropdownClassName", "direction", "placement", "dropdownMatchSelectWidth", "dropdownRender", "dropdownAlign", "getPopupContainer", "empty", "getTriggerDOMNode", "onPopupVisibleChange", "onPopupMouseEnter"];
+var _excluded$m = ["prefixCls", "disabled", "visible", "children", "popupElement", "containerWidth", "animation", "transitionName", "dropdownStyle", "dropdownClassName", "direction", "placement", "dropdownMatchSelectWidth", "dropdownRender", "dropdownAlign", "getPopupContainer", "empty", "getTriggerDOMNode", "onPopupVisibleChange", "onPopupMouseEnter"];
 var getBuiltInPlacements = function getBuiltInPlacements(dropdownMatchSelectWidth) {
   // Enable horizontal overflow auto-adjustment when a custom dropdown width is provided
   var adjustX = dropdownMatchSelectWidth === true ? 0 : 1;
@@ -32427,7 +32444,7 @@ var SelectTrigger = function SelectTrigger(props, ref) {
     getTriggerDOMNode = props.getTriggerDOMNode,
     onPopupVisibleChange = props.onPopupVisibleChange,
     onPopupMouseEnter = props.onPopupMouseEnter,
-    restProps = _objectWithoutProperties(props, _excluded$k);
+    restProps = _objectWithoutProperties(props, _excluded$m);
   var dropdownPrefixCls = "".concat(prefixCls, "-dropdown");
   var popupNode = popupElement;
   if (dropdownRender) {
@@ -32594,7 +32611,7 @@ function getSeparatedContent(text, tokens) {
   return match ? list : null;
 }
 
-var _excluded$j = ["id", "prefixCls", "className", "showSearch", "tagRender", "direction", "omitDomProps", "displayValues", "onDisplayValuesChange", "emptyOptions", "notFoundContent", "onClear", "mode", "disabled", "loading", "getInputElement", "getRawInputElement", "open", "defaultOpen", "onDropdownVisibleChange", "activeValue", "onActiveValueChange", "activeDescendantId", "searchValue", "autoClearSearchValue", "onSearch", "onSearchSplit", "tokenSeparators", "allowClear", "showArrow", "inputIcon", "clearIcon", "OptionList", "animation", "transitionName", "dropdownStyle", "dropdownClassName", "dropdownMatchSelectWidth", "dropdownRender", "dropdownAlign", "placement", "getPopupContainer", "showAction", "onFocus", "onBlur", "onKeyUp", "onKeyDown", "onMouseDown"];
+var _excluded$l = ["id", "prefixCls", "className", "showSearch", "tagRender", "direction", "omitDomProps", "displayValues", "onDisplayValuesChange", "emptyOptions", "notFoundContent", "onClear", "mode", "disabled", "loading", "getInputElement", "getRawInputElement", "open", "defaultOpen", "onDropdownVisibleChange", "activeValue", "onActiveValueChange", "activeDescendantId", "searchValue", "autoClearSearchValue", "onSearch", "onSearchSplit", "tokenSeparators", "allowClear", "showArrow", "inputIcon", "clearIcon", "OptionList", "animation", "transitionName", "dropdownStyle", "dropdownClassName", "dropdownMatchSelectWidth", "dropdownRender", "dropdownAlign", "placement", "getPopupContainer", "showAction", "onFocus", "onBlur", "onKeyUp", "onKeyDown", "onMouseDown"];
 var DEFAULT_OMIT_PROPS = ['value', 'onChange', 'removeIcon', 'placeholder', 'autoFocus', 'maxTagCount', 'maxTagTextLength', 'maxTagPlaceholder', 'choiceTransitionName', 'onInputKeyDown', 'onPopupScroll', 'tabIndex'];
 function isMultiple(mode) {
   return mode === 'tags' || mode === 'multiple';
@@ -32651,7 +32668,7 @@ var BaseSelect = /*#__PURE__*/React.forwardRef(function (props, ref) {
     onKeyUp = props.onKeyUp,
     onKeyDown = props.onKeyDown,
     onMouseDown = props.onMouseDown,
-    restProps = _objectWithoutProperties(props, _excluded$j);
+    restProps = _objectWithoutProperties(props, _excluded$l);
 
   // ============================== MISC ==============================
   var multiple = isMultiple(mode);
@@ -33198,7 +33215,7 @@ var useCache = (function (labeledValues, valueOptions) {
 });
 
 function includes(test, search) {
-  return toArray$1(test).join('').toUpperCase().includes(search);
+  return toArray$2(test).join('').toUpperCase().includes(search);
 }
 var useFilterOptions = (function (options, fieldNames, searchValue, filterOption, optionFilterProp) {
   return React.useMemo(function () {
@@ -33255,38 +33272,38 @@ var useFilterOptions = (function (options, fieldNames, searchValue, filterOption
   }, [options, filterOption, optionFilterProp, searchValue, fieldNames]);
 });
 
-var uuid = 0;
+var uuid$1 = 0;
 
 /** Is client side and not jsdom */
-var isBrowserClient = process.env.NODE_ENV !== 'test' && canUseDom();
+var isBrowserClient$1 = process.env.NODE_ENV !== 'test' && canUseDom();
 
 /** Get unique id for accessibility usage */
-function getUUID() {
+function getUUID$1() {
   var retId;
 
   // Test never reach
   /* istanbul ignore if */
-  if (isBrowserClient) {
-    retId = uuid;
-    uuid += 1;
+  if (isBrowserClient$1) {
+    retId = uuid$1;
+    uuid$1 += 1;
   } else {
     retId = 'TEST_OR_SSR';
   }
   return retId;
 }
-function useId(id) {
+function useId$1(id) {
   // Inner id for accessibility usage. Only work in client side
   var _React$useState = React.useState(),
     _React$useState2 = _slicedToArray(_React$useState, 2),
     innerId = _React$useState2[0],
     setInnerId = _React$useState2[1];
   React.useEffect(function () {
-    setInnerId("rc_select_".concat(getUUID()));
+    setInnerId("rc_select_".concat(getUUID$1()));
   }, []);
   return id || innerId;
 }
 
-var _excluded$i = ["children", "value"],
+var _excluded$k = ["children", "value"],
   _excluded2$3 = ["children"];
 function convertNodeToOption(node) {
   var _ref = node,
@@ -33294,7 +33311,7 @@ function convertNodeToOption(node) {
     _ref$props = _ref.props,
     children = _ref$props.children,
     value = _ref$props.value,
-    restProps = _objectWithoutProperties(_ref$props, _excluded$i);
+    restProps = _objectWithoutProperties(_ref$props, _excluded$k);
   return _objectSpread2$1({
     key: key,
     value: value !== undefined ? value : key,
@@ -33303,7 +33320,7 @@ function convertNodeToOption(node) {
 }
 function convertChildrenToData(nodes) {
   var optionOnly = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  return toArray$2(nodes).map(function (node, index) {
+  return toArray$3(nodes).map(function (node, index) {
     if (! /*#__PURE__*/React.isValidElement(node) || !node.type) {
       return null;
     }
@@ -34169,7 +34186,7 @@ function useGetSize(mergedData, getKey, heights, itemHeight) {
   return getSize;
 }
 
-var _excluded$h = ["prefixCls", "className", "height", "itemHeight", "fullHeight", "style", "data", "children", "itemKey", "virtual", "direction", "scrollWidth", "component", "onScroll", "onVirtualScroll", "onVisibleChange", "innerProps", "extraRender"];
+var _excluded$j = ["prefixCls", "className", "height", "itemHeight", "fullHeight", "style", "data", "children", "itemKey", "virtual", "direction", "scrollWidth", "component", "onScroll", "onVirtualScroll", "onVisibleChange", "innerProps", "extraRender"];
 var EMPTY_DATA = [];
 var ScrollStyle = {
   overflowY: 'auto',
@@ -34197,7 +34214,7 @@ function RawList(props, ref) {
     onVisibleChange = props.onVisibleChange,
     innerProps = props.innerProps,
     extraRender = props.extraRender,
-    restProps = _objectWithoutProperties(props, _excluded$h);
+    restProps = _objectWithoutProperties(props, _excluded$j);
   // ================================= MISC =================================
   var useVirtual = !!(virtual !== false && height && itemHeight);
   var inVirtual = useVirtual && data && (itemHeight * data.length > height || !!scrollWidth);
@@ -34589,7 +34606,7 @@ function isPlatformMac() {
 
 var SelectContext = /*#__PURE__*/React.createContext(null);
 
-var _excluded$g = ["disabled", "title", "children", "style", "className"];
+var _excluded$i = ["disabled", "title", "children", "style", "className"];
 
 // export interface OptionListProps<OptionsType extends object[]> {
 
@@ -34874,7 +34891,7 @@ var OptionList = function OptionList(_, ref) {
       data.children;
       var style = data.style,
       className = data.className,
-      otherProps = _objectWithoutProperties(data, _excluded$g);
+      otherProps = _objectWithoutProperties(data, _excluded$i);
     var passedProps = omit(otherProps, omitFieldNameList);
 
     // Option
@@ -34977,7 +34994,7 @@ function warningProps(props) {
   }
   noteOnce(!defaultOpen || autoFocus, '`defaultOpen` makes Select open without focus which means it will not close by click outside. You can set `autoFocus` if needed.');
   if (value !== undefined && value !== null) {
-    var values = toArray$1(value);
+    var values = toArray$2(value);
     warningOnce(!labelInValue || values.every(function (val) {
       return _typeof$1(val) === 'object' && ('key' in val || 'value' in val);
     }), '`value` should in shape of `{ value: string | number, label?: ReactNode }` when you set `labelInValue` to `true`');
@@ -34987,7 +35004,7 @@ function warningProps(props) {
   // Syntactic sugar should use correct children type
   if (children) {
     var invalidateChildType = null;
-    toArray$2(children).some(function (node) {
+    toArray$3(children).some(function (node) {
       if (! /*#__PURE__*/React.isValidElement(node) || !node.type) {
         return false;
       }
@@ -34997,7 +35014,7 @@ function warningProps(props) {
         return false;
       }
       if (type.isSelectOptGroup) {
-        var allChildrenValid = toArray$2(node.props.children).every(function (subNode) {
+        var allChildrenValid = toArray$3(node.props.children).every(function (subNode) {
           if (! /*#__PURE__*/React.isValidElement(subNode) || !node.type || subNode.type.isSelectOption) {
             return true;
           }
@@ -35040,7 +35057,7 @@ function warningNullOptions(options, fieldNames) {
   }
 }
 
-var _excluded$f = ["id", "mode", "prefixCls", "backfill", "fieldNames", "inputValue", "searchValue", "onSearch", "autoClearSearchValue", "onSelect", "onDeselect", "dropdownMatchSelectWidth", "filterOption", "filterSort", "optionFilterProp", "optionLabelProp", "options", "children", "defaultActiveFirstOption", "menuItemSelectedIcon", "virtual", "listHeight", "listItemHeight", "value", "defaultValue", "labelInValue", "onChange"];
+var _excluded$h = ["id", "mode", "prefixCls", "backfill", "fieldNames", "inputValue", "searchValue", "onSearch", "autoClearSearchValue", "onSelect", "onDeselect", "dropdownMatchSelectWidth", "filterOption", "filterSort", "optionFilterProp", "optionLabelProp", "options", "children", "defaultActiveFirstOption", "menuItemSelectedIcon", "virtual", "listHeight", "listItemHeight", "value", "defaultValue", "labelInValue", "onChange"];
 var OMIT_DOM_PROPS = ['inputValue'];
 function isRawValue(value) {
   return !value || _typeof$1(value) !== 'object';
@@ -35078,8 +35095,8 @@ var Select$2 = /*#__PURE__*/React.forwardRef(function (props, ref) {
     defaultValue = props.defaultValue,
     labelInValue = props.labelInValue,
     onChange = props.onChange,
-    restProps = _objectWithoutProperties(props, _excluded$f);
-  var mergedId = useId(id);
+    restProps = _objectWithoutProperties(props, _excluded$h);
+  var mergedId = useId$1(id);
   var multiple = isMultiple(mode);
   var childrenAsData = !!(!options && children);
   var mergedFilterOption = React.useMemo(function () {
@@ -35118,7 +35135,7 @@ var Select$2 = /*#__PURE__*/React.forwardRef(function (props, ref) {
   // ========================= Wrap Value =========================
   var convert2LabelValues = React.useCallback(function (draftValues) {
     // Convert to array
-    var valueList = toArray$1(draftValues);
+    var valueList = toArray$2(draftValues);
 
     // Convert to labelInValue type
     return valueList.map(function (val) {
@@ -35578,7 +35595,7 @@ var Simple = function Simple() {
 };
 var SimpleEmptyImg = Simple;
 
-var __rest$l = undefined && undefined.__rest || function (s, e) {
+var __rest$o = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -35596,7 +35613,7 @@ var Empty = function Empty(_a) {
     description = _a.description,
     children = _a.children,
     imageStyle = _a.imageStyle,
-    restProps = __rest$l(_a, ["className", "prefixCls", "image", "description", "children", "imageStyle"]);
+    restProps = __rest$o(_a, ["className", "prefixCls", "image", "description", "children", "imageStyle"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -35702,7 +35719,7 @@ var Context = /*#__PURE__*/React.createContext({
 
 var ListContext = /*#__PURE__*/React.createContext(null);
 
-function toArray(value) {
+function toArray$1(value) {
   if (value === undefined || value === null) {
     return [];
   }
@@ -37385,7 +37402,7 @@ function _finishOnFirstFailed() {
  * ['a', 123] => ['a', 123]
  */
 function getNamePath(path) {
-  return toArray(path);
+  return toArray$1(path);
 }
 function cloneByNamePathList(store, namePathList) {
   var newStore = {};
@@ -37465,7 +37482,7 @@ function move(array, moveIndex, toIndex) {
   return array;
 }
 
-var _excluded$e = ["name"];
+var _excluded$g = ["name"];
 var EMPTY_ERRORS = [];
 function requireUpdate(shouldUpdate, prev, next, prevValue, nextValue, info) {
   if (typeof shouldUpdate === 'function') {
@@ -37707,7 +37724,7 @@ var Field = /*#__PURE__*/function (_React$Component) {
             if (!validateTrigger) {
               return true;
             }
-            var triggerList = toArray(validateTrigger);
+            var triggerList = toArray$1(validateTrigger);
             return triggerList.includes(triggerName);
           });
         }
@@ -37811,7 +37828,7 @@ var Field = /*#__PURE__*/function (_React$Component) {
         });
       }
       // Filed element only
-      var childList = toArray$2(children);
+      var childList = toArray$3(children);
       if (childList.length !== 1 || ! /*#__PURE__*/React.isValidElement(childList[0])) {
         return {
           child: childList,
@@ -37880,7 +37897,7 @@ var Field = /*#__PURE__*/function (_React$Component) {
         }
       };
       // Add validateTrigger
-      var validateTriggerList = toArray(mergedValidateTrigger || []);
+      var validateTriggerList = toArray$1(mergedValidateTrigger || []);
       validateTriggerList.forEach(function (triggerName) {
         // Wrap additional function of component, so that we can get latest value from store
         var originTrigger = control[triggerName];
@@ -37975,7 +37992,7 @@ Field.defaultProps = {
 };
 function WrapperField(_ref5) {
   var name = _ref5.name,
-    restProps = _objectWithoutProperties(_ref5, _excluded$e);
+    restProps = _objectWithoutProperties(_ref5, _excluded$g);
   var fieldContext = React.useContext(Context);
   var listContext = React.useContext(ListContext);
   var namePath = name !== undefined ? getNamePath(name) : undefined;
@@ -38242,7 +38259,7 @@ var NameMap = /*#__PURE__*/function () {
   return NameMap;
 }();
 
-var _excluded$d = ["name"];
+var _excluded$f = ["name"];
 var FormStore = /*#__PURE__*/_createClass(function FormStore(forceRootUpdate) {
   var _this = this;
   _classCallCheck(this, FormStore);
@@ -38662,7 +38679,7 @@ var FormStore = /*#__PURE__*/_createClass(function FormStore(forceRootUpdate) {
     var namePathList = [];
     fields.forEach(function (fieldData) {
       var name = fieldData.name,
-        data = _objectWithoutProperties(fieldData, _excluded$d);
+        data = _objectWithoutProperties(fieldData, _excluded$f);
       var namePath = getNamePath(name);
       namePathList.push(namePath);
       // Value
@@ -39126,7 +39143,7 @@ var FormProvider = function FormProvider(_ref) {
   }, children);
 };
 
-var _excluded$c = ["name", "initialValues", "fields", "form", "preserve", "children", "component", "validateMessages", "validateTrigger", "onValuesChange", "onFieldsChange", "onFinish", "onFinishFailed"];
+var _excluded$e = ["name", "initialValues", "fields", "form", "preserve", "children", "component", "validateMessages", "validateTrigger", "onValuesChange", "onFieldsChange", "onFinish", "onFinishFailed"];
 var Form = function Form(_ref, ref) {
   var name = _ref.name,
     initialValues = _ref.initialValues,
@@ -39143,7 +39160,7 @@ var Form = function Form(_ref, ref) {
     _onFieldsChange = _ref.onFieldsChange,
     _onFinish = _ref.onFinish,
     onFinishFailed = _ref.onFinishFailed,
-    restProps = _objectWithoutProperties(_ref, _excluded$c);
+    restProps = _objectWithoutProperties(_ref, _excluded$e);
   var formContext = React.useContext(FormContext);
   // We customize handle event since Context will makes all the consumer re-render:
   // https://reactjs.org/docs/context.html#contextprovider
@@ -39520,7 +39537,7 @@ function getIcons(_ref) {
   };
 }
 
-var __rest$k = undefined && undefined.__rest || function (s, e) {
+var __rest$n = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -39554,7 +39571,7 @@ var NoCompactStyle = function NoCompactStyle(_ref) {
 };
 var CompactItem = function CompactItem(_a) {
   var children = _a.children,
-    otherProps = __rest$k(_a, ["children"]);
+    otherProps = __rest$n(_a, ["children"]);
   return /*#__PURE__*/React.createElement(SpaceCompactItemContext.Provider, {
     value: otherProps
   }, children);
@@ -39571,11 +39588,11 @@ var Compact = function Compact(props) {
     customizePrefixCls = props.prefixCls,
     className = props.className,
     children = props.children,
-    restProps = __rest$k(props, ["size", "direction", "block", "prefixCls", "className", "children"]);
+    restProps = __rest$n(props, ["size", "direction", "block", "prefixCls", "className", "children"]);
   var prefixCls = getPrefixCls('space-compact', customizePrefixCls);
   var clx = classNames(prefixCls, (_classNames2 = {}, _defineProperty$1(_classNames2, "".concat(prefixCls, "-rtl"), directionConfig === 'rtl'), _defineProperty$1(_classNames2, "".concat(prefixCls, "-block"), block), _defineProperty$1(_classNames2, "".concat(prefixCls, "-vertical"), direction === 'vertical'), _classNames2), className);
   var compactItemContext = React.useContext(SpaceCompactItemContext);
-  var childNodes = toArray$2(children);
+  var childNodes = toArray$3(children);
   var nodes = React.useMemo(function () {
     return childNodes.map(function (child, i) {
       var key = child && child.key || "".concat(prefixCls, "-item-").concat(i);
@@ -39598,7 +39615,7 @@ var Compact = function Compact(props) {
 };
 
 // TODO: 4.0 - codemod should help to change `filterOption` to support node props.
-var __rest$j = undefined && undefined.__rest || function (s, e) {
+var __rest$m = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -39626,7 +39643,7 @@ var InternalSelect = function InternalSelect(_a, ref) {
     notFoundContent = _a.notFoundContent,
     customStatus = _a.status,
     showArrow = _a.showArrow,
-    props = __rest$j(_a, ["prefixCls", "bordered", "className", "getPopupContainer", "dropdownClassName", "popupClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "showArrow"]);
+    props = __rest$m(_a, ["prefixCls", "bordered", "className", "getPopupContainer", "dropdownClassName", "popupClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "showArrow"]);
   var _React$useContext = React.useContext(ConfigContext),
     getContextPopupContainer = _React$useContext.getPopupContainer,
     getPrefixCls = _React$useContext.getPrefixCls,
@@ -39725,6 +39742,15 @@ Select.SECRET_COMBOBOX_MODE_DO_NOT_USE = SECRET_COMBOBOX_MODE_DO_NOT_USE;
 Select.Option = Option;
 Select.OptGroup = OptGroup;
 var Select$1 = Select;
+
+function useForceUpdate() {
+  var _React$useReducer = React.useReducer(function (x) {
+      return x + 1;
+    }, 0),
+    _React$useReducer2 = _slicedToArray(_React$useReducer, 2),
+    forceUpdate = _React$useReducer2[1];
+  return forceUpdate;
+}
 
 var autoAdjustOverflow$2 = {
   adjustX: 1,
@@ -40010,7 +40036,7 @@ function getPlacements(config) {
   return placementMap;
 }
 
-var __rest$i = undefined && undefined.__rest || function (s, e) {
+var __rest$l = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -40155,7 +40181,7 @@ var Tooltip = /*#__PURE__*/React.forwardRef(function (props, ref) {
     mouseEnterDelay = _props$mouseEnterDela === void 0 ? 0.1 : _props$mouseEnterDela,
     _props$mouseLeaveDela = props.mouseLeaveDelay,
     mouseLeaveDelay = _props$mouseLeaveDela === void 0 ? 0.1 : _props$mouseLeaveDela,
-    otherProps = __rest$i(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay"]);
+    otherProps = __rest$l(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay"]);
   var customizePrefixCls = props.prefixCls,
     openClassName = props.openClassName,
     getTooltipContainer = props.getTooltipContainer,
@@ -40245,7 +40271,7 @@ function useMenuId(eventKey) {
   return getMenuId(id, eventKey);
 }
 
-var _excluded$b = ["children", "locked"];
+var _excluded$d = ["children", "locked"];
 var MenuContext$2 = /*#__PURE__*/React.createContext(null);
 function mergeProps(origin, target) {
   var clone = _objectSpread2$1({}, origin);
@@ -40260,7 +40286,7 @@ function mergeProps(origin, target) {
 function InheritableContextProvider(_ref) {
   var children = _ref.children,
     locked = _ref.locked,
-    restProps = _objectWithoutProperties(_ref, _excluded$b);
+    restProps = _objectWithoutProperties(_ref, _excluded$d);
   var context = React.useContext(MenuContext$2);
   var inheritableContext = useMemo(function () {
     return mergeProps(context, restProps);
@@ -40804,7 +40830,7 @@ function Icon(_ref) {
   return iconNode || children || null;
 }
 
-var _excluded$a = ["item"];
+var _excluded$c = ["item"];
 
 /**
  * `onClick` event return `info.item` which point to react node directly.
@@ -40812,7 +40838,7 @@ var _excluded$a = ["item"];
  */
 function warnItemProp(_ref) {
   var item = _ref.item,
-    restInfo = _objectWithoutProperties(_ref, _excluded$a);
+    restInfo = _objectWithoutProperties(_ref, _excluded$c);
   Object.defineProperty(restInfo, 'item', {
     get: function get() {
       warningOnce(false, '`info.item` is deprecated since we will move to function component that not provides React Node instance in future.');
@@ -40822,7 +40848,7 @@ function warnItemProp(_ref) {
   return restInfo;
 }
 
-var _excluded$9 = ["title", "attribute", "elementRef"],
+var _excluded$b = ["title", "attribute", "elementRef"],
   _excluded2$2 = ["style", "className", "eventKey", "warnKey", "disabled", "itemIcon", "children", "role", "onMouseEnter", "onMouseLeave", "onClick", "onKeyDown", "onFocus"],
   _excluded3 = ["active"];
 // Since Menu event provide the `info.item` which point to the MenuItem node instance.
@@ -40842,7 +40868,7 @@ var LegacyMenuItem = /*#__PURE__*/function (_React$Component) {
         title = _this$props.title,
         attribute = _this$props.attribute,
         elementRef = _this$props.elementRef,
-        restProps = _objectWithoutProperties(_this$props, _excluded$9);
+        restProps = _objectWithoutProperties(_this$props, _excluded$b);
 
       // Here the props are eventually passed to the DOM element.
       // React does not recognize non-standard attributes.
@@ -41014,11 +41040,11 @@ function MenuItem$1(props, ref) {
 }
 var MenuItem$2 = /*#__PURE__*/React.forwardRef(MenuItem$1);
 
-var _excluded$8 = ["className", "children"];
+var _excluded$a = ["className", "children"];
 var InternalSubMenuList = function InternalSubMenuList(_ref, ref) {
   var className = _ref.className,
     children = _ref.children,
-    restProps = _objectWithoutProperties(_ref, _excluded$8);
+    restProps = _objectWithoutProperties(_ref, _excluded$a);
   var _React$useContext = React.useContext(MenuContext$2),
     prefixCls = _React$useContext.prefixCls,
     mode = _React$useContext.mode,
@@ -41034,9 +41060,9 @@ var InternalSubMenuList = function InternalSubMenuList(_ref, ref) {
 var SubMenuList = /*#__PURE__*/React.forwardRef(InternalSubMenuList);
 SubMenuList.displayName = 'SubMenuList';
 
-var _excluded$7 = ["label", "children", "key", "type"];
+var _excluded$9 = ["label", "children", "key", "type"];
 function parseChildren(children, keyPath) {
-  return toArray$2(children).map(function (child, index) {
+  return toArray$3(children).map(function (child, index) {
     if ( /*#__PURE__*/React.isValidElement(child)) {
       var _eventKey, _child$props;
       var key = child.key;
@@ -41065,7 +41091,7 @@ function convertItemsToNodes$1(list) {
         children = _ref.children,
         key = _ref.key,
         type = _ref.type,
-        restProps = _objectWithoutProperties(_ref, _excluded$7);
+        restProps = _objectWithoutProperties(_ref, _excluded$9);
       var mergedKey = key !== null && key !== void 0 ? key : "tmp-".concat(index);
 
       // MenuItemGroup & SubMenuItem
@@ -41320,7 +41346,7 @@ function InlineSubMenuList(_ref) {
   }));
 }
 
-var _excluded$6 = ["style", "className", "title", "eventKey", "warnKey", "disabled", "internalPopupClose", "children", "itemIcon", "expandIcon", "popupClassName", "popupOffset", "onClick", "onMouseEnter", "onMouseLeave", "onTitleClick", "onTitleMouseEnter", "onTitleMouseLeave"],
+var _excluded$8 = ["style", "className", "title", "eventKey", "warnKey", "disabled", "internalPopupClose", "children", "itemIcon", "expandIcon", "popupClassName", "popupOffset", "onClick", "onMouseEnter", "onMouseLeave", "onTitleClick", "onTitleMouseEnter", "onTitleMouseLeave"],
   _excluded2$1 = ["active"];
 var InternalSubMenu = function InternalSubMenu(props) {
   var _classNames;
@@ -41342,7 +41368,7 @@ var InternalSubMenu = function InternalSubMenu(props) {
     onTitleClick = props.onTitleClick,
     onTitleMouseEnter = props.onTitleMouseEnter,
     onTitleMouseLeave = props.onTitleMouseLeave,
-    restProps = _objectWithoutProperties(props, _excluded$6);
+    restProps = _objectWithoutProperties(props, _excluded$8);
   var domDataId = useMenuId(eventKey);
   var _React$useContext = React.useContext(MenuContext$2),
     prefixCls = _React$useContext.prefixCls,
@@ -41586,7 +41612,7 @@ function SubMenu$1(props) {
   }, renderNode);
 }
 
-var _excluded$5 = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "items", "children", "direction", "id", "mode", "inlineCollapsed", "disabled", "disabledOverflow", "subMenuOpenDelay", "subMenuCloseDelay", "forceSubMenuRender", "defaultOpenKeys", "openKeys", "activeKey", "defaultActiveFirst", "selectable", "multiple", "defaultSelectedKeys", "selectedKeys", "onSelect", "onDeselect", "inlineIndent", "motion", "defaultMotions", "triggerSubMenuAction", "builtinPlacements", "itemIcon", "expandIcon", "overflowedIndicator", "overflowedIndicatorPopupClassName", "getPopupContainer", "onClick", "onOpenChange", "onKeyDown", "openAnimation", "openTransitionName", "_internalRenderMenuItem", "_internalRenderSubMenuItem"];
+var _excluded$7 = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "items", "children", "direction", "id", "mode", "inlineCollapsed", "disabled", "disabledOverflow", "subMenuOpenDelay", "subMenuCloseDelay", "forceSubMenuRender", "defaultOpenKeys", "openKeys", "activeKey", "defaultActiveFirst", "selectable", "multiple", "defaultSelectedKeys", "selectedKeys", "onSelect", "onDeselect", "inlineIndent", "motion", "defaultMotions", "triggerSubMenuAction", "builtinPlacements", "itemIcon", "expandIcon", "overflowedIndicator", "overflowedIndicatorPopupClassName", "getPopupContainer", "onClick", "onOpenChange", "onKeyDown", "openAnimation", "openTransitionName", "_internalRenderMenuItem", "_internalRenderSubMenuItem"];
 
 /**
  * Menu modify after refactor:
@@ -41659,7 +41685,7 @@ var Menu$2 = /*#__PURE__*/React.forwardRef(function (props, ref) {
     openTransitionName = _ref.openTransitionName,
     _internalRenderMenuItem = _ref._internalRenderMenuItem,
     _internalRenderSubMenuItem = _ref._internalRenderSubMenuItem,
-    restProps = _objectWithoutProperties(_ref, _excluded$5);
+    restProps = _objectWithoutProperties(_ref, _excluded$7);
   var childList = React.useMemo(function () {
     return parseItems(children, items, EMPTY_LIST);
   }, [children, items]);
@@ -42031,14 +42057,14 @@ var Menu$2 = /*#__PURE__*/React.forwardRef(function (props, ref) {
   }, childList)))));
 });
 
-var _excluded$4 = ["className", "title", "eventKey", "children"],
+var _excluded$6 = ["className", "title", "eventKey", "children"],
   _excluded2 = ["children"];
 var InternalMenuItemGroup = function InternalMenuItemGroup(_ref) {
   var className = _ref.className,
     title = _ref.title;
     _ref.eventKey;
     var children = _ref.children,
-    restProps = _objectWithoutProperties(_ref, _excluded$4);
+    restProps = _objectWithoutProperties(_ref, _excluded$6);
   var _React$useContext = React.useContext(MenuContext$2),
     prefixCls = _React$useContext.prefixCls;
   var groupPrefixCls = "".concat(prefixCls, "-item-group");
@@ -42135,7 +42161,7 @@ var isNumeric = function isNumeric(value) {
 };
 var isNumeric$1 = isNumeric;
 
-var __rest$h = undefined && undefined.__rest || function (s, e) {
+var __rest$k = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42180,7 +42206,7 @@ var Basic = /*#__PURE__*/React.forwardRef(function (props, ref) {
     className = props.className,
     children = props.children,
     tagName = props.tagName,
-    others = __rest$h(props, ["prefixCls", "className", "children", "tagName"]);
+    others = __rest$k(props, ["prefixCls", "className", "children", "tagName"]);
   var classString = classNames(prefixCls, className);
   return /*#__PURE__*/React.createElement(tagName, _extends$1(_extends$1({
     className: classString
@@ -42201,7 +42227,7 @@ var BasicLayout = /*#__PURE__*/React.forwardRef(function (props, ref) {
     children = props.children,
     hasSider = props.hasSider,
     Tag = props.tagName,
-    others = __rest$h(props, ["prefixCls", "className", "children", "hasSider", "tagName"]);
+    others = __rest$k(props, ["prefixCls", "className", "children", "hasSider", "tagName"]);
   var classString = classNames(prefixCls, (_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-has-sider"), typeof hasSider === 'boolean' ? hasSider : siders.length > 0), _defineProperty$1(_classNames, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _classNames), className);
   var contextValue = React.useMemo(function () {
     return {
@@ -42249,7 +42275,7 @@ generator({
   displayName: 'Content'
 })(Basic);
 
-var __rest$g = undefined && undefined.__rest || function (s, e) {
+var __rest$j = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42297,7 +42323,7 @@ var Sider = /*#__PURE__*/React.forwardRef(function (_a, ref) {
     breakpoint = _a.breakpoint,
     onCollapse = _a.onCollapse,
     onBreakpoint = _a.onBreakpoint,
-    props = __rest$g(_a, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
+    props = __rest$j(_a, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
   var _useContext = useContext$1(LayoutContext),
     siderHook = _useContext.siderHook;
   var _useState = useState$3('collapsed' in props ? props.collapsed : defaultCollapsed),
@@ -42421,7 +42447,7 @@ if (process.env.NODE_ENV !== 'production') {
   Sider.displayName = 'Sider';
 }
 
-var __rest$f = undefined && undefined.__rest || function (s, e) {
+var __rest$i = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42433,7 +42459,7 @@ var MenuDivider = function MenuDivider(_a) {
   var customizePrefixCls = _a.prefixCls,
     className = _a.className,
     dashed = _a.dashed,
-    restProps = __rest$f(_a, ["prefixCls", "className", "dashed"]);
+    restProps = __rest$i(_a, ["prefixCls", "className", "dashed"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls;
   var prefixCls = getPrefixCls('menu', customizePrefixCls);
@@ -42451,7 +42477,7 @@ var MenuContext = /*#__PURE__*/createContext({
 });
 var MenuContext$1 = MenuContext;
 
-var __rest$e = undefined && undefined.__rest || function (s, e) {
+var __rest$h = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42483,7 +42509,7 @@ var MenuItem = /*#__PURE__*/function (_React$Component) {
         title = _b.title,
         icon = _b.icon,
         danger = _b.danger,
-        rest = __rest$e(_b, ["title", "icon", "danger"]);
+        rest = __rest$h(_b, ["title", "icon", "danger"]);
       var tooltipTitle = title;
       if (typeof title === 'undefined') {
         tooltipTitle = firstLevel ? children : '';
@@ -42499,7 +42525,7 @@ var MenuItem = /*#__PURE__*/function (_React$Component) {
         // ref: https://github.com/ant-design/ant-design/issues/16742
         tooltipProps.open = false;
       }
-      var childrenLength = toArray$2(children).length;
+      var childrenLength = toArray$3(children).length;
       var returnNode = /*#__PURE__*/React.createElement(MenuItem$2, _extends$1({}, rest, {
         className: classNames((_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-item-danger"), danger), _defineProperty$1(_classNames, "".concat(prefixCls, "-item-only-child"), (icon ? childrenLength + 1 : childrenLength) === 1), _classNames), className),
         title: typeof title === 'string' ? title : undefined
@@ -42590,7 +42616,7 @@ function SubMenu(props) {
   })));
 }
 
-var __rest$d = undefined && undefined.__rest || function (s, e) {
+var __rest$g = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42606,7 +42632,7 @@ function convertItemsToNodes(list) {
         children = _a.children,
         key = _a.key,
         type = _a.type,
-        restProps = __rest$d(_a, ["label", "children", "key", "type"]);
+        restProps = __rest$g(_a, ["label", "children", "key", "type"]);
       var mergedKey = key !== null && key !== void 0 ? key : "tmp-".concat(index);
       // MenuItemGroup & SubMenuItem
       if (children || type === 'group') {
@@ -42654,7 +42680,7 @@ function useItems(items) {
   }, [items]);
 }
 
-var __rest$c = undefined && undefined.__rest || function (s, e) {
+var __rest$f = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42667,7 +42693,7 @@ var OverrideContext = /*#__PURE__*/React.createContext(null);
 /** @internal Only used for Dropdown component. Do not use this in your production. */
 var OverrideProvider = function OverrideProvider(_a) {
   var children = _a.children,
-    restProps = __rest$c(_a, ["children"]);
+    restProps = __rest$f(_a, ["children"]);
   var override = React.useContext(OverrideContext);
   var context = React.useMemo(function () {
     return _extends$1(_extends$1({}, override), restProps);
@@ -42682,7 +42708,7 @@ var OverrideProvider = function OverrideProvider(_a) {
   }, children);
 };
 
-var __rest$b = undefined && undefined.__rest || function (s, e) {
+var __rest$e = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42711,7 +42737,7 @@ var InternalMenu = /*#__PURE__*/forwardRef(function (props, ref) {
     mode = props.mode,
     selectable = props.selectable,
     onClick = props.onClick,
-    restProps = __rest$b(props, ["prefixCls", "className", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "mode", "selectable", "onClick"]);
+    restProps = __rest$e(props, ["prefixCls", "className", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "mode", "selectable", "onClick"]);
   var passedProps = omit(restProps, ['collapsedWidth']);
   // ========================= Items ===========================
   var mergedChildren = useItems(items) || children;
@@ -42957,7 +42983,7 @@ function useAccessibility(_ref) {
   }, [visible]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
-var _excluded$3 = ["arrow", "prefixCls", "transitionName", "animation", "align", "placement", "placements", "getPopupContainer", "showAction", "hideAction", "overlayClassName", "overlayStyle", "visible", "trigger", "autoFocus"];
+var _excluded$5 = ["arrow", "prefixCls", "transitionName", "animation", "align", "placement", "placements", "getPopupContainer", "showAction", "hideAction", "overlayClassName", "overlayStyle", "visible", "trigger", "autoFocus"];
 
 function Dropdown$2(props, ref) {
   var _props$arrow = props.arrow,
@@ -42980,7 +43006,7 @@ function Dropdown$2(props, ref) {
       _props$trigger = props.trigger,
       trigger = _props$trigger === void 0 ? ['hover'] : _props$trigger,
       autoFocus = props.autoFocus,
-      otherProps = _objectWithoutProperties(props, _excluded$3);
+      otherProps = _objectWithoutProperties(props, _excluded$5);
 
   var _React$useState = React.useState(),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -43326,7 +43352,7 @@ var Wave = /*#__PURE__*/function (_React$Component) {
 Wave.contextType = ConfigContext;
 var Wave$1 = Wave;
 
-var __rest$a = undefined && undefined.__rest || function (s, e) {
+var __rest$d = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43343,7 +43369,7 @@ var ButtonGroup = function ButtonGroup(props) {
   var customizePrefixCls = props.prefixCls,
     size = props.size,
     className = props.className,
-    others = __rest$a(props, ["prefixCls", "size", "className"]);
+    others = __rest$d(props, ["prefixCls", "size", "className"]);
   var prefixCls = getPrefixCls('btn-group', customizePrefixCls);
   // large => lg
   // small => sm
@@ -43419,7 +43445,7 @@ var LoadingIcon = function LoadingIcon(_ref) {
 };
 var LoadingIcon$1 = LoadingIcon;
 
-var __rest$9 = undefined && undefined.__rest || function (s, e) {
+var __rest$c = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43500,7 +43526,7 @@ var InternalButton = function InternalButton(props, ref) {
     block = _props$block === void 0 ? false : _props$block,
     _props$htmlType = props.htmlType,
     htmlType = _props$htmlType === void 0 ? 'button' : _props$htmlType,
-    rest = __rest$9(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "disabled", "className", "children", "icon", "ghost", "block", "htmlType"]);
+    rest = __rest$c(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "disabled", "className", "children", "icon", "ghost", "block", "htmlType"]);
   var size = React.useContext(SizeContext$1);
   // ===================== Disabled =====================
   var disabled = React.useContext(DisabledContext$1);
@@ -43695,7 +43721,7 @@ function Item(_ref) {
   }, split));
 }
 
-var __rest$8 = undefined && undefined.__rest || function (s, e) {
+var __rest$b = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43735,7 +43761,7 @@ var Space = function Space(props) {
     style = props.style,
     _props$wrap = props.wrap,
     wrap = _props$wrap === void 0 ? false : _props$wrap,
-    otherProps = __rest$8(props, ["size", "align", "className", "children", "direction", "prefixCls", "split", "style", "wrap"]);
+    otherProps = __rest$b(props, ["size", "align", "className", "children", "direction", "prefixCls", "split", "style", "wrap"]);
   var supportFlexGap = useFlexGapSupport();
   var _React$useMemo = React.useMemo(function () {
       return (Array.isArray(size) ? size : [size, size]).map(function (item) {
@@ -43745,7 +43771,7 @@ var Space = function Space(props) {
     _React$useMemo2 = _slicedToArray(_React$useMemo, 2),
     horizontalSize = _React$useMemo2[0],
     verticalSize = _React$useMemo2[1];
-  var childNodes = toArray$2(children, {
+  var childNodes = toArray$3(children, {
     keepEmpty: true
   });
   var mergedAlign = align === undefined && direction === 'horizontal' ? 'center' : align;
@@ -43805,7 +43831,7 @@ var CompoundedSpace = Space;
 CompoundedSpace.Compact = Compact;
 var Space$1 = CompoundedSpace;
 
-var __rest$7 = undefined && undefined.__rest || function (s, e) {
+var __rest$a = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43853,7 +43879,7 @@ var DropdownButton = function DropdownButton(props) {
     overlayClassName = props.overlayClassName,
     overlayStyle = props.overlayStyle,
     destroyPopupOnHide = props.destroyPopupOnHide,
-    restProps = __rest$7(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "visible", "open", "onVisibleChange", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide"]);
+    restProps = __rest$a(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "visible", "open", "onVisibleChange", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide"]);
   var prefixCls = getPrefixCls('dropdown-button', customizePrefixCls);
   var dropdownProps = {
     menu: menu,
@@ -44062,7 +44088,7 @@ var Dropdown = function Dropdown(props) {
 Dropdown.Button = DropdownButton$1;
 var Dropdown$1 = Dropdown;
 
-var _excluded$2 = ["prefixCls", "className", "style", "checked", "disabled", "defaultChecked", "type", "onChange"];
+var _excluded$4 = ["prefixCls", "className", "style", "checked", "disabled", "defaultChecked", "type", "onChange"];
 var Checkbox$3 = /*#__PURE__*/forwardRef(function (props, ref) {
   var _classNames;
   var _props$prefixCls = props.prefixCls,
@@ -44076,7 +44102,7 @@ var Checkbox$3 = /*#__PURE__*/forwardRef(function (props, ref) {
     _props$type = props.type,
     type = _props$type === void 0 ? 'checkbox' : _props$type,
     onChange = props.onChange,
-    inputProps = _objectWithoutProperties(props, _excluded$2);
+    inputProps = _objectWithoutProperties(props, _excluded$4);
   var inputRef = useRef$6(null);
   var _useMergedState = useMergedState(defaultChecked, {
       value: checked
@@ -44134,7 +44160,7 @@ var Checkbox$3 = /*#__PURE__*/forwardRef(function (props, ref) {
   }));
 });
 
-var __rest$6 = undefined && undefined.__rest || function (s, e) {
+var __rest$9 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44152,7 +44178,7 @@ var InternalCheckboxGroup = function InternalCheckboxGroup(_a, ref) {
     className = _a.className,
     style = _a.style,
     onChange = _a.onChange,
-    restProps = __rest$6(_a, ["defaultValue", "children", "options", "prefixCls", "className", "style", "onChange"]);
+    restProps = __rest$9(_a, ["defaultValue", "children", "options", "prefixCls", "className", "style", "onChange"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -44256,7 +44282,7 @@ var InternalCheckboxGroup = function InternalCheckboxGroup(_a, ref) {
 var CheckboxGroup = /*#__PURE__*/React.forwardRef(InternalCheckboxGroup);
 var Group$2 = /*#__PURE__*/React.memo(CheckboxGroup);
 
-var __rest$5 = undefined && undefined.__rest || function (s, e) {
+var __rest$8 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44278,7 +44304,7 @@ var InternalCheckbox = function InternalCheckbox(_a, ref) {
     _a$skipGroup = _a.skipGroup,
     skipGroup = _a$skipGroup === void 0 ? false : _a$skipGroup,
     disabled = _a.disabled,
-    restProps = __rest$5(_a, ["prefixCls", "className", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
+    restProps = __rest$8(_a, ["prefixCls", "className", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -44594,7 +44620,7 @@ var BaseInput = function BaseInput(props) {
   return element;
 };
 
-var _excluded$1 = ["autoComplete", "onChange", "onFocus", "onBlur", "onPressEnter", "onKeyDown", "prefixCls", "disabled", "htmlSize", "className", "maxLength", "suffix", "showCount", "type", "inputClassName"];
+var _excluded$3 = ["autoComplete", "onChange", "onFocus", "onBlur", "onPressEnter", "onKeyDown", "prefixCls", "disabled", "htmlSize", "className", "maxLength", "suffix", "showCount", "type", "inputClassName"];
 var Input$3 = /*#__PURE__*/forwardRef(function (props, ref) {
   var autoComplete = props.autoComplete,
       onChange = props.onChange,
@@ -44613,7 +44639,7 @@ var Input$3 = /*#__PURE__*/forwardRef(function (props, ref) {
       _props$type = props.type,
       type = _props$type === void 0 ? 'text' : _props$type,
       inputClassName = props.inputClassName,
-      rest = _objectWithoutProperties(props, _excluded$1);
+      rest = _objectWithoutProperties(props, _excluded$3);
 
   var _useMergedState = useMergedState(props.defaultValue, {
     value: props.value
@@ -44783,7 +44809,7 @@ function hasPrefixSuffix(props) {
   return !!(props.prefix || props.suffix || props.allowClear);
 }
 
-var __rest$4 = undefined && undefined.__rest || function (s, e) {
+var __rest$7 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44883,7 +44909,7 @@ var Input$2 = /*#__PURE__*/forwardRef(function (props, ref) {
     addonBefore = props.addonBefore,
     className = props.className,
     onChange = props.onChange,
-    rest = __rest$4(props, ["prefixCls", "bordered", "status", "size", "disabled", "onBlur", "onFocus", "suffix", "allowClear", "addonAfter", "addonBefore", "className", "onChange"]);
+    rest = __rest$7(props, ["prefixCls", "bordered", "status", "size", "disabled", "onBlur", "onFocus", "suffix", "allowClear", "addonAfter", "addonBefore", "className", "onChange"]);
   var _React$useContext = React__default.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction,
@@ -44981,7 +45007,7 @@ var EyeInvisibleOutlined = function EyeInvisibleOutlined(props, ref) {
 EyeInvisibleOutlined.displayName = 'EyeInvisibleOutlined';
 var EyeInvisibleOutlined$1 = /*#__PURE__*/React.forwardRef(EyeInvisibleOutlined);
 
-var __rest$3 = undefined && undefined.__rest || function (s, e) {
+var __rest$6 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -45056,7 +45082,7 @@ var Password = /*#__PURE__*/React.forwardRef(function (props, ref) {
       customizePrefixCls = props.prefixCls,
       customizeInputPrefixCls = props.inputPrefixCls,
       size = props.size,
-      restProps = __rest$3(props, ["className", "prefixCls", "inputPrefixCls", "size"]);
+      restProps = __rest$6(props, ["className", "prefixCls", "inputPrefixCls", "size"]);
     var inputPrefixCls = getPrefixCls('input', customizeInputPrefixCls);
     var prefixCls = getPrefixCls('input-password', customizePrefixCls);
     var suffixIcon = visibilityToggle && getIcon(prefixCls);
@@ -45081,7 +45107,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 var Password$1 = Password;
 
-var __rest$2 = undefined && undefined.__rest || function (s, e) {
+var __rest$5 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -45105,7 +45131,7 @@ var Search = /*#__PURE__*/React.forwardRef(function (props, ref) {
     customOnChange = props.onChange,
     onCompositionStart = props.onCompositionStart,
     onCompositionEnd = props.onCompositionEnd,
-    restProps = __rest$2(props, ["prefixCls", "inputPrefixCls", "className", "size", "suffix", "enterButton", "addonAfter", "loading", "disabled", "onSearch", "onChange", "onCompositionStart", "onCompositionEnd"]);
+    restProps = __rest$5(props, ["prefixCls", "inputPrefixCls", "className", "size", "suffix", "enterButton", "addonAfter", "loading", "disabled", "onSearch", "onChange", "onCompositionStart", "onCompositionEnd"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -45314,7 +45340,7 @@ function calculateAutoSizeStyle(uiTextNode) {
   return style;
 }
 
-var _excluded = ["prefixCls", "onPressEnter", "defaultValue", "value", "autoSize", "onResize", "className", "style", "disabled", "onChange", "onInternalAutoSize"];
+var _excluded$2 = ["prefixCls", "onPressEnter", "defaultValue", "value", "autoSize", "onResize", "className", "style", "disabled", "onChange", "onInternalAutoSize"];
 var RESIZE_START = 0;
 var RESIZE_MEASURING = 1;
 var RESIZE_STABLE = 2;
@@ -45331,7 +45357,7 @@ var ResizableTextArea = /*#__PURE__*/React.forwardRef(function (props, ref) {
     disabled = props.disabled,
     onChange = props.onChange,
     onInternalAutoSize = props.onInternalAutoSize,
-    restProps = _objectWithoutProperties(props, _excluded);
+    restProps = _objectWithoutProperties(props, _excluded$2);
   // =============================== Value ================================
   var _useMergedState = useMergedState(defaultValue, {
       value: value,
@@ -45629,7 +45655,7 @@ var ClearableLabeledInput = /*#__PURE__*/function (_React$Component) {
 }(React.Component);
 var ClearableLabeledInput$1 = ClearableLabeledInput;
 
-var __rest$1 = undefined && undefined.__rest || function (s, e) {
+var __rest$4 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -45669,7 +45695,7 @@ var TextArea = /*#__PURE__*/React.forwardRef(function (_a, ref) {
     onFocus = _a.onFocus,
     onBlur = _a.onBlur,
     customStatus = _a.status,
-    props = __rest$1(_a, ["prefixCls", "bordered", "showCount", "maxLength", "className", "style", "size", "disabled", "onCompositionStart", "onCompositionEnd", "onChange", "onFocus", "onBlur", "status"]);
+    props = __rest$4(_a, ["prefixCls", "bordered", "showCount", "maxLength", "className", "style", "size", "disabled", "onCompositionStart", "onCompositionEnd", "onChange", "onFocus", "onBlur", "status"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -45848,6 +45874,2298 @@ Input.TextArea = TextArea$1;
 Input.Password = Password$1;
 var Input$1 = Input;
 
+var defaultProps = {
+  percent: 0,
+  prefixCls: 'rc-progress',
+  strokeColor: '#2db7f5',
+  strokeLinecap: 'round',
+  strokeWidth: 1,
+  trailColor: '#D9D9D9',
+  trailWidth: 1,
+  gapPosition: 'bottom'
+};
+var useTransitionDuration = function useTransitionDuration() {
+  var pathsRef = useRef$6([]);
+  var prevTimeStamp = useRef$6(null);
+  useEffect$5(function () {
+    var now = Date.now();
+    var updated = false;
+    pathsRef.current.forEach(function (path) {
+      if (!path) {
+        return;
+      }
+      updated = true;
+      var pathStyle = path.style;
+      pathStyle.transitionDuration = '.3s, .3s, .3s, .06s';
+      if (prevTimeStamp.current && now - prevTimeStamp.current < 100) {
+        pathStyle.transitionDuration = '0s, 0s';
+      }
+    });
+    if (updated) {
+      prevTimeStamp.current = Date.now();
+    }
+  });
+  return pathsRef.current;
+};
+
+if (process.env.NODE_ENV !== 'production') ;
+
+var uuid = 0;
+/** Is client side and not jsdom */
+var isBrowserClient = process.env.NODE_ENV !== 'test' && canUseDom();
+/** Get unique id for accessibility usage */
+function getUUID() {
+  var retId;
+  // Test never reach
+  /* istanbul ignore if */
+  if (isBrowserClient) {
+    retId = uuid;
+    uuid += 1;
+  } else {
+    retId = 'TEST_OR_SSR';
+  }
+  return retId;
+}
+var useId = (function (id) {
+  // Inner id for accessibility usage. Only work in client side
+  var _React$useState = React.useState(),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    innerId = _React$useState2[0],
+    setInnerId = _React$useState2[1];
+  React.useEffect(function () {
+    setInnerId("rc_progress_".concat(getUUID()));
+  }, []);
+  return id || innerId;
+});
+
+var _excluded$1 = ["id", "prefixCls", "steps", "strokeWidth", "trailWidth", "gapDegree", "gapPosition", "trailColor", "strokeLinecap", "style", "className", "strokeColor", "percent"];
+function stripPercentToNumber(percent) {
+  return +percent.replace('%', '');
+}
+function toArray(value) {
+  var mergedValue = value !== null && value !== void 0 ? value : [];
+  return Array.isArray(mergedValue) ? mergedValue : [mergedValue];
+}
+var VIEW_BOX_SIZE = 100;
+var getCircleStyle = function getCircleStyle(perimeter, perimeterWithoutGap, offset, percent, rotateDeg, gapDegree, gapPosition, strokeColor, strokeLinecap, strokeWidth) {
+  var stepSpace = arguments.length > 10 && arguments[10] !== undefined ? arguments[10] : 0;
+  var offsetDeg = offset / 100 * 360 * ((360 - gapDegree) / 360);
+  var positionDeg = gapDegree === 0 ? 0 : {
+    bottom: 0,
+    top: 180,
+    left: 90,
+    right: -90
+  }[gapPosition];
+  var strokeDashoffset = (100 - percent) / 100 * perimeterWithoutGap;
+  // Fix percent accuracy when strokeLinecap is round
+  // https://github.com/ant-design/ant-design/issues/35009
+  if (strokeLinecap === 'round' && percent !== 100) {
+    strokeDashoffset += strokeWidth / 2;
+    // when percent is small enough (<= 1%), keep smallest value to avoid it's disappearance
+    if (strokeDashoffset >= perimeterWithoutGap) {
+      strokeDashoffset = perimeterWithoutGap - 0.01;
+    }
+  }
+  return {
+    stroke: typeof strokeColor === 'string' ? strokeColor : undefined,
+    strokeDasharray: "".concat(perimeterWithoutGap, "px ").concat(perimeter),
+    strokeDashoffset: strokeDashoffset + stepSpace,
+    transform: "rotate(".concat(rotateDeg + offsetDeg + positionDeg, "deg)"),
+    transformOrigin: '0 0',
+    transition: 'stroke-dashoffset .3s ease 0s, stroke-dasharray .3s ease 0s, stroke .3s, stroke-width .06s ease .3s, opacity .3s ease 0s',
+    fillOpacity: 0
+  };
+};
+var Circle$2 = function Circle(props) {
+  var _defaultProps$props = _objectSpread2$1(_objectSpread2$1({}, defaultProps), props),
+    id = _defaultProps$props.id,
+    prefixCls = _defaultProps$props.prefixCls,
+    steps = _defaultProps$props.steps,
+    strokeWidth = _defaultProps$props.strokeWidth,
+    trailWidth = _defaultProps$props.trailWidth,
+    _defaultProps$props$g = _defaultProps$props.gapDegree,
+    gapDegree = _defaultProps$props$g === void 0 ? 0 : _defaultProps$props$g,
+    gapPosition = _defaultProps$props.gapPosition,
+    trailColor = _defaultProps$props.trailColor,
+    strokeLinecap = _defaultProps$props.strokeLinecap,
+    style = _defaultProps$props.style,
+    className = _defaultProps$props.className,
+    strokeColor = _defaultProps$props.strokeColor,
+    percent = _defaultProps$props.percent,
+    restProps = _objectWithoutProperties(_defaultProps$props, _excluded$1);
+  var mergedId = useId(id);
+  var gradientId = "".concat(mergedId, "-gradient");
+  var radius = VIEW_BOX_SIZE / 2 - strokeWidth / 2;
+  var perimeter = Math.PI * 2 * radius;
+  var rotateDeg = gapDegree > 0 ? 90 + gapDegree / 2 : -90;
+  var perimeterWithoutGap = perimeter * ((360 - gapDegree) / 360);
+  var _ref = _typeof$1(steps) === 'object' ? steps : {
+      count: steps,
+      space: 2
+    },
+    stepCount = _ref.count,
+    stepSpace = _ref.space;
+  var circleStyle = getCircleStyle(perimeter, perimeterWithoutGap, 0, 100, rotateDeg, gapDegree, gapPosition, trailColor, strokeLinecap, strokeWidth);
+  var percentList = toArray(percent);
+  var strokeColorList = toArray(strokeColor);
+  var gradient = strokeColorList.find(function (color) {
+    return color && _typeof$1(color) === 'object';
+  });
+  var paths = useTransitionDuration();
+  var getStokeList = function getStokeList() {
+    var stackPtg = 0;
+    return percentList.map(function (ptg, index) {
+      var color = strokeColorList[index] || strokeColorList[strokeColorList.length - 1];
+      var stroke = color && _typeof$1(color) === 'object' ? "url(#".concat(gradientId, ")") : undefined;
+      var circleStyleForStack = getCircleStyle(perimeter, perimeterWithoutGap, stackPtg, ptg, rotateDeg, gapDegree, gapPosition, color, strokeLinecap, strokeWidth);
+      stackPtg += ptg;
+      return /*#__PURE__*/React.createElement("circle", {
+        key: index,
+        className: "".concat(prefixCls, "-circle-path"),
+        r: radius,
+        cx: 0,
+        cy: 0,
+        stroke: stroke,
+        strokeLinecap: strokeLinecap,
+        strokeWidth: strokeWidth,
+        opacity: ptg === 0 ? 0 : 1,
+        style: circleStyleForStack,
+        ref: function ref(elem) {
+          // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
+          // React will call the ref callback with the DOM element when the component mounts,
+          // and call it with `null` when it unmounts.
+          // Refs are guaranteed to be up-to-date before componentDidMount or componentDidUpdate fires.
+          paths[index] = elem;
+        }
+      });
+    }).reverse();
+  };
+  var getStepStokeList = function getStepStokeList() {
+    // only show the first percent when pass steps
+    var current = Math.round(stepCount * (percentList[0] / 100));
+    var stepPtg = 100 / stepCount;
+    var stackPtg = 0;
+    return new Array(stepCount).fill(null).map(function (_, index) {
+      var color = index <= current - 1 ? strokeColorList[0] : trailColor;
+      var stroke = color && _typeof$1(color) === 'object' ? "url(#".concat(gradientId, ")") : undefined;
+      var circleStyleForStack = getCircleStyle(perimeter, perimeterWithoutGap, stackPtg, stepPtg, rotateDeg, gapDegree, gapPosition, color, 'butt', strokeWidth, stepSpace);
+      stackPtg += (perimeterWithoutGap - circleStyleForStack.strokeDashoffset + stepSpace) * 100 / perimeterWithoutGap;
+      return /*#__PURE__*/React.createElement("circle", {
+        key: index,
+        className: "".concat(prefixCls, "-circle-path"),
+        r: radius,
+        cx: 0,
+        cy: 0,
+        stroke: stroke
+        // strokeLinecap={strokeLinecap}
+        ,
+        strokeWidth: strokeWidth,
+        opacity: 1,
+        style: circleStyleForStack,
+        ref: function ref(elem) {
+          paths[index] = elem;
+        }
+      });
+    });
+  };
+  return /*#__PURE__*/React.createElement("svg", _extends$1({
+    className: classNames("".concat(prefixCls, "-circle"), className),
+    viewBox: "".concat(-VIEW_BOX_SIZE / 2, " ").concat(-VIEW_BOX_SIZE / 2, " ").concat(VIEW_BOX_SIZE, " ").concat(VIEW_BOX_SIZE),
+    style: style,
+    id: id,
+    role: "presentation"
+  }, restProps), gradient && /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: gradientId,
+    x1: "100%",
+    y1: "0%",
+    x2: "0%",
+    y2: "0%"
+  }, Object.keys(gradient).sort(function (a, b) {
+    return stripPercentToNumber(a) - stripPercentToNumber(b);
+  }).map(function (key, index) {
+    return /*#__PURE__*/React.createElement("stop", {
+      key: index,
+      offset: key,
+      stopColor: gradient[key]
+    });
+  }))), !stepCount && /*#__PURE__*/React.createElement("circle", {
+    className: "".concat(prefixCls, "-circle-trail"),
+    r: radius,
+    cx: 0,
+    cy: 0,
+    stroke: trailColor,
+    strokeLinecap: strokeLinecap,
+    strokeWidth: trailWidth || strokeWidth,
+    style: circleStyle
+  }), stepCount ? getStepStokeList() : getStokeList());
+};
+if (process.env.NODE_ENV !== 'production') {
+  Circle$2.displayName = 'Circle';
+}
+
+function validProgress(progress) {
+  if (!progress || progress < 0) {
+    return 0;
+  }
+  if (progress > 100) {
+    return 100;
+  }
+  return progress;
+}
+function getSuccessPercent(_ref) {
+  var success = _ref.success,
+    successPercent = _ref.successPercent;
+  var percent = successPercent;
+  /** @deprecated Use `percent` instead */
+  if (success && 'progress' in success) {
+    process.env.NODE_ENV !== "production" ? warning$3(false, 'Progress', '`success.progress` is deprecated. Please use `success.percent` instead.') : void 0;
+    percent = success.progress;
+  }
+  if (success && 'percent' in success) {
+    percent = success.percent;
+  }
+  return percent;
+}
+
+function getPercentage(_ref) {
+  var percent = _ref.percent,
+    success = _ref.success,
+    successPercent = _ref.successPercent;
+  var realSuccessPercent = validProgress(getSuccessPercent({
+    success: success,
+    successPercent: successPercent
+  }));
+  return [realSuccessPercent, validProgress(validProgress(percent) - realSuccessPercent)];
+}
+function getStrokeColor(_ref2) {
+  var _ref2$success = _ref2.success,
+    success = _ref2$success === void 0 ? {} : _ref2$success,
+    strokeColor = _ref2.strokeColor;
+  var successColor = success.strokeColor;
+  return [successColor || presetPrimaryColors.green, strokeColor || null];
+}
+var Circle = function Circle(props) {
+  var prefixCls = props.prefixCls,
+    width = props.width,
+    strokeWidth = props.strokeWidth,
+    _props$trailColor = props.trailColor,
+    trailColor = _props$trailColor === void 0 ? null : _props$trailColor,
+    _props$strokeLinecap = props.strokeLinecap,
+    strokeLinecap = _props$strokeLinecap === void 0 ? 'round' : _props$strokeLinecap,
+    gapPosition = props.gapPosition,
+    gapDegree = props.gapDegree,
+    type = props.type,
+    children = props.children,
+    success = props.success;
+  var circleSize = width || 120;
+  var circleStyle = {
+    width: circleSize,
+    height: circleSize,
+    fontSize: circleSize * 0.15 + 6
+  };
+  var circleWidth = strokeWidth || 6;
+  var gapPos = gapPosition || type === 'dashboard' && 'bottom' || undefined;
+  var getGapDegree = function getGapDegree() {
+    // Support gapDeg = 0 when type = 'dashboard'
+    if (gapDegree || gapDegree === 0) {
+      return gapDegree;
+    }
+    if (type === 'dashboard') {
+      return 75;
+    }
+    return undefined;
+  };
+  // using className to style stroke color
+  var isGradient = Object.prototype.toString.call(props.strokeColor) === '[object Object]';
+  var strokeColor = getStrokeColor({
+    success: success,
+    strokeColor: props.strokeColor
+  });
+  var wrapperClassName = classNames("".concat(prefixCls, "-inner"), _defineProperty$1({}, "".concat(prefixCls, "-circle-gradient"), isGradient));
+  return /*#__PURE__*/React.createElement("div", {
+    className: wrapperClassName,
+    style: circleStyle
+  }, /*#__PURE__*/React.createElement(Circle$2, {
+    percent: getPercentage(props),
+    strokeWidth: circleWidth,
+    trailWidth: circleWidth,
+    strokeColor: strokeColor,
+    strokeLinecap: strokeLinecap,
+    trailColor: trailColor,
+    prefixCls: prefixCls,
+    gapDegree: getGapDegree(),
+    gapPosition: gapPos
+  }), children);
+};
+var Circle$1 = Circle;
+
+var __rest$3 = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+/**
+ * @example
+ *   {
+ *     "0%": "#afc163",
+ *     "75%": "#009900",
+ *     "50%": "green", // ====> '#afc163 0%, #66FF00 25%, #00CC00 50%, #009900 75%, #ffffff 100%'
+ *     "25%": "#66FF00",
+ *     "100%": "#ffffff"
+ *   }
+ */
+var sortGradient = function sortGradient(gradients) {
+  var tempArr = [];
+  Object.keys(gradients).forEach(function (key) {
+    var formattedKey = parseFloat(key.replace(/%/g, ''));
+    if (!isNaN(formattedKey)) {
+      tempArr.push({
+        key: formattedKey,
+        value: gradients[key]
+      });
+    }
+  });
+  tempArr = tempArr.sort(function (a, b) {
+    return a.key - b.key;
+  });
+  return tempArr.map(function (_ref) {
+    var key = _ref.key,
+      value = _ref.value;
+    return "".concat(value, " ").concat(key, "%");
+  }).join(', ');
+};
+/**
+ * Then this man came to realize the truth: Besides six pence, there is the moon. Besides bread and
+ * butter, there is the bug. And... Besides women, there is the code.
+ *
+ * @example
+ *   {
+ *     "0%": "#afc163",
+ *     "25%": "#66FF00",
+ *     "50%": "#00CC00", // ====>  linear-gradient(to right, #afc163 0%, #66FF00 25%,
+ *     "75%": "#009900", //        #00CC00 50%, #009900 75%, #ffffff 100%)
+ *     "100%": "#ffffff"
+ *   }
+ */
+var handleGradient = function handleGradient(strokeColor, directionConfig) {
+  var _strokeColor$from = strokeColor.from,
+    from = _strokeColor$from === void 0 ? presetPrimaryColors.blue : _strokeColor$from,
+    _strokeColor$to = strokeColor.to,
+    to = _strokeColor$to === void 0 ? presetPrimaryColors.blue : _strokeColor$to,
+    _strokeColor$directio = strokeColor.direction,
+    direction = _strokeColor$directio === void 0 ? directionConfig === 'rtl' ? 'to left' : 'to right' : _strokeColor$directio,
+    rest = __rest$3(strokeColor, ["from", "to", "direction"]);
+  if (Object.keys(rest).length !== 0) {
+    var sortedGradients = sortGradient(rest);
+    return {
+      backgroundImage: "linear-gradient(".concat(direction, ", ").concat(sortedGradients, ")")
+    };
+  }
+  return {
+    backgroundImage: "linear-gradient(".concat(direction, ", ").concat(from, ", ").concat(to, ")")
+  };
+};
+var Line = function Line(props) {
+  var prefixCls = props.prefixCls,
+    directionConfig = props.direction,
+    percent = props.percent,
+    strokeWidth = props.strokeWidth,
+    size = props.size,
+    strokeColor = props.strokeColor,
+    _props$strokeLinecap = props.strokeLinecap,
+    strokeLinecap = _props$strokeLinecap === void 0 ? 'round' : _props$strokeLinecap,
+    children = props.children,
+    _props$trailColor = props.trailColor,
+    trailColor = _props$trailColor === void 0 ? null : _props$trailColor,
+    success = props.success;
+  var backgroundProps = strokeColor && typeof strokeColor !== 'string' ? handleGradient(strokeColor, directionConfig) : {
+    background: strokeColor
+  };
+  var borderRadius = strokeLinecap === 'square' || strokeLinecap === 'butt' ? 0 : undefined;
+  var trailStyle = {
+    backgroundColor: trailColor || undefined,
+    borderRadius: borderRadius
+  };
+  var percentStyle = _extends$1({
+    width: "".concat(validProgress(percent), "%"),
+    height: strokeWidth || (size === 'small' ? 6 : 8),
+    borderRadius: borderRadius
+  }, backgroundProps);
+  var successPercent = getSuccessPercent(props);
+  var successPercentStyle = {
+    width: "".concat(validProgress(successPercent), "%"),
+    height: strokeWidth || (size === 'small' ? 6 : 8),
+    borderRadius: borderRadius,
+    backgroundColor: success === null || success === void 0 ? void 0 : success.strokeColor
+  };
+  var successSegment = successPercent !== undefined ? /*#__PURE__*/React.createElement("div", {
+    className: "".concat(prefixCls, "-success-bg"),
+    style: successPercentStyle
+  }) : null;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "".concat(prefixCls, "-outer")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "".concat(prefixCls, "-inner"),
+    style: trailStyle
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "".concat(prefixCls, "-bg"),
+    style: percentStyle
+  }), successSegment)), children);
+};
+var Line$1 = Line;
+
+var Steps = function Steps(props) {
+  var size = props.size,
+    steps = props.steps,
+    _props$percent = props.percent,
+    percent = _props$percent === void 0 ? 0 : _props$percent,
+    _props$strokeWidth = props.strokeWidth,
+    strokeWidth = _props$strokeWidth === void 0 ? 8 : _props$strokeWidth,
+    strokeColor = props.strokeColor,
+    _props$trailColor = props.trailColor,
+    trailColor = _props$trailColor === void 0 ? null : _props$trailColor,
+    prefixCls = props.prefixCls,
+    children = props.children;
+  var current = Math.round(steps * (percent / 100));
+  var stepWidth = size === 'small' ? 2 : 14;
+  var styledSteps = new Array(steps);
+  for (var i = 0; i < steps; i++) {
+    var color = Array.isArray(strokeColor) ? strokeColor[i] : strokeColor;
+    styledSteps[i] = /*#__PURE__*/React.createElement("div", {
+      key: i,
+      className: classNames("".concat(prefixCls, "-steps-item"), _defineProperty$1({}, "".concat(prefixCls, "-steps-item-active"), i <= current - 1)),
+      style: {
+        backgroundColor: i <= current - 1 ? color : trailColor,
+        width: stepWidth,
+        height: strokeWidth
+      }
+    });
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    className: "".concat(prefixCls, "-steps-outer")
+  }, styledSteps, children);
+};
+var Steps$1 = Steps;
+
+var __rest$2 = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+tuple('line', 'circle', 'dashboard');
+var ProgressStatuses = tuple('normal', 'exception', 'active', 'success');
+var Progress = function Progress(props) {
+  var _classNames;
+  var customizePrefixCls = props.prefixCls,
+    className = props.className,
+    steps = props.steps,
+    strokeColor = props.strokeColor,
+    _props$percent = props.percent,
+    percent = _props$percent === void 0 ? 0 : _props$percent,
+    _props$size = props.size,
+    size = _props$size === void 0 ? 'default' : _props$size,
+    _props$showInfo = props.showInfo,
+    showInfo = _props$showInfo === void 0 ? true : _props$showInfo,
+    _props$type = props.type,
+    type = _props$type === void 0 ? 'line' : _props$type,
+    restProps = __rest$2(props, ["prefixCls", "className", "steps", "strokeColor", "percent", "size", "showInfo", "type"]);
+  function getPercentNumber() {
+    var successPercent = getSuccessPercent(props);
+    return parseInt(successPercent !== undefined ? successPercent.toString() : percent.toString(), 10);
+  }
+  function getProgressStatus() {
+    var status = props.status;
+    if (!ProgressStatuses.includes(status) && getPercentNumber() >= 100) {
+      return 'success';
+    }
+    return status || 'normal';
+  }
+  function renderProcessInfo(prefixCls, progressStatus) {
+    var format = props.format;
+    var successPercent = getSuccessPercent(props);
+    if (!showInfo) {
+      return null;
+    }
+    var text;
+    var textFormatter = format || function (percentNumber) {
+      return "".concat(percentNumber, "%");
+    };
+    var isLineType = type === 'line';
+    if (format || progressStatus !== 'exception' && progressStatus !== 'success') {
+      text = textFormatter(validProgress(percent), validProgress(successPercent));
+    } else if (progressStatus === 'exception') {
+      text = isLineType ? /*#__PURE__*/React.createElement(CloseCircleFilled$1, null) : /*#__PURE__*/React.createElement(CloseOutlined$1, null);
+    } else if (progressStatus === 'success') {
+      text = isLineType ? /*#__PURE__*/React.createElement(CheckCircleFilled$1, null) : /*#__PURE__*/React.createElement(CheckOutlined$1, null);
+    }
+    return /*#__PURE__*/React.createElement("span", {
+      className: "".concat(prefixCls, "-text"),
+      title: typeof text === 'string' ? text : undefined
+    }, text);
+  }
+  var _React$useContext = React.useContext(ConfigContext),
+    getPrefixCls = _React$useContext.getPrefixCls,
+    direction = _React$useContext.direction;
+  var prefixCls = getPrefixCls('progress', customizePrefixCls);
+  var progressStatus = getProgressStatus();
+  var progressInfo = renderProcessInfo(prefixCls, progressStatus);
+  process.env.NODE_ENV !== "production" ? warning$3(!('successPercent' in props), 'Progress', '`successPercent` is deprecated. Please use `success.percent` instead.') : void 0;
+  var strokeColorNotArray = Array.isArray(strokeColor) ? strokeColor[0] : strokeColor;
+  var strokeColorNotGradient = typeof strokeColor === 'string' || Array.isArray(strokeColor) ? strokeColor : undefined;
+  var progress;
+  // Render progress shape
+  if (type === 'line') {
+    progress = steps ? /*#__PURE__*/React.createElement(Steps$1, _extends$1({}, props, {
+      strokeColor: strokeColorNotGradient,
+      prefixCls: prefixCls,
+      steps: steps
+    }), progressInfo) : /*#__PURE__*/React.createElement(Line$1, _extends$1({}, props, {
+      strokeColor: strokeColorNotArray,
+      prefixCls: prefixCls,
+      direction: direction
+    }), progressInfo);
+  } else if (type === 'circle' || type === 'dashboard') {
+    progress = /*#__PURE__*/React.createElement(Circle$1, _extends$1({}, props, {
+      strokeColor: strokeColorNotArray,
+      prefixCls: prefixCls,
+      progressStatus: progressStatus
+    }), progressInfo);
+  }
+  var classString = classNames(prefixCls, (_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-").concat(type === 'dashboard' && 'circle' || steps && 'steps' || type), true), _defineProperty$1(_classNames, "".concat(prefixCls, "-status-").concat(progressStatus), true), _defineProperty$1(_classNames, "".concat(prefixCls, "-show-info"), showInfo), _defineProperty$1(_classNames, "".concat(prefixCls, "-").concat(size), size), _defineProperty$1(_classNames, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _classNames), className);
+  return /*#__PURE__*/React.createElement("div", _extends$1({}, omit(restProps, ['status', 'format', 'trailColor', 'strokeWidth', 'width', 'gapDegree', 'gapPosition', 'strokeLinecap', 'success', 'successPercent']), {
+    className: classString,
+    role: "progressbar"
+  }), progress);
+};
+var Progress$1 = Progress;
+
+// This icon file is generated automatically.
+var DeleteOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z" } }] }, "name": "delete", "theme": "outlined" };
+var DeleteOutlinedSvg = DeleteOutlined$2;
+
+var DeleteOutlined = function DeleteOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: DeleteOutlinedSvg
+  }));
+};
+DeleteOutlined.displayName = 'DeleteOutlined';
+var DeleteOutlined$1 = /*#__PURE__*/React.forwardRef(DeleteOutlined);
+
+function getError(option, xhr) {
+  var msg = "cannot ".concat(option.method, " ").concat(option.action, " ").concat(xhr.status, "'");
+  var err = new Error(msg);
+  err.status = xhr.status;
+  err.method = option.method;
+  err.url = option.action;
+  return err;
+}
+
+function getBody(xhr) {
+  var text = xhr.responseText || xhr.response;
+
+  if (!text) {
+    return text;
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    return text;
+  }
+}
+
+function upload(option) {
+  // eslint-disable-next-line no-undef
+  var xhr = new XMLHttpRequest();
+
+  if (option.onProgress && xhr.upload) {
+    xhr.upload.onprogress = function progress(e) {
+      if (e.total > 0) {
+        e.percent = e.loaded / e.total * 100;
+      }
+
+      option.onProgress(e);
+    };
+  } // eslint-disable-next-line no-undef
+
+
+  var formData = new FormData();
+
+  if (option.data) {
+    Object.keys(option.data).forEach(function (key) {
+      var value = option.data[key]; // support key-value array data
+
+      if (Array.isArray(value)) {
+        value.forEach(function (item) {
+          // { list: [ 11, 22 ] }
+          // formData.append('list[]', 11);
+          formData.append("".concat(key, "[]"), item);
+        });
+        return;
+      }
+
+      formData.append(key, value);
+    });
+  } // eslint-disable-next-line no-undef
+
+
+  if (option.file instanceof Blob) {
+    formData.append(option.filename, option.file, option.file.name);
+  } else {
+    formData.append(option.filename, option.file);
+  }
+
+  xhr.onerror = function error(e) {
+    option.onError(e);
+  };
+
+  xhr.onload = function onload() {
+    // allow success when 2xx status
+    // see https://github.com/react-component/upload/issues/34
+    if (xhr.status < 200 || xhr.status >= 300) {
+      return option.onError(getError(option, xhr), getBody(xhr));
+    }
+
+    return option.onSuccess(getBody(xhr), xhr);
+  };
+
+  xhr.open(option.method, option.action, true); // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
+
+  if (option.withCredentials && 'withCredentials' in xhr) {
+    xhr.withCredentials = true;
+  }
+
+  var headers = option.headers || {}; // when set headers['X-Requested-With'] = null , can close default XHR header
+  // see https://github.com/react-component/upload/issues/33
+
+  if (headers['X-Requested-With'] !== null) {
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  }
+
+  Object.keys(headers).forEach(function (h) {
+    if (headers[h] !== null) {
+      xhr.setRequestHeader(h, headers[h]);
+    }
+  });
+  xhr.send(formData);
+  return {
+    abort: function abort() {
+      xhr.abort();
+    }
+  };
+}
+
+var now = +new Date();
+var index = 0;
+function uid() {
+  // eslint-disable-next-line no-plusplus
+  return "rc-upload-".concat(now, "-").concat(++index);
+}
+
+var attrAccept = (function (file, acceptedFiles) {
+  if (file && acceptedFiles) {
+    var acceptedFilesArray = Array.isArray(acceptedFiles) ? acceptedFiles : acceptedFiles.split(',');
+    var fileName = file.name || '';
+    var mimeType = file.type || '';
+    var baseMimeType = mimeType.replace(/\/.*$/, '');
+    return acceptedFilesArray.some(function (type) {
+      var validType = type.trim(); // This is something like */*,*  allow all files
+
+      if (/^\*(\/\*)?$/.test(type)) {
+        return true;
+      } // like .jpg, .png
+
+
+      if (validType.charAt(0) === '.') {
+        var lowerFileName = fileName.toLowerCase();
+        var lowerType = validType.toLowerCase();
+        var affixList = [lowerType];
+
+        if (lowerType === '.jpg' || lowerType === '.jpeg') {
+          affixList = ['.jpg', '.jpeg'];
+        }
+
+        return affixList.some(function (affix) {
+          return lowerFileName.endsWith(affix);
+        });
+      } // This is something like a image/* mime type
+
+
+      if (/\/\*$/.test(validType)) {
+        return baseMimeType === validType.replace(/\/.*$/, '');
+      } // Full match
+
+
+      if (mimeType === validType) {
+        return true;
+      } // Invalidate type should skip
+
+
+      if (/^\w+$/.test(validType)) {
+        warningOnce(false, "Upload takes an invalidate 'accept' type '".concat(validType, "'.Skip for check."));
+        return true;
+      }
+
+      return false;
+    });
+  }
+
+  return true;
+});
+
+function loopFiles(item, callback) {
+  var dirReader = item.createReader();
+  var fileList = [];
+
+  function sequence() {
+    dirReader.readEntries(function (entries) {
+      var entryList = Array.prototype.slice.apply(entries);
+      fileList = fileList.concat(entryList); // Check if all the file has been viewed
+
+      var isFinished = !entryList.length;
+
+      if (isFinished) {
+        callback(fileList);
+      } else {
+        sequence();
+      }
+    });
+  }
+
+  sequence();
+}
+
+var traverseFileTree = function traverseFileTree(files, callback, isAccepted) {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  var _traverseFileTree = function _traverseFileTree(item, path) {
+    // eslint-disable-next-line no-param-reassign
+    item.path = path || '';
+
+    if (item.isFile) {
+      item.file(function (file) {
+        if (isAccepted(file)) {
+          // https://github.com/ant-design/ant-design/issues/16426
+          if (item.fullPath && !file.webkitRelativePath) {
+            Object.defineProperties(file, {
+              webkitRelativePath: {
+                writable: true
+              }
+            }); // eslint-disable-next-line no-param-reassign
+
+            file.webkitRelativePath = item.fullPath.replace(/^\//, '');
+            Object.defineProperties(file, {
+              webkitRelativePath: {
+                writable: false
+              }
+            });
+          }
+
+          callback([file]);
+        }
+      });
+    } else if (item.isDirectory) {
+      loopFiles(item, function (entries) {
+        entries.forEach(function (entryItem) {
+          _traverseFileTree(entryItem, "".concat(path).concat(item.name, "/"));
+        });
+      });
+    }
+  };
+
+  files.forEach(function (file) {
+    _traverseFileTree(file.webkitGetAsEntry());
+  });
+};
+
+var _excluded = ["component", "prefixCls", "className", "disabled", "id", "style", "multiple", "accept", "capture", "children", "directory", "openFileDialogOnClick", "onMouseEnter", "onMouseLeave"];
+
+var AjaxUploader = /*#__PURE__*/function (_Component) {
+  _inherits(AjaxUploader, _Component);
+
+  var _super = _createSuper(AjaxUploader);
+
+  function AjaxUploader() {
+    var _this;
+
+    _classCallCheck(this, AjaxUploader);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+    _this.state = {
+      uid: uid()
+    };
+    _this.reqs = {};
+    _this.fileInput = void 0;
+    _this._isMounted = void 0;
+
+    _this.onChange = function (e) {
+      var _this$props = _this.props,
+          accept = _this$props.accept,
+          directory = _this$props.directory;
+      var files = e.target.files;
+
+      var acceptedFiles = _toConsumableArray(files).filter(function (file) {
+        return !directory || attrAccept(file, accept);
+      });
+
+      _this.uploadFiles(acceptedFiles);
+
+      _this.reset();
+    };
+
+    _this.onClick = function (e) {
+      var el = _this.fileInput;
+
+      if (!el) {
+        return;
+      }
+
+      var _this$props2 = _this.props,
+          children = _this$props2.children,
+          onClick = _this$props2.onClick;
+
+      if (children && children.type === 'button') {
+        var parent = el.parentNode;
+        parent.focus();
+        parent.querySelector('button').blur();
+      }
+
+      el.click();
+
+      if (onClick) {
+        onClick(e);
+      }
+    };
+
+    _this.onKeyDown = function (e) {
+      if (e.key === 'Enter') {
+        _this.onClick(e);
+      }
+    };
+
+    _this.onFileDrop = function (e) {
+      var multiple = _this.props.multiple;
+      e.preventDefault();
+
+      if (e.type === 'dragover') {
+        return;
+      }
+
+      if (_this.props.directory) {
+        traverseFileTree(Array.prototype.slice.call(e.dataTransfer.items), _this.uploadFiles, function (_file) {
+          return attrAccept(_file, _this.props.accept);
+        });
+      } else {
+        var files = _toConsumableArray(e.dataTransfer.files).filter(function (file) {
+          return attrAccept(file, _this.props.accept);
+        });
+
+        if (multiple === false) {
+          files = files.slice(0, 1);
+        }
+
+        _this.uploadFiles(files);
+      }
+    };
+
+    _this.uploadFiles = function (files) {
+      var originFiles = _toConsumableArray(files);
+
+      var postFiles = originFiles.map(function (file) {
+        // eslint-disable-next-line no-param-reassign
+        file.uid = uid();
+        return _this.processFile(file, originFiles);
+      }); // Batch upload files
+
+      Promise.all(postFiles).then(function (fileList) {
+        var onBatchStart = _this.props.onBatchStart;
+        onBatchStart === null || onBatchStart === void 0 ? void 0 : onBatchStart(fileList.map(function (_ref) {
+          var origin = _ref.origin,
+              parsedFile = _ref.parsedFile;
+          return {
+            file: origin,
+            parsedFile: parsedFile
+          };
+        }));
+        fileList.filter(function (file) {
+          return file.parsedFile !== null;
+        }).forEach(function (file) {
+          _this.post(file);
+        });
+      });
+    };
+
+    _this.processFile = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(file, fileList) {
+        var beforeUpload, transformedFile, action, mergedAction, data, mergedData, parsedData, parsedFile, mergedParsedFile;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                beforeUpload = _this.props.beforeUpload;
+                transformedFile = file;
+
+                if (!beforeUpload) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _context.prev = 3;
+                _context.next = 6;
+                return beforeUpload(file, fileList);
+
+              case 6:
+                transformedFile = _context.sent;
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](3);
+                // Rejection will also trade as false
+                transformedFile = false;
+
+              case 12:
+                if (!(transformedFile === false)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                return _context.abrupt("return", {
+                  origin: file,
+                  parsedFile: null,
+                  action: null,
+                  data: null
+                });
+
+              case 14:
+                // Get latest action
+                action = _this.props.action;
+
+                if (!(typeof action === 'function')) {
+                  _context.next = 21;
+                  break;
+                }
+
+                _context.next = 18;
+                return action(file);
+
+              case 18:
+                mergedAction = _context.sent;
+                _context.next = 22;
+                break;
+
+              case 21:
+                mergedAction = action;
+
+              case 22:
+                // Get latest data
+                data = _this.props.data;
+
+                if (!(typeof data === 'function')) {
+                  _context.next = 29;
+                  break;
+                }
+
+                _context.next = 26;
+                return data(file);
+
+              case 26:
+                mergedData = _context.sent;
+                _context.next = 30;
+                break;
+
+              case 29:
+                mergedData = data;
+
+              case 30:
+                parsedData = // string type is from legacy `transformFile`.
+                // Not sure if this will work since no related test case works with it
+                (_typeof$1(transformedFile) === 'object' || typeof transformedFile === 'string') && transformedFile ? transformedFile : file;
+
+                if (parsedData instanceof File) {
+                  parsedFile = parsedData;
+                } else {
+                  parsedFile = new File([parsedData], file.name, {
+                    type: file.type
+                  });
+                }
+
+                mergedParsedFile = parsedFile;
+                mergedParsedFile.uid = file.uid;
+                return _context.abrupt("return", {
+                  origin: file,
+                  data: mergedData,
+                  parsedFile: mergedParsedFile,
+                  action: mergedAction
+                });
+
+              case 35:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[3, 9]]);
+      }));
+
+      return function (_x, _x2) {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    _this.saveFileInput = function (node) {
+      _this.fileInput = node;
+    };
+
+    return _this;
+  }
+
+  _createClass(AjaxUploader, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._isMounted = true;
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this._isMounted = false;
+      this.abort();
+    }
+  }, {
+    key: "post",
+    value: function post(_ref3) {
+      var _this2 = this;
+
+      var data = _ref3.data,
+          origin = _ref3.origin,
+          action = _ref3.action,
+          parsedFile = _ref3.parsedFile;
+
+      if (!this._isMounted) {
+        return;
+      }
+
+      var _this$props3 = this.props,
+          onStart = _this$props3.onStart,
+          customRequest = _this$props3.customRequest,
+          name = _this$props3.name,
+          headers = _this$props3.headers,
+          withCredentials = _this$props3.withCredentials,
+          method = _this$props3.method;
+      var uid = origin.uid;
+      var request = customRequest || upload;
+      var requestOption = {
+        action: action,
+        filename: name,
+        data: data,
+        file: parsedFile,
+        headers: headers,
+        withCredentials: withCredentials,
+        method: method || 'post',
+        onProgress: function onProgress(e) {
+          var onProgress = _this2.props.onProgress;
+          onProgress === null || onProgress === void 0 ? void 0 : onProgress(e, parsedFile);
+        },
+        onSuccess: function onSuccess(ret, xhr) {
+          var onSuccess = _this2.props.onSuccess;
+          onSuccess === null || onSuccess === void 0 ? void 0 : onSuccess(ret, parsedFile, xhr);
+          delete _this2.reqs[uid];
+        },
+        onError: function onError(err, ret) {
+          var onError = _this2.props.onError;
+          onError === null || onError === void 0 ? void 0 : onError(err, ret, parsedFile);
+          delete _this2.reqs[uid];
+        }
+      };
+      onStart(origin);
+      this.reqs[uid] = request(requestOption);
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      this.setState({
+        uid: uid()
+      });
+    }
+  }, {
+    key: "abort",
+    value: function abort(file) {
+      var reqs = this.reqs;
+
+      if (file) {
+        var uid = file.uid ? file.uid : file;
+
+        if (reqs[uid] && reqs[uid].abort) {
+          reqs[uid].abort();
+        }
+
+        delete reqs[uid];
+      } else {
+        Object.keys(reqs).forEach(function (uid) {
+          if (reqs[uid] && reqs[uid].abort) {
+            reqs[uid].abort();
+          }
+
+          delete reqs[uid];
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _classNames;
+
+      var _this$props4 = this.props,
+          Tag = _this$props4.component,
+          prefixCls = _this$props4.prefixCls,
+          className = _this$props4.className,
+          disabled = _this$props4.disabled,
+          id = _this$props4.id,
+          style = _this$props4.style,
+          multiple = _this$props4.multiple,
+          accept = _this$props4.accept,
+          capture = _this$props4.capture,
+          children = _this$props4.children,
+          directory = _this$props4.directory,
+          openFileDialogOnClick = _this$props4.openFileDialogOnClick,
+          onMouseEnter = _this$props4.onMouseEnter,
+          onMouseLeave = _this$props4.onMouseLeave,
+          otherProps = _objectWithoutProperties(_this$props4, _excluded);
+
+      var cls = classNames((_classNames = {}, _defineProperty$1(_classNames, prefixCls, true), _defineProperty$1(_classNames, "".concat(prefixCls, "-disabled"), disabled), _defineProperty$1(_classNames, className, className), _classNames)); // because input don't have directory/webkitdirectory type declaration
+
+      var dirProps = directory ? {
+        directory: 'directory',
+        webkitdirectory: 'webkitdirectory'
+      } : {};
+      var events = disabled ? {} : {
+        onClick: openFileDialogOnClick ? this.onClick : function () {},
+        onKeyDown: openFileDialogOnClick ? this.onKeyDown : function () {},
+        onMouseEnter: onMouseEnter,
+        onMouseLeave: onMouseLeave,
+        onDrop: this.onFileDrop,
+        onDragOver: this.onFileDrop,
+        tabIndex: '0'
+      };
+      return /*#__PURE__*/React__default.createElement(Tag, _extends$1({}, events, {
+        className: cls,
+        role: "button",
+        style: style
+      }), /*#__PURE__*/React__default.createElement("input", _extends$1({}, pickAttrs(otherProps, {
+        aria: true,
+        data: true
+      }), {
+        id: id,
+        type: "file",
+        ref: this.saveFileInput,
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        } // https://github.com/ant-design/ant-design/issues/19948
+        ,
+        key: this.state.uid,
+        style: {
+          display: 'none'
+        },
+        accept: accept
+      }, dirProps, {
+        multiple: multiple,
+        onChange: this.onChange
+      }, capture != null ? {
+        capture: capture
+      } : {})), children);
+    }
+  }]);
+
+  return AjaxUploader;
+}(Component);
+
+function empty() {}
+
+var Upload$3 = /*#__PURE__*/function (_Component) {
+  _inherits(Upload, _Component);
+
+  var _super = _createSuper(Upload);
+
+  function Upload() {
+    var _this;
+
+    _classCallCheck(this, Upload);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+    _this.uploader = void 0;
+
+    _this.saveUploader = function (node) {
+      _this.uploader = node;
+    };
+
+    return _this;
+  }
+
+  _createClass(Upload, [{
+    key: "abort",
+    value: function abort(file) {
+      this.uploader.abort(file);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React__default.createElement(AjaxUploader, _extends$1({}, this.props, {
+        ref: this.saveUploader
+      }));
+    }
+  }]);
+
+  return Upload;
+}(Component);
+
+Upload$3.defaultProps = {
+  component: 'span',
+  prefixCls: 'rc-upload',
+  data: {},
+  headers: {},
+  name: 'file',
+  multipart: false,
+  onStart: empty,
+  onError: empty,
+  onSuccess: empty,
+  multiple: false,
+  beforeUpload: null,
+  customRequest: null,
+  withCredentials: false,
+  openFileDialogOnClick: true
+};
+
+// This icon file is generated automatically.
+var FileTwoTone$2 = { "icon": function render(primaryColor, secondaryColor) { return { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M534 352V136H232v752h560V394H576a42 42 0 01-42-42z", "fill": secondaryColor } }, { "tag": "path", "attrs": { "d": "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM602 137.8L790.2 326H602V137.8zM792 888H232V136h302v216a42 42 0 0042 42h216v494z", "fill": primaryColor } }] }; }, "name": "file", "theme": "twotone" };
+var FileTwoToneSvg = FileTwoTone$2;
+
+var FileTwoTone = function FileTwoTone(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: FileTwoToneSvg
+  }));
+};
+FileTwoTone.displayName = 'FileTwoTone';
+var FileTwoTone$1 = /*#__PURE__*/React.forwardRef(FileTwoTone);
+
+// This icon file is generated automatically.
+var PaperClipOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M779.3 196.6c-94.2-94.2-247.6-94.2-341.7 0l-261 260.8c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l261-260.8c32.4-32.4 75.5-50.2 121.3-50.2s88.9 17.8 121.2 50.2c32.4 32.4 50.2 75.5 50.2 121.2 0 45.8-17.8 88.8-50.2 121.2l-266 265.9-43.1 43.1c-40.3 40.3-105.8 40.3-146.1 0-19.5-19.5-30.2-45.4-30.2-73s10.7-53.5 30.2-73l263.9-263.8c6.7-6.6 15.5-10.3 24.9-10.3h.1c9.4 0 18.1 3.7 24.7 10.3 6.7 6.7 10.3 15.5 10.3 24.9 0 9.3-3.7 18.1-10.3 24.7L372.4 653c-1.7 1.7-2.6 4-2.6 6.4s.9 4.7 2.6 6.4l36.9 36.9a9 9 0 0012.7 0l215.6-215.6c19.9-19.9 30.8-46.3 30.8-74.4s-11-54.6-30.8-74.4c-41.1-41.1-107.9-41-149 0L463 364 224.8 602.1A172.22 172.22 0 00174 724.8c0 46.3 18.1 89.8 50.8 122.5 33.9 33.8 78.3 50.7 122.7 50.7 44.4 0 88.8-16.9 122.6-50.7l309.2-309C824.8 492.7 850 432 850 367.5c.1-64.6-25.1-125.3-70.7-170.9z" } }] }, "name": "paper-clip", "theme": "outlined" };
+var PaperClipOutlinedSvg = PaperClipOutlined$2;
+
+var PaperClipOutlined = function PaperClipOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: PaperClipOutlinedSvg
+  }));
+};
+PaperClipOutlined.displayName = 'PaperClipOutlined';
+var PaperClipOutlined$1 = /*#__PURE__*/React.forwardRef(PaperClipOutlined);
+
+// This icon file is generated automatically.
+var PictureTwoTone$2 = { "icon": function render(primaryColor, secondaryColor) { return { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136v-39.9l138.5-164.3 150.1 178L658.1 489 888 761.6V792zm0-129.8L664.2 396.8c-3.2-3.8-9-3.8-12.2 0L424.6 666.4l-144-170.7c-3.2-3.8-9-3.8-12.2 0L136 652.7V232h752v430.2z", "fill": primaryColor } }, { "tag": "path", "attrs": { "d": "M424.6 765.8l-150.1-178L136 752.1V792h752v-30.4L658.1 489z", "fill": secondaryColor } }, { "tag": "path", "attrs": { "d": "M136 652.7l132.4-157c3.2-3.8 9-3.8 12.2 0l144 170.7L652 396.8c3.2-3.8 9-3.8 12.2 0L888 662.2V232H136v420.7zM304 280a88 88 0 110 176 88 88 0 010-176z", "fill": secondaryColor } }, { "tag": "path", "attrs": { "d": "M276 368a28 28 0 1056 0 28 28 0 10-56 0z", "fill": secondaryColor } }, { "tag": "path", "attrs": { "d": "M304 456a88 88 0 100-176 88 88 0 000 176zm0-116c15.5 0 28 12.5 28 28s-12.5 28-28 28-28-12.5-28-28 12.5-28 28-28z", "fill": primaryColor } }] }; }, "name": "picture", "theme": "twotone" };
+var PictureTwoToneSvg = PictureTwoTone$2;
+
+var PictureTwoTone = function PictureTwoTone(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: PictureTwoToneSvg
+  }));
+};
+PictureTwoTone.displayName = 'PictureTwoTone';
+var PictureTwoTone$1 = /*#__PURE__*/React.forwardRef(PictureTwoTone);
+
+function file2Obj(file) {
+  return _extends$1(_extends$1({}, file), {
+    lastModified: file.lastModified,
+    lastModifiedDate: file.lastModifiedDate,
+    name: file.name,
+    size: file.size,
+    type: file.type,
+    uid: file.uid,
+    percent: 0,
+    originFileObj: file
+  });
+}
+/** Upload fileList. Replace file if exist or just push into it. */
+function updateFileList(file, fileList) {
+  var nextFileList = _toConsumableArray(fileList);
+  var fileIndex = nextFileList.findIndex(function (_ref) {
+    var uid = _ref.uid;
+    return uid === file.uid;
+  });
+  if (fileIndex === -1) {
+    nextFileList.push(file);
+  } else {
+    nextFileList[fileIndex] = file;
+  }
+  return nextFileList;
+}
+function getFileItem(file, fileList) {
+  var matchKey = file.uid !== undefined ? 'uid' : 'name';
+  return fileList.filter(function (item) {
+    return item[matchKey] === file[matchKey];
+  })[0];
+}
+function removeFileItem(file, fileList) {
+  var matchKey = file.uid !== undefined ? 'uid' : 'name';
+  var removed = fileList.filter(function (item) {
+    return item[matchKey] !== file[matchKey];
+  });
+  if (removed.length === fileList.length) {
+    return null;
+  }
+  return removed;
+}
+// ==================== Default Image Preview ====================
+var extname = function extname() {
+  var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var temp = url.split('/');
+  var filename = temp[temp.length - 1];
+  var filenameWithoutSuffix = filename.split(/#|\?/)[0];
+  return (/\.[^./\\]*$/.exec(filenameWithoutSuffix) || [''])[0];
+};
+var isImageFileType = function isImageFileType(type) {
+  return type.indexOf('image/') === 0;
+};
+var isImageUrl = function isImageUrl(file) {
+  if (file.type && !file.thumbUrl) {
+    return isImageFileType(file.type);
+  }
+  var url = file.thumbUrl || file.url || '';
+  var extension = extname(url);
+  if (/^data:image\//.test(url) || /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico|heic|heif)$/i.test(extension)) {
+    return true;
+  }
+  if (/^data:/.test(url)) {
+    // other file types of base64
+    return false;
+  }
+  if (extension) {
+    // other file types which have extension
+    return false;
+  }
+  return true;
+};
+var MEASURE_SIZE = 200;
+function previewImage(file) {
+  return new Promise(function (resolve) {
+    if (!file.type || !isImageFileType(file.type)) {
+      resolve('');
+      return;
+    }
+    var canvas = document.createElement('canvas');
+    canvas.width = MEASURE_SIZE;
+    canvas.height = MEASURE_SIZE;
+    canvas.style.cssText = "position: fixed; left: 0; top: 0; width: ".concat(MEASURE_SIZE, "px; height: ").concat(MEASURE_SIZE, "px; z-index: 9999; display: none;");
+    document.body.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    var img = new Image();
+    img.onload = function () {
+      var width = img.width,
+        height = img.height;
+      var drawWidth = MEASURE_SIZE;
+      var drawHeight = MEASURE_SIZE;
+      var offsetX = 0;
+      var offsetY = 0;
+      if (width > height) {
+        drawHeight = height * (MEASURE_SIZE / width);
+        offsetY = -(drawHeight - drawWidth) / 2;
+      } else {
+        drawWidth = width * (MEASURE_SIZE / height);
+        offsetX = -(drawWidth - drawHeight) / 2;
+      }
+      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      var dataURL = canvas.toDataURL();
+      document.body.removeChild(canvas);
+      window.URL.revokeObjectURL(img.src);
+      resolve(dataURL);
+    };
+    img.crossOrigin = 'anonymous';
+    if (file.type.startsWith('image/svg+xml')) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        if (reader.result) img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    } else if (file.type.startsWith('image/gif')) {
+      var _reader = new FileReader();
+      _reader.onload = function () {
+        if (_reader.result) resolve(_reader.result);
+      };
+      _reader.readAsDataURL(file);
+    } else {
+      img.src = window.URL.createObjectURL(file);
+    }
+  });
+}
+
+// This icon file is generated automatically.
+var DownloadOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z" } }] }, "name": "download", "theme": "outlined" };
+var DownloadOutlinedSvg = DownloadOutlined$2;
+
+var DownloadOutlined = function DownloadOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: DownloadOutlinedSvg
+  }));
+};
+DownloadOutlined.displayName = 'DownloadOutlined';
+var DownloadOutlined$1 = /*#__PURE__*/React.forwardRef(DownloadOutlined);
+
+var ListItem = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
+  var _classNames3;
+  var prefixCls = _ref.prefixCls,
+    className = _ref.className,
+    style = _ref.style,
+    locale = _ref.locale,
+    listType = _ref.listType,
+    file = _ref.file,
+    items = _ref.items,
+    progressProps = _ref.progress,
+    iconRender = _ref.iconRender,
+    actionIconRender = _ref.actionIconRender,
+    itemRender = _ref.itemRender,
+    isImgUrl = _ref.isImgUrl,
+    showPreviewIcon = _ref.showPreviewIcon,
+    showRemoveIcon = _ref.showRemoveIcon,
+    showDownloadIcon = _ref.showDownloadIcon,
+    customPreviewIcon = _ref.previewIcon,
+    customRemoveIcon = _ref.removeIcon,
+    customDownloadIcon = _ref.downloadIcon,
+    onPreview = _ref.onPreview,
+    onDownload = _ref.onDownload,
+    onClose = _ref.onClose;
+  var _a, _b;
+  // Status: which will ignore `removed` status
+  var status = file.status;
+  var _React$useState = React.useState(status),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    mergedStatus = _React$useState2[0],
+    setMergedStatus = _React$useState2[1];
+  React.useEffect(function () {
+    if (status !== 'removed') {
+      setMergedStatus(status);
+    }
+  }, [status]);
+  // Delay to show the progress bar
+  var _React$useState3 = React.useState(false),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    showProgress = _React$useState4[0],
+    setShowProgress = _React$useState4[1];
+  var progressRafRef = React.useRef(null);
+  React.useEffect(function () {
+    progressRafRef.current = setTimeout(function () {
+      setShowProgress(true);
+    }, 300);
+    return function () {
+      if (progressRafRef.current) {
+        clearTimeout(progressRafRef.current);
+      }
+    };
+  }, []);
+  // This is used for legacy span make scrollHeight the wrong value.
+  // We will force these to be `display: block` with non `picture-card`
+  var spanClassName = "".concat(prefixCls, "-span");
+  var iconNode = iconRender(file);
+  var icon = /*#__PURE__*/React.createElement("div", {
+    className: "".concat(prefixCls, "-text-icon")
+  }, iconNode);
+  if (listType === 'picture' || listType === 'picture-card') {
+    if (mergedStatus === 'uploading' || !file.thumbUrl && !file.url) {
+      var _classNames;
+      var uploadingClassName = classNames((_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-list-item-thumbnail"), true), _defineProperty$1(_classNames, "".concat(prefixCls, "-list-item-file"), mergedStatus !== 'uploading'), _classNames));
+      icon = /*#__PURE__*/React.createElement("div", {
+        className: uploadingClassName
+      }, iconNode);
+    } else {
+      var _classNames2;
+      var thumbnail = (isImgUrl === null || isImgUrl === void 0 ? void 0 : isImgUrl(file)) ? /*#__PURE__*/React.createElement("img", {
+        src: file.thumbUrl || file.url,
+        alt: file.name,
+        className: "".concat(prefixCls, "-list-item-image"),
+        crossOrigin: file.crossOrigin
+      }) : iconNode;
+      var aClassName = classNames((_classNames2 = {}, _defineProperty$1(_classNames2, "".concat(prefixCls, "-list-item-thumbnail"), true), _defineProperty$1(_classNames2, "".concat(prefixCls, "-list-item-file"), isImgUrl && !isImgUrl(file)), _classNames2));
+      icon = /*#__PURE__*/React.createElement("a", {
+        className: aClassName,
+        onClick: function onClick(e) {
+          return onPreview(file, e);
+        },
+        href: file.url || file.thumbUrl,
+        target: "_blank",
+        rel: "noopener noreferrer"
+      }, thumbnail);
+    }
+  }
+  var infoUploadingClass = classNames((_classNames3 = {}, _defineProperty$1(_classNames3, "".concat(prefixCls, "-list-item"), true), _defineProperty$1(_classNames3, "".concat(prefixCls, "-list-item-").concat(mergedStatus), true), _defineProperty$1(_classNames3, "".concat(prefixCls, "-list-item-list-type-").concat(listType), true), _classNames3));
+  var linkProps = typeof file.linkProps === 'string' ? JSON.parse(file.linkProps) : file.linkProps;
+  var removeIcon = showRemoveIcon ? actionIconRender((typeof customRemoveIcon === 'function' ? customRemoveIcon(file) : customRemoveIcon) || /*#__PURE__*/React.createElement(DeleteOutlined$1, null), function () {
+    return onClose(file);
+  }, prefixCls, locale.removeFile) : null;
+  var downloadIcon = showDownloadIcon && mergedStatus === 'done' ? actionIconRender((typeof customDownloadIcon === 'function' ? customDownloadIcon(file) : customDownloadIcon) || /*#__PURE__*/React.createElement(DownloadOutlined$1, null), function () {
+    return onDownload(file);
+  }, prefixCls, locale.downloadFile) : null;
+  var downloadOrDelete = listType !== 'picture-card' && /*#__PURE__*/React.createElement("span", {
+    key: "download-delete",
+    className: classNames("".concat(prefixCls, "-list-item-card-actions"), {
+      picture: listType === 'picture'
+    })
+  }, downloadIcon, removeIcon);
+  var listItemNameClass = classNames("".concat(prefixCls, "-list-item-name"));
+  var preview = file.url ? [/*#__PURE__*/React.createElement("a", _extends$1({
+    key: "view",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: listItemNameClass,
+    title: file.name
+  }, linkProps, {
+    href: file.url,
+    onClick: function onClick(e) {
+      return onPreview(file, e);
+    }
+  }), file.name), downloadOrDelete] : [/*#__PURE__*/React.createElement("span", {
+    key: "view",
+    className: listItemNameClass,
+    onClick: function onClick(e) {
+      return onPreview(file, e);
+    },
+    title: file.name
+  }, file.name), downloadOrDelete];
+  var previewStyle = {
+    pointerEvents: 'none',
+    opacity: 0.5
+  };
+  var previewIcon = showPreviewIcon ? /*#__PURE__*/React.createElement("a", {
+    href: file.url || file.thumbUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: file.url || file.thumbUrl ? undefined : previewStyle,
+    onClick: function onClick(e) {
+      return onPreview(file, e);
+    },
+    title: locale.previewFile
+  }, typeof customPreviewIcon === 'function' ? customPreviewIcon(file) : customPreviewIcon || /*#__PURE__*/React.createElement(EyeOutlined$1, null)) : null;
+  var actions = listType === 'picture-card' && mergedStatus !== 'uploading' && /*#__PURE__*/React.createElement("span", {
+    className: "".concat(prefixCls, "-list-item-actions")
+  }, previewIcon, mergedStatus === 'done' && downloadIcon, removeIcon);
+  var message;
+  if (file.response && typeof file.response === 'string') {
+    message = file.response;
+  } else {
+    message = ((_a = file.error) === null || _a === void 0 ? void 0 : _a.statusText) || ((_b = file.error) === null || _b === void 0 ? void 0 : _b.message) || locale.uploadError;
+  }
+  var iconAndPreview = /*#__PURE__*/React.createElement("span", {
+    className: spanClassName
+  }, icon, preview);
+  var _React$useContext = React.useContext(ConfigContext),
+    getPrefixCls = _React$useContext.getPrefixCls;
+  var rootPrefixCls = getPrefixCls();
+  var dom = /*#__PURE__*/React.createElement("div", {
+    className: infoUploadingClass
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "".concat(prefixCls, "-list-item-info")
+  }, iconAndPreview), actions, showProgress && /*#__PURE__*/React.createElement(CSSMotion, {
+    motionName: "".concat(rootPrefixCls, "-fade"),
+    visible: mergedStatus === 'uploading',
+    motionDeadline: 2000
+  }, function (_ref2) {
+    var motionClassName = _ref2.className;
+    // show loading icon if upload progress listener is disabled
+    var loadingProgress = 'percent' in file ? /*#__PURE__*/React.createElement(Progress$1, _extends$1({}, progressProps, {
+      type: "line",
+      percent: file.percent
+    })) : null;
+    return /*#__PURE__*/React.createElement("div", {
+      className: classNames("".concat(prefixCls, "-list-item-progress"), motionClassName)
+    }, loadingProgress);
+  }));
+  var listContainerNameClass = classNames("".concat(prefixCls, "-list-").concat(listType, "-container"), className);
+  var item = mergedStatus === 'error' ? /*#__PURE__*/React.createElement(Tooltip$1, {
+    title: message,
+    getPopupContainer: function getPopupContainer(node) {
+      return node.parentNode;
+    }
+  }, dom) : dom;
+  return /*#__PURE__*/React.createElement("div", {
+    className: listContainerNameClass,
+    style: style,
+    ref: ref
+  }, itemRender ? itemRender(item, file, items, {
+    download: onDownload.bind(null, file),
+    preview: onPreview.bind(null, file),
+    remove: onClose.bind(null, file)
+  }) : item);
+});
+var ListItem$1 = ListItem;
+
+var listItemMotion = _extends$1({}, collapseMotion);
+delete listItemMotion.onAppearEnd;
+delete listItemMotion.onEnterEnd;
+delete listItemMotion.onLeaveEnd;
+var InternalUploadList = function InternalUploadList(props, ref) {
+  var _classNames;
+  var _props$listType = props.listType,
+    listType = _props$listType === void 0 ? 'text' : _props$listType,
+    _props$previewFile = props.previewFile,
+    previewFile = _props$previewFile === void 0 ? previewImage : _props$previewFile,
+    onPreview = props.onPreview,
+    onDownload = props.onDownload,
+    onRemove = props.onRemove,
+    locale = props.locale,
+    iconRender = props.iconRender,
+    _props$isImageUrl = props.isImageUrl,
+    isImgUrl = _props$isImageUrl === void 0 ? isImageUrl : _props$isImageUrl,
+    customizePrefixCls = props.prefixCls,
+    _props$items = props.items,
+    items = _props$items === void 0 ? [] : _props$items,
+    _props$showPreviewIco = props.showPreviewIcon,
+    showPreviewIcon = _props$showPreviewIco === void 0 ? true : _props$showPreviewIco,
+    _props$showRemoveIcon = props.showRemoveIcon,
+    showRemoveIcon = _props$showRemoveIcon === void 0 ? true : _props$showRemoveIcon,
+    _props$showDownloadIc = props.showDownloadIcon,
+    showDownloadIcon = _props$showDownloadIc === void 0 ? false : _props$showDownloadIc,
+    removeIcon = props.removeIcon,
+    previewIcon = props.previewIcon,
+    downloadIcon = props.downloadIcon,
+    _props$progress = props.progress,
+    progress = _props$progress === void 0 ? {
+      strokeWidth: 2,
+      showInfo: false
+    } : _props$progress,
+    appendAction = props.appendAction,
+    _props$appendActionVi = props.appendActionVisible,
+    appendActionVisible = _props$appendActionVi === void 0 ? true : _props$appendActionVi,
+    itemRender = props.itemRender,
+    disabled = props.disabled;
+  var forceUpdate = useForceUpdate();
+  var _React$useState = React.useState(false),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    motionAppear = _React$useState2[0],
+    setMotionAppear = _React$useState2[1];
+  // ============================= Effect =============================
+  React.useEffect(function () {
+    if (listType !== 'picture' && listType !== 'picture-card') {
+      return;
+    }
+    (items || []).forEach(function (file) {
+      if (typeof document === 'undefined' || typeof window === 'undefined' || !window.FileReader || !window.File || !(file.originFileObj instanceof File || file.originFileObj instanceof Blob) || file.thumbUrl !== undefined) {
+        return;
+      }
+      file.thumbUrl = '';
+      if (previewFile) {
+        previewFile(file.originFileObj).then(function (previewDataUrl) {
+          // Need append '' to avoid dead loop
+          file.thumbUrl = previewDataUrl || '';
+          forceUpdate();
+        });
+      }
+    });
+  }, [listType, items, previewFile]);
+  React.useEffect(function () {
+    setMotionAppear(true);
+  }, []);
+  // ============================= Events =============================
+  var onInternalPreview = function onInternalPreview(file, e) {
+    if (!onPreview) {
+      return;
+    }
+    e === null || e === void 0 ? void 0 : e.preventDefault();
+    return onPreview(file);
+  };
+  var onInternalDownload = function onInternalDownload(file) {
+    if (typeof onDownload === 'function') {
+      onDownload(file);
+    } else if (file.url) {
+      window.open(file.url);
+    }
+  };
+  var onInternalClose = function onInternalClose(file) {
+    onRemove === null || onRemove === void 0 ? void 0 : onRemove(file);
+  };
+  var internalIconRender = function internalIconRender(file) {
+    if (iconRender) {
+      return iconRender(file, listType);
+    }
+    var isLoading = file.status === 'uploading';
+    var fileIcon = isImgUrl && isImgUrl(file) ? /*#__PURE__*/React.createElement(PictureTwoTone$1, null) : /*#__PURE__*/React.createElement(FileTwoTone$1, null);
+    var icon = isLoading ? /*#__PURE__*/React.createElement(LoadingOutlined$1, null) : /*#__PURE__*/React.createElement(PaperClipOutlined$1, null);
+    if (listType === 'picture') {
+      icon = isLoading ? /*#__PURE__*/React.createElement(LoadingOutlined$1, null) : fileIcon;
+    } else if (listType === 'picture-card') {
+      icon = isLoading ? locale.uploading : fileIcon;
+    }
+    return icon;
+  };
+  var actionIconRender = function actionIconRender(customIcon, callback, prefixCls, title) {
+    var btnProps = {
+      type: 'text',
+      size: 'small',
+      title: title,
+      disabled: disabled,
+      onClick: function onClick(e) {
+        callback();
+        if (isValidElement(customIcon) && customIcon.props.onClick) {
+          customIcon.props.onClick(e);
+        }
+      },
+      className: "".concat(prefixCls, "-list-item-card-actions-btn")
+    };
+    if (isValidElement(customIcon)) {
+      var btnIcon = cloneElement(customIcon, _extends$1(_extends$1({}, customIcon.props), {
+        onClick: function onClick() {}
+      }));
+      return /*#__PURE__*/React.createElement(Button$1, _extends$1({}, btnProps, {
+        icon: btnIcon
+      }));
+    }
+    return /*#__PURE__*/React.createElement(Button$1, _extends$1({}, btnProps), /*#__PURE__*/React.createElement("span", null, customIcon));
+  };
+  // ============================== Ref ===============================
+  // Test needs
+  React.useImperativeHandle(ref, function () {
+    return {
+      handlePreview: onInternalPreview,
+      handleDownload: onInternalDownload
+    };
+  });
+  var _React$useContext = React.useContext(ConfigContext),
+    getPrefixCls = _React$useContext.getPrefixCls,
+    direction = _React$useContext.direction;
+  // ============================= Render =============================
+  var prefixCls = getPrefixCls('upload', customizePrefixCls);
+  var listClassNames = classNames((_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-list"), true), _defineProperty$1(_classNames, "".concat(prefixCls, "-list-").concat(listType), true), _defineProperty$1(_classNames, "".concat(prefixCls, "-list-rtl"), direction === 'rtl'), _classNames));
+  // >>> Motion config
+  var motionKeyList = _toConsumableArray(items.map(function (file) {
+    return {
+      key: file.uid,
+      file: file
+    };
+  }));
+  var animationDirection = listType === 'picture-card' ? 'animate-inline' : 'animate';
+  // const transitionName = list.length === 0 ? '' : `${prefixCls}-${animationDirection}`;
+  var motionConfig = {
+    motionDeadline: 2000,
+    motionName: "".concat(prefixCls, "-").concat(animationDirection),
+    keys: motionKeyList,
+    motionAppear: motionAppear
+  };
+  if (listType !== 'picture-card') {
+    motionConfig = _extends$1(_extends$1({}, listItemMotion), motionConfig);
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    className: listClassNames
+  }, /*#__PURE__*/React.createElement(CSSMotionList, _extends$1({}, motionConfig, {
+    component: false
+  }), function (_ref) {
+    var key = _ref.key,
+      file = _ref.file,
+      motionClassName = _ref.className,
+      motionStyle = _ref.style;
+    return /*#__PURE__*/React.createElement(ListItem$1, {
+      key: key,
+      locale: locale,
+      prefixCls: prefixCls,
+      className: motionClassName,
+      style: motionStyle,
+      file: file,
+      items: items,
+      progress: progress,
+      listType: listType,
+      isImgUrl: isImgUrl,
+      showPreviewIcon: showPreviewIcon,
+      showRemoveIcon: showRemoveIcon,
+      showDownloadIcon: showDownloadIcon,
+      removeIcon: removeIcon,
+      previewIcon: previewIcon,
+      downloadIcon: downloadIcon,
+      iconRender: internalIconRender,
+      actionIconRender: actionIconRender,
+      itemRender: itemRender,
+      onPreview: onInternalPreview,
+      onDownload: onInternalDownload,
+      onClose: onInternalClose
+    });
+  }), appendAction && /*#__PURE__*/React.createElement(CSSMotion, _extends$1({}, motionConfig, {
+    visible: appendActionVisible,
+    forceRender: true
+  }), function (_ref2) {
+    var motionClassName = _ref2.className,
+      motionStyle = _ref2.style;
+    return cloneElement(appendAction, function (oriProps) {
+      return {
+        className: classNames(oriProps.className, motionClassName),
+        style: _extends$1(_extends$1(_extends$1({}, motionStyle), {
+          // prevent the element has hover css pseudo-class that may cause animation to end prematurely.
+          pointerEvents: motionClassName ? 'none' : undefined
+        }), oriProps.style)
+      };
+    });
+  }));
+};
+var UploadList = /*#__PURE__*/React.forwardRef(InternalUploadList);
+if (process.env.NODE_ENV !== 'production') {
+  UploadList.displayName = 'UploadList';
+}
+var UploadList$1 = UploadList;
+
+var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+var LIST_IGNORE = "__LIST_IGNORE_".concat(Date.now(), "__");
+var InternalUpload = function InternalUpload(props, ref) {
+  var _classNames2;
+  var fileList = props.fileList,
+    defaultFileList = props.defaultFileList,
+    onRemove = props.onRemove,
+    _props$showUploadList = props.showUploadList,
+    showUploadList = _props$showUploadList === void 0 ? true : _props$showUploadList,
+    _props$listType = props.listType,
+    listType = _props$listType === void 0 ? 'text' : _props$listType,
+    onPreview = props.onPreview,
+    onDownload = props.onDownload,
+    onChange = props.onChange,
+    onDrop = props.onDrop,
+    previewFile = props.previewFile,
+    customDisabled = props.disabled,
+    propLocale = props.locale,
+    iconRender = props.iconRender,
+    isImageUrl = props.isImageUrl,
+    progress = props.progress,
+    customizePrefixCls = props.prefixCls,
+    className = props.className,
+    _props$type = props.type,
+    type = _props$type === void 0 ? 'select' : _props$type,
+    children = props.children,
+    style = props.style,
+    itemRender = props.itemRender,
+    maxCount = props.maxCount,
+    _props$data = props.data,
+    data = _props$data === void 0 ? {} : _props$data,
+    _props$multiple = props.multiple,
+    multiple = _props$multiple === void 0 ? false : _props$multiple,
+    _props$action = props.action,
+    action = _props$action === void 0 ? '' : _props$action,
+    _props$accept = props.accept,
+    accept = _props$accept === void 0 ? '' : _props$accept,
+    _props$supportServerR = props.supportServerRender,
+    supportServerRender = _props$supportServerR === void 0 ? true : _props$supportServerR;
+  // ===================== Disabled =====================
+  var disabled = React.useContext(DisabledContext$1);
+  var mergedDisabled = customDisabled !== null && customDisabled !== void 0 ? customDisabled : disabled;
+  var _useMergedState = useMergedState(defaultFileList || [], {
+      value: fileList,
+      postState: function postState(list) {
+        return list !== null && list !== void 0 ? list : [];
+      }
+    }),
+    _useMergedState2 = _slicedToArray(_useMergedState, 2),
+    mergedFileList = _useMergedState2[0],
+    setMergedFileList = _useMergedState2[1];
+  var _React$useState = React.useState('drop'),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    dragState = _React$useState2[0],
+    setDragState = _React$useState2[1];
+  var upload = React.useRef(null);
+  process.env.NODE_ENV !== "production" ? warning$3('fileList' in props || !('value' in props), 'Upload', '`value` is not a valid prop, do you mean `fileList`?') : void 0;
+  process.env.NODE_ENV !== "production" ? warning$3(!('transformFile' in props), 'Upload', '`transformFile` is deprecated. Please use `beforeUpload` directly.') : void 0;
+  // Control mode will auto fill file uid if not provided
+  React.useMemo(function () {
+    var timestamp = Date.now();
+    (fileList || []).forEach(function (file, index) {
+      if (!file.uid && !Object.isFrozen(file)) {
+        file.uid = "__AUTO__".concat(timestamp, "_").concat(index, "__");
+      }
+    });
+  }, [fileList]);
+  var onInternalChange = function onInternalChange(file, changedFileList, event) {
+    var cloneList = _toConsumableArray(changedFileList);
+    // Cut to match count
+    if (maxCount === 1) {
+      cloneList = cloneList.slice(-1);
+    } else if (maxCount) {
+      cloneList = cloneList.slice(0, maxCount);
+    }
+    // Prevent React18 auto batch since input[upload] trigger process at same time
+    // which makes fileList closure problem
+    flushSync(function () {
+      setMergedFileList(cloneList);
+    });
+    var changeInfo = {
+      file: file,
+      fileList: cloneList
+    };
+    if (event) {
+      changeInfo.event = event;
+    }
+    flushSync(function () {
+      onChange === null || onChange === void 0 ? void 0 : onChange(changeInfo);
+    });
+  };
+  var mergedBeforeUpload = function mergedBeforeUpload(file, fileListArgs) {
+    return __awaiter(void 0, void 0, void 0, /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var beforeUpload, transformFile, parsedFile, result;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            beforeUpload = props.beforeUpload, transformFile = props.transformFile;
+            parsedFile = file;
+            if (!beforeUpload) {
+              _context.next = 13;
+              break;
+            }
+            _context.next = 5;
+            return beforeUpload(file, fileListArgs);
+          case 5:
+            result = _context.sent;
+            if (!(result === false)) {
+              _context.next = 8;
+              break;
+            }
+            return _context.abrupt("return", false);
+          case 8:
+            // Hack for LIST_IGNORE, we add additional info to remove from the list
+            delete file[LIST_IGNORE];
+            if (!(result === LIST_IGNORE)) {
+              _context.next = 12;
+              break;
+            }
+            Object.defineProperty(file, LIST_IGNORE, {
+              value: true,
+              configurable: true
+            });
+            return _context.abrupt("return", false);
+          case 12:
+            if (_typeof$1(result) === 'object' && result) {
+              parsedFile = result;
+            }
+          case 13:
+            if (!transformFile) {
+              _context.next = 17;
+              break;
+            }
+            _context.next = 16;
+            return transformFile(parsedFile);
+          case 16:
+            parsedFile = _context.sent;
+          case 17:
+            return _context.abrupt("return", parsedFile);
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+  };
+  var onBatchStart = function onBatchStart(batchFileInfoList) {
+    // Skip file which marked as `LIST_IGNORE`, these file will not add to file list
+    var filteredFileInfoList = batchFileInfoList.filter(function (info) {
+      return !info.file[LIST_IGNORE];
+    });
+    // Nothing to do since no file need upload
+    if (!filteredFileInfoList.length) {
+      return;
+    }
+    var objectFileList = filteredFileInfoList.map(function (info) {
+      return file2Obj(info.file);
+    });
+    // Concat new files with prev files
+    var newFileList = _toConsumableArray(mergedFileList);
+    objectFileList.forEach(function (fileObj) {
+      // Replace file if exist
+      newFileList = updateFileList(fileObj, newFileList);
+    });
+    objectFileList.forEach(function (fileObj, index) {
+      // Repeat trigger `onChange` event for compatible
+      var triggerFileObj = fileObj;
+      if (!filteredFileInfoList[index].parsedFile) {
+        // `beforeUpload` return false
+        var originFileObj = fileObj.originFileObj;
+        var clone;
+        try {
+          clone = new File([originFileObj], originFileObj.name, {
+            type: originFileObj.type
+          });
+        } catch (e) {
+          clone = new Blob([originFileObj], {
+            type: originFileObj.type
+          });
+          clone.name = originFileObj.name;
+          clone.lastModifiedDate = new Date();
+          clone.lastModified = new Date().getTime();
+        }
+        clone.uid = fileObj.uid;
+        triggerFileObj = clone;
+      } else {
+        // Inject `uploading` status
+        fileObj.status = 'uploading';
+      }
+      onInternalChange(triggerFileObj, newFileList);
+    });
+  };
+  var onSuccess = function onSuccess(response, file, xhr) {
+    try {
+      if (typeof response === 'string') {
+        response = JSON.parse(response);
+      }
+    } catch (e) {
+      /* do nothing */
+    }
+    // removed
+    if (!getFileItem(file, mergedFileList)) {
+      return;
+    }
+    var targetItem = file2Obj(file);
+    targetItem.status = 'done';
+    targetItem.percent = 100;
+    targetItem.response = response;
+    targetItem.xhr = xhr;
+    var nextFileList = updateFileList(targetItem, mergedFileList);
+    onInternalChange(targetItem, nextFileList);
+  };
+  var onProgress = function onProgress(e, file) {
+    // removed
+    if (!getFileItem(file, mergedFileList)) {
+      return;
+    }
+    var targetItem = file2Obj(file);
+    targetItem.status = 'uploading';
+    targetItem.percent = e.percent;
+    var nextFileList = updateFileList(targetItem, mergedFileList);
+    onInternalChange(targetItem, nextFileList, e);
+  };
+  var onError = function onError(error, response, file) {
+    // removed
+    if (!getFileItem(file, mergedFileList)) {
+      return;
+    }
+    var targetItem = file2Obj(file);
+    targetItem.error = error;
+    targetItem.response = response;
+    targetItem.status = 'error';
+    var nextFileList = updateFileList(targetItem, mergedFileList);
+    onInternalChange(targetItem, nextFileList);
+  };
+  var handleRemove = function handleRemove(file) {
+    var currentFile;
+    Promise.resolve(typeof onRemove === 'function' ? onRemove(file) : onRemove).then(function (ret) {
+      var _a;
+      // Prevent removing file
+      if (ret === false) {
+        return;
+      }
+      var removedFileList = removeFileItem(file, mergedFileList);
+      if (removedFileList) {
+        currentFile = _extends$1(_extends$1({}, file), {
+          status: 'removed'
+        });
+        mergedFileList === null || mergedFileList === void 0 ? void 0 : mergedFileList.forEach(function (item) {
+          var matchKey = currentFile.uid !== undefined ? 'uid' : 'name';
+          if (item[matchKey] === currentFile[matchKey] && !Object.isFrozen(item)) {
+            item.status = 'removed';
+          }
+        });
+        (_a = upload.current) === null || _a === void 0 ? void 0 : _a.abort(currentFile);
+        onInternalChange(currentFile, removedFileList);
+      }
+    });
+  };
+  var onFileDrop = function onFileDrop(e) {
+    setDragState(e.type);
+    if (e.type === 'drop') {
+      onDrop === null || onDrop === void 0 ? void 0 : onDrop(e);
+    }
+  };
+  // Test needs
+  React.useImperativeHandle(ref, function () {
+    return {
+      onBatchStart: onBatchStart,
+      onSuccess: onSuccess,
+      onProgress: onProgress,
+      onError: onError,
+      fileList: mergedFileList,
+      upload: upload.current
+    };
+  });
+  var _React$useContext = React.useContext(ConfigContext),
+    getPrefixCls = _React$useContext.getPrefixCls,
+    direction = _React$useContext.direction;
+  var prefixCls = getPrefixCls('upload', customizePrefixCls);
+  var rcUploadProps = _extends$1(_extends$1({
+    onBatchStart: onBatchStart,
+    onError: onError,
+    onProgress: onProgress,
+    onSuccess: onSuccess
+  }, props), {
+    data: data,
+    multiple: multiple,
+    action: action,
+    accept: accept,
+    supportServerRender: supportServerRender,
+    prefixCls: prefixCls,
+    disabled: mergedDisabled,
+    beforeUpload: mergedBeforeUpload,
+    onChange: undefined
+  });
+  delete rcUploadProps.className;
+  delete rcUploadProps.style;
+  // Remove id to avoid open by label when trigger is hidden
+  // !children: https://github.com/ant-design/ant-design/issues/14298
+  // disabled: https://github.com/ant-design/ant-design/issues/16478
+  //           https://github.com/ant-design/ant-design/issues/24197
+  if (!children || mergedDisabled) {
+    delete rcUploadProps.id;
+  }
+  var renderUploadList = function renderUploadList(button, buttonVisible) {
+    return showUploadList ? /*#__PURE__*/React.createElement(LocaleReceiver$1, {
+      componentName: 'Upload',
+      defaultLocale: defaultLocale.Upload
+    }, function (contextLocale) {
+      var _ref = typeof showUploadList === 'boolean' ? {} : showUploadList,
+        showRemoveIcon = _ref.showRemoveIcon,
+        showPreviewIcon = _ref.showPreviewIcon,
+        showDownloadIcon = _ref.showDownloadIcon,
+        removeIcon = _ref.removeIcon,
+        previewIcon = _ref.previewIcon,
+        downloadIcon = _ref.downloadIcon;
+      return /*#__PURE__*/React.createElement(UploadList$1, {
+        prefixCls: prefixCls,
+        listType: listType,
+        items: mergedFileList,
+        previewFile: previewFile,
+        onPreview: onPreview,
+        onDownload: onDownload,
+        onRemove: handleRemove,
+        showRemoveIcon: !mergedDisabled && showRemoveIcon,
+        showPreviewIcon: showPreviewIcon,
+        showDownloadIcon: showDownloadIcon,
+        removeIcon: removeIcon,
+        previewIcon: previewIcon,
+        downloadIcon: downloadIcon,
+        iconRender: iconRender,
+        locale: _extends$1(_extends$1({}, contextLocale), propLocale),
+        isImageUrl: isImageUrl,
+        progress: progress,
+        appendAction: button,
+        appendActionVisible: buttonVisible,
+        itemRender: itemRender,
+        disabled: mergedDisabled
+      });
+    }) : button;
+  };
+  if (type === 'drag') {
+    var _classNames;
+    var dragCls = classNames(prefixCls, (_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-drag"), true), _defineProperty$1(_classNames, "".concat(prefixCls, "-drag-uploading"), mergedFileList.some(function (file) {
+      return file.status === 'uploading';
+    })), _defineProperty$1(_classNames, "".concat(prefixCls, "-drag-hover"), dragState === 'dragover'), _defineProperty$1(_classNames, "".concat(prefixCls, "-disabled"), mergedDisabled), _defineProperty$1(_classNames, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _classNames), className);
+    return /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("div", {
+      className: dragCls,
+      onDrop: onFileDrop,
+      onDragOver: onFileDrop,
+      onDragLeave: onFileDrop,
+      style: style
+    }, /*#__PURE__*/React.createElement(Upload$3, _extends$1({}, rcUploadProps, {
+      ref: upload,
+      className: "".concat(prefixCls, "-btn")
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "".concat(prefixCls, "-drag-container")
+    }, children))), renderUploadList());
+  }
+  var uploadButtonCls = classNames(prefixCls, (_classNames2 = {}, _defineProperty$1(_classNames2, "".concat(prefixCls, "-select"), true), _defineProperty$1(_classNames2, "".concat(prefixCls, "-select-").concat(listType), true), _defineProperty$1(_classNames2, "".concat(prefixCls, "-disabled"), mergedDisabled), _defineProperty$1(_classNames2, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _classNames2));
+  var renderUploadButton = function renderUploadButton(uploadButtonStyle) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: uploadButtonCls,
+      style: uploadButtonStyle
+    }, /*#__PURE__*/React.createElement(Upload$3, _extends$1({}, rcUploadProps, {
+      ref: upload
+    })));
+  };
+  var uploadButton = renderUploadButton(children ? undefined : {
+    display: 'none'
+  });
+  if (listType === 'picture-card') {
+    return /*#__PURE__*/React.createElement("span", {
+      className: classNames("".concat(prefixCls, "-picture-card-wrapper"), className)
+    }, renderUploadList(uploadButton, !!children));
+  }
+  return /*#__PURE__*/React.createElement("span", {
+    className: className
+  }, uploadButton, renderUploadList());
+};
+var Upload$2 = /*#__PURE__*/React.forwardRef(InternalUpload);
+if (process.env.NODE_ENV !== 'production') {
+  Upload$2.displayName = 'Upload';
+}
+var InternalUpload$1 = Upload$2;
+
+var __rest$1 = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+var Dragger$1 = /*#__PURE__*/React.forwardRef(function (_a, ref) {
+  var style = _a.style,
+    height = _a.height,
+    restProps = __rest$1(_a, ["style", "height"]);
+  return /*#__PURE__*/React.createElement(InternalUpload$1, _extends$1({
+    ref: ref
+  }, restProps, {
+    type: "drag",
+    style: _extends$1(_extends$1({}, style), {
+      height: height
+    })
+  }));
+});
+if (process.env.NODE_ENV !== 'production') {
+  Dragger$1.displayName = 'Dragger';
+}
+var Dragger$2 = Dragger$1;
+
+var Upload = InternalUpload$1;
+Upload.Dragger = Dragger$2;
+Upload.LIST_IGNORE = LIST_IGNORE;
+var Upload$1 = Upload;
+
 const directions = [
     {
         key: "North",
@@ -46012,9 +48330,9 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
                                         }, children: jsx("span", { children: direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), filter.annotationType !== 'text' || !allowLabelUpdate && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), filter.annotationType !== 'text' || !allowLabelUpdate && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); updateLabel(label); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: labelSearch.key === "" ? "Type a lable for this box." : "Try using different search key." }) : jsx(Fragment, { children: jsxs("p", { style: { cursor: "pointer" }, onClick: handleSave, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })) })] })] }) }));
 }
 
-var css_248z$4 = ".Toolbar-module__toolbar__9pZF0 {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: white;\n  display: flex;\n  padding: 10px 5px;\n  flex-direction: column;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  border-radius: 15px;\n  gap: 5px;\n  align-items: center;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__divider__1Dj6r {\n  border-bottom: 1px solid rgba(187, 187, 187, 0.7333333333);\n  width: 100%;\n  margin: 8px 6px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC {\n  padding: 7px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 10px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU {\n  background-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU svg {\n  color: white;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n  border-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover svg {\n  color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC svg {\n  width: 22px;\n  height: 22px;\n}";
+var css_248z$5 = ".Toolbar-module__toolbar__9pZF0 {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: white;\n  display: flex;\n  padding: 10px 5px;\n  flex-direction: column;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  border-radius: 15px;\n  gap: 5px;\n  align-items: center;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__divider__1Dj6r {\n  border-bottom: 1px solid rgba(187, 187, 187, 0.7333333333);\n  width: 100%;\n  margin: 8px 6px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC {\n  padding: 7px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 10px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU {\n  background-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU svg {\n  color: white;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n  border-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover svg {\n  color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC svg {\n  width: 22px;\n  height: 22px;\n}";
 var styles$3 = {"toolbar":"Toolbar-module__toolbar__9pZF0","divider":"Toolbar-module__divider__1Dj6r","item":"Toolbar-module__item__wszEC","active":"Toolbar-module__active__YduqU"};
-styleInject(css_248z$4);
+styleInject(css_248z$5);
 
 // THIS FILE IS AUTO GENERATED
 function BsBoundingBox (props) {
@@ -46033,7 +48351,13 @@ function LiaHandPaperSolid (props) {
 }
 
 // THIS FILE IS AUTO GENERATED
-function AiOutlineMinus (props) {
+function AiFillCheckCircle (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"}}]})(props);
+}function AiFillCloseCircle (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024","fill":"currentColor","fillRule":"evenodd"},"child":[{"tag":"path","attr":{"d":"M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64Zm127.978 274.82-.034.006c-.023.007-.042.018-.083.059L512 466.745l-127.86-127.86c-.042-.041-.06-.052-.084-.059a.118.118 0 0 0-.07 0c-.022.007-.041.018-.082.059l-45.02 45.019c-.04.04-.05.06-.058.083a.118.118 0 0 0 0 .07l.01.022a.268.268 0 0 0 .049.06L466.745 512l-127.86 127.862c-.041.04-.052.06-.059.083a.118.118 0 0 0 0 .07c.007.022.018.041.059.082l45.019 45.02c.04.04.06.05.083.058a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059L512 557.254l127.862 127.861c.04.041.06.052.083.059a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059l45.02-45.019c.04-.04.05-.06.058-.083a.118.118 0 0 0 0-.07l-.01-.022a.268.268 0 0 0-.049-.06L557.254 512l127.861-127.86c.041-.042.052-.06.059-.084a.118.118 0 0 0 0-.07c-.007-.022-.018-.041-.059-.082l-45.019-45.02c-.04-.04-.06-.05-.083-.058a.118.118 0 0 0-.07 0Z"}}]})(props);
+}function AiFillFileAdd (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M480 580H372a8 8 0 0 0-8 8v48a8 8 0 0 0 8 8h108v108a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8V644h108a8 8 0 0 0 8-8v-48a8 8 0 0 0-8-8H544V472a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v108zm374.6-291.3c6 6 9.4 14.1 9.4 22.6V928c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32h424.7c8.5 0 16.7 3.4 22.7 9.4l215.2 215.3zM790.2 326L602 137.8V326h188.2z"}}]})(props);
+}function AiOutlineMinus (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M872 474H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h720c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"}}]})(props);
 }function AiOutlinePlus (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"}},{"tag":"path","attr":{"d":"M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"}}]})(props);
@@ -46063,9 +48387,9 @@ function Toolbar({ editor, style = {} }) {
     return (jsx(Fragment, { children: jsxs("div", { className: styles$3["toolbar"], style: style, children: [jsx("div", { className: `${styles$3['item']} ${appMode.mode === 'DRAG_SELECTION_MODE' && styles$3["active"]}`, onClick: setMode({ mode: "DRAG_SELECTION_MODE" }), children: jsx(LiaHandPaperSolid, {}) }), ["entity", "text"].includes(filter.annotationType) && jsx("div", { className: `${styles$3['item']} ${appMode.mode === 'DRAWING_MODE' && styles$3["active"]}`, onClick: setMode({ mode: "DRAWING_MODE" }), children: jsx(BsBoundingBox, {}) }), filter.annotationType === "polygon" && jsx("div", { className: `${styles$3['item']} ${appMode.mode === 'POLYGON_MODE' && styles$3["active"]}`, onClick: setMode({ mode: "POLYGON_MODE" }), children: jsx(PiPolygonBold, {}) }), jsx("div", { className: styles$3["divider"] }), jsx("div", { className: styles$3["item"], onClick: zoomInOut(0), children: jsx(AiOutlinePlus, {}) }), jsx("div", { className: styles$3["item"], onClick: () => editor.fitToScreen(), children: jsx(MdOutlineFitScreen, {}) }), jsx("div", { className: styles$3["item"], onClick: zoomInOut(1), children: jsx(AiOutlineMinus, {}) }), jsx("div", { className: styles$3["divider"] }), jsx("div", { className: styles$3["item"], onClick: () => editor.activeImage?.actionStore.undo().catch((e) => console.log(e)), children: jsx(LiaUndoAltSolid, {}) }), jsx("div", { className: styles$3["item"], onClick: () => editor.activeImage?.actionStore.redo().catch((e) => console.log(e)), children: jsx(LiaRedoAltSolid, {}) }), jsx("div", { className: styles$3["divider"] }), jsx("div", { className: styles$3["item"], children: jsx(BsBrightnessHigh, {}) })] }) }));
 }
 
-var css_248z$3 = ".ImageLoader-module__image-loader-container__L8PIM {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  z-index: 9999;\n  border-radius: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__loader__6vPWZ {\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  background-color: white;\n  padding: 5px;\n  border-radius: 10px;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  justify-content: center;\n  gap: 10px;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__title__3ebSj {\n  position: absolute;\n  z-index: 9999;\n  left: 10px;\n  top: 10px;\n  font-size: 1em;\n}";
+var css_248z$4 = ".ImageLoader-module__image-loader-container__L8PIM {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  z-index: 9999;\n  border-radius: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__loader__6vPWZ {\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  background-color: white;\n  padding: 5px;\n  border-radius: 10px;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  justify-content: center;\n  gap: 10px;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__title__3ebSj {\n  position: absolute;\n  z-index: 9999;\n  left: 10px;\n  top: 10px;\n  font-size: 1em;\n}";
 var styles$2 = {"image-loader-container":"ImageLoader-module__image-loader-container__L8PIM","loader":"ImageLoader-module__loader__6vPWZ","title":"ImageLoader-module__title__3ebSj"};
-styleInject(css_248z$3);
+styleInject(css_248z$4);
 
 var cssUnit = {
     cm: true,
@@ -46186,21 +48510,21 @@ function ImageLoader({ spacingLeft = 0, spacingRight = 0 }) {
     return (jsx(Fragment, { children: jsxs("div", { className: styles$2["image-loader-container"], children: [jsx("span", { className: styles$2["title"], children: LoaderSpinner.title }), jsx("div", { className: styles$2["loader"], style: { marginLeft: spacingLeft, marginRight: spacingRight }, children: jsx(ClipLoader, { color: "rgb(66, 72, 255)" }) })] }) }));
 }
 
-var css_248z$2 = "@import 'antd/dist/antd.css';\n::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 2px rgba(48, 48, 48, 0.3);\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar {\n  width: 2px;\n  height: 2px;\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar-thumb {\n  background-color: #646464;\n  border: 2px solid #555555;\n}\n\nspan {\n  font-family: \"Roboto\", sans-serif, Saira Semi Condensed, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}";
-styleInject(css_248z$2);
+var css_248z$3 = "@import 'antd/dist/antd.css';\n::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 2px rgba(48, 48, 48, 0.3);\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar {\n  width: 2px;\n  height: 2px;\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar-thumb {\n  background-color: #646464;\n  border: 2px solid #555555;\n}\n\nspan {\n  font-family: \"Roboto\", sans-serif, Saira Semi Condensed, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}";
+styleInject(css_248z$3);
 
-var css_248z$1 = ".LeftSidebar-module__left-sidebar__pG-ed {\n  background-color: white;\n  width: 300px;\n  height: 100%;\n  position: absolute;\n  right: 0px;\n  top: 0;\n  border-left: 1px solid #e4e8eb;\n  display: flex;\n  flex-direction: column;\n  padding: 0;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  padding: 15px 10px;\n  padding-bottom: 5px;\n  border-bottom: 1px solid #E4E8EB;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__annotation-type-selector__kdj6B .LeftSidebar-module__ant-checkbox-checked__--wev .LeftSidebar-module__ant-checkbox-inner__kpOx- {\n  background-color: rgb(66, 72, 255);\n  border-color: rgb(66, 72, 255);\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__entityType-selector__cf2oe {\n  display: flex;\n  cursor: pointer;\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n  padding: 9px 10px;\n  gap: 5px;\n  align-items: center;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__search-entity-class__eqmEz {\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__label-input-list-container__1cG8i {\n  display: flex;\n  flex-direction: column;\n  height: calc(100% - 120px);\n  overflow-y: auto;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu__y9i1k {\n  max-height: 230px;\n  overflow-y: scroll;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-group-title__8on4W {\n  color: rgba(0, 0, 0, 0.45) !important;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}\n\n.LeftSidebar-module__entity-class-filter-item__H4mPm {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 5px;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm span {\n  color: black;\n  font-size: 15px;\n  font-weight: 600;\n  max-width: 200px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  text-decoration: none;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm .LeftSidebar-module__circle__qYYiF {\n  height: 16px;\n  width: 16px;\n  border-radius: 50%;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ {\n  top: 170px !important;\n  max-height: 220px;\n  overflow-y: scroll;\n  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv {\n  padding-left: 10px !important;\n  margin-left: 0px !important;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv:hover {\n  background-color: #f5f5f5;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-checkbox-group__Zw77S {\n  display: flex;\n  flex-direction: column;\n  padding-left: 10px;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}";
+var css_248z$2 = ".LeftSidebar-module__left-sidebar__pG-ed {\n  background-color: white;\n  width: 300px;\n  height: 100%;\n  position: absolute;\n  right: 0px;\n  top: 0;\n  border-left: 1px solid #e4e8eb;\n  display: flex;\n  flex-direction: column;\n  padding: 0;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  padding: 15px 10px;\n  padding-bottom: 5px;\n  border-bottom: 1px solid #E4E8EB;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__annotation-type-selector__kdj6B .LeftSidebar-module__ant-checkbox-checked__--wev .LeftSidebar-module__ant-checkbox-inner__kpOx- {\n  background-color: rgb(66, 72, 255);\n  border-color: rgb(66, 72, 255);\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__entityType-selector__cf2oe {\n  display: flex;\n  cursor: pointer;\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n  padding: 9px 10px;\n  gap: 5px;\n  align-items: center;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__search-entity-class__eqmEz {\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__label-input-list-container__1cG8i {\n  display: flex;\n  flex-direction: column;\n  height: calc(100% - 120px);\n  overflow-y: auto;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu__y9i1k {\n  max-height: 230px;\n  overflow-y: scroll;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-group-title__8on4W {\n  color: rgba(0, 0, 0, 0.45) !important;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}\n\n.LeftSidebar-module__entity-class-filter-item__H4mPm {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 5px;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm span {\n  color: black;\n  font-size: 15px;\n  font-weight: 600;\n  max-width: 200px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  text-decoration: none;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm .LeftSidebar-module__circle__qYYiF {\n  height: 16px;\n  width: 16px;\n  border-radius: 50%;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ {\n  top: 170px !important;\n  max-height: 220px;\n  overflow-y: scroll;\n  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv {\n  padding-left: 10px !important;\n  margin-left: 0px !important;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv:hover {\n  background-color: #f5f5f5;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-checkbox-group__Zw77S {\n  display: flex;\n  flex-direction: column;\n  padding-left: 10px;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}";
 var styles$1 = {"left-sidebar":"LeftSidebar-module__left-sidebar__pG-ed","selector-container":"LeftSidebar-module__selector-container__3Zuf9","annotation-type-selector":"LeftSidebar-module__annotation-type-selector__kdj6B","ant-checkbox-checked":"LeftSidebar-module__ant-checkbox-checked__--wev","ant-checkbox-inner":"LeftSidebar-module__ant-checkbox-inner__kpOx-","entityType-selector":"LeftSidebar-module__entityType-selector__cf2oe","search-entity-class":"LeftSidebar-module__search-entity-class__eqmEz","label-input-list-container":"LeftSidebar-module__label-input-list-container__1cG8i","dropdown-overlay-leftnavbar":"LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al","ant-dropdown-menu":"LeftSidebar-module__ant-dropdown-menu__y9i1k","ant-dropdown-menu-item-group-title":"LeftSidebar-module__ant-dropdown-menu-item-group-title__8on4W","ant-dropdown-menu-item-active":"LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY","entity-class-filter-item":"LeftSidebar-module__entity-class-filter-item__H4mPm","circle":"LeftSidebar-module__circle__qYYiF","dropdown-overlay-filter-entity-class":"LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ","checkbox-item":"LeftSidebar-module__checkbox-item__4y4tv","ant-checkbox-group":"LeftSidebar-module__ant-checkbox-group__Zw77S"};
-styleInject(css_248z$1);
+styleInject(css_248z$2);
 
 // THIS FILE IS AUTO GENERATED
 function FiSearch (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":"2","strokeLinecap":"round","strokeLinejoin":"round"},"child":[{"tag":"circle","attr":{"cx":"11","cy":"11","r":"8"}},{"tag":"line","attr":{"x1":"21","y1":"21","x2":"16.65","y2":"16.65"}}]})(props);
 }
 
-var css_248z = ".AnnotationInput-module__label-input-item__QLl8n {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 5px 10px;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__color__X6CjT {\n  width: 30px;\n  height: 30px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  padding: 0px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  transition: none;\n  padding: 0;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk.AnnotationInput-module__ant-select-focused__gkB5I .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  box-shadow: none !important;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__label-selector__6Ox89 {\n  width: 170px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__direction-selector__AtyDz {\n  cursor: pointer;\n  color: rgb(66, 72, 255);\n  display: flex;\n  justify-content: center;\n  width: 20px;\n}";
+var css_248z$1 = ".AnnotationInput-module__label-input-item__QLl8n {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 5px 10px;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__color__X6CjT {\n  width: 30px;\n  height: 30px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  padding: 0px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  transition: none;\n  padding: 0;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk.AnnotationInput-module__ant-select-focused__gkB5I .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  box-shadow: none !important;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__label-selector__6Ox89 {\n  width: 170px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__direction-selector__AtyDz {\n  cursor: pointer;\n  color: rgb(66, 72, 255);\n  display: flex;\n  justify-content: center;\n  width: 20px;\n}";
 var styles = {"label-input-item":"AnnotationInput-module__label-input-item__QLl8n","selector":"AnnotationInput-module__selector__yOaYk","ant-select-selector":"AnnotationInput-module__ant-select-selector__V7Q-Y","ant-select-selection-item":"AnnotationInput-module__ant-select-selection-item__UKZNg","active":"AnnotationInput-module__active__exaaB","color":"AnnotationInput-module__color__X6CjT","ant-select-focused":"AnnotationInput-module__ant-select-focused__gkB5I","label-selector":"AnnotationInput-module__label-selector__6Ox89","direction-selector":"AnnotationInput-module__direction-selector__AtyDz"};
-styleInject(css_248z);
+styleInject(css_248z$1);
 
 // THIS FILE IS AUTO GENERATED
 function RiDeleteBin6Line (props) {
@@ -64081,7 +66405,7 @@ class ActionsStore {
     }
 }
 
-class Image extends Konva.Image {
+let Image$1 = class Image extends Konva.Image {
     src = "";
     editor;
     actionStore = new ActionsStore();
@@ -64101,7 +66425,7 @@ class Image extends Konva.Image {
     mouseLeaveAction(event) {
         this.editor?.updateCursorStyle();
     }
-}
+};
 
 class Editor extends Konva.Stage {
     filter = { annotationType: 'entity', entityClass: '', entityType: '' };
@@ -64399,7 +66723,7 @@ class Editor extends Konva.Stage {
         this.position({ x: 0, y: 0 });
     }
     fitToScreen() {
-        if (!this.activeImage || !(this.activeImage instanceof Image))
+        if (!this.activeImage || !(this.activeImage instanceof Image$1))
             return;
         const paddingLeftRight = 2000;
         const paddingTopBottom = 100;
@@ -64454,7 +66778,7 @@ class Editor extends Konva.Stage {
                 shape?.showAnchors?.();
                 shape?.parent?.showAnchors?.();
             }
-            else if (target instanceof Image || target === null) {
+            else if (target instanceof Image$1 || target === null) {
                 if (this.isDragging()) {
                     cursor = 'grabbing';
                 }
@@ -64667,7 +66991,7 @@ class CreatePolygonAction extends Action {
     }
 }
 
-class HumanAnnotationImage extends Image {
+class HumanAnnotationImage extends Image$1 {
     drawingAreas = new Set();
     entities = new Set();
     texts = new Set();
@@ -65247,8 +67571,69 @@ function useHumanAnnotator() {
     return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'ha-editor', style: { width: '100%', height: '100%' } }), editor && props && jsx(HumanAnnotation, { ...props, editor: editor })] })] })), init, handleSave];
 }
 
-function DrawingAreaAnnotation({ editor, labelMappings, drawingAreaState }) {
+var css_248z = ".UploadDragger__upload-dragger__n8jGJ {\n  width: calc(100% - 300px);\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 1000;\n  background-color: #efefef;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__submit__Vo8Do {\n  position: absolute;\n  bottom: 20px;\n  display: flex;\n  justify-content: center;\n  right: 10px;\n  width: min(50%, 700px);\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__submit__Vo8Do .UploadDragger__save__14RlW {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  background: #fff;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  align-items: center;\n  border-color: #d9d9d9;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  letter-spacing: 0.4px;\n  background-color: #4248ff;\n  color: #fff;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__submit__Vo8Do .UploadDragger__save__14RlW.UploadDragger__disable__lIZOD {\n  background-color: #b3b3b3;\n  cursor: not-allowed;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 {\n  width: min(60%, 700px);\n  height: min(60%, 350px);\n  cursor: pointer;\n  border-radius: 15px !important;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  background-color: white;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__close__35yoL {\n  position: absolute;\n  right: 15px;\n  top: 15px;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 span:first-child {\n  display: block;\n  height: 100%;\n  position: relative;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 span:first-child .UploadDragger__ant-upload__3VEOX.UploadDragger__ant-upload-drag__htVwq {\n  height: 100%;\n  border-radius: 10px !important;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 span:first-child .UploadDragger__ant-upload__3VEOX.UploadDragger__ant-upload-drag__htVwq .UploadDragger__ant-upload-drag-container__g5xnr {\n  height: 100%;\n  display: block !important;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__inner-container__1NJsR {\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 100%;\n  gap: 10px;\n  margin: auto;\n  position: relative;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__inner-container__1NJsR.UploadDragger__mini__pSolF {\n  width: 46%;\n  margin: 0;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__inner-container__1NJsR.UploadDragger__mini__pSolF::before {\n  content: \"\";\n  height: calc(100% - 20px);\n  width: 1px;\n  right: 0;\n  background-color: #b3b3b3;\n  position: absolute;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__inner-container__1NJsR span {\n  overflow-wrap: normal;\n  display: block;\n  color: #333;\n  font-size: 1.5em;\n  margin-right: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 3px 5px;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__inner-container__1NJsR p {\n  color: #383737;\n  font-size: 0.8em;\n  font-style: italic;\n  text-align: center;\n  margin: 0;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  width: min(50%, 700px);\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  height: min(70%, 350px);\n  overflow-y: auto;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG:hover {\n  cursor: default;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9 {\n  margin-right: 10px;\n  align-items: center;\n  padding: 10px 10px;\n  display: flex;\n  border-radius: 10px;\n  gap: 10px;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9 span {\n  color: #383737;\n  font-size: 0.8em;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9 .UploadDragger__ant-progress-bg__ACU-m {\n  border-radius: 10px;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9.UploadDragger__success__XNDAE {\n  background-color: #efffde;\n  border: 1px solid #a6ff61;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9.UploadDragger__success__XNDAE svg {\n  color: #52c41a;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9.UploadDragger__error__2xnKR {\n  background-color: rgba(220, 76, 100, 0.1803921569);\n  border: 1px solid rgba(220, 76, 100, 0.2901960784);\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9.UploadDragger__error__2xnKR svg {\n  color: #ff4d4f;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9.UploadDragger__progress__xpby4 {\n  background-color: rgba(66, 72, 255, 0.12);\n  border: 1px solid rgba(0, 53, 255, 0.29);\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9 .UploadDragger__content__iYype {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  width: 100%;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9 .UploadDragger__content__iYype .UploadDragger__meta__OV6z- {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.UploadDragger__upload-dragger__n8jGJ .UploadDragger__container__TXPY8 .UploadDragger__ant-upload-list__Ti0lG .UploadDragger__item__bASx9 .UploadDragger__content__iYype .UploadDragger__meta__OV6z- .UploadDragger__status-error__IcDwl {\n  color: orange;\n}";
+styleInject(css_248z);
+
+const Dragger = Upload$1.Dragger;
+function UploadDragger({ allowMultiple = false, spacingLeft = 0, editor, uploadRequest, onUploadSubmit }) {
+    const [fileList, setFileList] = useState$3([]);
     const setLoader = Recoil_index_24(loaderAtom);
+    const imImageListRef = useRef$6([]);
+    const imageList = Recoil_index_20(imageListAtom);
+    const setShowUploadDragger = Recoil_index_24(showUploadDraggerAtom);
+    const props = ({
+        name: 'file',
+        multiple: allowMultiple,
+        maxCount: allowMultiple ? Infinity : 1,
+        customRequest: async (options) => {
+            const { onSuccess, onError, file, onProgress } = options;
+            const fmData = new FormData();
+            fmData.append("file", file);
+            try {
+                const imImage = await uploadRequest(fmData, (percent) => onProgress && onProgress({ percent }));
+                imImageListRef.current = [...imImageListRef.current, imImage];
+                onSuccess && onSuccess("Ok");
+            }
+            catch (err) {
+                console.log("Eroor: ", err);
+                onError && onError({ err });
+            }
+        },
+        itemRender: (originNode, file, currFileList, actions) => {
+            setFileList(currFileList);
+            const percent = file.percent;
+            const status = file.status;
+            return (jsx("div", { className: `item ${status === "done" && "success"} ${status === "error" && "error"} ${status === "uploading" && "progress"}`, children: jsxs("div", { className: "content", children: [jsxs("div", { className: "meta", children: [jsx("span", { children: file.name }), ["uploading"].includes(status) && jsxs("span", { children: [percent, "%"] }), status === "error" && jsx(AiFillCloseCircle, { cursor: "pointer", onClick: () => actions.remove(), size: 20 }), status === "done" && jsx(AiFillCheckCircle, { size: 20 })] }), ["uploading"].includes(status) && jsx(Progress$1, { percent: percent, strokeColor: 'rgb(66, 72, 255)', trailColor: "white", showInfo: false })] }) }));
+        }
+    });
+    const handleSubmit = async (e) => {
+        e.stopPropagation();
+        if (isUploading || !isSuccess)
+            return;
+        try {
+            setShowUploadDragger(false);
+            setLoader({ title: "Loading Editor", visible: true });
+            await onUploadSubmit(imImageListRef.current);
+        }
+        catch (error) {
+            console.log(error);
+        }
+        finally {
+            setLoader({ visible: false });
+        }
+    };
+    const handleClose = (e) => {
+        e.stopPropagation();
+        setShowUploadDragger(false);
+    };
+    const isUploading = fileList.find(file => file.status === 'uploading');
+    const isSuccess = fileList.find(file => file.status === "done");
+    return (jsx(Fragment, { children: jsx("div", { className: "upload-dragger", children: jsx("div", { className: "container", children: jsxs(Dragger, { ...props, children: [jsxs("div", { className: `inner-container ${fileList.length && "mini"}`, children: [imageList.length ? jsx(BiX, { cursor: 'pointer', className: "close", size: 25, onClick: handleClose }) : "", jsx(AiFillFileAdd, { color: "rgb(66, 72, 255)", size: 50 }), allowMultiple ? jsx("span", { children: "Select Files to Upload" }) : jsx("span", { children: "Select a File to Upload" }), allowMultiple ? jsx("p", { children: "or Drag and Drop, Copy and Paste Files here" }) : jsx("p", { children: "or Drag and Drop, Copy and Pase a File here" })] }), fileList.length ? jsxs("div", { className: `submit`, children: [" ", jsx("button", { className: `save  ${(isUploading || !isSuccess) ? 'disable' : ""}`, onClick: handleSubmit, children: "Submit " }), " "] }) : jsx(Fragment, {})] }) }) }) }));
+}
+
+function DrawingAreaAnnotation({ editor, labelMappings, drawingAreaState, loader, editorSpacingLeft, uploadRequest, onUploadSubmit }) {
+    const setLoader = Recoil_index_24(loaderAtom);
+    const [showUploadDragger, setShowUploadDragger] = Recoil_index_22(showUploadDraggerAtom);
     const cursorTextRef = useRef$6(null);
     useEffect$5(() => {
         async function initEditor() {
@@ -65263,14 +67648,23 @@ function DrawingAreaAnnotation({ editor, labelMappings, drawingAreaState }) {
             catch (error) {
                 console.log(error);
             }
+            if (editor.images.length === 0) {
+                setShowUploadDragger(true);
+            }
             setLoader({ visible: false });
         }
         initEditor();
+        return () => {
+            setShowUploadDragger(false);
+        };
     }, [editor, cursorTextRef, labelMappings, drawingAreaState]);
-    return (jsxs(Fragment, { children: [jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: false, allowLabelUpdate: false }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: false, allowLabelUpdate: false } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 })] }));
+    useEffect$5(() => {
+        setLoader(loader);
+    }, [loader]);
+    return (jsxs(Fragment, { children: [showUploadDragger && jsx(UploadDragger, { editor: editor, spacingLeft: editorSpacingLeft, uploadRequest: uploadRequest, onUploadSubmit: onUploadSubmit }), jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: false, allowLabelUpdate: false }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: false, allowLabelUpdate: false } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 })] }));
 }
 
-class DrawingAreaImage extends Image {
+class DrawingAreaImage extends Image$1 {
     drawingAreas = new Set();
     createBoxAction = null;
     constructor(config) {
@@ -65455,6 +67849,7 @@ function useDrawingAreaAnnotator() {
     const [editor, setEditor] = useState$3(null);
     const editorRef = useRef$6(null);
     const [props, setProps] = useState$3(null);
+    const [loader, setLoader] = useState$3({ visible: false });
     const init = (config) => {
         if (props)
             return;
@@ -65462,7 +67857,7 @@ function useDrawingAreaAnnotator() {
     };
     useEffect$5(() => {
         (async (e) => {
-            if (e || !props)
+            if (!props)
                 return;
             const editor = new DrawingAreaEditor({
                 container: 'drawing-area-editor',
@@ -65475,14 +67870,14 @@ function useDrawingAreaAnnotator() {
             editorRef.current = editor;
             setEditor(editor);
             window.editor = editor;
-        })(editor);
+        })();
         return () => {
             editorRef.current?.removeEventListeners();
         };
     }, [props]);
     const handleSave = () => {
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), editor && props && jsx(DrawingAreaAnnotation, { ...props, editor: editor })] })] })), init, handleSave];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), editor && props && jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor })] })] })), init, handleSave, setLoader];
 }
 
 export { useDrawingAreaAnnotator, useHumanAnnotator };
