@@ -136,10 +136,9 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
     }
 
     async renderAnnotations() {
-        if(!this.legendSelectionLayer) return;
+        if(!this.legendSelectionLayer || !this.activeImage) return;
         this.add(this.legendSelectionLayer);
         this.legendSelectionLayer.removeChildren();
-        console.log(this.activeImage);
         [...(this.activeImage?.legendSelection || [])].forEach(legendSelectionObj => {
             this.legendSelectionLayer.add(legendSelectionObj);
         })

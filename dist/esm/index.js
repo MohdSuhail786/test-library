@@ -67373,7 +67373,7 @@ function LeftSidebar({ editor, config = { showInput: true, showCheckBoxes: true,
     const [renderedAnnotations, setRenderedAnnotations] = useState$3([]);
     const reRenderAnnotations = useCallback$5(lodashExports.debounce((editor, filter) => {
         editor.updateFilter(filter);
-        editor.renderAnnotations();
+        editor.activeImage && editor.renderAnnotations();
     }), []);
     useEffect$5(() => {
         editor.listContainerRef = ref;
@@ -69450,11 +69450,10 @@ class LegendEditor extends Editor {
         });
     }
     async renderAnnotations() {
-        if (!this.legendSelectionLayer)
+        if (!this.legendSelectionLayer || !this.activeImage)
             return;
         this.add(this.legendSelectionLayer);
         this.legendSelectionLayer.removeChildren();
-        console.log(this.activeImage);
         [...(this.activeImage?.legendSelection || [])].forEach(legendSelectionObj => {
             this.legendSelectionLayer.add(legendSelectionObj);
         });

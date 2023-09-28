@@ -35,7 +35,7 @@ export default function LeftSidebar({editor,config={showInput: true,showCheckBox
 
     const reRenderAnnotations = useCallback(debounce((editor,filter)=>{
         editor.updateFilter(filter);
-        editor.renderAnnotations();
+        editor.activeImage && editor.renderAnnotations();
     }),[])
 
     useEffect(() => {
