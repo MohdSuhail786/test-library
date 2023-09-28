@@ -35,24 +35,30 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
     }
 
     async loadImage(img: LegendImage): Promise<void> {
-        if(img.src === '') {
-            setRecoil(loaderAtom, {visible: true, title: "Loading Image..."})
-            const src = await this.loadImageFromServer(img.id())
-            const image = new window.Image();
-            image.crossOrigin = 'Anonymous';
-            image.src = src;
-            image.onload = async (e) => {
-                img.image(image)
-                img.src = src
-                await super.loadImage(img)
+        return new Promise(async(resolve,reject) => {
+            if(img.src === '') {
+                setRecoil(loaderAtom, {visible: true, title: "Loading Image..."})
+                const src = await this.loadImageFromServer(img.id())
+                const image = new window.Image();
+                image.crossOrigin = 'Anonymous';
+                image.src = src;
+                image.onload = async (e) => {
+                    img.image(image)
+                    img.src = src
+                    await super.loadImage(img)
+                    this.renderAnnotations()
+                    img.syncBoxs()
+                    resolve()
+                }
+                image.onerror = () => {reject("Failed to load image.")}
+            } else {
+                await super.loadImage(img);
                 this.renderAnnotations()
+                img.syncBoxs()
+                resolve()
             }
-            image.onerror = () => {throw "Failed to load image."}
-        } else {
-            await super.loadImage(img);
-            this.renderAnnotations()
-        }
-        img.syncBoxs()
+            
+        })
     }
 
     async importLegendState(legendState: LegendState, labelMappings: LabelMappings) {
@@ -86,9 +92,7 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
             })
         }))
         this.syncImageList()
-        await this.loadImage(this.images[0])
-
-        this.renderAnnotations()
+        if(this.images.length) await this.loadImage(this.images[0])
     }
 
     exportLegendState():LegendState {

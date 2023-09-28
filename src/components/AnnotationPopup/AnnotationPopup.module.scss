@@ -36,7 +36,8 @@
                 align-items: center;
                 position: relative;
                 .input {
-                    width: 100%;
+                    width: auto;
+                    flex: 1;
                     height: 35px;
                     line-height: 28px;
                     padding: 0 1rem;
