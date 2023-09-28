@@ -58,7 +58,7 @@ export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) 
             <RecoilNexus />
             <div style={{position: 'relative' }}>
                 <div id={'drawing-area-editor'} style={{width: '100%', height: '100%'}}/>
-                {(editor && props) ? <DrawingAreaAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: '100vh'}}><ImageLoader spacingRight={300} forceShow/></div>}
+                {(editor && props) ? <DrawingAreaAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: 'calc(100vh - 100px)'}}><ImageLoader spacingRight={300} forceShow/></div>}
             </div>
         </RecoilRoot>
     ), init, handleSave, setLoader]

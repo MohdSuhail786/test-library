@@ -15,6 +15,7 @@ import { MdOutlineDirections } from "react-icons/md";
 import { Dropdown } from "antd";
 import { Direction, EditorTypes } from "../../models/Types";
 import { directions } from "../../constants/Constants";
+import { AiOutlineRotateRight } from "react-icons/ai";
 
 const padding = 10;
 const modalWidthHeight = 320;
@@ -25,9 +26,10 @@ interface IProps {
     allowCustomLabels?: boolean
     allowLabelUpdate?: boolean
     showDirection?: boolean
+    showRotation?: boolean
 }
 
-export default function AnnotationPopup({editor, matchEmptyString = false, allowCustomLabels = false, allowLabelUpdate = true, showDirection = true}: IProps) {
+export default function AnnotationPopup({editor, matchEmptyString = false, allowCustomLabels = false, allowLabelUpdate = true, showDirection = true, showRotation=false}: IProps) {
     const appMode = useRecoilValue(appModeAtom)
     const labels = useRecoilValue(labelListAtom)
     const filter = useRecoilValue(filterAtom)
@@ -36,6 +38,7 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
     const [selectedLabel, setSelectedLabel] = useState<number | null>(null)
     const [matchLables, setMatchLables] = useState<Label[]>([])
     const [direction, setDirection] = useState((appMode as any)?.shapeInEditMode?.direction)
+    const [rotation, setRotation] = useState(`${(appMode as any)?.shapeInEditMode?.rotated}`)
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
     const activeRef = useRef<HTMLSpanElement>(null);
@@ -66,7 +69,8 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
     useEffect(()=>{
         if(appMode.mode === "EDIT_MODE" && inputRef.current) {
             setLabelSearch({key: textToHumanReadable(appMode.shapeInEditMode?.label?.name || ""), allowFilter: false});
-            setDirection(appMode.shapeInEditMode.direction)
+            showDirection && setDirection(appMode.shapeInEditMode.direction)
+            showRotation && setRotation(`${(appMode.shapeInEditMode as Box).rotated}`)
             setTimeout(() => {
                 inputRef?.current?.select();
                 inputRef?.current?.focus();
@@ -136,6 +140,7 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
         setLabelSearch({key: '', allowFilter: true})
         setSelectedLabel(null)
         setDirection(null)
+        setRotation('')
         setPosition(null)
     }
     
@@ -161,6 +166,9 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
     const handleSave = () => {
         if(direction !== appMode.shapeInEditMode.direction) {
             appMode.shapeInEditMode.updateDirection(direction as Direction); 
+        }
+        if(showRotation && rotation !== `${(appMode.shapeInEditMode as Box).rotated}`) {
+            (appMode.shapeInEditMode as Box).updateRotated(rotation === 'true')
         }
         if(selectedLabel !== null && matchLables[selectedLabel]) {
             updateLabel(matchLables[selectedLabel])
@@ -196,6 +204,24 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
                         >
                             <span>
                             {direction || <MdOutlineDirections style={{color: 'black',fontSize: 18,marginTop: 5}}/>}
+                            </span>
+                        </Dropdown>}
+                        {showRotation && <Dropdown
+                                placement="bottom"
+                                className={styles["direction-selector"] + " " + styles['icon-right']}
+                                // className={styles['icon-right']}
+                                menu={{
+                                onSelect: (s) =>{setRotation(s.key)},
+                                items:[{key:"True",value:'true'},{key:"False",value:'false'}].map(d => ({
+                                    key: d.value,
+                                    label: d.key
+                                })),
+                                selectable: true,
+                                selectedKeys: [rotation]
+                            }}
+                        >
+                            <span>
+                            {<AiOutlineRotateRight style={{color: 'black',fontSize: 18,marginTop: 5}}/>}
                             </span>
                         </Dropdown>}
                         </div>

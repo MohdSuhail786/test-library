@@ -77,6 +77,7 @@ export type IMBox = {
     labelId: number;
     indexId: number;
     humanAnnotated: boolean;
+    rotation?: boolean;
 };
 export type IMPolygon = {
     points: any[];
@@ -186,6 +187,9 @@ export type ProjectSetupBBox = {
     width: number;
     height: number;
 };
+export type LegendProjectSetupBBox = ProjectSetupBBox & {
+    rotation: boolean;
+};
 export type ProjectSetupState = {
     image: IMImage;
     bounding_box: ProjectSetupBBox[];
@@ -194,7 +198,7 @@ export type DrawingAreaState = ProjectSetupState[];
 export type MetaSelectionState = ProjectSetupState[];
 export type LegendState = {
     image: Omit<IMImage, "src">;
-    bounding_box: ProjectSetupBBox[];
+    bounding_box: LegendProjectSetupBBox[];
 }[];
 export type ImageTypes = DrawingAreaImage | HumanAnnotationImage | MetaSelectionImage | LegendImage;
 export type EditorTypesExceptHA = DrawingAreaEditor | MetaSelectionEditor | LegendEditor;

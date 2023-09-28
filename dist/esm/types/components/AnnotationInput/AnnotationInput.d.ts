@@ -7,6 +7,7 @@ interface IProps {
     index: number;
     showDirection?: boolean;
     allowLabelUpdate?: boolean;
+    showRotation?: boolean;
 }
-export default function AnnotationInput({ shape, index, editor, allowLabelUpdate, showDirection }: IProps): import("react/jsx-runtime").JSX.Element;
+export default function AnnotationInput({ shape, index, editor, allowLabelUpdate, showDirection, showRotation }: IProps): import("react/jsx-runtime").JSX.Element;
 export {};

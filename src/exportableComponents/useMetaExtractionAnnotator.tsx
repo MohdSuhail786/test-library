@@ -58,7 +58,7 @@ export default function useMetaExtractionAnnotator(): [ReactNode, (config: IProp
             <RecoilNexus />
             <div style={{position: 'relative' }}>
                 <div id={'meta-selection-area-editor'} style={{width: '100%', height: '100%'}}/>
-                {(editor && props) ? <MetaSelectionAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: '100vh'}}><ImageLoader spacingRight={300} forceShow/></div>}
+                {(editor && props) ? <MetaSelectionAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: 'calc(100vh - 100px)'}}><ImageLoader spacingRight={300} forceShow/></div>}
             </div>
         </RecoilRoot>
     ), init, handleSave, setLoader]

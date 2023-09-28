@@ -85,6 +85,8 @@ export class LegendImage<Config extends LegendImageConfig = LegendImageConfig> e
         const label = this.editor.labels.find(label => label.id === imBox.labelId)
         const box = new Box({
             ...imBox,
+            rotation: 0,
+            rotated: imBox?.rotation,
             draggable: true,
             listening: false,
             image: this,

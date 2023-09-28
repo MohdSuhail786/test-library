@@ -12,6 +12,7 @@ import ActionsStore from "../../actions/ActionStore";
 import { RemovePolygonAction } from "../../actions/RemovePolygonAction";
 import { Label } from "../../models/Label";
 import { directions } from "../../constants/Constants";
+import { AiOutlineRotateRight } from "react-icons/ai";
 
 interface IProps {
     editor: EditorTypes
@@ -19,9 +20,10 @@ interface IProps {
     index: number
     showDirection?: boolean
     allowLabelUpdate?: boolean
+    showRotation?: boolean
 }
 
-export default function AnnotationInput({shape, index, editor,allowLabelUpdate=true, showDirection = true}: IProps) {
+export default function AnnotationInput({shape, index, editor,allowLabelUpdate=true, showDirection = true,showRotation=false}: IProps) {
     const labels = useRecoilValue(labelListAtom)
     const appMode = useRecoilValue(appModeAtom)
     
@@ -49,7 +51,7 @@ export default function AnnotationInput({shape, index, editor,allowLabelUpdate=t
     return (
         <>
             <div className={`${styles['label-input-item']} ${active ? styles['active']:''}`} onMouseOver={() => shape.showAnchors()} onMouseOut={() => !active && shape.hideAnchors()}>
-                <div className={styles["color"]} style={{backgroundColor: shape.label?.stroke}} onClick={handleClick}/>
+                <div className={styles["color"]} style={{backgroundColor: shape.label?.stroke || 'rgb(0, 0, 0,0.1)'}} onClick={handleClick}/>
                 {
                     allowLabelUpdate ? <Select
                         showSearch
@@ -89,6 +91,24 @@ export default function AnnotationInput({shape, index, editor,allowLabelUpdate=t
                 >
                     <span>
                     {shape.direction || <MdOutlineDirections style={{color: 'black',fontSize: 18}}/>}
+                    </span>
+                </Dropdown>}
+                {showRotation && <Dropdown
+                        placement="bottom"
+                        className={styles["direction-selector"] + " " + styles['icon-right']}
+                        // className={styles['icon-right']}
+                        menu={{
+                        onSelect: (s) =>{(shape as Box).updateRotated(s.key === 'true')},
+                        items:[{key:"True",value:'true'},{key:"False",value:'false'}].map(d => ({
+                            key: d.value,
+                            label: d.key
+                        })),
+                        selectable: true,
+                        selectedKeys: [`${(shape as Box).rotated}`]
+                    }}
+                >
+                    <span>
+                    {<AiOutlineRotateRight style={{color: 'black',fontSize: 18}}/>}
                     </span>
                 </Dropdown>}
                 <RiDeleteBin6Line style={{fontSize: 17,cursor: "pointer",color: '#d32424f0'}} onClick={handleDelete}/>

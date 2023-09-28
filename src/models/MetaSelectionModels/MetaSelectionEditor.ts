@@ -81,7 +81,7 @@ export class MetaSelectionEditor<Config extends MetaSelectionEditorConfig = Meta
                 height: box.rect.height(),
                 id: box.indexId === -1 ? null : box.indexId,
                 label: box.label?.name || ""
-            }))
+            })).filter(box => !!box.label)
         }]
     }
 

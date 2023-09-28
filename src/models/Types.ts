@@ -86,7 +86,8 @@ export type IMBox = {
     direction: Direction,
     labelId: number,
     indexId: number,
-    humanAnnotated: boolean
+    humanAnnotated: boolean,
+    rotation?: boolean
 }
 
 export type IMPolygon = {
@@ -208,6 +209,10 @@ export type ProjectSetupBBox = {
     height: number
 }
 
+export type LegendProjectSetupBBox = ProjectSetupBBox & {
+    rotation: boolean
+}
+
 export type ProjectSetupState = {
     image: IMImage,
     bounding_box: ProjectSetupBBox[]
@@ -215,7 +220,7 @@ export type ProjectSetupState = {
 
 export type DrawingAreaState = ProjectSetupState[]
 export type MetaSelectionState = ProjectSetupState[]
-export type LegendState = {image: Omit<IMImage,"src">,bounding_box: ProjectSetupBBox[]}[]
+export type LegendState = {image: Omit<IMImage,"src">,bounding_box: LegendProjectSetupBBox[]}[]
 
 export type ImageTypes = DrawingAreaImage | HumanAnnotationImage | MetaSelectionImage | LegendImage
 

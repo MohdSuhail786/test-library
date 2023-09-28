@@ -60,7 +60,7 @@ export default function useLegendAnnotator(): [ReactNode, (config: IProps) => an
             <RecoilNexus />
             <div style={{position: 'relative' }}>
                 <div id={'legend-editor'} style={{width: '100%', height: '100%'}}/>
-                {(editor && props) ? <LegendAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: '100vh'}}><ImageLoader spacingRight={300} forceShow/></div>}
+                {(editor && props) ? <LegendAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: 'calc(100vh - 100px)'}}><ImageLoader spacingRight={300} forceShow/></div>}
             </div>
         </RecoilRoot>
     ), init, handleSave, setLoader]

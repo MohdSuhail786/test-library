@@ -21460,6 +21460,7 @@ class Box extends Konva.Group {
     direction;
     image = null;
     indexId;
+    rotated;
     humanAnnotated;
     editor = null;
     anchors = [{ pos: [0, 0], name: 'top-left' }, { pos: [1, 0], name: "top-right" }, { pos: [0, 1], name: 'bottom-left' }, { pos: [1, 1], name: 'bottom-right' }];
@@ -21497,6 +21498,7 @@ class Box extends Konva.Group {
         this.humanAnnotated = config.humanAnnotated;
         this.indexId = config.indexId ?? -1;
         this.image = config.image;
+        this.rotated = !!config.rotated;
         this.editor = this.image.editor;
         this.label = config?.label || null;
         this.initAnchors();
@@ -21694,6 +21696,10 @@ class Box extends Konva.Group {
     }
     updateDirection(direction) {
         this.direction = direction;
+        this.image?.syncBoxs();
+    }
+    updateRotated(value) {
+        this.rotated = value;
         this.image?.syncBoxs();
     }
 }
@@ -49205,9 +49211,24 @@ const LabelList = {
     MetaDataArea: ["title", "project", "document_no.", "address"]
 };
 
+// THIS FILE IS AUTO GENERATED
+function AiFillCheckCircle (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"}}]})(props);
+}function AiFillCloseCircle (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024","fill":"currentColor","fillRule":"evenodd"},"child":[{"tag":"path","attr":{"d":"M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64Zm127.978 274.82-.034.006c-.023.007-.042.018-.083.059L512 466.745l-127.86-127.86c-.042-.041-.06-.052-.084-.059a.118.118 0 0 0-.07 0c-.022.007-.041.018-.082.059l-45.02 45.019c-.04.04-.05.06-.058.083a.118.118 0 0 0 0 .07l.01.022a.268.268 0 0 0 .049.06L466.745 512l-127.86 127.862c-.041.04-.052.06-.059.083a.118.118 0 0 0 0 .07c.007.022.018.041.059.082l45.019 45.02c.04.04.06.05.083.058a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059L512 557.254l127.862 127.861c.04.041.06.052.083.059a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059l45.02-45.019c.04-.04.05-.06.058-.083a.118.118 0 0 0 0-.07l-.01-.022a.268.268 0 0 0-.049-.06L557.254 512l127.861-127.86c.041-.042.052-.06.059-.084a.118.118 0 0 0 0-.07c-.007-.022-.018-.041-.059-.082l-45.019-45.02c-.04-.04-.06-.05-.083-.058a.118.118 0 0 0-.07 0Z"}}]})(props);
+}function AiFillFileAdd (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M480 580H372a8 8 0 0 0-8 8v48a8 8 0 0 0 8 8h108v108a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8V644h108a8 8 0 0 0 8-8v-48a8 8 0 0 0-8-8H544V472a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v108zm374.6-291.3c6 6 9.4 14.1 9.4 22.6V928c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32h424.7c8.5 0 16.7 3.4 22.7 9.4l215.2 215.3zM790.2 326L602 137.8V326h188.2z"}}]})(props);
+}function AiOutlineMinus (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M872 474H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h720c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"}}]})(props);
+}function AiOutlinePlus (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"}},{"tag":"path","attr":{"d":"M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"}}]})(props);
+}function AiOutlineRotateRight (props) {
+  return GenIcon({"tag":"svg","attr":{"t":"1569683458761","viewBox":"0 0 1024 1024","version":"1.1"},"child":[{"tag":"defs","attr":{},"child":[]},{"tag":"path","attr":{"d":"M480.5 251.2c13-1.6 25.9-2.4 38.8-2.5v63.9c0 6.5 7.5 10.1 12.6 6.1L660 217.6c4-3.2 4-9.2 0-12.3l-128-101c-5.1-4-12.6-0.4-12.6 6.1l-0.2 64c-118.6 0.5-235.8 53.4-314.6 154.2-69.6 89.2-95.7 198.6-81.1 302.4h74.9c-0.9-5.3-1.7-10.7-2.4-16.1-5.1-42.1-2.1-84.1 8.9-124.8 11.4-42.2 31-81.1 58.1-115.8 27.2-34.7 60.3-63.2 98.4-84.3 37-20.6 76.9-33.6 119.1-38.8z"}},{"tag":"path","attr":{"d":"M880 418H352c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H396V494h440v326z"}}]})(props);
+}
+
 const padding = 10;
 const modalWidthHeight = 320;
-function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels = false, allowLabelUpdate = true, showDirection = true }) {
+function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels = false, allowLabelUpdate = true, showDirection = true, showRotation = false }) {
     const appMode = Recoil_index_20(appModeAtom);
     const labels = Recoil_index_20(labelListAtom);
     const filter = Recoil_index_20(filterAtom);
@@ -49216,6 +49237,7 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
     const [selectedLabel, setSelectedLabel] = useState$3(null);
     const [matchLables, setMatchLables] = useState$3([]);
     const [direction, setDirection] = useState$3(appMode?.shapeInEditMode?.direction);
+    const [rotation, setRotation] = useState$3(`${appMode?.shapeInEditMode?.rotated}`);
     const inputRef = useRef$6(null);
     const listRef = useRef$6(null);
     const activeRef = useRef$6(null);
@@ -49244,7 +49266,8 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
     useEffect$5(() => {
         if (appMode.mode === "EDIT_MODE" && inputRef.current) {
             setLabelSearch({ key: textToHumanReadable(appMode.shapeInEditMode?.label?.name || ""), allowFilter: false });
-            setDirection(appMode.shapeInEditMode.direction);
+            showDirection && setDirection(appMode.shapeInEditMode.direction);
+            showRotation && setRotation(`${appMode.shapeInEditMode.rotated}`);
             setTimeout(() => {
                 inputRef?.current?.select();
                 inputRef?.current?.focus();
@@ -49313,6 +49336,7 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
         setLabelSearch({ key: '', allowFilter: true });
         setSelectedLabel(null);
         setDirection(null);
+        setRotation('');
         setPosition(null);
     };
     const handleDelete = async () => {
@@ -49337,6 +49361,9 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
         if (direction !== appMode.shapeInEditMode.direction) {
             appMode.shapeInEditMode.updateDirection(direction);
         }
+        if (showRotation && rotation !== `${appMode.shapeInEditMode.rotated}`) {
+            appMode.shapeInEditMode.updateRotated(rotation === 'true');
+        }
         if (selectedLabel !== null && matchLables[selectedLabel]) {
             updateLabel(matchLables[selectedLabel]);
         }
@@ -49352,7 +49379,17 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
                                             })),
                                             selectable: true,
                                             selectedKeys: [direction]
-                                        }, children: jsx("span", { children: direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), (filter.annotationType !== 'text' && allowLabelUpdate) && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? "Type a label for this box." : "Try using different search key." }) : jsx(Fragment, { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? jsx("p", { children: "Type a label for this box." }) :
+                                        }, children: jsx("span", { children: direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) }), showRotation && jsx(Dropdown$1, { placement: "bottom", className: styles$4["direction-selector"] + " " + styles$4['icon-right'], 
+                                        // className={styles['icon-right']}
+                                        menu: {
+                                            onSelect: (s) => { setRotation(s.key); },
+                                            items: [{ key: "True", value: 'true' }, { key: "False", value: 'false' }].map(d => ({
+                                                key: d.value,
+                                                label: d.key
+                                            })),
+                                            selectable: true,
+                                            selectedKeys: [rotation]
+                                        }, children: jsx("span", { children: jsx(AiOutlineRotateRight, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), (filter.annotationType !== 'text' && allowLabelUpdate) && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? "Type a label for this box." : "Try using different search key." }) : jsx(Fragment, { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? jsx("p", { children: "Type a label for this box." }) :
                                         jsxs("p", { style: { cursor: "pointer" }, onClick: createNewLabel, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })) })] })] }) }));
 }
 
@@ -49374,19 +49411,6 @@ function LiaHandPaperSolid (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 32 32"},"child":[{"tag":"path","attr":{"d":"M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 L 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 C 19.875 5 23.261719 6.984375 25.21875 10 L 20 10 L 20 12 L 28 12 L 28 4 L 26 4 L 26 7.71875 C 23.617188 4.84375 20.019531 3 16 3 Z"}}]})(props);
 }function LiaUndoAltSolid (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 32 32"},"child":[{"tag":"path","attr":{"d":"M 16 3 C 12 3 8.4 4.7992187 6 7.6992188 L 6 4 L 4 4 L 4 12 L 12 12 L 12 10 L 6.8007812 10 C 8.8007812 7 12.1 5 16 5 C 22.1 5 27 9.9 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 L 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 8.8 23.2 3 16 3 z"}}]})(props);
-}
-
-// THIS FILE IS AUTO GENERATED
-function AiFillCheckCircle (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"}}]})(props);
-}function AiFillCloseCircle (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024","fill":"currentColor","fillRule":"evenodd"},"child":[{"tag":"path","attr":{"d":"M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64Zm127.978 274.82-.034.006c-.023.007-.042.018-.083.059L512 466.745l-127.86-127.86c-.042-.041-.06-.052-.084-.059a.118.118 0 0 0-.07 0c-.022.007-.041.018-.082.059l-45.02 45.019c-.04.04-.05.06-.058.083a.118.118 0 0 0 0 .07l.01.022a.268.268 0 0 0 .049.06L466.745 512l-127.86 127.862c-.041.04-.052.06-.059.083a.118.118 0 0 0 0 .07c.007.022.018.041.059.082l45.019 45.02c.04.04.06.05.083.058a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059L512 557.254l127.862 127.861c.04.041.06.052.083.059a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059l45.02-45.019c.04-.04.05-.06.058-.083a.118.118 0 0 0 0-.07l-.01-.022a.268.268 0 0 0-.049-.06L557.254 512l127.861-127.86c.041-.042.052-.06.059-.084a.118.118 0 0 0 0-.07c-.007-.022-.018-.041-.059-.082l-45.019-45.02c-.04-.04-.06-.05-.083-.058a.118.118 0 0 0-.07 0Z"}}]})(props);
-}function AiFillFileAdd (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M480 580H372a8 8 0 0 0-8 8v48a8 8 0 0 0 8 8h108v108a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8V644h108a8 8 0 0 0 8-8v-48a8 8 0 0 0-8-8H544V472a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v108zm374.6-291.3c6 6 9.4 14.1 9.4 22.6V928c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32h424.7c8.5 0 16.7 3.4 22.7 9.4l215.2 215.3zM790.2 326L602 137.8V326h188.2z"}}]})(props);
-}function AiOutlineMinus (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M872 474H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h720c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"}}]})(props);
-}function AiOutlinePlus (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"}},{"tag":"path","attr":{"d":"M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"}}]})(props);
 }
 
 // THIS FILE IS AUTO GENERATED
@@ -49559,7 +49583,7 @@ function RiDeleteBin6Line (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 24 24"},"child":[{"tag":"path","attr":{"d":"M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"}}]})(props);
 }
 
-function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDirection = true }) {
+function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDirection = true, showRotation = false }) {
     const labels = Recoil_index_20(labelListAtom);
     const appMode = Recoil_index_20(appModeAtom);
     const handleDelete = async () => {
@@ -49580,7 +49604,7 @@ function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDi
         editor.setMode({ mode: 'EDIT_MODE', shapeInEditMode: shape, visible: true, scrollIntoView: false });
     };
     const active = appMode.mode === "EDIT_MODE" && appMode.shapeInEditMode._id === shape._id;
-    return (jsx(Fragment, { children: jsxs("div", { className: `${styles['label-input-item']} ${active ? styles['active'] : ''}`, onMouseOver: () => shape.showAnchors(), onMouseOut: () => !active && shape.hideAnchors(), children: [jsx("div", { className: styles["color"], style: { backgroundColor: shape.label?.stroke }, onClick: handleClick }), allowLabelUpdate ? jsx(Select$1, { showSearch: true, className: styles["label-selector"], placeholder: "Search", value: shape.label?.name, bordered: false, suffixIcon: null, disabled: !allowLabelUpdate, optionFilterProp: "children", onChange: handleLabelChange, 
+    return (jsx(Fragment, { children: jsxs("div", { className: `${styles['label-input-item']} ${active ? styles['active'] : ''}`, onMouseOver: () => shape.showAnchors(), onMouseOut: () => !active && shape.hideAnchors(), children: [jsx("div", { className: styles["color"], style: { backgroundColor: shape.label?.stroke || 'rgb(0, 0, 0,0.1)' }, onClick: handleClick }), allowLabelUpdate ? jsx(Select$1, { showSearch: true, className: styles["label-selector"], placeholder: "Search", value: shape.label?.name, bordered: false, suffixIcon: null, disabled: !allowLabelUpdate, optionFilterProp: "children", onChange: handleLabelChange, 
                     // onSearch={onSearch}
                     // filterOption={filterOption}
                     style: { flex: 1 }, options: labels.map(label => ({
@@ -49596,7 +49620,17 @@ function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDi
                         })),
                         selectable: true,
                         selectedKeys: [shape.direction]
-                    }, children: jsx("span", { children: shape.direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18 } }) }) }), jsx(RiDeleteBin6Line, { style: { fontSize: 17, cursor: "pointer", color: '#d32424f0' }, onClick: handleDelete })] }) }));
+                    }, children: jsx("span", { children: shape.direction || jsx(MdOutlineDirections, { style: { color: 'black', fontSize: 18 } }) }) }), showRotation && jsx(Dropdown$1, { placement: "bottom", className: styles["direction-selector"] + " " + styles['icon-right'], 
+                    // className={styles['icon-right']}
+                    menu: {
+                        onSelect: (s) => { shape.updateRotated(s.key === 'true'); },
+                        items: [{ key: "True", value: 'true' }, { key: "False", value: 'false' }].map(d => ({
+                            key: d.value,
+                            label: d.key
+                        })),
+                        selectable: true,
+                        selectedKeys: [`${shape.rotated}`]
+                    }, children: jsx("span", { children: jsx(AiOutlineRotateRight, { style: { color: 'black', fontSize: 18 } }) }) }), jsx(RiDeleteBin6Line, { style: { fontSize: 17, cursor: "pointer", color: '#d32424f0' }, onClick: handleDelete })] }) }));
 }
 
 var lib = {};
@@ -67330,7 +67364,7 @@ lodash.exports;
 
 var lodashExports = lodash.exports;
 
-function LeftSidebar({ editor, config = { showInput: true, showCheckBoxes: true, showDirection: true, allowLabelUpdate: true } }) {
+function LeftSidebar({ editor, config = { showInput: true, showCheckBoxes: true, showDirection: true, allowLabelUpdate: true, showRotation: false } }) {
     const entities = Recoil_index_20(entityListAtom);
     const polygons = Recoil_index_20(polygonListAtom);
     const texts = Recoil_index_20(textListAtom);
@@ -67368,7 +67402,7 @@ function LeftSidebar({ editor, config = { showInput: true, showCheckBoxes: true,
                                 { label: jsx("div", { className: styles$1['entity-class-filter-item'], children: jsx("span", { children: "Text" }) }), value: 'text' },
                             ] })] }), renderedAnnotations.length ? jsx("div", { className: styles$1["label-input-list-container"], children: jsx(ViewportList, { ref: ref, 
                         // viewportRef={ref}
-                        items: renderedAnnotations.sort((a, b) => a._id - b._id).map((shape, i) => { shape.setAttr('virtualIndex', i); return shape; }), children: (shape, index) => (jsx(AnnotationInput, { index: index, editor: editor, shape: shape, showDirection: config.showDirection, allowLabelUpdate: config.allowLabelUpdate }, shape._id)) }) })
+                        items: renderedAnnotations.sort((a, b) => a._id - b._id).map((shape, i) => { shape.setAttr('virtualIndex', i); return shape; }), children: (shape, index) => (jsx(AnnotationInput, { index: index, editor: editor, shape: shape, showDirection: config.showDirection, showRotation: config.showRotation, allowLabelUpdate: config.allowLabelUpdate }, shape._id)) }) })
                     :
                         jsx("div", { style: { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: '100%' }, children: jsx(Empty$1, { style: { flex: 1 }, image: Empty$1.PRESENTED_IMAGE_SIMPLE }) })] }) }));
 }
@@ -67499,7 +67533,7 @@ class Editor extends Konva.Stage {
         this.cursorTextElementRef = cursorRef;
     }
     showCursorTextElement(config) {
-        if (!this.cursorTextElementRef.current)
+        if (!this.cursorTextElementRef.current || !config.text)
             return;
         this.cursorTextElementRef.current.style.display = 'block';
         this.cursorTextElementRef.current.style.left = `${config.x}px`;
@@ -67895,6 +67929,7 @@ class CreateBoxAction extends Action {
                 image: this.image,
                 label: null,
                 direction: 'E',
+                rotated: true,
                 humanAnnotated: true,
                 indexId: -1
             });
@@ -68031,6 +68066,8 @@ class HumanAnnotationImage extends Image$1 {
         const label = this.editor.labels.find(label => label.id === imBox.labelId);
         const box = new Box({
             ...imBox,
+            rotation: 0,
+            rotated: imBox?.rotation,
             draggable: true,
             listening: false,
             image: this,
@@ -68746,6 +68783,8 @@ class DrawingAreaImage extends Image$1 {
         const label = this.editor.labels.find(label => label.id === imBox.labelId);
         const box = new Box({
             ...imBox,
+            rotation: 0,
+            rotated: imBox?.rotation,
             draggable: true,
             listening: false,
             image: this,
@@ -68824,7 +68863,7 @@ class DrawingAreaEditor extends Editor {
                     height: box.rect.height(),
                     id: box.indexId === -1 ? null : box.indexId,
                     label: box.label?.name || ""
-                }))
+                })).filter(box => !!box.label)
             }];
     }
     addImage(imImage) {
@@ -68914,7 +68953,7 @@ function useDrawingAreaAnnotator() {
         const editorState = editorRef.current.exportDrawingAreaState();
         return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: '100vh' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
 }
 
 class MetaSelectionImage extends Image$1 {
@@ -68987,6 +69026,8 @@ class MetaSelectionImage extends Image$1 {
         const label = this.editor.labels.find(label => label.id === imBox.labelId);
         const box = new Box({
             ...imBox,
+            rotation: 0,
+            rotated: imBox?.rotation,
             draggable: true,
             listening: false,
             image: this,
@@ -69074,7 +69115,7 @@ class MetaSelectionEditor extends Editor {
                     height: box.rect.height(),
                     id: box.indexId === -1 ? null : box.indexId,
                     label: box.label?.name || ""
-                }))
+                })).filter(box => !!box.label)
             }];
     }
     addImage(imImage) {
@@ -69197,7 +69238,7 @@ function useMetaExtractionAnnotator() {
         const editorState = editorRef.current.exportMetaSelectionState();
         return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'meta-selection-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(MetaSelectionAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: '100vh' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'meta-selection-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(MetaSelectionAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
 }
 
 class LegendImage extends Image$1 {
@@ -69270,6 +69311,8 @@ class LegendImage extends Image$1 {
         const label = this.editor.labels.find(label => label.id === imBox.labelId);
         const box = new Box({
             ...imBox,
+            rotation: 0,
+            rotated: imBox?.rotation,
             draggable: true,
             listening: false,
             image: this,
@@ -69327,6 +69370,7 @@ class LegendEditor extends Editor {
             await super.loadImage(img);
             this.renderAnnotations();
         }
+        img.syncBoxs();
     }
     async importLegendState(legendState, labelMappings) {
         if (legendState.length === 0)
@@ -69352,7 +69396,8 @@ class LegendEditor extends Editor {
                     labelId: label?.id ?? -1,
                     direction: 'E',
                     humanAnnotated: false,
-                    indexId: box.id || -1
+                    indexId: box.id || -1,
+                    rotation: box.rotation
                 };
                 image.addImBox(imBox);
             });
@@ -69362,20 +69407,21 @@ class LegendEditor extends Editor {
         this.renderAnnotations();
     }
     exportLegendState() {
-        return [{
-                image: {
-                    id: this.activeImage?.id() || '',
-                    name: this.activeImage?.name() || ''
-                },
-                bounding_box: [...this.activeImage?.legendSelection || []].map(box => ({
-                    x: box.x(),
-                    y: box.y(),
-                    width: box.rect.width(),
-                    height: box.rect.height(),
-                    id: box.indexId === -1 ? null : box.indexId,
-                    label: box.label?.name || ""
-                }))
-            }];
+        return this.images.map(image => ({
+            image: {
+                id: image?.id() || '',
+                name: image?.name() || ''
+            },
+            bounding_box: [...image?.legendSelection || []].map(box => ({
+                x: box.x(),
+                y: box.y(),
+                width: box.rect.width(),
+                height: box.rect.height(),
+                id: box.indexId === -1 ? null : box.indexId,
+                label: box.label?.name || "",
+                rotation: box.rotated
+            })).filter(box => !!box.label)
+        }));
     }
     addImage(imImage) {
         return new Promise((resolve, reject) => {
@@ -69479,7 +69525,7 @@ function LegendAnnotation({ editor, labelMappings, legendState, loader, editorSp
     useEffect$5(() => {
         setLoader(loader);
     }, [loader]);
-    return (jsxs(Fragment, { children: [showUploadDragger && jsx(UploadDragger, { editor: editor, spacingLeft: editorSpacingLeft, uploadRequest: uploadRequest, onUploadSubmit: onUploadSubmit }), jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: true, allowLabelUpdate: true, allowCustomLabels: false }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: true, allowLabelUpdate: true } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 }), jsx(ImageListPagination, { editor: editor, spacingRight: 300 })] }));
+    return (jsxs(Fragment, { children: [showUploadDragger && jsx(UploadDragger, { editor: editor, spacingLeft: editorSpacingLeft, uploadRequest: uploadRequest, onUploadSubmit: onUploadSubmit }), jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: false, showRotation: true, allowLabelUpdate: true, allowCustomLabels: false }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: false, allowLabelUpdate: true, showRotation: true } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 }), jsx(ImageListPagination, { editor: editor, spacingRight: 300 })] }));
 }
 
 function useLegendAnnotator() {
@@ -69519,7 +69565,7 @@ function useLegendAnnotator() {
         const editorState = editorRef.current.exportLegendState();
         return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'legend-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(LegendAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: '100vh' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'legend-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(LegendAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
 }
 
 export { useDrawingAreaAnnotator, useHumanAnnotator, useLegendAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };

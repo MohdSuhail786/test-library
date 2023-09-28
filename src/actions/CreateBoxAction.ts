@@ -37,6 +37,7 @@ export class CreateBoxAction extends Action<Box> {
                 image: this.image,
                 label: null,
                 direction: 'E',
+                rotated: true,
                 humanAnnotated: true,
                 indexId: -1
             })

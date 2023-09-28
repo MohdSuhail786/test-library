@@ -10,6 +10,7 @@ import { Polygon } from "../../models/Polygon";
 import { entityListAtom, polygonListAtom, textListAtom } from "../../state/editor";
 import { ViewportList, ViewportListRef } from "react-viewport-list";
 import { debounce } from "lodash";
+import { LegendEditor } from "../../models/LegendAnnotationModels/LegendEditor";
 
 interface IProps {
     editor: EditorTypes
@@ -18,10 +19,11 @@ interface IProps {
         showCheckBoxes?: boolean,
         showDirection?: boolean,
         allowLabelUpdate?: boolean
+        showRotation?: boolean
     }
 }
 
-export default function LeftSidebar({editor,config={showInput: true,showCheckBoxes: true, showDirection: true, allowLabelUpdate: true}}: IProps) {
+export default function LeftSidebar({editor,config={showInput: true,showCheckBoxes: true, showDirection: true, allowLabelUpdate: true, showRotation: false}}: IProps) {
 
     const entities = useRecoilValue(entityListAtom)
     const polygons = useRecoilValue(polygonListAtom)
@@ -86,7 +88,7 @@ export default function LeftSidebar({editor,config={showInput: true,showCheckBox
                             // viewportRef={ref}
                             items={renderedAnnotations.sort((a,b) => a._id - b._id).map((shape,i) => {shape.setAttr('virtualIndex',i); return shape;})}
                         >
-                            {(shape,index) => (<AnnotationInput key={shape._id} index={index} editor={editor} shape={shape} showDirection={config.showDirection} allowLabelUpdate={config.allowLabelUpdate}/> )}
+                            {(shape,index) => (<AnnotationInput key={shape._id} index={index} editor={editor} shape={shape} showDirection={config.showDirection} showRotation={config.showRotation} allowLabelUpdate={config.allowLabelUpdate}/> )}
                         </ViewportList>
                     </div>
                     : 

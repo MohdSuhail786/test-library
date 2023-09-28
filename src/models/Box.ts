@@ -14,7 +14,8 @@ export interface GroupConfig extends Konva.GroupConfig {
     image: ImageTypes,
     indexId: number,
     humanAnnotated: boolean,
-    label?: Label | null
+    label?: Label | null,
+    rotated?: boolean;
     direction: Direction
 }
 
@@ -25,6 +26,7 @@ export class Box<Config extends GroupConfig = GroupConfig> extends Konva.Group {
     direction!: Direction;
     image: ImageTypes | null = null;
     indexId!: number;
+    rotated!: boolean;
     humanAnnotated!: boolean;
     editor: EditorTypes | null = null;
     anchors: {rect?: Konva.Rect, pos: [number,number], name: string}[] =  [{pos: [0,0], name: 'top-left'}, {pos: [1,0], name: "top-right"}, {pos: [0,1], name: 'bottom-left'}, {pos: [1,1], name: 'bottom-right'}]
@@ -67,6 +69,7 @@ export class Box<Config extends GroupConfig = GroupConfig> extends Konva.Group {
         this.humanAnnotated = config.humanAnnotated
         this.indexId = config.indexId ?? -1
         this.image = config.image;
+        this.rotated = !!config.rotated;
         this.editor = this.image.editor;
         this.label = config?.label || null;
         this.initAnchors()
@@ -281,6 +284,11 @@ export class Box<Config extends GroupConfig = GroupConfig> extends Konva.Group {
 
     updateDirection(direction: Direction) {
         this.direction = direction;
+        this.image?.syncBoxs()
+    }
+
+    updateRotated(value: boolean) {
+        this.rotated = value;
         this.image?.syncBoxs()
     }
 

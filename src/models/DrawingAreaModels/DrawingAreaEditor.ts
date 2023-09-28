@@ -72,7 +72,7 @@ export class DrawingAreaEditor<Config extends DrawingAreaConfig = DrawingAreaCon
                 height: box.rect.height(),
                 id: box.indexId === -1 ? null : box.indexId,
                 label: box.label?.name || ""
-            }))
+            })).filter(box => !!box.label)
         }]
     }
 

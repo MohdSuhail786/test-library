@@ -83,6 +83,9 @@ type ProjectSetupBBox = {
     width: number;
     height: number;
 };
+type LegendProjectSetupBBox = ProjectSetupBBox & {
+    rotation: boolean;
+};
 type ProjectSetupState = {
     image: IMImage;
     bounding_box: ProjectSetupBBox[];
@@ -91,7 +94,7 @@ type DrawingAreaState = ProjectSetupState[];
 type MetaSelectionState = ProjectSetupState[];
 type LegendState = {
     image: Omit<IMImage, "src">;
-    bounding_box: ProjectSetupBBox[];
+    bounding_box: LegendProjectSetupBBox[];
 }[];
 
 interface IProps$3 {

@@ -9,6 +9,7 @@ export interface GroupConfig extends Konva.GroupConfig {
     indexId: number;
     humanAnnotated: boolean;
     label?: Label | null;
+    rotated?: boolean;
     direction: Direction;
 }
 export declare class Box<Config extends GroupConfig = GroupConfig> extends Konva.Group {
@@ -17,6 +18,7 @@ export declare class Box<Config extends GroupConfig = GroupConfig> extends Konva
     direction: Direction;
     image: ImageTypes | null;
     indexId: number;
+    rotated: boolean;
     humanAnnotated: boolean;
     editor: EditorTypes | null;
     anchors: {
@@ -50,4 +52,5 @@ export declare class Box<Config extends GroupConfig = GroupConfig> extends Konva
     mouseLeaveAction(event: KonvaEventObject<MouseEvent>): void;
     updateLabel(label: Label): void;
     updateDirection(direction: Direction): void;
+    updateRotated(value: boolean): void;
 }

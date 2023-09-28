@@ -52,6 +52,7 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
             await super.loadImage(img);
             this.renderAnnotations()
         }
+        img.syncBoxs()
     }
 
     async importLegendState(legendState: LegendState, labelMappings: LabelMappings) {
@@ -78,7 +79,8 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
                     labelId: label?.id ?? -1,
                     direction: 'E', 
                     humanAnnotated: false,
-                    indexId: box.id || -1
+                    indexId: box.id || -1,
+                    rotation: box.rotation
                 }
                 image.addImBox(imBox)
             })
@@ -90,20 +92,21 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
     }
 
     exportLegendState():LegendState {
-        return [{
+        return this.images.map(image => ({
             image: {
-                id: this.activeImage?.id() || '',
-                name: this.activeImage?.name() || ''
+                id: image?.id() || '',
+                name: image?.name() || ''
             },
-            bounding_box: [...this.activeImage?.legendSelection || []].map(box => ({
+            bounding_box: [...image?.legendSelection || []].map(box => ({
                 x: box.x(),
                 y: box.y(),
                 width: box.rect.width(),
                 height: box.rect.height(),
                 id: box.indexId === -1 ? null : box.indexId,
-                label: box.label?.name || ""
-            }))
-        }]
+                label: box.label?.name || "",
+                rotation: box.rotated
+            })).filter(box => !!box.label)
+        }))
     }
 
     addImage(imImage: IMImage): Promise<LegendImage> {

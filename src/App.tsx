@@ -1,7 +1,7 @@
 import { LabelList, graphJSON, humanAnnotations, imageSrc, labelMappings } from "./constants/Constants"
 import { ReactNode, useEffect } from "react";
 import useDrawingAreaAnnotator from "./exportableComponents/useDrawingAreaAnnotator";
-import { DrawingAreaState, GraphJSON, HumanAnnotations, MetaSelectionState } from "./models/Types";
+import { DrawingAreaState, GraphJSON, HumanAnnotations, LegendState, MetaSelectionState } from "./models/Types";
 import { useHumanAnnotator, useLegendAnnotator } from "./exportableComponents";
 
 
@@ -85,7 +85,8 @@ export function DrawingAreaModal(props: IProps) {
                 "x": 0,
                 "y": 0,
                 "width": 5600,
-                "height": 4550
+                "height": 4550,
+                "rotation": true
             }
         ]},
         {image: {id: '2', name: 'Any Name'}, bounding_box: [
@@ -95,10 +96,11 @@ export function DrawingAreaModal(props: IProps) {
             "x": 0,
             "y": 0,
             "width": 5600,
-            "height": 4550
+            "height": 4550,
+            rotation: true
         }
     ]}
-    ] as MetaSelectionState,
+    ] as LegendState,
             editorSpacingLeft:492,
             editorSpacingTop:100,
             labelMappings: labelMappings,
@@ -151,7 +153,7 @@ export function DrawingAreaModal(props: IProps) {
             <div className='attribute-modal-body'>
                 <div className='header'>
                     <span className='title'>{"Drawing B Box"}</span>
-                    <FiX size={20} onClick={handleCancel} />
+                    <FiX size={20} onClick={() => console.log(handleSave())} />
                 </div>
                 {DrawingAreaAnnotator}
             </div>

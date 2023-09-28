@@ -5,6 +5,7 @@ interface IProps {
     allowCustomLabels?: boolean;
     allowLabelUpdate?: boolean;
     showDirection?: boolean;
+    showRotation?: boolean;
 }
-export default function AnnotationPopup({ editor, matchEmptyString, allowCustomLabels, allowLabelUpdate, showDirection }: IProps): import("react/jsx-runtime").JSX.Element;
+export default function AnnotationPopup({ editor, matchEmptyString, allowCustomLabels, allowLabelUpdate, showDirection, showRotation }: IProps): import("react/jsx-runtime").JSX.Element;
 export {};
