@@ -1,6 +1,6 @@
 import require$$0$1, { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import * as React from 'react';
-import React__default, { createContext, useContext as useContext$1, useEffect as useEffect$5, useRef as useRef$6, useLayoutEffect as useLayoutEffect$2, useState as useState$3, useMemo as useMemo$4, useCallback as useCallback$5, forwardRef, useImperativeHandle, cloneElement as cloneElement$1, Component } from 'react';
+import React__default, { createContext, useContext as useContext$1, useEffect as useEffect$5, useRef as useRef$6, useLayoutEffect as useLayoutEffect$2, useState as useState$3, useMemo as useMemo$4, useCallback as useCallback$5, forwardRef, useImperativeHandle, cloneElement as cloneElement$1, isValidElement as isValidElement$1, Component } from 'react';
 import ReactDOM, { unstable_batchedUpdates as unstable_batchedUpdates$3, flushSync } from 'react-dom';
 
 var global$2 = (typeof global !== "undefined" ? global :
@@ -150,15 +150,15 @@ var versions = {};
 var release = {};
 var config = {};
 
-function noop$2() {}
+function noop$3() {}
 
-var on = noop$2;
-var addListener = noop$2;
-var once = noop$2;
-var off = noop$2;
-var removeListener = noop$2;
-var removeAllListeners = noop$2;
-var emit = noop$2;
+var on = noop$3;
+var addListener = noop$3;
+var once = noop$3;
+var off = noop$3;
+var removeListener = noop$3;
+var removeAllListeners = noop$3;
+var emit = noop$3;
 
 function binding(name) {
     throw new Error('process.binding is not supported');
@@ -9621,9 +9621,9 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$6 = ".AnnotationPopup-module__annotation-popup__mT1Zm {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 280px;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  border-radius: 15px;\n  background-color: #ffffff;\n  padding: 15px 10px;\n  z-index: 999;\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI {\n  border-top-left-radius: 15px;\n  border-top-right-radius: 15px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI span {\n  font-size: 16px;\n  font-weight: bold;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC {\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- {\n  display: flex;\n  line-height: 28px;\n  align-items: center;\n  position: relative;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0 {\n  width: 100%;\n  height: 35px;\n  line-height: 28px;\n  padding: 0 1rem;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  border: 2px solid transparent;\n  border-radius: 8px;\n  outline: none;\n  font-size: 15px;\n  background-color: #f3f3f4;\n  color: #0d0c22;\n  transition: 0.3s ease;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0::placeholder {\n  color: #9e9ea7;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0:focus, .AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- input:hover {\n  outline: none;\n  border-color: rgba(86, 76, 234, 0.4);\n  background-color: #fff;\n  box-shadow: 0 0 0 4px rgba(76, 95, 234, 0.1);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon__aDhJa {\n  position: absolute;\n  left: 0.5rem;\n  fill: #9e9ea7;\n  width: 1rem;\n  height: 1rem;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon-right__UDC-r {\n  position: relative;\n  right: 1.5rem;\n  fill: #9e9ea7;\n  color: rgb(66, 72, 255);\n  cursor: pointer;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 3px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__save__3zmlU {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  background: #fff;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  align-items: center;\n  border-color: #d9d9d9;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  letter-spacing: 0.4px;\n  background-color: #4248ff;\n  color: #fff;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__delete__G3EYR {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  transform: scaleX(1.05);\n  background: #fff;\n  text-decoration: none;\n  align-items: center;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  border-color: #ff4242;\n  color: #ff4242;\n  letter-spacing: 0.4px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__divider__5Ii9G {\n  border-bottom: 1px solid #cdcdcd;\n  width: 100%;\n  height: 1px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up {\n  display: flex;\n  flex-direction: column;\n  max-height: 100px;\n  overflow-y: auto;\n  gap: 5px;\n  margin-right: 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span {\n  overflow-wrap: normal;\n  display: block;\n  color: #333;\n  font-size: 0.9em;\n  margin-right: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 3px 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span.AnnotationPopup-module__active__zSmhx {\n  background-color: rgb(66, 72, 255);\n  color: white;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up p {\n  color: #333;\n  font-size: 0.8em;\n  font-style: italic;\n  text-align: center;\n  margin: 0;\n}";
+var css_248z$7 = ".AnnotationPopup-module__annotation-popup__mT1Zm {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 280px;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  border-radius: 15px;\n  background-color: #ffffff;\n  padding: 15px 10px;\n  z-index: 999;\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI {\n  border-top-left-radius: 15px;\n  border-top-right-radius: 15px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__header__53WPI span {\n  font-size: 16px;\n  font-weight: bold;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC {\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- {\n  display: flex;\n  line-height: 28px;\n  align-items: center;\n  position: relative;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0 {\n  width: 100%;\n  height: 35px;\n  line-height: 28px;\n  padding: 0 1rem;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  border: 2px solid transparent;\n  border-radius: 8px;\n  outline: none;\n  font-size: 15px;\n  background-color: #f3f3f4;\n  color: #0d0c22;\n  transition: 0.3s ease;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0::placeholder {\n  color: #9e9ea7;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__input__hgtf0:focus, .AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- input:hover {\n  outline: none;\n  border-color: rgba(86, 76, 234, 0.4);\n  background-color: #fff;\n  box-shadow: 0 0 0 4px rgba(76, 95, 234, 0.1);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon__aDhJa {\n  position: absolute;\n  left: 0.5rem;\n  fill: #9e9ea7;\n  width: 1rem;\n  height: 1rem;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__inner-container__j3mzN .AnnotationPopup-module__input-group__PEnY- .AnnotationPopup-module__icon-right__UDC-r {\n  position: relative;\n  right: 1.5rem;\n  fill: #9e9ea7;\n  color: rgb(66, 72, 255);\n  cursor: pointer;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 3px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__save__3zmlU {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  background: #fff;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  align-items: center;\n  border-color: #d9d9d9;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  letter-spacing: 0.4px;\n  background-color: #4248ff;\n  color: #fff;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__button-group__XBln6 .AnnotationPopup-module__delete__G3EYR {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  transform: scaleX(1.05);\n  background: #fff;\n  text-decoration: none;\n  align-items: center;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  border-color: #ff4242;\n  color: #ff4242;\n  letter-spacing: 0.4px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__divider__5Ii9G {\n  border-bottom: 1px solid #cdcdcd;\n  width: 100%;\n  height: 1px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up {\n  display: flex;\n  flex-direction: column;\n  max-height: 100px;\n  overflow-y: auto;\n  gap: 5px;\n  margin-right: 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span {\n  overflow-wrap: normal;\n  display: block;\n  color: #333;\n  font-size: 0.9em;\n  margin-right: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 3px 5px;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up span.AnnotationPopup-module__active__zSmhx {\n  background-color: rgb(66, 72, 255);\n  color: white;\n}\n.AnnotationPopup-module__annotation-popup__mT1Zm .AnnotationPopup-module__content-container__fnPMC .AnnotationPopup-module__list-options__Id6Up p {\n  color: #333;\n  font-size: 0.8em;\n  font-style: italic;\n  text-align: center;\n  margin: 0;\n}";
 var styles$4 = {"annotation-popup":"AnnotationPopup-module__annotation-popup__mT1Zm","header":"AnnotationPopup-module__header__53WPI","content-container":"AnnotationPopup-module__content-container__fnPMC","inner-container":"AnnotationPopup-module__inner-container__j3mzN","input-group":"AnnotationPopup-module__input-group__PEnY-","input":"AnnotationPopup-module__input__hgtf0","icon":"AnnotationPopup-module__icon__aDhJa","icon-right":"AnnotationPopup-module__icon-right__UDC-r","button-group":"AnnotationPopup-module__button-group__XBln6","save":"AnnotationPopup-module__save__3zmlU","delete":"AnnotationPopup-module__delete__G3EYR","divider":"AnnotationPopup-module__divider__5Ii9G","list-options":"AnnotationPopup-module__list-options__Id6Up","active":"AnnotationPopup-module__active__zSmhx"};
-styleInject(css_248z$6);
+styleInject(css_248z$7);
 
 var DefaultContext = {
   color: undefined,
@@ -9644,7 +9644,7 @@ var __assign$1 = undefined && undefined.__assign || function () {
   };
   return __assign$1.apply(this, arguments);
 };
-var __rest$p = undefined && undefined.__rest || function (s, e) {
+var __rest$q = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -9672,7 +9672,7 @@ function IconBase$1(props) {
     var attr = props.attr,
       size = props.size,
       title = props.title,
-      svgProps = __rest$p(props, ["attr", "size", "title"]);
+      svgProps = __rest$q(props, ["attr", "size", "title"]);
     var computedSize = size || conf.size || "1em";
     var className;
     if (conf.className) className = conf.className;
@@ -24058,9 +24058,9 @@ function merge() {
   return clone;
 }
 
-function noop$1() {}
+function noop$2() {}
 // eslint-disable-next-line import/no-mutable-exports
-var warning$2 = noop$1;
+var warning$2 = noop$2;
 if (process.env.NODE_ENV !== 'production') {
   warning$2 = function warning(valid, component, message) {
     warningOnce(valid, "[antd: ".concat(component, "] ").concat(message));
@@ -31586,7 +31586,7 @@ Popup$1.displayName = 'Popup';
 
 var TriggerContext = /*#__PURE__*/React.createContext(null);
 
-function noop() {}
+function noop$1() {}
 
 function returnEmptyString() {
   return '';
@@ -32376,9 +32376,9 @@ function generateTrigger(PortalComponent) {
     prefixCls: 'rc-trigger-popup',
     getPopupClassNameFromAlign: returnEmptyString,
     getDocument: returnDocument,
-    onPopupVisibleChange: noop,
-    afterPopupVisibleChange: noop,
-    onPopupAlign: noop,
+    onPopupVisibleChange: noop$1,
+    afterPopupVisibleChange: noop$1,
+    onPopupAlign: noop$1,
     popupClassName: '',
     mouseEnterDelay: 0,
     mouseLeaveDelay: 0.1,
@@ -35612,7 +35612,7 @@ var Simple = function Simple() {
 };
 var SimpleEmptyImg = Simple;
 
-var __rest$o = undefined && undefined.__rest || function (s, e) {
+var __rest$p = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -35630,7 +35630,7 @@ var Empty = function Empty(_a) {
     description = _a.description,
     children = _a.children,
     imageStyle = _a.imageStyle,
-    restProps = __rest$o(_a, ["className", "prefixCls", "image", "description", "children", "imageStyle"]);
+    restProps = __rest$p(_a, ["className", "prefixCls", "image", "description", "children", "imageStyle"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -39554,7 +39554,7 @@ function getIcons(_ref) {
   };
 }
 
-var __rest$n = undefined && undefined.__rest || function (s, e) {
+var __rest$o = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -39588,7 +39588,7 @@ var NoCompactStyle = function NoCompactStyle(_ref) {
 };
 var CompactItem = function CompactItem(_a) {
   var children = _a.children,
-    otherProps = __rest$n(_a, ["children"]);
+    otherProps = __rest$o(_a, ["children"]);
   return /*#__PURE__*/React.createElement(SpaceCompactItemContext.Provider, {
     value: otherProps
   }, children);
@@ -39605,7 +39605,7 @@ var Compact = function Compact(props) {
     customizePrefixCls = props.prefixCls,
     className = props.className,
     children = props.children,
-    restProps = __rest$n(props, ["size", "direction", "block", "prefixCls", "className", "children"]);
+    restProps = __rest$o(props, ["size", "direction", "block", "prefixCls", "className", "children"]);
   var prefixCls = getPrefixCls('space-compact', customizePrefixCls);
   var clx = classNames(prefixCls, (_classNames2 = {}, _defineProperty$1(_classNames2, "".concat(prefixCls, "-rtl"), directionConfig === 'rtl'), _defineProperty$1(_classNames2, "".concat(prefixCls, "-block"), block), _defineProperty$1(_classNames2, "".concat(prefixCls, "-vertical"), direction === 'vertical'), _classNames2), className);
   var compactItemContext = React.useContext(SpaceCompactItemContext);
@@ -39632,7 +39632,7 @@ var Compact = function Compact(props) {
 };
 
 // TODO: 4.0 - codemod should help to change `filterOption` to support node props.
-var __rest$m = undefined && undefined.__rest || function (s, e) {
+var __rest$n = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -39660,7 +39660,7 @@ var InternalSelect = function InternalSelect(_a, ref) {
     notFoundContent = _a.notFoundContent,
     customStatus = _a.status,
     showArrow = _a.showArrow,
-    props = __rest$m(_a, ["prefixCls", "bordered", "className", "getPopupContainer", "dropdownClassName", "popupClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "showArrow"]);
+    props = __rest$n(_a, ["prefixCls", "bordered", "className", "getPopupContainer", "dropdownClassName", "popupClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "showArrow"]);
   var _React$useContext = React.useContext(ConfigContext),
     getContextPopupContainer = _React$useContext.getPopupContainer,
     getPrefixCls = _React$useContext.getPrefixCls,
@@ -39767,6 +39767,84 @@ function useForceUpdate() {
     _React$useReducer2 = _slicedToArray(_React$useReducer, 2),
     forceUpdate = _React$useReducer2[1];
   return forceUpdate;
+}
+
+var responsiveMap = {
+  xs: '(max-width: 575px)',
+  sm: '(min-width: 576px)',
+  md: '(min-width: 768px)',
+  lg: '(min-width: 992px)',
+  xl: '(min-width: 1200px)',
+  xxl: '(min-width: 1600px)'
+};
+var subscribers = new Map();
+var subUid = -1;
+var screens = {};
+var responsiveObserve = {
+  matchHandlers: {},
+  dispatch: function dispatch(pointMap) {
+    screens = pointMap;
+    subscribers.forEach(function (func) {
+      return func(screens);
+    });
+    return subscribers.size >= 1;
+  },
+  subscribe: function subscribe(func) {
+    if (!subscribers.size) this.register();
+    subUid += 1;
+    subscribers.set(subUid, func);
+    func(screens);
+    return subUid;
+  },
+  unsubscribe: function unsubscribe(token) {
+    subscribers["delete"](token);
+    if (!subscribers.size) this.unregister();
+  },
+  unregister: function unregister() {
+    var _this = this;
+    Object.keys(responsiveMap).forEach(function (screen) {
+      var matchMediaQuery = responsiveMap[screen];
+      var handler = _this.matchHandlers[matchMediaQuery];
+      handler === null || handler === void 0 ? void 0 : handler.mql.removeListener(handler === null || handler === void 0 ? void 0 : handler.listener);
+    });
+    subscribers.clear();
+  },
+  register: function register() {
+    var _this2 = this;
+    Object.keys(responsiveMap).forEach(function (screen) {
+      var matchMediaQuery = responsiveMap[screen];
+      var listener = function listener(_ref) {
+        var matches = _ref.matches;
+        _this2.dispatch(_extends$1(_extends$1({}, screens), _defineProperty$1({}, screen, matches)));
+      };
+      var mql = window.matchMedia(matchMediaQuery);
+      mql.addListener(listener);
+      _this2.matchHandlers[matchMediaQuery] = {
+        mql: mql,
+        listener: listener
+      };
+      listener(mql);
+    });
+  }
+};
+var ResponsiveObserve = responsiveObserve;
+
+function useBreakpoint() {
+  var refreshOnChange = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  var screensRef = useRef$6({});
+  var forceUpdate = useForceUpdate();
+  useEffect$5(function () {
+    var token = ResponsiveObserve.subscribe(function (supportScreens) {
+      screensRef.current = supportScreens;
+      if (refreshOnChange) {
+        forceUpdate();
+      }
+    });
+    return function () {
+      return ResponsiveObserve.unsubscribe(token);
+    };
+  }, []);
+  return screensRef.current;
 }
 
 var autoAdjustOverflow$2 = {
@@ -40053,7 +40131,7 @@ function getPlacements(config) {
   return placementMap;
 }
 
-var __rest$l = undefined && undefined.__rest || function (s, e) {
+var __rest$m = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -40198,7 +40276,7 @@ var Tooltip = /*#__PURE__*/React.forwardRef(function (props, ref) {
     mouseEnterDelay = _props$mouseEnterDela === void 0 ? 0.1 : _props$mouseEnterDela,
     _props$mouseLeaveDela = props.mouseLeaveDelay,
     mouseLeaveDelay = _props$mouseLeaveDela === void 0 ? 0.1 : _props$mouseLeaveDela,
-    otherProps = __rest$l(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay"]);
+    otherProps = __rest$m(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay"]);
   var customizePrefixCls = props.prefixCls,
     openClassName = props.openClassName,
     getTooltipContainer = props.getTooltipContainer,
@@ -42178,7 +42256,7 @@ var isNumeric = function isNumeric(value) {
 };
 var isNumeric$1 = isNumeric;
 
-var __rest$k = undefined && undefined.__rest || function (s, e) {
+var __rest$l = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42223,7 +42301,7 @@ var Basic = /*#__PURE__*/React.forwardRef(function (props, ref) {
     className = props.className,
     children = props.children,
     tagName = props.tagName,
-    others = __rest$k(props, ["prefixCls", "className", "children", "tagName"]);
+    others = __rest$l(props, ["prefixCls", "className", "children", "tagName"]);
   var classString = classNames(prefixCls, className);
   return /*#__PURE__*/React.createElement(tagName, _extends$1(_extends$1({
     className: classString
@@ -42244,7 +42322,7 @@ var BasicLayout = /*#__PURE__*/React.forwardRef(function (props, ref) {
     children = props.children,
     hasSider = props.hasSider,
     Tag = props.tagName,
-    others = __rest$k(props, ["prefixCls", "className", "children", "hasSider", "tagName"]);
+    others = __rest$l(props, ["prefixCls", "className", "children", "hasSider", "tagName"]);
   var classString = classNames(prefixCls, (_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-has-sider"), typeof hasSider === 'boolean' ? hasSider : siders.length > 0), _defineProperty$1(_classNames, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _classNames), className);
   var contextValue = React.useMemo(function () {
     return {
@@ -42292,7 +42370,7 @@ generator({
   displayName: 'Content'
 })(Basic);
 
-var __rest$j = undefined && undefined.__rest || function (s, e) {
+var __rest$k = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42340,7 +42418,7 @@ var Sider = /*#__PURE__*/React.forwardRef(function (_a, ref) {
     breakpoint = _a.breakpoint,
     onCollapse = _a.onCollapse,
     onBreakpoint = _a.onBreakpoint,
-    props = __rest$j(_a, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
+    props = __rest$k(_a, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
   var _useContext = useContext$1(LayoutContext),
     siderHook = _useContext.siderHook;
   var _useState = useState$3('collapsed' in props ? props.collapsed : defaultCollapsed),
@@ -42464,7 +42542,7 @@ if (process.env.NODE_ENV !== 'production') {
   Sider.displayName = 'Sider';
 }
 
-var __rest$i = undefined && undefined.__rest || function (s, e) {
+var __rest$j = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42476,7 +42554,7 @@ var MenuDivider = function MenuDivider(_a) {
   var customizePrefixCls = _a.prefixCls,
     className = _a.className,
     dashed = _a.dashed,
-    restProps = __rest$i(_a, ["prefixCls", "className", "dashed"]);
+    restProps = __rest$j(_a, ["prefixCls", "className", "dashed"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls;
   var prefixCls = getPrefixCls('menu', customizePrefixCls);
@@ -42494,7 +42572,7 @@ var MenuContext = /*#__PURE__*/createContext({
 });
 var MenuContext$1 = MenuContext;
 
-var __rest$h = undefined && undefined.__rest || function (s, e) {
+var __rest$i = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42526,7 +42604,7 @@ var MenuItem = /*#__PURE__*/function (_React$Component) {
         title = _b.title,
         icon = _b.icon,
         danger = _b.danger,
-        rest = __rest$h(_b, ["title", "icon", "danger"]);
+        rest = __rest$i(_b, ["title", "icon", "danger"]);
       var tooltipTitle = title;
       if (typeof title === 'undefined') {
         tooltipTitle = firstLevel ? children : '';
@@ -42633,7 +42711,7 @@ function SubMenu(props) {
   })));
 }
 
-var __rest$g = undefined && undefined.__rest || function (s, e) {
+var __rest$h = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42649,7 +42727,7 @@ function convertItemsToNodes(list) {
         children = _a.children,
         key = _a.key,
         type = _a.type,
-        restProps = __rest$g(_a, ["label", "children", "key", "type"]);
+        restProps = __rest$h(_a, ["label", "children", "key", "type"]);
       var mergedKey = key !== null && key !== void 0 ? key : "tmp-".concat(index);
       // MenuItemGroup & SubMenuItem
       if (children || type === 'group') {
@@ -42697,7 +42775,7 @@ function useItems(items) {
   }, [items]);
 }
 
-var __rest$f = undefined && undefined.__rest || function (s, e) {
+var __rest$g = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42710,7 +42788,7 @@ var OverrideContext = /*#__PURE__*/React.createContext(null);
 /** @internal Only used for Dropdown component. Do not use this in your production. */
 var OverrideProvider = function OverrideProvider(_a) {
   var children = _a.children,
-    restProps = __rest$f(_a, ["children"]);
+    restProps = __rest$g(_a, ["children"]);
   var override = React.useContext(OverrideContext);
   var context = React.useMemo(function () {
     return _extends$1(_extends$1({}, override), restProps);
@@ -42725,7 +42803,7 @@ var OverrideProvider = function OverrideProvider(_a) {
   }, children);
 };
 
-var __rest$e = undefined && undefined.__rest || function (s, e) {
+var __rest$f = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42754,7 +42832,7 @@ var InternalMenu = /*#__PURE__*/forwardRef(function (props, ref) {
     mode = props.mode,
     selectable = props.selectable,
     onClick = props.onClick,
-    restProps = __rest$e(props, ["prefixCls", "className", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "mode", "selectable", "onClick"]);
+    restProps = __rest$f(props, ["prefixCls", "className", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "mode", "selectable", "onClick"]);
   var passedProps = omit(restProps, ['collapsedWidth']);
   // ========================= Items ===========================
   var mergedChildren = useItems(items) || children;
@@ -43369,7 +43447,7 @@ var Wave = /*#__PURE__*/function (_React$Component) {
 Wave.contextType = ConfigContext;
 var Wave$1 = Wave;
 
-var __rest$d = undefined && undefined.__rest || function (s, e) {
+var __rest$e = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43386,7 +43464,7 @@ var ButtonGroup = function ButtonGroup(props) {
   var customizePrefixCls = props.prefixCls,
     size = props.size,
     className = props.className,
-    others = __rest$d(props, ["prefixCls", "size", "className"]);
+    others = __rest$e(props, ["prefixCls", "size", "className"]);
   var prefixCls = getPrefixCls('btn-group', customizePrefixCls);
   // large => lg
   // small => sm
@@ -43462,7 +43540,7 @@ var LoadingIcon = function LoadingIcon(_ref) {
 };
 var LoadingIcon$1 = LoadingIcon;
 
-var __rest$c = undefined && undefined.__rest || function (s, e) {
+var __rest$d = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43543,7 +43621,7 @@ var InternalButton = function InternalButton(props, ref) {
     block = _props$block === void 0 ? false : _props$block,
     _props$htmlType = props.htmlType,
     htmlType = _props$htmlType === void 0 ? 'button' : _props$htmlType,
-    rest = __rest$c(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "disabled", "className", "children", "icon", "ghost", "block", "htmlType"]);
+    rest = __rest$d(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "disabled", "className", "children", "icon", "ghost", "block", "htmlType"]);
   var size = React.useContext(SizeContext$1);
   // ===================== Disabled =====================
   var disabled = React.useContext(DisabledContext$1);
@@ -43738,7 +43816,7 @@ function Item(_ref) {
   }, split));
 }
 
-var __rest$b = undefined && undefined.__rest || function (s, e) {
+var __rest$c = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43778,7 +43856,7 @@ var Space = function Space(props) {
     style = props.style,
     _props$wrap = props.wrap,
     wrap = _props$wrap === void 0 ? false : _props$wrap,
-    otherProps = __rest$b(props, ["size", "align", "className", "children", "direction", "prefixCls", "split", "style", "wrap"]);
+    otherProps = __rest$c(props, ["size", "align", "className", "children", "direction", "prefixCls", "split", "style", "wrap"]);
   var supportFlexGap = useFlexGapSupport();
   var _React$useMemo = React.useMemo(function () {
       return (Array.isArray(size) ? size : [size, size]).map(function (item) {
@@ -43848,7 +43926,7 @@ var CompoundedSpace = Space;
 CompoundedSpace.Compact = Compact;
 var Space$1 = CompoundedSpace;
 
-var __rest$a = undefined && undefined.__rest || function (s, e) {
+var __rest$b = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43896,7 +43974,7 @@ var DropdownButton = function DropdownButton(props) {
     overlayClassName = props.overlayClassName,
     overlayStyle = props.overlayStyle,
     destroyPopupOnHide = props.destroyPopupOnHide,
-    restProps = __rest$a(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "visible", "open", "onVisibleChange", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide"]);
+    restProps = __rest$b(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "visible", "open", "onVisibleChange", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide"]);
   var prefixCls = getPrefixCls('dropdown-button', customizePrefixCls);
   var dropdownProps = {
     menu: menu,
@@ -44177,7 +44255,7 @@ var Checkbox$3 = /*#__PURE__*/forwardRef(function (props, ref) {
   }));
 });
 
-var __rest$9 = undefined && undefined.__rest || function (s, e) {
+var __rest$a = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44195,7 +44273,7 @@ var InternalCheckboxGroup = function InternalCheckboxGroup(_a, ref) {
     className = _a.className,
     style = _a.style,
     onChange = _a.onChange,
-    restProps = __rest$9(_a, ["defaultValue", "children", "options", "prefixCls", "className", "style", "onChange"]);
+    restProps = __rest$a(_a, ["defaultValue", "children", "options", "prefixCls", "className", "style", "onChange"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -44299,7 +44377,7 @@ var InternalCheckboxGroup = function InternalCheckboxGroup(_a, ref) {
 var CheckboxGroup = /*#__PURE__*/React.forwardRef(InternalCheckboxGroup);
 var Group$2 = /*#__PURE__*/React.memo(CheckboxGroup);
 
-var __rest$8 = undefined && undefined.__rest || function (s, e) {
+var __rest$9 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44321,7 +44399,7 @@ var InternalCheckbox = function InternalCheckbox(_a, ref) {
     _a$skipGroup = _a.skipGroup,
     skipGroup = _a$skipGroup === void 0 ? false : _a$skipGroup,
     disabled = _a.disabled,
-    restProps = __rest$8(_a, ["prefixCls", "className", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
+    restProps = __rest$9(_a, ["prefixCls", "className", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -44826,7 +44904,7 @@ function hasPrefixSuffix(props) {
   return !!(props.prefix || props.suffix || props.allowClear);
 }
 
-var __rest$7 = undefined && undefined.__rest || function (s, e) {
+var __rest$8 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44926,7 +45004,7 @@ var Input$2 = /*#__PURE__*/forwardRef(function (props, ref) {
     addonBefore = props.addonBefore,
     className = props.className,
     onChange = props.onChange,
-    rest = __rest$7(props, ["prefixCls", "bordered", "status", "size", "disabled", "onBlur", "onFocus", "suffix", "allowClear", "addonAfter", "addonBefore", "className", "onChange"]);
+    rest = __rest$8(props, ["prefixCls", "bordered", "status", "size", "disabled", "onBlur", "onFocus", "suffix", "allowClear", "addonAfter", "addonBefore", "className", "onChange"]);
   var _React$useContext = React__default.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction,
@@ -45024,7 +45102,7 @@ var EyeInvisibleOutlined = function EyeInvisibleOutlined(props, ref) {
 EyeInvisibleOutlined.displayName = 'EyeInvisibleOutlined';
 var EyeInvisibleOutlined$1 = /*#__PURE__*/React.forwardRef(EyeInvisibleOutlined);
 
-var __rest$6 = undefined && undefined.__rest || function (s, e) {
+var __rest$7 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -45099,7 +45177,7 @@ var Password = /*#__PURE__*/React.forwardRef(function (props, ref) {
       customizePrefixCls = props.prefixCls,
       customizeInputPrefixCls = props.inputPrefixCls,
       size = props.size,
-      restProps = __rest$6(props, ["className", "prefixCls", "inputPrefixCls", "size"]);
+      restProps = __rest$7(props, ["className", "prefixCls", "inputPrefixCls", "size"]);
     var inputPrefixCls = getPrefixCls('input', customizeInputPrefixCls);
     var prefixCls = getPrefixCls('input-password', customizePrefixCls);
     var suffixIcon = visibilityToggle && getIcon(prefixCls);
@@ -45124,7 +45202,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 var Password$1 = Password;
 
-var __rest$5 = undefined && undefined.__rest || function (s, e) {
+var __rest$6 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -45148,7 +45226,7 @@ var Search = /*#__PURE__*/React.forwardRef(function (props, ref) {
     customOnChange = props.onChange,
     onCompositionStart = props.onCompositionStart,
     onCompositionEnd = props.onCompositionEnd,
-    restProps = __rest$5(props, ["prefixCls", "inputPrefixCls", "className", "size", "suffix", "enterButton", "addonAfter", "loading", "disabled", "onSearch", "onChange", "onCompositionStart", "onCompositionEnd"]);
+    restProps = __rest$6(props, ["prefixCls", "inputPrefixCls", "className", "size", "suffix", "enterButton", "addonAfter", "loading", "disabled", "onSearch", "onChange", "onCompositionStart", "onCompositionEnd"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -45672,7 +45750,7 @@ var ClearableLabeledInput = /*#__PURE__*/function (_React$Component) {
 }(React.Component);
 var ClearableLabeledInput$1 = ClearableLabeledInput;
 
-var __rest$4 = undefined && undefined.__rest || function (s, e) {
+var __rest$5 = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -45712,7 +45790,7 @@ var TextArea = /*#__PURE__*/React.forwardRef(function (_a, ref) {
     onFocus = _a.onFocus,
     onBlur = _a.onBlur,
     customStatus = _a.status,
-    props = __rest$4(_a, ["prefixCls", "bordered", "showCount", "maxLength", "className", "style", "size", "disabled", "onCompositionStart", "onCompositionEnd", "onChange", "onFocus", "onBlur", "status"]);
+    props = __rest$5(_a, ["prefixCls", "bordered", "showCount", "maxLength", "className", "style", "size", "disabled", "onCompositionStart", "onCompositionEnd", "onChange", "onFocus", "onBlur", "status"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -45890,6 +45968,927 @@ Input.Search = Search$1;
 Input.TextArea = TextArea$1;
 Input.Password = Password$1;
 var Input$1 = Input;
+
+// This icon file is generated automatically.
+var DoubleLeftOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M272.9 512l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L186.8 492.3a31.99 31.99 0 000 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H532c6.7 0 10.4-7.7 6.3-12.9L272.9 512zm304 0l265.4-339.1c4.1-5.2.4-12.9-6.3-12.9h-77.3c-4.9 0-9.6 2.3-12.6 6.1L490.8 492.3a31.99 31.99 0 000 39.5l255.3 326.1c3 3.9 7.7 6.1 12.6 6.1H836c6.7 0 10.4-7.7 6.3-12.9L576.9 512z" } }] }, "name": "double-left", "theme": "outlined" };
+var DoubleLeftOutlinedSvg = DoubleLeftOutlined$2;
+
+var DoubleLeftOutlined = function DoubleLeftOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: DoubleLeftOutlinedSvg
+  }));
+};
+DoubleLeftOutlined.displayName = 'DoubleLeftOutlined';
+var DoubleLeftOutlined$1 = /*#__PURE__*/React.forwardRef(DoubleLeftOutlined);
+
+// This icon file is generated automatically.
+var DoubleRightOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M533.2 492.3L277.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H188c-6.7 0-10.4 7.7-6.3 12.9L447.1 512 181.7 851.1A7.98 7.98 0 00188 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5zm304 0L581.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H492c-6.7 0-10.4 7.7-6.3 12.9L751.1 512 485.7 851.1A7.98 7.98 0 00492 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5z" } }] }, "name": "double-right", "theme": "outlined" };
+var DoubleRightOutlinedSvg = DoubleRightOutlined$2;
+
+var DoubleRightOutlined = function DoubleRightOutlined(props, ref) {
+  return /*#__PURE__*/React.createElement(AntdIcon, _objectSpread2$1(_objectSpread2$1({}, props), {}, {
+    ref: ref,
+    icon: DoubleRightOutlinedSvg
+  }));
+};
+DoubleRightOutlined.displayName = 'DoubleRightOutlined';
+var DoubleRightOutlined$1 = /*#__PURE__*/React.forwardRef(DoubleRightOutlined);
+
+var Pager = function Pager(props) {
+  var _classNames;
+  var prefixCls = "".concat(props.rootPrefixCls, "-item");
+  var cls = classNames(prefixCls, "".concat(prefixCls, "-").concat(props.page), (_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-active"), props.active), _defineProperty$1(_classNames, "".concat(prefixCls, "-disabled"), !props.page), _defineProperty$1(_classNames, props.className, !!props.className), _classNames));
+  var handleClick = function handleClick() {
+    props.onClick(props.page);
+  };
+  var handleKeyPress = function handleKeyPress(e) {
+    props.onKeyPress(e, props.onClick, props.page);
+  };
+  return /*#__PURE__*/React__default.createElement("li", {
+    title: props.showTitle ? props.page : null,
+    className: cls,
+    onClick: handleClick,
+    onKeyPress: handleKeyPress,
+    tabIndex: "0"
+  }, props.itemRender(props.page, 'page', /*#__PURE__*/React__default.createElement("a", {
+    rel: "nofollow"
+  }, props.page)));
+};
+
+var KEYCODE = {
+  ZERO: 48,
+  NINE: 57,
+  NUMPAD_ZERO: 96,
+  NUMPAD_NINE: 105,
+  BACKSPACE: 8,
+  DELETE: 46,
+  ENTER: 13,
+  ARROW_UP: 38,
+  ARROW_DOWN: 40
+};
+
+var Options = /*#__PURE__*/function (_React$Component) {
+  _inherits(Options, _React$Component);
+  var _super = _createSuper(Options);
+  function Options() {
+    var _this;
+    _classCallCheck(this, Options);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    _this = _super.call.apply(_super, [this].concat(args));
+    _this.state = {
+      goInputText: ''
+    };
+    _this.buildOptionText = function (value) {
+      return "".concat(value, " ").concat(_this.props.locale.items_per_page);
+    };
+    _this.changeSize = function (value) {
+      _this.props.changeSize(Number(value));
+    };
+    _this.handleChange = function (e) {
+      _this.setState({
+        goInputText: e.target.value
+      });
+    };
+    _this.handleBlur = function (e) {
+      var _this$props = _this.props,
+        goButton = _this$props.goButton,
+        quickGo = _this$props.quickGo,
+        rootPrefixCls = _this$props.rootPrefixCls;
+      var goInputText = _this.state.goInputText;
+      if (goButton || goInputText === '') {
+        return;
+      }
+      _this.setState({
+        goInputText: ''
+      });
+      if (e.relatedTarget && (e.relatedTarget.className.indexOf("".concat(rootPrefixCls, "-item-link")) >= 0 || e.relatedTarget.className.indexOf("".concat(rootPrefixCls, "-item")) >= 0)) {
+        return;
+      }
+      quickGo(_this.getValidValue());
+    };
+    _this.go = function (e) {
+      var goInputText = _this.state.goInputText;
+      if (goInputText === '') {
+        return;
+      }
+      if (e.keyCode === KEYCODE.ENTER || e.type === 'click') {
+        _this.setState({
+          goInputText: ''
+        });
+        _this.props.quickGo(_this.getValidValue());
+      }
+    };
+    return _this;
+  }
+  _createClass(Options, [{
+    key: "getValidValue",
+    value: function getValidValue() {
+      var goInputText = this.state.goInputText;
+      // eslint-disable-next-line no-restricted-globals
+      return !goInputText || isNaN(goInputText) ? undefined : Number(goInputText);
+    }
+  }, {
+    key: "getPageSizeOptions",
+    value: function getPageSizeOptions() {
+      var _this$props2 = this.props,
+        pageSize = _this$props2.pageSize,
+        pageSizeOptions = _this$props2.pageSizeOptions;
+      if (pageSizeOptions.some(function (option) {
+        return option.toString() === pageSize.toString();
+      })) {
+        return pageSizeOptions;
+      }
+      return pageSizeOptions.concat([pageSize.toString()]).sort(function (a, b) {
+        // eslint-disable-next-line no-restricted-globals
+        var numberA = isNaN(Number(a)) ? 0 : Number(a);
+        // eslint-disable-next-line no-restricted-globals
+        var numberB = isNaN(Number(b)) ? 0 : Number(b);
+        return numberA - numberB;
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+      var _this$props3 = this.props,
+        pageSize = _this$props3.pageSize,
+        locale = _this$props3.locale,
+        rootPrefixCls = _this$props3.rootPrefixCls,
+        changeSize = _this$props3.changeSize,
+        quickGo = _this$props3.quickGo,
+        goButton = _this$props3.goButton,
+        selectComponentClass = _this$props3.selectComponentClass,
+        buildOptionText = _this$props3.buildOptionText,
+        selectPrefixCls = _this$props3.selectPrefixCls,
+        disabled = _this$props3.disabled;
+      var goInputText = this.state.goInputText;
+      var prefixCls = "".concat(rootPrefixCls, "-options");
+      var Select = selectComponentClass;
+      var changeSelect = null;
+      var goInput = null;
+      var gotoButton = null;
+      if (!changeSize && !quickGo) {
+        return null;
+      }
+      var pageSizeOptions = this.getPageSizeOptions();
+      if (changeSize && Select) {
+        var options = pageSizeOptions.map(function (opt, i) {
+          return /*#__PURE__*/React__default.createElement(Select.Option, {
+            key: i,
+            value: opt.toString()
+          }, (buildOptionText || _this2.buildOptionText)(opt));
+        });
+        changeSelect = /*#__PURE__*/React__default.createElement(Select, {
+          disabled: disabled,
+          prefixCls: selectPrefixCls,
+          showSearch: false,
+          className: "".concat(prefixCls, "-size-changer"),
+          optionLabelProp: "children",
+          dropdownMatchSelectWidth: false,
+          value: (pageSize || pageSizeOptions[0]).toString(),
+          onChange: this.changeSize,
+          getPopupContainer: function getPopupContainer(triggerNode) {
+            return triggerNode.parentNode;
+          },
+          "aria-label": locale.page_size,
+          defaultOpen: false
+        }, options);
+      }
+      if (quickGo) {
+        if (goButton) {
+          gotoButton = typeof goButton === 'boolean' ? /*#__PURE__*/React__default.createElement("button", {
+            type: "button",
+            onClick: this.go,
+            onKeyUp: this.go,
+            disabled: disabled,
+            className: "".concat(prefixCls, "-quick-jumper-button")
+          }, locale.jump_to_confirm) : /*#__PURE__*/React__default.createElement("span", {
+            onClick: this.go,
+            onKeyUp: this.go
+          }, goButton);
+        }
+        goInput = /*#__PURE__*/React__default.createElement("div", {
+          className: "".concat(prefixCls, "-quick-jumper")
+        }, locale.jump_to, /*#__PURE__*/React__default.createElement("input", {
+          disabled: disabled,
+          type: "text",
+          value: goInputText,
+          onChange: this.handleChange,
+          onKeyUp: this.go,
+          onBlur: this.handleBlur,
+          "aria-label": locale.page
+        }), locale.page, gotoButton);
+      }
+      return /*#__PURE__*/React__default.createElement("li", {
+        className: "".concat(prefixCls)
+      }, changeSelect, goInput);
+    }
+  }]);
+  return Options;
+}(React__default.Component);
+Options.defaultProps = {
+  pageSizeOptions: ['10', '20', '50', '100']
+};
+
+var LOCALE = {
+  // Options.jsx
+  items_per_page: '条/页',
+  jump_to: '跳至',
+  jump_to_confirm: '确定',
+  page: '页',
+  // Pagination.jsx
+  prev_page: '上一页',
+  next_page: '下一页',
+  prev_5: '向前 5 页',
+  next_5: '向后 5 页',
+  prev_3: '向前 3 页',
+  next_3: '向后 3 页',
+  page_size: '页码'
+};
+
+function noop() {}
+function isInteger(v) {
+  var value = Number(v);
+  return (
+    // eslint-disable-next-line no-restricted-globals
+    typeof value === 'number' && !isNaN(value) && isFinite(value) && Math.floor(value) === value
+  );
+}
+function defaultItemRender(page, type, element) {
+  return element;
+}
+function calculatePage(p, state, props) {
+  var pageSize = typeof p === 'undefined' ? state.pageSize : p;
+  return Math.floor((props.total - 1) / pageSize) + 1;
+}
+var Pagination$2 = /*#__PURE__*/function (_React$Component) {
+  _inherits(Pagination, _React$Component);
+  var _super = _createSuper(Pagination);
+  function Pagination(props) {
+    var _this;
+    _classCallCheck(this, Pagination);
+    _this = _super.call(this, props);
+    _this.getJumpPrevPage = function () {
+      return Math.max(1, _this.state.current - (_this.props.showLessItems ? 3 : 5));
+    };
+    _this.getJumpNextPage = function () {
+      return Math.min(calculatePage(undefined, _this.state, _this.props), _this.state.current + (_this.props.showLessItems ? 3 : 5));
+    };
+    _this.getItemIcon = function (icon, label) {
+      var prefixCls = _this.props.prefixCls;
+      var iconNode = icon || /*#__PURE__*/React__default.createElement("button", {
+        type: "button",
+        "aria-label": label,
+        className: "".concat(prefixCls, "-item-link")
+      });
+      if (typeof icon === 'function') {
+        iconNode = /*#__PURE__*/React__default.createElement(icon, _objectSpread2$1({}, _this.props));
+      }
+      return iconNode;
+    };
+    _this.savePaginationNode = function (node) {
+      _this.paginationNode = node;
+    };
+    _this.isValid = function (page) {
+      var total = _this.props.total;
+      return isInteger(page) && page !== _this.state.current && isInteger(total) && total > 0;
+    };
+    _this.shouldDisplayQuickJumper = function () {
+      var _this$props = _this.props,
+        showQuickJumper = _this$props.showQuickJumper,
+        total = _this$props.total;
+      var pageSize = _this.state.pageSize;
+      if (total <= pageSize) {
+        return false;
+      }
+      return showQuickJumper;
+    };
+    _this.handleKeyDown = function (e) {
+      if (e.keyCode === KEYCODE.ARROW_UP || e.keyCode === KEYCODE.ARROW_DOWN) {
+        e.preventDefault();
+      }
+    };
+    _this.handleKeyUp = function (e) {
+      var value = _this.getValidValue(e);
+      var currentInputValue = _this.state.currentInputValue;
+      if (value !== currentInputValue) {
+        _this.setState({
+          currentInputValue: value
+        });
+      }
+      if (e.keyCode === KEYCODE.ENTER) {
+        _this.handleChange(value);
+      } else if (e.keyCode === KEYCODE.ARROW_UP) {
+        _this.handleChange(value - 1);
+      } else if (e.keyCode === KEYCODE.ARROW_DOWN) {
+        _this.handleChange(value + 1);
+      }
+    };
+    _this.handleBlur = function (e) {
+      var value = _this.getValidValue(e);
+      _this.handleChange(value);
+    };
+    _this.changePageSize = function (size) {
+      var current = _this.state.current;
+      var newCurrent = calculatePage(size, _this.state, _this.props);
+      current = current > newCurrent ? newCurrent : current;
+      // fix the issue:
+      // Once 'total' is 0, 'current' in 'onShowSizeChange' is 0, which is not correct.
+      if (newCurrent === 0) {
+        // eslint-disable-next-line prefer-destructuring
+        current = _this.state.current;
+      }
+      if (typeof size === 'number') {
+        if (!('pageSize' in _this.props)) {
+          _this.setState({
+            pageSize: size
+          });
+        }
+        if (!('current' in _this.props)) {
+          _this.setState({
+            current: current,
+            currentInputValue: current
+          });
+        }
+      }
+      _this.props.onShowSizeChange(current, size);
+      if ('onChange' in _this.props && _this.props.onChange) {
+        _this.props.onChange(current, size);
+      }
+    };
+    _this.handleChange = function (page) {
+      var _this$props2 = _this.props,
+        disabled = _this$props2.disabled,
+        onChange = _this$props2.onChange;
+      var _this$state = _this.state,
+        pageSize = _this$state.pageSize,
+        current = _this$state.current,
+        currentInputValue = _this$state.currentInputValue;
+      if (_this.isValid(page) && !disabled) {
+        var currentPage = calculatePage(undefined, _this.state, _this.props);
+        var newPage = page;
+        if (page > currentPage) {
+          newPage = currentPage;
+        } else if (page < 1) {
+          newPage = 1;
+        }
+        if (!('current' in _this.props)) {
+          _this.setState({
+            current: newPage
+          });
+        }
+        if (newPage !== currentInputValue) {
+          _this.setState({
+            currentInputValue: newPage
+          });
+        }
+        onChange(newPage, pageSize);
+        return newPage;
+      }
+      return current;
+    };
+    _this.prev = function () {
+      if (_this.hasPrev()) {
+        _this.handleChange(_this.state.current - 1);
+      }
+    };
+    _this.next = function () {
+      if (_this.hasNext()) {
+        _this.handleChange(_this.state.current + 1);
+      }
+    };
+    _this.jumpPrev = function () {
+      _this.handleChange(_this.getJumpPrevPage());
+    };
+    _this.jumpNext = function () {
+      _this.handleChange(_this.getJumpNextPage());
+    };
+    _this.hasPrev = function () {
+      return _this.state.current > 1;
+    };
+    _this.hasNext = function () {
+      return _this.state.current < calculatePage(undefined, _this.state, _this.props);
+    };
+    _this.runIfEnter = function (event, callback) {
+      if (event.key === 'Enter' || event.charCode === 13) {
+        for (var _len = arguments.length, restParams = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+          restParams[_key - 2] = arguments[_key];
+        }
+        callback.apply(void 0, restParams);
+      }
+    };
+    _this.runIfEnterPrev = function (e) {
+      _this.runIfEnter(e, _this.prev);
+    };
+    _this.runIfEnterNext = function (e) {
+      _this.runIfEnter(e, _this.next);
+    };
+    _this.runIfEnterJumpPrev = function (e) {
+      _this.runIfEnter(e, _this.jumpPrev);
+    };
+    _this.runIfEnterJumpNext = function (e) {
+      _this.runIfEnter(e, _this.jumpNext);
+    };
+    _this.handleGoTO = function (e) {
+      if (e.keyCode === KEYCODE.ENTER || e.type === 'click') {
+        _this.handleChange(_this.state.currentInputValue);
+      }
+    };
+    var hasOnChange = props.onChange !== noop;
+    var hasCurrent = ('current' in props);
+    if (hasCurrent && !hasOnChange) {
+      // eslint-disable-next-line no-console
+      console.warn('Warning: You provided a `current` prop to a Pagination component without an `onChange` handler. This will render a read-only component.');
+    }
+    var _current = props.defaultCurrent;
+    if ('current' in props) {
+      // eslint-disable-next-line prefer-destructuring
+      _current = props.current;
+    }
+    var _pageSize = props.defaultPageSize;
+    if ('pageSize' in props) {
+      // eslint-disable-next-line prefer-destructuring
+      _pageSize = props.pageSize;
+    }
+    _current = Math.min(_current, calculatePage(_pageSize, undefined, props));
+    _this.state = {
+      current: _current,
+      currentInputValue: _current,
+      pageSize: _pageSize
+    };
+    return _this;
+  }
+  _createClass(Pagination, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      // When current page change, fix focused style of prev item
+      // A hacky solution of https://github.com/ant-design/ant-design/issues/8948
+      var prefixCls = this.props.prefixCls;
+      if (prevState.current !== this.state.current && this.paginationNode) {
+        var lastCurrentNode = this.paginationNode.querySelector(".".concat(prefixCls, "-item-").concat(prevState.current));
+        if (lastCurrentNode && document.activeElement === lastCurrentNode) {
+          lastCurrentNode.blur();
+        }
+      }
+    }
+  }, {
+    key: "getValidValue",
+    value: function getValidValue(e) {
+      var inputValue = e.target.value;
+      var allPages = calculatePage(undefined, this.state, this.props);
+      var currentInputValue = this.state.currentInputValue;
+      var value;
+      if (inputValue === '') {
+        value = inputValue;
+        // eslint-disable-next-line no-restricted-globals
+      } else if (isNaN(Number(inputValue))) {
+        value = currentInputValue;
+      } else if (inputValue >= allPages) {
+        value = allPages;
+      } else {
+        value = Number(inputValue);
+      }
+      return value;
+    }
+  }, {
+    key: "getShowSizeChanger",
+    value: function getShowSizeChanger() {
+      var _this$props3 = this.props,
+        showSizeChanger = _this$props3.showSizeChanger,
+        total = _this$props3.total,
+        totalBoundaryShowSizeChanger = _this$props3.totalBoundaryShowSizeChanger;
+      if (typeof showSizeChanger !== 'undefined') {
+        return showSizeChanger;
+      }
+      return total > totalBoundaryShowSizeChanger;
+    }
+  }, {
+    key: "renderPrev",
+    value: function renderPrev(prevPage) {
+      var _this$props4 = this.props,
+        prevIcon = _this$props4.prevIcon,
+        itemRender = _this$props4.itemRender;
+      var prevButton = itemRender(prevPage, 'prev', this.getItemIcon(prevIcon, 'prev page'));
+      var disabled = !this.hasPrev();
+      return /*#__PURE__*/isValidElement$1(prevButton) ? /*#__PURE__*/cloneElement$1(prevButton, {
+        disabled: disabled
+      }) : prevButton;
+    }
+  }, {
+    key: "renderNext",
+    value: function renderNext(nextPage) {
+      var _this$props5 = this.props,
+        nextIcon = _this$props5.nextIcon,
+        itemRender = _this$props5.itemRender;
+      var nextButton = itemRender(nextPage, 'next', this.getItemIcon(nextIcon, 'next page'));
+      var disabled = !this.hasNext();
+      return /*#__PURE__*/isValidElement$1(nextButton) ? /*#__PURE__*/cloneElement$1(nextButton, {
+        disabled: disabled
+      }) : nextButton;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+      var _this$props6 = this.props,
+        prefixCls = _this$props6.prefixCls,
+        className = _this$props6.className,
+        style = _this$props6.style,
+        disabled = _this$props6.disabled,
+        hideOnSinglePage = _this$props6.hideOnSinglePage,
+        total = _this$props6.total,
+        locale = _this$props6.locale,
+        showQuickJumper = _this$props6.showQuickJumper,
+        showLessItems = _this$props6.showLessItems,
+        showTitle = _this$props6.showTitle,
+        showTotal = _this$props6.showTotal,
+        simple = _this$props6.simple,
+        itemRender = _this$props6.itemRender,
+        showPrevNextJumpers = _this$props6.showPrevNextJumpers,
+        jumpPrevIcon = _this$props6.jumpPrevIcon,
+        jumpNextIcon = _this$props6.jumpNextIcon,
+        selectComponentClass = _this$props6.selectComponentClass,
+        selectPrefixCls = _this$props6.selectPrefixCls,
+        pageSizeOptions = _this$props6.pageSizeOptions;
+      var _this$state2 = this.state,
+        current = _this$state2.current,
+        pageSize = _this$state2.pageSize,
+        currentInputValue = _this$state2.currentInputValue;
+
+      // When hideOnSinglePage is true and there is only 1 page, hide the pager
+      if (hideOnSinglePage === true && total <= pageSize) {
+        return null;
+      }
+      var allPages = calculatePage(undefined, this.state, this.props);
+      var pagerList = [];
+      var jumpPrev = null;
+      var jumpNext = null;
+      var firstPager = null;
+      var lastPager = null;
+      var gotoButton = null;
+      var goButton = showQuickJumper && showQuickJumper.goButton;
+      var pageBufferSize = showLessItems ? 1 : 2;
+      var prevPage = current - 1 > 0 ? current - 1 : 0;
+      var nextPage = current + 1 < allPages ? current + 1 : allPages;
+      var dataOrAriaAttributeProps = Object.keys(this.props).reduce(function (prev, key) {
+        if (key.substr(0, 5) === 'data-' || key.substr(0, 5) === 'aria-' || key === 'role') {
+          // eslint-disable-next-line no-param-reassign
+          prev[key] = _this2.props[key];
+        }
+        return prev;
+      }, {});
+      var totalText = showTotal && /*#__PURE__*/React__default.createElement("li", {
+        className: "".concat(prefixCls, "-total-text")
+      }, showTotal(total, [total === 0 ? 0 : (current - 1) * pageSize + 1, current * pageSize > total ? total : current * pageSize]));
+      if (simple) {
+        if (goButton) {
+          if (typeof goButton === 'boolean') {
+            gotoButton = /*#__PURE__*/React__default.createElement("button", {
+              type: "button",
+              onClick: this.handleGoTO,
+              onKeyUp: this.handleGoTO
+            }, locale.jump_to_confirm);
+          } else {
+            gotoButton = /*#__PURE__*/React__default.createElement("span", {
+              onClick: this.handleGoTO,
+              onKeyUp: this.handleGoTO
+            }, goButton);
+          }
+          gotoButton = /*#__PURE__*/React__default.createElement("li", {
+            title: showTitle ? "".concat(locale.jump_to).concat(current, "/").concat(allPages) : null,
+            className: "".concat(prefixCls, "-simple-pager")
+          }, gotoButton);
+        }
+        return /*#__PURE__*/React__default.createElement("ul", _extends$1({
+          className: classNames(prefixCls, "".concat(prefixCls, "-simple"), _defineProperty$1({}, "".concat(prefixCls, "-disabled"), disabled), className),
+          style: style,
+          ref: this.savePaginationNode
+        }, dataOrAriaAttributeProps), totalText, /*#__PURE__*/React__default.createElement("li", {
+          title: showTitle ? locale.prev_page : null,
+          onClick: this.prev,
+          tabIndex: this.hasPrev() ? 0 : null,
+          onKeyPress: this.runIfEnterPrev,
+          className: classNames("".concat(prefixCls, "-prev"), _defineProperty$1({}, "".concat(prefixCls, "-disabled"), !this.hasPrev())),
+          "aria-disabled": !this.hasPrev()
+        }, this.renderPrev(prevPage)), /*#__PURE__*/React__default.createElement("li", {
+          title: showTitle ? "".concat(current, "/").concat(allPages) : null,
+          className: "".concat(prefixCls, "-simple-pager")
+        }, /*#__PURE__*/React__default.createElement("input", {
+          type: "text",
+          value: currentInputValue,
+          disabled: disabled,
+          onKeyDown: this.handleKeyDown,
+          onKeyUp: this.handleKeyUp,
+          onChange: this.handleKeyUp,
+          onBlur: this.handleBlur,
+          size: "3"
+        }), /*#__PURE__*/React__default.createElement("span", {
+          className: "".concat(prefixCls, "-slash")
+        }, "/"), allPages), /*#__PURE__*/React__default.createElement("li", {
+          title: showTitle ? locale.next_page : null,
+          onClick: this.next,
+          tabIndex: this.hasPrev() ? 0 : null,
+          onKeyPress: this.runIfEnterNext,
+          className: classNames("".concat(prefixCls, "-next"), _defineProperty$1({}, "".concat(prefixCls, "-disabled"), !this.hasNext())),
+          "aria-disabled": !this.hasNext()
+        }, this.renderNext(nextPage)), gotoButton);
+      }
+      if (allPages <= 3 + pageBufferSize * 2) {
+        var pagerProps = {
+          locale: locale,
+          rootPrefixCls: prefixCls,
+          onClick: this.handleChange,
+          onKeyPress: this.runIfEnter,
+          showTitle: showTitle,
+          itemRender: itemRender
+        };
+        if (!allPages) {
+          pagerList.push( /*#__PURE__*/React__default.createElement(Pager, _extends$1({}, pagerProps, {
+            key: "noPager",
+            page: 1,
+            className: "".concat(prefixCls, "-item-disabled")
+          })));
+        }
+        for (var i = 1; i <= allPages; i += 1) {
+          var active = current === i;
+          pagerList.push( /*#__PURE__*/React__default.createElement(Pager, _extends$1({}, pagerProps, {
+            key: i,
+            page: i,
+            active: active
+          })));
+        }
+      } else {
+        var prevItemTitle = showLessItems ? locale.prev_3 : locale.prev_5;
+        var nextItemTitle = showLessItems ? locale.next_3 : locale.next_5;
+        if (showPrevNextJumpers) {
+          jumpPrev = /*#__PURE__*/React__default.createElement("li", {
+            title: showTitle ? prevItemTitle : null,
+            key: "prev",
+            onClick: this.jumpPrev,
+            tabIndex: "0",
+            onKeyPress: this.runIfEnterJumpPrev,
+            className: classNames("".concat(prefixCls, "-jump-prev"), _defineProperty$1({}, "".concat(prefixCls, "-jump-prev-custom-icon"), !!jumpPrevIcon))
+          }, itemRender(this.getJumpPrevPage(), 'jump-prev', this.getItemIcon(jumpPrevIcon, 'prev page')));
+          jumpNext = /*#__PURE__*/React__default.createElement("li", {
+            title: showTitle ? nextItemTitle : null,
+            key: "next",
+            tabIndex: "0",
+            onClick: this.jumpNext,
+            onKeyPress: this.runIfEnterJumpNext,
+            className: classNames("".concat(prefixCls, "-jump-next"), _defineProperty$1({}, "".concat(prefixCls, "-jump-next-custom-icon"), !!jumpNextIcon))
+          }, itemRender(this.getJumpNextPage(), 'jump-next', this.getItemIcon(jumpNextIcon, 'next page')));
+        }
+        lastPager = /*#__PURE__*/React__default.createElement(Pager, {
+          locale: locale,
+          last: true,
+          rootPrefixCls: prefixCls,
+          onClick: this.handleChange,
+          onKeyPress: this.runIfEnter,
+          key: allPages,
+          page: allPages,
+          active: false,
+          showTitle: showTitle,
+          itemRender: itemRender
+        });
+        firstPager = /*#__PURE__*/React__default.createElement(Pager, {
+          locale: locale,
+          rootPrefixCls: prefixCls,
+          onClick: this.handleChange,
+          onKeyPress: this.runIfEnter,
+          key: 1,
+          page: 1,
+          active: false,
+          showTitle: showTitle,
+          itemRender: itemRender
+        });
+        var left = Math.max(1, current - pageBufferSize);
+        var right = Math.min(current + pageBufferSize, allPages);
+        if (current - 1 <= pageBufferSize) {
+          right = 1 + pageBufferSize * 2;
+        }
+        if (allPages - current <= pageBufferSize) {
+          left = allPages - pageBufferSize * 2;
+        }
+        for (var _i = left; _i <= right; _i += 1) {
+          var _active = current === _i;
+          pagerList.push( /*#__PURE__*/React__default.createElement(Pager, {
+            locale: locale,
+            rootPrefixCls: prefixCls,
+            onClick: this.handleChange,
+            onKeyPress: this.runIfEnter,
+            key: _i,
+            page: _i,
+            active: _active,
+            showTitle: showTitle,
+            itemRender: itemRender
+          }));
+        }
+        if (current - 1 >= pageBufferSize * 2 && current !== 1 + 2) {
+          pagerList[0] = /*#__PURE__*/cloneElement$1(pagerList[0], {
+            className: "".concat(prefixCls, "-item-after-jump-prev")
+          });
+          pagerList.unshift(jumpPrev);
+        }
+        if (allPages - current >= pageBufferSize * 2 && current !== allPages - 2) {
+          pagerList[pagerList.length - 1] = /*#__PURE__*/cloneElement$1(pagerList[pagerList.length - 1], {
+            className: "".concat(prefixCls, "-item-before-jump-next")
+          });
+          pagerList.push(jumpNext);
+        }
+        if (left !== 1) {
+          pagerList.unshift(firstPager);
+        }
+        if (right !== allPages) {
+          pagerList.push(lastPager);
+        }
+      }
+      var prevDisabled = !this.hasPrev() || !allPages;
+      var nextDisabled = !this.hasNext() || !allPages;
+      return /*#__PURE__*/React__default.createElement("ul", _extends$1({
+        className: classNames(prefixCls, className, _defineProperty$1({}, "".concat(prefixCls, "-disabled"), disabled)),
+        style: style,
+        ref: this.savePaginationNode
+      }, dataOrAriaAttributeProps), totalText, /*#__PURE__*/React__default.createElement("li", {
+        title: showTitle ? locale.prev_page : null,
+        onClick: this.prev,
+        tabIndex: prevDisabled ? null : 0,
+        onKeyPress: this.runIfEnterPrev,
+        className: classNames("".concat(prefixCls, "-prev"), _defineProperty$1({}, "".concat(prefixCls, "-disabled"), prevDisabled)),
+        "aria-disabled": prevDisabled
+      }, this.renderPrev(prevPage)), pagerList, /*#__PURE__*/React__default.createElement("li", {
+        title: showTitle ? locale.next_page : null,
+        onClick: this.next,
+        tabIndex: nextDisabled ? null : 0,
+        onKeyPress: this.runIfEnterNext,
+        className: classNames("".concat(prefixCls, "-next"), _defineProperty$1({}, "".concat(prefixCls, "-disabled"), nextDisabled)),
+        "aria-disabled": nextDisabled
+      }, this.renderNext(nextPage)), /*#__PURE__*/React__default.createElement(Options, {
+        disabled: disabled,
+        locale: locale,
+        rootPrefixCls: prefixCls,
+        selectComponentClass: selectComponentClass,
+        selectPrefixCls: selectPrefixCls,
+        changeSize: this.getShowSizeChanger() ? this.changePageSize : null,
+        current: current,
+        pageSize: pageSize,
+        pageSizeOptions: pageSizeOptions,
+        quickGo: this.shouldDisplayQuickJumper() ? this.handleChange : null,
+        goButton: goButton
+      }));
+    }
+  }], [{
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(props, prevState) {
+      var newState = {};
+      if ('current' in props) {
+        newState.current = props.current;
+        if (props.current !== prevState.current) {
+          newState.currentInputValue = newState.current;
+        }
+      }
+      if ('pageSize' in props && props.pageSize !== prevState.pageSize) {
+        var current = prevState.current;
+        var newCurrent = calculatePage(props.pageSize, prevState, props);
+        current = current > newCurrent ? newCurrent : current;
+        if (!('current' in props)) {
+          newState.current = current;
+          newState.currentInputValue = current;
+        }
+        newState.pageSize = props.pageSize;
+      }
+      return newState;
+    }
+  }]);
+  return Pagination;
+}(React__default.Component);
+Pagination$2.defaultProps = {
+  defaultCurrent: 1,
+  total: 0,
+  defaultPageSize: 10,
+  onChange: noop,
+  className: '',
+  selectPrefixCls: 'rc-select',
+  prefixCls: 'rc-pagination',
+  selectComponentClass: null,
+  hideOnSinglePage: false,
+  showPrevNextJumpers: true,
+  showQuickJumper: false,
+  showLessItems: false,
+  showTitle: true,
+  onShowSizeChange: noop,
+  locale: LOCALE,
+  style: {},
+  itemRender: defaultItemRender,
+  totalBoundaryShowSizeChanger: 50
+};
+
+var MiniSelect = function MiniSelect(props) {
+  return /*#__PURE__*/React.createElement(Select$1, _extends$1({}, props, {
+    size: "small"
+  }));
+};
+var MiddleSelect = function MiddleSelect(props) {
+  return /*#__PURE__*/React.createElement(Select$1, _extends$1({}, props, {
+    size: "middle"
+  }));
+};
+MiniSelect.Option = Select$1.Option;
+MiddleSelect.Option = Select$1.Option;
+
+var __rest$4 = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+var Pagination = function Pagination(_a) {
+  var customizePrefixCls = _a.prefixCls,
+    customizeSelectPrefixCls = _a.selectPrefixCls,
+    className = _a.className,
+    size = _a.size,
+    customLocale = _a.locale,
+    selectComponentClass = _a.selectComponentClass,
+    responsive = _a.responsive,
+    showSizeChanger = _a.showSizeChanger,
+    restProps = __rest$4(_a, ["prefixCls", "selectPrefixCls", "className", "size", "locale", "selectComponentClass", "responsive", "showSizeChanger"]);
+  var _useBreakpoint = useBreakpoint(responsive),
+    xs = _useBreakpoint.xs;
+  var _React$useContext = React.useContext(ConfigContext),
+    getPrefixCls = _React$useContext.getPrefixCls,
+    direction = _React$useContext.direction,
+    _React$useContext$pag = _React$useContext.pagination,
+    pagination = _React$useContext$pag === void 0 ? {} : _React$useContext$pag;
+  var prefixCls = getPrefixCls('pagination', customizePrefixCls);
+  var mergedShowSizeChanger = showSizeChanger !== null && showSizeChanger !== void 0 ? showSizeChanger : pagination.showSizeChanger;
+  var getIconsProps = function getIconsProps() {
+    var ellipsis = /*#__PURE__*/React.createElement("span", {
+      className: "".concat(prefixCls, "-item-ellipsis")
+    }, "\u2022\u2022\u2022");
+    var prevIcon = /*#__PURE__*/React.createElement("button", {
+      className: "".concat(prefixCls, "-item-link"),
+      type: "button",
+      tabIndex: -1
+    }, /*#__PURE__*/React.createElement(LeftOutlined$1, null));
+    var nextIcon = /*#__PURE__*/React.createElement("button", {
+      className: "".concat(prefixCls, "-item-link"),
+      type: "button",
+      tabIndex: -1
+    }, /*#__PURE__*/React.createElement(RightOutlined$1, null));
+    var jumpPrevIcon = /*#__PURE__*/React.createElement("a", {
+      className: "".concat(prefixCls, "-item-link")
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "".concat(prefixCls, "-item-container")
+    }, /*#__PURE__*/React.createElement(DoubleLeftOutlined$1, {
+      className: "".concat(prefixCls, "-item-link-icon")
+    }), ellipsis));
+    var jumpNextIcon = /*#__PURE__*/React.createElement("a", {
+      className: "".concat(prefixCls, "-item-link")
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "".concat(prefixCls, "-item-container")
+    }, /*#__PURE__*/React.createElement(DoubleRightOutlined$1, {
+      className: "".concat(prefixCls, "-item-link-icon")
+    }), ellipsis));
+    // change arrows direction in right-to-left direction
+    if (direction === 'rtl') {
+      var _ref = [nextIcon, prevIcon];
+      prevIcon = _ref[0];
+      nextIcon = _ref[1];
+      var _ref2 = [jumpNextIcon, jumpPrevIcon];
+      jumpPrevIcon = _ref2[0];
+      jumpNextIcon = _ref2[1];
+    }
+    return {
+      prevIcon: prevIcon,
+      nextIcon: nextIcon,
+      jumpPrevIcon: jumpPrevIcon,
+      jumpNextIcon: jumpNextIcon
+    };
+  };
+  return /*#__PURE__*/React.createElement(LocaleReceiver$1, {
+    componentName: "Pagination",
+    defaultLocale: enUS$1
+  }, function (contextLocale) {
+    var _classNames;
+    var locale = _extends$1(_extends$1({}, contextLocale), customLocale);
+    var isSmall = size === 'small' || !!(xs && !size && responsive);
+    var selectPrefixCls = getPrefixCls('select', customizeSelectPrefixCls);
+    var extendedClassName = classNames((_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-mini"), isSmall), _defineProperty$1(_classNames, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _classNames), className);
+    return /*#__PURE__*/React.createElement(Pagination$2, _extends$1({}, getIconsProps(), restProps, {
+      prefixCls: prefixCls,
+      selectPrefixCls: selectPrefixCls,
+      className: extendedClassName,
+      selectComponentClass: selectComponentClass || (isSmall ? MiniSelect : MiddleSelect),
+      locale: locale,
+      showSizeChanger: mergedShowSizeChanger
+    }));
+  });
+};
+var Pagination$1 = Pagination;
 
 var defaultProps = {
   percent: 0,
@@ -48357,9 +49356,9 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
                                         jsxs("p", { style: { cursor: "pointer" }, onClick: createNewLabel, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })) })] })] }) }));
 }
 
-var css_248z$5 = ".Toolbar-module__toolbar__9pZF0 {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: white;\n  display: flex;\n  padding: 10px 5px;\n  flex-direction: column;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  border-radius: 15px;\n  gap: 5px;\n  align-items: center;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__divider__1Dj6r {\n  border-bottom: 1px solid rgba(187, 187, 187, 0.7333333333);\n  width: 100%;\n  margin: 8px 6px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC {\n  padding: 7px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 10px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU {\n  background-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU svg {\n  color: white;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n  border-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover svg {\n  color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC svg {\n  width: 22px;\n  height: 22px;\n}";
+var css_248z$6 = ".Toolbar-module__toolbar__9pZF0 {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: white;\n  display: flex;\n  padding: 10px 5px;\n  flex-direction: column;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  border-radius: 15px;\n  gap: 5px;\n  align-items: center;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__divider__1Dj6r {\n  border-bottom: 1px solid rgba(187, 187, 187, 0.7333333333);\n  width: 100%;\n  margin: 8px 6px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC {\n  padding: 7px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 10px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU {\n  background-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU svg {\n  color: white;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n  border-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover svg {\n  color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC svg {\n  width: 22px;\n  height: 22px;\n}";
 var styles$3 = {"toolbar":"Toolbar-module__toolbar__9pZF0","divider":"Toolbar-module__divider__1Dj6r","item":"Toolbar-module__item__wszEC","active":"Toolbar-module__active__YduqU"};
-styleInject(css_248z$5);
+styleInject(css_248z$6);
 
 // THIS FILE IS AUTO GENERATED
 function BsBoundingBox (props) {
@@ -48414,9 +49413,9 @@ function Toolbar({ editor, style = {} }) {
     return (jsx(Fragment, { children: jsxs("div", { className: styles$3["toolbar"], style: style, children: [jsx("div", { className: `${styles$3['item']} ${appMode.mode === 'DRAG_SELECTION_MODE' && styles$3["active"]}`, onClick: setMode({ mode: "DRAG_SELECTION_MODE" }), children: jsx(LiaHandPaperSolid, {}) }), ["entity", "text"].includes(filter.annotationType) && jsx("div", { className: `${styles$3['item']} ${appMode.mode === 'DRAWING_MODE' && styles$3["active"]}`, onClick: setMode({ mode: "DRAWING_MODE" }), children: jsx(BsBoundingBox, {}) }), filter.annotationType === "polygon" && jsx("div", { className: `${styles$3['item']} ${appMode.mode === 'POLYGON_MODE' && styles$3["active"]}`, onClick: setMode({ mode: "POLYGON_MODE" }), children: jsx(PiPolygonBold, {}) }), jsx("div", { className: styles$3["divider"] }), jsx("div", { className: styles$3["item"], onClick: zoomInOut(0), children: jsx(AiOutlinePlus, {}) }), jsx("div", { className: styles$3["item"], onClick: () => editor.fitToScreen(), children: jsx(MdOutlineFitScreen, {}) }), jsx("div", { className: styles$3["item"], onClick: zoomInOut(1), children: jsx(AiOutlineMinus, {}) }), jsx("div", { className: styles$3["divider"] }), jsx("div", { className: styles$3["item"], onClick: () => editor.activeImage?.actionStore.undo().catch((e) => console.log(e)), children: jsx(LiaUndoAltSolid, {}) }), jsx("div", { className: styles$3["item"], onClick: () => editor.activeImage?.actionStore.redo().catch((e) => console.log(e)), children: jsx(LiaRedoAltSolid, {}) }), jsx("div", { className: styles$3["divider"] }), jsx("div", { className: styles$3["item"], children: jsx(BsBrightnessHigh, {}) })] }) }));
 }
 
-var css_248z$4 = ".ImageLoader-module__image-loader-container__L8PIM {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  z-index: 9999;\n  border-radius: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__loader__6vPWZ {\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  background-color: white;\n  padding: 5px;\n  border-radius: 10px;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  justify-content: center;\n  gap: 10px;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__title__3ebSj {\n  position: absolute;\n  z-index: 9999;\n  left: 10px;\n  top: 10px;\n  font-size: 1em;\n}";
+var css_248z$5 = ".ImageLoader-module__image-loader-container__L8PIM {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  z-index: 9999;\n  border-radius: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__loader__6vPWZ {\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  background-color: white;\n  padding: 5px;\n  border-radius: 10px;\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  justify-content: center;\n  gap: 10px;\n}\n.ImageLoader-module__image-loader-container__L8PIM .ImageLoader-module__title__3ebSj {\n  position: absolute;\n  z-index: 9999;\n  left: 10px;\n  top: 10px;\n  font-size: 1em;\n}";
 var styles$2 = {"image-loader-container":"ImageLoader-module__image-loader-container__L8PIM","loader":"ImageLoader-module__loader__6vPWZ","title":"ImageLoader-module__title__3ebSj"};
-styleInject(css_248z$4);
+styleInject(css_248z$5);
 
 var cssUnit = {
     cm: true,
@@ -48537,21 +49536,23 @@ function ImageLoader({ spacingLeft = 0, spacingRight = 0, forceShow = false }) {
     return (jsx(Fragment, { children: jsxs("div", { className: styles$2["image-loader-container"], children: [jsx("span", { className: styles$2["title"], children: LoaderSpinner?.title || "" }), jsx("div", { className: styles$2["loader"], style: { marginLeft: spacingLeft, marginRight: spacingRight }, children: jsx(ClipLoader, { color: "rgb(66, 72, 255)" }) })] }) }));
 }
 
-var css_248z$3 = "@import 'antd/dist/antd.css';\n::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 2px rgba(48, 48, 48, 0.3);\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar {\n  width: 2px;\n  height: 2px;\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar-thumb {\n  background-color: #646464;\n  border: 2px solid #555555;\n}\n\nspan {\n  font-family: \"Roboto\", sans-serif, Saira Semi Condensed, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}";
+var css_248z$4 = "@import 'antd/dist/antd.css';\n::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 2px rgba(48, 48, 48, 0.3);\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar {\n  width: 2px;\n  height: 2px;\n  background-color: #F5F5F5;\n}\n\n::-webkit-scrollbar-thumb {\n  background-color: #646464;\n  border: 2px solid #555555;\n}\n\nspan {\n  font-family: \"Roboto\", sans-serif, Saira Semi Condensed, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}";
+styleInject(css_248z$4);
+
+var css_248z$3 = ".LeftSidebar-module__left-sidebar__pG-ed {\n  background-color: white;\n  width: 300px;\n  height: 100%;\n  position: absolute;\n  right: 0px;\n  top: 0;\n  border-left: 1px solid #e4e8eb;\n  display: flex;\n  flex-direction: column;\n  padding: 0;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  padding: 15px 10px;\n  padding-bottom: 5px;\n  border-bottom: 1px solid #E4E8EB;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__annotation-type-selector__kdj6B .LeftSidebar-module__ant-checkbox-checked__--wev .LeftSidebar-module__ant-checkbox-inner__kpOx- {\n  background-color: rgb(66, 72, 255);\n  border-color: rgb(66, 72, 255);\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__entityType-selector__cf2oe {\n  display: flex;\n  cursor: pointer;\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n  padding: 9px 10px;\n  gap: 5px;\n  align-items: center;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__search-entity-class__eqmEz {\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__label-input-list-container__1cG8i {\n  display: flex;\n  flex-direction: column;\n  height: calc(100% - 120px);\n  overflow-y: auto;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu__y9i1k {\n  max-height: 230px;\n  overflow-y: scroll;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-group-title__8on4W {\n  color: rgba(0, 0, 0, 0.45) !important;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}\n\n.LeftSidebar-module__entity-class-filter-item__H4mPm {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 5px;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm span {\n  color: black;\n  font-size: 15px;\n  font-weight: 600;\n  max-width: 200px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  text-decoration: none;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm .LeftSidebar-module__circle__qYYiF {\n  height: 16px;\n  width: 16px;\n  border-radius: 50%;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ {\n  top: 170px !important;\n  max-height: 220px;\n  overflow-y: scroll;\n  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv {\n  padding-left: 10px !important;\n  margin-left: 0px !important;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv:hover {\n  background-color: #f5f5f5;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-checkbox-group__Zw77S {\n  display: flex;\n  flex-direction: column;\n  padding-left: 10px;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}";
+var styles$1 = {"left-sidebar":"LeftSidebar-module__left-sidebar__pG-ed","selector-container":"LeftSidebar-module__selector-container__3Zuf9","annotation-type-selector":"LeftSidebar-module__annotation-type-selector__kdj6B","ant-checkbox-checked":"LeftSidebar-module__ant-checkbox-checked__--wev","ant-checkbox-inner":"LeftSidebar-module__ant-checkbox-inner__kpOx-","entityType-selector":"LeftSidebar-module__entityType-selector__cf2oe","search-entity-class":"LeftSidebar-module__search-entity-class__eqmEz","label-input-list-container":"LeftSidebar-module__label-input-list-container__1cG8i","dropdown-overlay-leftnavbar":"LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al","ant-dropdown-menu":"LeftSidebar-module__ant-dropdown-menu__y9i1k","ant-dropdown-menu-item-group-title":"LeftSidebar-module__ant-dropdown-menu-item-group-title__8on4W","ant-dropdown-menu-item-active":"LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY","entity-class-filter-item":"LeftSidebar-module__entity-class-filter-item__H4mPm","circle":"LeftSidebar-module__circle__qYYiF","dropdown-overlay-filter-entity-class":"LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ","checkbox-item":"LeftSidebar-module__checkbox-item__4y4tv","ant-checkbox-group":"LeftSidebar-module__ant-checkbox-group__Zw77S"};
 styleInject(css_248z$3);
 
-var css_248z$2 = ".LeftSidebar-module__left-sidebar__pG-ed {\n  background-color: white;\n  width: 300px;\n  height: 100%;\n  position: absolute;\n  right: 0px;\n  top: 0;\n  border-left: 1px solid #e4e8eb;\n  display: flex;\n  flex-direction: column;\n  padding: 0;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  padding: 15px 10px;\n  padding-bottom: 5px;\n  border-bottom: 1px solid #E4E8EB;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__annotation-type-selector__kdj6B .LeftSidebar-module__ant-checkbox-checked__--wev .LeftSidebar-module__ant-checkbox-inner__kpOx- {\n  background-color: rgb(66, 72, 255);\n  border-color: rgb(66, 72, 255);\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__entityType-selector__cf2oe {\n  display: flex;\n  cursor: pointer;\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n  padding: 9px 10px;\n  gap: 5px;\n  align-items: center;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__selector-container__3Zuf9 .LeftSidebar-module__search-entity-class__eqmEz {\n  border: 1px solid #E4E8EB;\n  border-radius: 5px;\n}\n.LeftSidebar-module__left-sidebar__pG-ed .LeftSidebar-module__label-input-list-container__1cG8i {\n  display: flex;\n  flex-direction: column;\n  height: calc(100% - 120px);\n  overflow-y: auto;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu__y9i1k {\n  max-height: 230px;\n  overflow-y: scroll;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-group-title__8on4W {\n  color: rgba(0, 0, 0, 0.45) !important;\n}\n\n.LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}\n\n.LeftSidebar-module__entity-class-filter-item__H4mPm {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 5px;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm span {\n  color: black;\n  font-size: 15px;\n  font-weight: 600;\n  max-width: 200px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  text-decoration: none;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.LeftSidebar-module__entity-class-filter-item__H4mPm .LeftSidebar-module__circle__qYYiF {\n  height: 16px;\n  width: 16px;\n  border-radius: 50%;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ {\n  top: 170px !important;\n  max-height: 220px;\n  overflow-y: scroll;\n  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv {\n  padding-left: 10px !important;\n  margin-left: 0px !important;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__checkbox-item__4y4tv:hover {\n  background-color: #f5f5f5;\n}\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-checkbox-group__Zw77S {\n  display: flex;\n  flex-direction: column;\n  padding-left: 10px;\n}\n\n.LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ .LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY {\n  background-color: #f5f5f5 !important;\n  border-radius: 10px;\n}";
-var styles$1 = {"left-sidebar":"LeftSidebar-module__left-sidebar__pG-ed","selector-container":"LeftSidebar-module__selector-container__3Zuf9","annotation-type-selector":"LeftSidebar-module__annotation-type-selector__kdj6B","ant-checkbox-checked":"LeftSidebar-module__ant-checkbox-checked__--wev","ant-checkbox-inner":"LeftSidebar-module__ant-checkbox-inner__kpOx-","entityType-selector":"LeftSidebar-module__entityType-selector__cf2oe","search-entity-class":"LeftSidebar-module__search-entity-class__eqmEz","label-input-list-container":"LeftSidebar-module__label-input-list-container__1cG8i","dropdown-overlay-leftnavbar":"LeftSidebar-module__dropdown-overlay-leftnavbar__cu7Al","ant-dropdown-menu":"LeftSidebar-module__ant-dropdown-menu__y9i1k","ant-dropdown-menu-item-group-title":"LeftSidebar-module__ant-dropdown-menu-item-group-title__8on4W","ant-dropdown-menu-item-active":"LeftSidebar-module__ant-dropdown-menu-item-active__M9qcY","entity-class-filter-item":"LeftSidebar-module__entity-class-filter-item__H4mPm","circle":"LeftSidebar-module__circle__qYYiF","dropdown-overlay-filter-entity-class":"LeftSidebar-module__dropdown-overlay-filter-entity-class__JgBHQ","checkbox-item":"LeftSidebar-module__checkbox-item__4y4tv","ant-checkbox-group":"LeftSidebar-module__ant-checkbox-group__Zw77S"};
-styleInject(css_248z$2);
-
 // THIS FILE IS AUTO GENERATED
-function FiSearch (props) {
+function FiPlus (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":"2","strokeLinecap":"round","strokeLinejoin":"round"},"child":[{"tag":"line","attr":{"x1":"12","y1":"5","x2":"12","y2":"19"}},{"tag":"line","attr":{"x1":"5","y1":"12","x2":"19","y2":"12"}}]})(props);
+}function FiSearch (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":"2","strokeLinecap":"round","strokeLinejoin":"round"},"child":[{"tag":"circle","attr":{"cx":"11","cy":"11","r":"8"}},{"tag":"line","attr":{"x1":"21","y1":"21","x2":"16.65","y2":"16.65"}}]})(props);
 }
 
-var css_248z$1 = ".AnnotationInput-module__label-input-item__QLl8n {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 5px 10px;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__color__X6CjT {\n  width: 30px;\n  height: 30px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  padding: 0px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  transition: none;\n  padding: 0;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk.AnnotationInput-module__ant-select-focused__gkB5I .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  box-shadow: none !important;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__label-selector__6Ox89 {\n  width: 170px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__direction-selector__AtyDz {\n  cursor: pointer;\n  color: rgb(66, 72, 255);\n  display: flex;\n  justify-content: center;\n  width: 20px;\n}";
+var css_248z$2 = ".AnnotationInput-module__label-input-item__QLl8n {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 5px 10px;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n:hover .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #f5f5f5;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n.AnnotationInput-module__active__exaaB .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  background-color: #d7d7d7;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__color__X6CjT {\n  width: 30px;\n  height: 30px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  padding: 0px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk .AnnotationInput-module__ant-select-selector__V7Q-Y .AnnotationInput-module__ant-select-selection-item__UKZNg {\n  transition: none;\n  padding: 0;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__selector__yOaYk.AnnotationInput-module__ant-select-focused__gkB5I .AnnotationInput-module__ant-select-selector__V7Q-Y {\n  box-shadow: none !important;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__label-selector__6Ox89 {\n  width: 170px;\n}\n.AnnotationInput-module__label-input-item__QLl8n .AnnotationInput-module__direction-selector__AtyDz {\n  cursor: pointer;\n  color: rgb(66, 72, 255);\n  display: flex;\n  justify-content: center;\n  width: 20px;\n}";
 var styles = {"label-input-item":"AnnotationInput-module__label-input-item__QLl8n","selector":"AnnotationInput-module__selector__yOaYk","ant-select-selector":"AnnotationInput-module__ant-select-selector__V7Q-Y","ant-select-selection-item":"AnnotationInput-module__ant-select-selection-item__UKZNg","active":"AnnotationInput-module__active__exaaB","color":"AnnotationInput-module__color__X6CjT","ant-select-focused":"AnnotationInput-module__ant-select-focused__gkB5I","label-selector":"AnnotationInput-module__label-selector__6Ox89","direction-selector":"AnnotationInput-module__direction-selector__AtyDz"};
-styleInject(css_248z$1);
+styleInject(css_248z$2);
 
 // THIS FILE IS AUTO GENERATED
 function RiDeleteBin6Line (props) {
@@ -66703,6 +67704,7 @@ class Editor extends Konva.Stage {
             this.fitToScreen();
             this.showCrossHairs();
             setRecoil_1(loaderAtom, { visible: false });
+            resolve();
         });
     }
     zoomInOutStage = (event, position = this.getPointerPosition(), newPosition) => {
@@ -67585,8 +68587,8 @@ function useHumanAnnotator() {
     return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'ha-editor', style: { width: '100%', height: '100%' } }), editor && props && jsx(HumanAnnotation, { ...props, editor: editor })] })] })), init, handleSave];
 }
 
-var css_248z = ".upload-dragger {\n  width: calc(100% - 300px);\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 1000;\n  background-color: #efefef;\n}\n.upload-dragger .submit {\n  position: absolute;\n  bottom: 20px;\n  display: flex;\n  justify-content: center;\n  right: 10px;\n  width: min(50%, 700px);\n}\n.upload-dragger .submit .save {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  background: #fff;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  align-items: center;\n  border-color: #d9d9d9;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  letter-spacing: 0.4px;\n  background-color: #4248ff;\n  color: #fff;\n}\n.upload-dragger .submit .save.disable {\n  background-color: #b3b3b3;\n  cursor: not-allowed;\n}\n.upload-dragger .container {\n  width: min(60%, 700px);\n  height: min(60%, 350px);\n  cursor: pointer;\n  border-radius: 15px !important;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  background-color: white;\n}\n.upload-dragger .container .close {\n  position: absolute;\n  right: 15px;\n  top: 15px;\n}\n.upload-dragger .container span:first-child {\n  display: block;\n  height: 100%;\n  position: relative;\n}\n.upload-dragger .container span:first-child .ant-upload.ant-upload-drag {\n  height: 100%;\n  border-radius: 10px !important;\n}\n.upload-dragger .container span:first-child .ant-upload.ant-upload-drag .ant-upload-drag-container {\n  height: 100%;\n  display: block !important;\n}\n.upload-dragger .container .inner-container {\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 100%;\n  gap: 10px;\n  margin: auto;\n  position: relative;\n}\n.upload-dragger .container .inner-container.mini {\n  width: 46%;\n  margin: 0;\n}\n.upload-dragger .container .inner-container.mini::before {\n  content: \"\";\n  height: calc(100% - 20px);\n  width: 1px;\n  right: 0;\n  background-color: #b3b3b3;\n  position: absolute;\n}\n.upload-dragger .container .inner-container span {\n  overflow-wrap: normal;\n  display: block;\n  color: #333;\n  font-size: 1.5em;\n  margin-right: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 3px 5px;\n}\n.upload-dragger .container .inner-container p {\n  color: #383737;\n  font-size: 0.8em;\n  font-style: italic;\n  text-align: center;\n  margin: 0;\n}\n.upload-dragger .container .ant-upload-list {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  width: min(50%, 700px);\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  height: min(70%, 350px);\n  overflow-y: auto;\n}\n.upload-dragger .container .ant-upload-list:hover {\n  cursor: default;\n}\n.upload-dragger .container .ant-upload-list .item {\n  margin-right: 10px;\n  align-items: center;\n  padding: 10px 10px;\n  display: flex;\n  border-radius: 10px;\n  gap: 10px;\n}\n.upload-dragger .container .ant-upload-list .item span {\n  color: #383737;\n  font-size: 0.8em;\n}\n.upload-dragger .container .ant-upload-list .item .ant-progress-bg {\n  border-radius: 10px;\n}\n.upload-dragger .container .ant-upload-list .item.success {\n  background-color: #efffde;\n  border: 1px solid #a6ff61;\n}\n.upload-dragger .container .ant-upload-list .item.success svg {\n  color: #52c41a;\n}\n.upload-dragger .container .ant-upload-list .item.error {\n  background-color: rgba(220, 76, 100, 0.1803921569);\n  border: 1px solid rgba(220, 76, 100, 0.2901960784);\n}\n.upload-dragger .container .ant-upload-list .item.error svg {\n  color: #ff4d4f;\n}\n.upload-dragger .container .ant-upload-list .item.progress {\n  background-color: rgba(66, 72, 255, 0.12);\n  border: 1px solid rgba(0, 53, 255, 0.29);\n}\n.upload-dragger .container .ant-upload-list .item .content {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  width: 100%;\n}\n.upload-dragger .container .ant-upload-list .item .content .meta {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.upload-dragger .container .ant-upload-list .item .content .meta .status-error {\n  color: orange;\n}";
-styleInject(css_248z);
+var css_248z$1 = ".upload-dragger {\n  width: calc(100% - 300px);\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 1000;\n  background-color: #efefef;\n}\n.upload-dragger .submit {\n  position: absolute;\n  bottom: 20px;\n  display: flex;\n  justify-content: center;\n  right: 10px;\n  width: min(50%, 700px);\n}\n.upload-dragger .submit .save {\n  pointer-events: auto;\n  word-wrap: break-word;\n  list-style: none;\n  font-family: inherit;\n  margin: 0;\n  overflow: visible;\n  text-transform: none;\n  background: #fff;\n  border: 1px solid #d9d9d9;\n  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);\n  cursor: pointer;\n  font-size: 14px;\n  height: 32px;\n  line-height: 1.5715;\n  padding: 4px 15px;\n  position: relative;\n  text-align: center;\n  touch-action: manipulation;\n  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);\n  user-select: none;\n  white-space: nowrap;\n  outline: 0;\n  box-sizing: border-box;\n  align-items: center;\n  border-color: #d9d9d9;\n  border-radius: 5px;\n  display: flex;\n  font-weight: 600;\n  gap: 6px;\n  letter-spacing: 0.4px;\n  background-color: #4248ff;\n  color: #fff;\n}\n.upload-dragger .submit .save.disable {\n  background-color: #b3b3b3;\n  cursor: not-allowed;\n}\n.upload-dragger .container {\n  width: min(60%, 700px);\n  height: min(60%, 350px);\n  cursor: pointer;\n  border-radius: 15px !important;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  background-color: white;\n}\n.upload-dragger .container .close {\n  position: absolute;\n  right: 15px;\n  top: 15px;\n}\n.upload-dragger .container span:first-child {\n  display: block;\n  height: 100%;\n  position: relative;\n}\n.upload-dragger .container span:first-child .ant-upload.ant-upload-drag {\n  height: 100%;\n  border-radius: 10px !important;\n}\n.upload-dragger .container span:first-child .ant-upload.ant-upload-drag .ant-upload-drag-container {\n  height: 100%;\n  display: block !important;\n}\n.upload-dragger .container .inner-container {\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 100%;\n  gap: 10px;\n  margin: auto;\n  position: relative;\n}\n.upload-dragger .container .inner-container.mini {\n  width: 46%;\n  margin: 0;\n}\n.upload-dragger .container .inner-container.mini::before {\n  content: \"\";\n  height: calc(100% - 20px);\n  width: 1px;\n  right: 0;\n  background-color: #b3b3b3;\n  position: absolute;\n}\n.upload-dragger .container .inner-container span {\n  overflow-wrap: normal;\n  display: block;\n  color: #333;\n  font-size: 1.5em;\n  margin-right: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  padding: 3px 5px;\n}\n.upload-dragger .container .inner-container p {\n  color: #383737;\n  font-size: 0.8em;\n  font-style: italic;\n  text-align: center;\n  margin: 0;\n}\n.upload-dragger .container .ant-upload-list {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  width: min(50%, 700px);\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  height: min(70%, 350px);\n  overflow-y: auto;\n}\n.upload-dragger .container .ant-upload-list:hover {\n  cursor: default;\n}\n.upload-dragger .container .ant-upload-list .item {\n  margin-right: 10px;\n  align-items: center;\n  padding: 10px 10px;\n  display: flex;\n  border-radius: 10px;\n  gap: 10px;\n}\n.upload-dragger .container .ant-upload-list .item span {\n  color: #383737;\n  font-size: 0.8em;\n}\n.upload-dragger .container .ant-upload-list .item .ant-progress-bg {\n  border-radius: 10px;\n}\n.upload-dragger .container .ant-upload-list .item.success {\n  background-color: #efffde;\n  border: 1px solid #a6ff61;\n}\n.upload-dragger .container .ant-upload-list .item.success svg {\n  color: #52c41a;\n}\n.upload-dragger .container .ant-upload-list .item.error {\n  background-color: rgba(220, 76, 100, 0.1803921569);\n  border: 1px solid rgba(220, 76, 100, 0.2901960784);\n}\n.upload-dragger .container .ant-upload-list .item.error svg {\n  color: #ff4d4f;\n}\n.upload-dragger .container .ant-upload-list .item.progress {\n  background-color: rgba(66, 72, 255, 0.12);\n  border: 1px solid rgba(0, 53, 255, 0.29);\n}\n.upload-dragger .container .ant-upload-list .item .content {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  width: 100%;\n}\n.upload-dragger .container .ant-upload-list .item .content .meta {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.upload-dragger .container .ant-upload-list .item .content .meta .status-error {\n  color: orange;\n}";
+styleInject(css_248z$1);
 
 const Dragger = Upload$1.Dragger;
 function UploadDragger({ allowMultiple = false, spacingLeft = 0, editor, uploadRequest, onUploadSubmit }) {
@@ -68198,5 +69200,327 @@ function useMetaExtractionAnnotator() {
     return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'meta-selection-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(MetaSelectionAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: '100vh' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
 }
 
-export { useDrawingAreaAnnotator, useHumanAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };
+class LegendImage extends Image$1 {
+    legendSelection = new Set();
+    createBoxAction = null;
+    constructor(config) {
+        super(config);
+        this.init(config);
+        this.on("mousedown", this.mouseDownAction.bind(this));
+        this.on("mousemove", this.mouseMoveAction.bind(this));
+        this.on("mouseup", this.mouseUpAction.bind(this));
+    }
+    init(config) {
+        super.init(config);
+    }
+    async mouseDownAction(event) {
+        try {
+            if (!["DRAWING_MODE"].includes(this.editor?.appMode.mode || "") || this.createBoxAction !== null || event.evt.which !== 1)
+                return;
+            this.editor?.hideCrossHairs();
+            const pos = this.editor?.getRelativePointerPosition();
+            if (this.editor.appMode.mode === "DRAWING_MODE") {
+                this.createBoxAction = new CreateBoxAction({ pos, image: this, actionsStore: this.actionStore });
+                await this.createBoxAction.build();
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async mouseMoveAction(event) {
+        try {
+            if (!["DRAWING_MODE"].includes(this.editor?.appMode.mode || ""))
+                return;
+            const pos = this.editor?.getRelativePointerPosition();
+            if (this.createBoxAction) {
+                await this.createBoxAction.execute(pos);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async mouseUpAction(event) {
+        try {
+            if (this.editor?.appMode.mode !== "DRAWING_MODE" || this.createBoxAction === null)
+                return;
+            this.editor?.showCrossHairs();
+            await this.createBoxAction.finish();
+            if (this.createBoxAction.subject?.rect?.width() === 0 || this.createBoxAction.subject?.rect?.height() === 0) {
+                await this.createBoxAction.undo();
+                await this.createBoxAction.destroy();
+                this.createBoxAction = null;
+                return;
+            }
+            const box = this.createBoxAction.subject;
+            this.createBoxAction = null;
+            this.editor?.setMode({
+                mode: "EDIT_MODE",
+                shapeInEditMode: box,
+                visible: true,
+                scrollIntoView: true
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    addImBox(imBox) {
+        const label = this.editor.labels.find(label => label.id === imBox.labelId);
+        const box = new Box({
+            ...imBox,
+            draggable: true,
+            listening: false,
+            image: this,
+            label
+        });
+        this.addBox(box);
+    }
+    addBox(box) {
+        this.legendSelection.add(box);
+        this.editor.legendSelectionLayer.add(box);
+        this.syncBoxs();
+    }
+    deleteBox(box) {
+        this.legendSelection.delete(box);
+        box.remove();
+        this.syncBoxs();
+    }
+    syncBoxs() {
+        setRecoil_1(entityListAtom, [...this.legendSelection]);
+    }
+}
+
+class LegendEditor extends Editor {
+    legendSelectionLayer;
+    handleImageRequest;
+    constructor(config) {
+        super(config);
+        this.init(config);
+    }
+    init(config) {
+        super.init(config);
+        this.handleImageRequest = config.onImageRequest;
+        this.legendSelectionLayer = new Konva.Layer();
+        this.legendSelectionLayer.canvas._canvas.setAttribute('id', 'META-SELECTION-LAYER');
+    }
+    async loadImageFromServer(id) {
+        return await this.handleImageRequest(id);
+    }
+    async loadImage(img) {
+        if (img.src === '') {
+            setRecoil_1(loaderAtom, { visible: true, title: "Loading Image..." });
+            const src = await this.loadImageFromServer(img.id());
+            const image = new window.Image();
+            image.crossOrigin = 'Anonymous';
+            image.src = src;
+            image.onload = async (e) => {
+                img.image(image);
+                img.src = src;
+                await super.loadImage(img);
+                this.renderAnnotations();
+            };
+            image.onerror = () => { throw "Failed to load image."; };
+        }
+        else {
+            await super.loadImage(img);
+            this.renderAnnotations();
+        }
+    }
+    async importLegendState(legendState, labelMappings) {
+        if (legendState.length === 0)
+            return;
+        labelMappings.forEach(label => {
+            const newLabel = new Label({
+                id: label.id,
+                name: label.name,
+                type: label.type
+            });
+            this.addLabel(newLabel);
+        });
+        this.syncLabels();
+        await Promise.all(legendState.map(async (state) => {
+            const image = await this.addImage({ ...state.image, src: '' });
+            state.bounding_box.forEach(box => {
+                let label = this.labels.find(label => label.name === box.label);
+                const imBox = {
+                    x: box.x,
+                    y: box.y,
+                    width: box.width,
+                    height: box.height,
+                    labelId: label?.id ?? -1,
+                    direction: 'E',
+                    humanAnnotated: false,
+                    indexId: box.id || -1
+                };
+                image.addImBox(imBox);
+            });
+        }));
+        this.syncImageList();
+        await this.loadImage(this.images[0]);
+        this.renderAnnotations();
+    }
+    exportLegendState() {
+        return [{
+                image: {
+                    id: this.activeImage?.id() || '',
+                    name: this.activeImage?.name() || ''
+                },
+                bounding_box: [...this.activeImage?.legendSelection || []].map(box => ({
+                    x: box.x(),
+                    y: box.y(),
+                    width: box.rect.width(),
+                    height: box.rect.height(),
+                    id: box.indexId === -1 ? null : box.indexId,
+                    label: box.label?.name || ""
+                }))
+            }];
+    }
+    addImage(imImage) {
+        return new Promise((resolve, reject) => {
+            let pos = { x: 0, y: 0 };
+            const image = new window.Image();
+            image.crossOrigin = 'Anonymous';
+            image.src = imImage.src;
+            const img = new LegendImage({
+                id: imImage.id,
+                name: imImage.name,
+                src: imImage.src,
+                x: pos.x,
+                y: pos.y,
+                fill: 'white',
+                draggable: false,
+                image: image,
+                editor: this,
+            });
+            this.images.unshift(img);
+            resolve(img);
+        });
+    }
+    async renderAnnotations() {
+        if (!this.legendSelectionLayer)
+            return;
+        this.add(this.legendSelectionLayer);
+        this.legendSelectionLayer.removeChildren();
+        console.log(this.activeImage);
+        [...(this.activeImage?.legendSelection || [])].forEach(legendSelectionObj => {
+            this.legendSelectionLayer.add(legendSelectionObj);
+        });
+        this.legendSelectionLayer.moveToTop();
+        this.crosshairLayer.moveToTop();
+    }
+    setSelectionBoxesListening(listen) {
+        this.activeImage?.legendSelection.forEach(entity => { entity.listening(listen); entity.hideAnchors(); });
+    }
+    setMode(appMode) {
+        super.setMode(appMode);
+        if (this.activeImage?.createBoxAction)
+            return;
+        if (appMode.mode === 'DRAG_SELECTION_MODE') {
+            this.setSelectionBoxesListening(true);
+        }
+        else if (appMode.mode === 'EDIT_MODE') {
+            this.setSelectionBoxesListening(false);
+        }
+        else if (appMode.mode === 'DRAWING_MODE') {
+            this.activeImage?.legendSelection.forEach(entity => entity.hideAnchors());
+            this.setSelectionBoxesListening(false);
+        }
+    }
+}
+
+var css_248z = ".pagination-container {\n  position: absolute;\n  bottom: 10px;\n  padding: 10px;\n  border-radius: 15px;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  background-color: white;\n  transform: translateX(-50%);\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.pagination-container .ant-pagination-item-link {\n  border: none;\n}\n.pagination-container .ant-pagination-item-active {\n  border-color: rgb(66, 72, 255);\n  border-radius: 5px;\n}\n.pagination-container .ant-pagination-item-active a {\n  color: rgb(66, 72, 255);\n  font-weight: bold;\n}\n.pagination-container .ant-pagination-simple .ant-pagination-simple-pager input:hover {\n  border-color: rgb(66, 72, 255);\n}\n.pagination-container .ant-pagination-simple .ant-pagination-simple-pager input:focus {\n  border-color: rgb(66, 72, 255);\n}\n.pagination-container .add-image {\n  display: flex;\n  align-items: center;\n  gap: 5px;\n  justify-content: center;\n  cursor: pointer;\n  border: 1px solid #cfcfcf;\n  width: 25px;\n  height: 25px;\n  border-radius: 50%;\n}\n.pagination-container .add-image:hover {\n  border-color: rgb(66, 72, 255);\n}\n.pagination-container .add-image:hover svg {\n  color: rgb(66, 72, 255);\n}";
+styleInject(css_248z);
+
+function ImageListPagination({ editor, spacingRight }) {
+    const imageList = Recoil_index_20(imageListAtom);
+    const activeImage = Recoil_index_20(activeImageAtom);
+    const setShowUploadDragger = Recoil_index_24(showUploadDraggerAtom);
+    const handleChange = async (page) => {
+        const image = imageList.find((_, index) => page === index + 1);
+        if (image) {
+            await editor.loadImage(image);
+        }
+    };
+    const handleAddImage = () => {
+        setShowUploadDragger(true);
+    };
+    return (jsx(Fragment, { children: jsxs("div", { className: "pagination-container", style: { left: `calc(50% + -${spacingRight ?? 0}px)` }, children: [jsx(Pagination$1, { total: imageList.length, simple: true, current: imageList.findIndex(image => image.id() === activeImage?.id()) + 1, pageSize: 1, onChange: handleChange }), jsx(Tooltip$1, { title: "Upload Images", children: jsx("span", { className: "add-image", onClick: handleAddImage, children: jsx(FiPlus, {}) }) })] }) }));
+}
+
+function LegendAnnotation({ editor, labelMappings, legendState, loader, editorSpacingLeft, uploadRequest, onUploadSubmit }) {
+    const setLoader = Recoil_index_24(loaderAtom);
+    const [showUploadDragger, setShowUploadDragger] = Recoil_index_22(showUploadDraggerAtom);
+    const cursorTextRef = useRef$6(null);
+    useEffect$5(() => {
+        async function initEditor() {
+            if (!editor || !cursorTextRef.current)
+                return;
+            editor.setCursorTextElement(cursorTextRef);
+            editor.container().focus();
+            setLoader({ visible: true, title: "Loading editor..." });
+            try {
+                await editor.importLegendState(legendState, labelMappings);
+            }
+            catch (error) {
+                console.log(error);
+            }
+            if (editor.images.length === 0) {
+                setShowUploadDragger(true);
+            }
+            setLoader({ visible: false });
+        }
+        initEditor();
+        return () => {
+            setShowUploadDragger(false);
+        };
+    }, [editor, cursorTextRef, labelMappings, legendState]);
+    useEffect$5(() => {
+        setLoader(loader);
+    }, [loader]);
+    return (jsxs(Fragment, { children: [showUploadDragger && jsx(UploadDragger, { editor: editor, spacingLeft: editorSpacingLeft, uploadRequest: uploadRequest, onUploadSubmit: onUploadSubmit }), jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: true, allowLabelUpdate: true, allowCustomLabels: false }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: true, allowLabelUpdate: true } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 }), jsx(ImageListPagination, { editor: editor, spacingRight: 300 })] }));
+}
+
+function useLegendAnnotator() {
+    const [editor, setEditor] = useState$3(null);
+    const editorRef = useRef$6(null);
+    const [props, setProps] = useState$3(null);
+    const [loader, setLoader] = useState$3({ visible: false });
+    const init = (config) => {
+        if (props)
+            return;
+        setProps(config);
+    };
+    useEffect$5(() => {
+        (async (e) => {
+            if (!props)
+                return;
+            const editor = new LegendEditor({
+                container: 'legend-editor',
+                width: window.innerWidth - (props.editorSpacingLeft || 0),
+                height: window.innerHeight - (props.editorSpacingTop || 0),
+                spacingRight: 0,
+                editorSpacingLeft: props.editorSpacingLeft,
+                editorSpacingTop: props.editorSpacingTop,
+                onImageRequest: props.onImageRequest
+            });
+            editorRef.current = editor;
+            setEditor(editor);
+            window.editor = editor;
+        })();
+        return () => {
+            editorRef.current?.removeEventListeners();
+        };
+    }, [props]);
+    const handleSave = () => {
+        if (!editorRef.current)
+            return;
+        const editorState = editorRef.current.exportLegendState();
+        return editorState;
+    };
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'legend-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(LegendAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: '100vh' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+}
+
+export { useDrawingAreaAnnotator, useHumanAnnotator, useLegendAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };
 //# sourceMappingURL=index.js.map

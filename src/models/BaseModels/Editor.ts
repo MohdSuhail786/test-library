@@ -299,6 +299,7 @@ export class Editor<ImageType,Config extends EditorConfig = EditorConfig> extend
             this.fitToScreen();
             this.showCrossHairs(); 
             setRecoil(loaderAtom, {visible: false})
+            resolve()
         })
     }
 

@@ -3,6 +3,8 @@ import { DrawingAreaEditor } from "./DrawingAreaModels/DrawingAreaEditor";
 import { DrawingAreaImage } from "./DrawingAreaModels/DrawingAreaImage";
 import { HumanAnnotationEditor } from "./HumanAnnotationModels/HumanAnnotationEditor";
 import { HumanAnnotationImage } from "./HumanAnnotationModels/HumanAnnotationImage";
+import { LegendEditor } from "./LegendAnnotationModels/LegendEditor";
+import { LegendImage } from "./LegendAnnotationModels/LegendImage";
 import { MetaSelectionEditor } from "./MetaSelectionModels/MetaSelectionEditor";
 import { MetaSelectionImage } from "./MetaSelectionModels/MetaSelectionImage";
 import { Polygon } from "./Polygon";
@@ -190,6 +192,10 @@ export type ProjectSetupState = {
 };
 export type DrawingAreaState = ProjectSetupState[];
 export type MetaSelectionState = ProjectSetupState[];
-export type ImageTypes = DrawingAreaImage | HumanAnnotationImage | MetaSelectionImage;
-export type EditorTypesExceptHA = DrawingAreaEditor | MetaSelectionEditor;
+export type LegendState = {
+    image: Omit<IMImage, "src">;
+    bounding_box: ProjectSetupBBox[];
+}[];
+export type ImageTypes = DrawingAreaImage | HumanAnnotationImage | MetaSelectionImage | LegendImage;
+export type EditorTypesExceptHA = DrawingAreaEditor | MetaSelectionEditor | LegendEditor;
 export type EditorTypes = HumanAnnotationEditor | EditorTypesExceptHA;

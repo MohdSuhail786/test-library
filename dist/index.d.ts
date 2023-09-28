@@ -89,8 +89,12 @@ type ProjectSetupState = {
 };
 type DrawingAreaState = ProjectSetupState[];
 type MetaSelectionState = ProjectSetupState[];
+type LegendState = {
+    image: Omit<IMImage, "src">;
+    bounding_box: ProjectSetupBBox[];
+}[];
 
-interface IProps$2 {
+interface IProps$3 {
     humanAnnotations: HumanAnnotations;
     graphJSON: GraphJSON;
     labelMappings: LabelMappings;
@@ -98,9 +102,9 @@ interface IProps$2 {
     editorSpacingLeft?: number;
     editorSpacingTop?: number;
 }
-declare function useHumanAnnotator(): [ReactNode, (config: IProps$2) => any, () => any];
+declare function useHumanAnnotator(): [ReactNode, (config: IProps$3) => any, () => any];
 
-interface IProps$1 {
+interface IProps$2 {
     drawingAreaState: DrawingAreaState;
     labelMappings: LabelMappings;
     editorSpacingLeft?: number;
@@ -108,9 +112,9 @@ interface IProps$1 {
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
 }
-declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps$1) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps$2) => any, () => any, SetterOrUpdater<LoaderSpinner>];
 
-interface IProps {
+interface IProps$1 {
     metaExtractionState: MetaSelectionState;
     labelMappings: LabelMappings;
     editorSpacingLeft?: number;
@@ -118,6 +122,17 @@ interface IProps {
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
 }
-declare function useMetaExtractionAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+declare function useMetaExtractionAnnotator(): [ReactNode, (config: IProps$1) => any, () => any, SetterOrUpdater<LoaderSpinner>];
 
-export { useDrawingAreaAnnotator, useHumanAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };
+interface IProps {
+    legendState: LegendState;
+    labelMappings: LabelMappings;
+    editorSpacingLeft?: number;
+    editorSpacingTop?: number;
+    uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
+    onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
+    onImageRequest: (id: number) => Promise<string>;
+}
+declare function useLegendAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+
+export { useDrawingAreaAnnotator, useHumanAnnotator, useLegendAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };

@@ -2,7 +2,7 @@ import { LabelList, graphJSON, humanAnnotations, imageSrc, labelMappings } from 
 import { ReactNode, useEffect } from "react";
 import useDrawingAreaAnnotator from "./exportableComponents/useDrawingAreaAnnotator";
 import { DrawingAreaState, GraphJSON, HumanAnnotations, MetaSelectionState } from "./models/Types";
-import { useHumanAnnotator } from "./exportableComponents";
+import { useHumanAnnotator, useLegendAnnotator } from "./exportableComponents";
 
 
 // export default function App() {
@@ -69,7 +69,7 @@ interface IProps {
 
 export function DrawingAreaModal(props: IProps) {
 
-    const [DrawingAreaAnnotator, init, handleSave, setLoader] = useMetaExtractionAnnotator()
+    const [DrawingAreaAnnotator, init, handleSave, setLoader] = useLegendAnnotator()
 
     const handleCancel = (e: any) => {
         e.stopPropagation();
@@ -77,49 +77,63 @@ export function DrawingAreaModal(props: IProps) {
 
     useEffect(()=>{
         init({
-            metaExtractionState: [
-        //         {image: {id: '1', name: 'Any Name', src: imageSrc}, bounding_box: [
-        //     //     {
-        //     //     "id": 131,
-        //     //     "label": "graphic-area",
-        //     //     "x": 0,
-        //     //     "y": 0,
-        //     //     "width": 5600,
-        //     //     "height": 4550
-        //     // }
-        // ]}
+            legendState: [
+                {image: {id: '1', name: 'Any Name'}, bounding_box: [
+                {
+                "id": 131,
+                "label": "graphic-area",
+                "x": 0,
+                "y": 0,
+                "width": 5600,
+                "height": 4550
+            }
+        ]},
+        {image: {id: '2', name: 'Any Name'}, bounding_box: [
+            {
+            "id": 131,
+            "label": "graphic-area",
+            "x": 0,
+            "y": 0,
+            "width": 5600,
+            "height": 4550
+        }
+    ]}
     ] as MetaSelectionState,
             editorSpacingLeft:492,
             editorSpacingTop:100,
-            labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
+            labelMappings: labelMappings,
             uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
-            onUploadSubmit: () => new Promise(r => setTimeout(r,2000))
+            onUploadSubmit: () => new Promise(r => setTimeout(r,2000)),
+            onImageRequest: async (id:number):Promise<string> => {
+                await new Promise(resolve => setTimeout(resolve,2000))
+                return imageSrc;
+            }  
         })
 
-        setTimeout(() => {
-            init({
-                metaExtractionState: [
-                    {image: {id: '1', name: 'Any Name', src: imageSrc}, bounding_box: [
-                    {
-                    "id": 131,
-                    "label": "graphic-area",
-                    "x": 0,
-                    "y": 0,
-                    "width": 5600,
-                    "height": 4550
-                }
-            ]}
-        ] as MetaSelectionState,
-                editorSpacingLeft:492,
-                editorSpacingTop:100,
-                labelMappings: LabelList.DrawingArea.map((label,index) => ({id: index, name: label, type: index})),
-                uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
-                onUploadSubmit: () => new Promise(r => r())
-            })
-            setTimeout(() => {
-                console.log(handleSave())
-            }, 1000);
-        }, 3000);
+        // setTimeout(() => {
+        //     init({
+        //         legendState: [
+        //             {image: {id: '1', name: 'Any Name'}, bounding_box: [
+        //             {
+        //             "id": 131,
+        //             "label": "graphic-area",
+        //             "x": 0,
+        //             "y": 0,
+        //             "width": 5600,
+        //             "height": 4550
+        //         }
+        //     ]}
+        // ] as MetaSelectionState,
+        //         editorSpacingLeft:492,
+        //         editorSpacingTop:100,
+        //         labelMappings: labelMappings,
+        //         uploadRequest: (data: FormData, onProgress: (percent: number) => void) => new Promise(resolve => resolve({id: '1',src: imageSrc, name: ''})),
+        //         onUploadSubmit: () => new Promise(r => r())
+        //     })
+        //     setTimeout(() => {
+        //         console.log(handleSave())
+        //     }, 1000);
+        // }, 3000);
     },[])
 
     return (
