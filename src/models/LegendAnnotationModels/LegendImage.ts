@@ -98,7 +98,7 @@ export class LegendImage<Config extends LegendImageConfig = LegendImageConfig> e
     addBox(box: Box) {
         this.legendSelection.add(box);
         (this.editor as LegendEditor).legendSelectionLayer.add(box)
-        this.syncBoxs()
+        this.editor.activeImage && this.syncBoxs()
     }
 
     deleteBox(box: Box) {

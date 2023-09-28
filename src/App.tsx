@@ -90,15 +90,6 @@ export function DrawingAreaModal(props: IProps) {
             }
         ]},
         {image: {id: '2', name: 'Any Name'}, bounding_box: [
-            {
-            "id": 131,
-            "label": "graphic-area",
-            "x": 0,
-            "y": 0,
-            "width": 5600,
-            "height": 4550,
-            rotation: true
-        }
     ]}
     ] as LegendState,
             editorSpacingLeft:492,

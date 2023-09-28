@@ -69323,7 +69323,7 @@ class LegendImage extends Image$1 {
     addBox(box) {
         this.legendSelection.add(box);
         this.editor.legendSelectionLayer.add(box);
-        this.syncBoxs();
+        this.editor.activeImage && this.syncBoxs();
     }
     deleteBox(box) {
         this.legendSelection.delete(box);
