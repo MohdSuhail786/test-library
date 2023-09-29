@@ -55,7 +55,7 @@ export default function LegendAnnotation({editor, labelMappings, legendState, lo
 
   return (
     <>
-      {showUploadDragger && <UploadDragger editor={editor} spacingLeft={editorSpacingLeft} uploadRequest={uploadRequest} onUploadSubmit={onUploadSubmit}/>}
+      {showUploadDragger && <UploadDragger editor={editor} spacingLeft={editorSpacingLeft} allowMultiple={true} uploadRequest={uploadRequest} onUploadSubmit={onUploadSubmit}/>}
       <span ref={cursorTextRef} style={{position: 'absolute',fontFamily: 'Roboto', fontSize: 12,zIndex: 9999,color: 'white', backgroundColor: 'black',borderRadius: 10, padding: '3px 6px', fontStyle: 'bold'}} />
       <AnnotationPopup editor={editor} showDirection={false} showRotation={true} allowLabelUpdate={true} allowCustomLabels={false}/>
       <LeftSidebar editor={editor} config={{showInput: false,showCheckBoxes: false,showDirection: false, allowLabelUpdate: true, showRotation: true}}/>
