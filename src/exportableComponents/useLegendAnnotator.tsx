@@ -16,7 +16,7 @@ interface IProps {
   onImageRequest: (id: number) => Promise<string>
 }
 
-export default function useLegendAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>] {
+export default function useLegendAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>] {
     const [editor, setEditor] = useState<LegendEditor | null>(null);
     const editorRef = useRef<LegendEditor | null>(null)
     const [props, setProps] = useState<IProps | null>(null)
@@ -49,6 +49,11 @@ export default function useLegendAnnotator(): [ReactNode, (config: IProps) => an
         }
       },[props])
 
+    const addNewImage = (imImage: IMImage) => {
+      if(!editorRef.current) return;
+      editorRef.current.addNewImage(imImage)
+    }
+
     const handleSave = () => {
       if(!editorRef.current) return;
       const editorState = editorRef.current.exportLegendState()
@@ -63,5 +68,5 @@ export default function useLegendAnnotator(): [ReactNode, (config: IProps) => an
                 {(editor && props) ? <LegendAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: 'calc(100vh - 100px)'}}><ImageLoader spacingRight={300} forceShow/></div>}
             </div>
         </RecoilRoot>
-    ), init, handleSave, setLoader]
+    ), init, addNewImage, handleSave, setLoader]
 }

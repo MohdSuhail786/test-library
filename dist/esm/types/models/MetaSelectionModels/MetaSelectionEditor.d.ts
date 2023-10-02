@@ -8,9 +8,10 @@ export declare class MetaSelectionEditor<Config extends MetaSelectionEditorConfi
     metaSelectionLayer: Konva.Layer;
     constructor(config: Config);
     init(config: Config): void;
+    addNewImage: (imImage: IMImage) => Promise<void>;
     importMetaSelectionState(metaSelectionState: MetaSelectionState, labelMappings: LabelMappings): Promise<void>;
     exportMetaSelectionState(): MetaSelectionState;
-    addImage(imImage: IMImage): Promise<void>;
+    addImage(imImage: IMImage): Promise<MetaSelectionImage>;
     renderAnnotations(): Promise<void>;
     setSelectionBoxesListening(listen: boolean): void;
     setMode(appMode: AppMode): void;

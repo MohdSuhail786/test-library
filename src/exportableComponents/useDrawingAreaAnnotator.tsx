@@ -15,7 +15,7 @@ interface IProps {
   onUploadSubmit: (imImages: IMImage[]) => Promise<void>
 }
 
-export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>] {
+export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>] {
     const [editor, setEditor] = useState<DrawingAreaEditor | null>(null);
     const editorRef = useRef<DrawingAreaEditor | null>(null)
     const [props, setProps] = useState<IProps | null>(null)
@@ -47,6 +47,11 @@ export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) 
         }
       },[props])
 
+    const addNewImage = (imImage: IMImage) => {
+      if(!editorRef.current) return;
+      editorRef.current.addNewImage(imImage)
+    }
+
     const handleSave = () => {
       if(!editorRef.current) return;
       const editorState = editorRef.current.exportDrawingAreaState()
@@ -61,5 +66,5 @@ export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) 
                 {(editor && props) ? <DrawingAreaAnnotation {...props} loader={loader} editor={editor} /> : <div style={{height: 'calc(100vh - 100px)'}}><ImageLoader spacingRight={300} forceShow/></div>}
             </div>
         </RecoilRoot>
-    ), init, handleSave, setLoader]
+    ), init, addNewImage, handleSave, setLoader]
 }

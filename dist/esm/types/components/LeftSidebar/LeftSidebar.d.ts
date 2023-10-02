@@ -7,6 +7,7 @@ interface IProps {
         showDirection?: boolean;
         allowLabelUpdate?: boolean;
         showRotation?: boolean;
+        allowCustomLabels?: boolean;
     };
 }
 export default function LeftSidebar({ editor, config }: IProps): import("react/jsx-runtime").JSX.Element;

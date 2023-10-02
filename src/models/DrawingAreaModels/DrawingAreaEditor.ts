@@ -4,6 +4,8 @@ import { AppMode, DrawingAreaState, IMBox, IMImage, LabelMappings } from "../Typ
 import { Editor, EditorConfig } from "../BaseModels/Editor";
 import { DrawingAreaImage } from "./DrawingAreaImage";
 import { Vector2d } from "konva/lib/types";
+import { setRecoil } from "recoil-nexus";
+import { showUploadDraggerAtom } from "../../state/editor";
 
 export interface DrawingAreaConfig extends EditorConfig {
 }
@@ -23,6 +25,13 @@ export class DrawingAreaEditor<Config extends DrawingAreaConfig = DrawingAreaCon
 
         this.drawingAreaLayer = new Konva.Layer();
         this.drawingAreaLayer.canvas._canvas.setAttribute('id','DRAWING-AREA-LAYER')
+    }
+
+    addNewImage = async (imImage: IMImage) => {
+        setRecoil(showUploadDraggerAtom,false); 
+        const image = await this.addImage(imImage)
+        this.syncImageList()
+        if(!this.activeImage) this.loadImage(image)
     }
 
 
@@ -76,7 +85,7 @@ export class DrawingAreaEditor<Config extends DrawingAreaConfig = DrawingAreaCon
         }]
     }
 
-    addImage(imImage: IMImage): Promise<void> {
+    addImage(imImage: IMImage): Promise<DrawingAreaImage> {
         return new Promise((resolve,reject) => {
             let pos:Vector2d = { x:0, y:0 };
             const image = new window.Image();
@@ -95,7 +104,7 @@ export class DrawingAreaEditor<Config extends DrawingAreaConfig = DrawingAreaCon
                     editor: this,
                 });
                 this.images.unshift(img);
-                resolve();
+                resolve(img);
             }
             image.onerror = () => reject("Failed to load image.")
         })

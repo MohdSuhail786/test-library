@@ -115,7 +115,7 @@ interface IProps$2 {
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
 }
-declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps$2) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+declare function useDrawingAreaAnnotator(): [ReactNode, (config: IProps$2) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>];
 
 interface IProps$1 {
     metaExtractionState: MetaSelectionState;
@@ -125,7 +125,7 @@ interface IProps$1 {
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
 }
-declare function useMetaExtractionAnnotator(): [ReactNode, (config: IProps$1) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+declare function useMetaExtractionAnnotator(): [ReactNode, (config: IProps$1) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>];
 
 interface IProps {
     legendState: LegendState;
@@ -136,6 +136,6 @@ interface IProps {
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
     onImageRequest: (id: number) => Promise<string>;
 }
-declare function useLegendAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+declare function useLegendAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>];
 
 export { useDrawingAreaAnnotator, useHumanAnnotator, useLegendAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };

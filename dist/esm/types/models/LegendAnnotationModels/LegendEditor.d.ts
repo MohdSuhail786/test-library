@@ -12,6 +12,7 @@ export declare class LegendEditor<Config extends LegendEditorConfig = LegendEdit
     init(config: Config): void;
     loadImageFromServer(id: number | string): Promise<string>;
     loadImage(img: LegendImage): Promise<void>;
+    addNewImage: (imImage: IMImage) => Promise<void>;
     importLegendState(legendState: LegendState, labelMappings: LabelMappings): Promise<void>;
     exportLegendState(): LegendState;
     addImage(imImage: IMImage): Promise<LegendImage>;

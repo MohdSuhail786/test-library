@@ -1,4 +1,4 @@
-import { Dropdown, Select } from "antd";
+import { Button, Divider, Dropdown, Input, Select, Space } from "antd";
 import { Box } from "../../models/Box";
 import { Polygon } from "../../models/Polygon";
 import styles from "./AnnotationInput.module.scss";
@@ -13,6 +13,9 @@ import { RemovePolygonAction } from "../../actions/RemovePolygonAction";
 import { Label } from "../../models/Label";
 import { directions } from "../../constants/Constants";
 import { AiOutlineRotateRight } from "react-icons/ai";
+import { FiPlus } from "react-icons/fi";
+import { useRef, useState } from "react";
+import { VscSync, VscSyncIgnored } from "react-icons/vsc";
 
 interface IProps {
     editor: EditorTypes
@@ -21,11 +24,13 @@ interface IProps {
     showDirection?: boolean
     allowLabelUpdate?: boolean
     showRotation?: boolean
+    allowCustomLabels?: boolean
 }
 
-export default function AnnotationInput({shape, index, editor,allowLabelUpdate=true, showDirection = true,showRotation=false}: IProps) {
+export default function AnnotationInput({shape, index, editor,allowLabelUpdate=true, showDirection = true,showRotation=false, allowCustomLabels= false}: IProps) {
     const labels = useRecoilValue(labelListAtom)
     const appMode = useRecoilValue(appModeAtom)
+    const [customLabel,setCustomLabel] = useState("")
     
     const handleDelete = async () => {
         if(shape instanceof Box) {
@@ -46,6 +51,19 @@ export default function AnnotationInput({shape, index, editor,allowLabelUpdate=t
         editor.setMode({mode: 'EDIT_MODE',shapeInEditMode: shape,visible: true, scrollIntoView: false})
     }
 
+    const createNewLabel = () => {
+        if(customLabel.trim() === '') return;
+
+        const label = new Label({
+            id: editor.labels.length,
+            name: customLabel,
+            type: editor.labels.length
+        })
+        editor.labels.unshift(label)
+        editor.syncLabels()
+        setCustomLabel("")
+    }
+
     const active = appMode.mode === "EDIT_MODE" && appMode.shapeInEditMode._id === shape._id
 
     return (
@@ -61,14 +79,31 @@ export default function AnnotationInput({shape, index, editor,allowLabelUpdate=t
                         bordered={false}
                         suffixIcon={null}
                         disabled={!allowLabelUpdate}
-                        optionFilterProp="children"
+                        optionFilterProp="label"
                         onChange={handleLabelChange}
+                        dropdownRender={(menu) => (
+                            <>
+                            {menu}
+                            {allowCustomLabels && <><Divider style={{ margin: '8px 0' }} />
+                            <div style={{ display: 'flex',alignItems: 'center',gap: 5, padding: '0 8px 4px' }}>
+                                <Input
+                                placeholder="Please enter item"
+                                value={customLabel}
+                                onChange={(e) => setCustomLabel(e.target.value)}
+                                />
+                                <Button type="text" icon={<FiPlus />} 
+                                onClick={createNewLabel}
+                                >
+                                </Button>
+                            </div></>}
+                            </>
+                        )}
                         // onSearch={onSearch}
-                        // filterOption={filterOption}
+                        // filterOption={(option)=>option}
                         style={{flex: 1}}
                         options={labels.map(label => ({
                             label: label.name,
-                            value: label.id,
+                            value: label.name,
                             instance: label
                         }))}
                     /> : 
@@ -108,7 +143,7 @@ export default function AnnotationInput({shape, index, editor,allowLabelUpdate=t
                     }}
                 >
                     <span>
-                    {<AiOutlineRotateRight style={{color: 'black',fontSize: 18}}/>}
+                    {`${(shape as Box).rotated}` === 'true' ? <VscSync style={{color: 'black',fontSize: 18,marginTop: 5}}/> : <VscSyncIgnored style={{color: 'black',fontSize: 18,marginTop: 5}}/>}
                     </span>
                 </Dropdown>}
                 <RiDeleteBin6Line style={{fontSize: 17,cursor: "pointer",color: '#d32424f0'}} onClick={handleDelete}/>

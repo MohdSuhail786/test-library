@@ -16,6 +16,7 @@ import { Dropdown } from "antd";
 import { Direction, EditorTypes } from "../../models/Types";
 import { directions } from "../../constants/Constants";
 import { AiOutlineRotateRight } from "react-icons/ai";
+import { VscSync, VscSyncIgnored } from "react-icons/vsc";
 
 const padding = 10;
 const modalWidthHeight = 320;
@@ -45,7 +46,8 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
     
     useEffect(()=>{
         if(!labelSearch.allowFilter || labels.length===0) return;
-        const matchClasses = ((labelSearch.key) === "" && !matchEmptyString) ? [] : labels.filter(label => (textToHumanReadable(label.name || "")).includes(labelSearch.key.toUpperCase()));
+        console.log("RELOAD LABELS")
+        const matchClasses = ((labelSearch.key) === "" && !matchEmptyString) ? [] : labels.filter(label => (textToHumanReadable(label.name || "")).toUpperCase().includes(labelSearch.key.toUpperCase()));
         setMatchLables(matchClasses);
         setSelectedLabel(matchClasses.length ? 0 : null)
     },[labelSearch, labels])
@@ -129,7 +131,8 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
     }, [selectedLabel])
 
     const textToHumanReadable = (text: string): string => {
-        return text.replaceAll("_"," ").toUpperCase()
+        // return text;
+        return text.replaceAll("_"," ")
     }
 
     if(appMode.mode !== 'EDIT_MODE' || !editor) return <></>
@@ -159,7 +162,7 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
             name: labelSearch.key,
             type: editor.labels.length
         })
-        editor.addLabel(label)
+        editor.labels.unshift(label)
         editor.syncLabels()
     }
 
@@ -221,7 +224,7 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
                             }}
                         >
                             <span>
-                            {<AiOutlineRotateRight style={{color: 'black',fontSize: 18,marginTop: 5}}/>}
+                            {rotation === 'true' ? <VscSync style={{color: 'black',fontSize: 18,marginTop: 5}}/> : <VscSyncIgnored style={{color: 'black',fontSize: 18,marginTop: 5}}/>}
                             </span>
                         </Dropdown>}
                         </div>
@@ -245,15 +248,18 @@ export default function AnnotationPopup({editor, matchEmptyString = false, allow
                                 </>
                             ) : (
                                 <>
-                                    {!allowCustomLabels ? <p>{(labelSearch.key === "" || !labelSearch.allowFilter)? "Type a label for this box." : "Try using different search key."}</p> : <>
-                                        {
-                                            (labelSearch.key === "" || !labelSearch.allowFilter) ? <p>Type a label for this box.</p> :
-                                            <p style={{cursor:"pointer"}} onClick={createNewLabel}>Create a new label "{labelSearch.key}" </p>
-                                        }
-                                    </>}
+                                    {!allowCustomLabels && <p>{(labelSearch.key === "" || !labelSearch.allowFilter)? "Type a label for this box." : "Try using different search key."}</p> } 
                                 </>
                             )
                         }
+                    </div>}
+                    { allowCustomLabels &&<div className={styles['list-options']} style={{marginTop: matchLables.length === 0 ? -15 : 0,paddingTop: matchLables.length === 0 ? 0 : 10, borderTop: matchLables.length !== 0 ? '1px solid #cdcdcd': ''}}>
+                        <>
+                            {
+                                (labelSearch.key === "" || !labelSearch.allowFilter) ? <p>Type a label for this box.</p> :
+                                <p style={{cursor:"pointer"}} onClick={createNewLabel}>Create a new label "{labelSearch.key}" </p>
+                            }
+                        </>
                     </div>}
                 </div>
             </div>

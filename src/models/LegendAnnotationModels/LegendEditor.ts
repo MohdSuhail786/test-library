@@ -5,7 +5,7 @@ import { Editor, EditorConfig } from "../BaseModels/Editor";
 import { Vector2d } from "konva/lib/types";
 import { LegendImage } from "./LegendImage";
 import { setRecoil } from "recoil-nexus";
-import { loaderAtom } from "../../state/editor";
+import { loaderAtom, showUploadDraggerAtom } from "../../state/editor";
 
 export interface LegendEditorConfig extends EditorConfig {
     onImageRequest: (id: number) => Promise<string>
@@ -36,6 +36,7 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
 
     async loadImage(img: LegendImage): Promise<void> {
         return new Promise(async(resolve,reject) => {
+            console.trace("CALLED")
             if(img.src === '') {
                 setRecoil(loaderAtom, {visible: true, title: "Loading Image..."})
                 const src = await this.loadImageFromServer(img.id())
@@ -59,6 +60,13 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
             }
             
         })
+    }
+
+    addNewImage = async (imImage: IMImage) => {
+        setRecoil(showUploadDraggerAtom,false); 
+        const image = await this.addImage(imImage)
+        this.syncImageList()
+        if(!this.activeImage) this.loadImage(image)
     }
 
     async importLegendState(legendState: LegendState, labelMappings: LabelMappings) {

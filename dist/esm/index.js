@@ -9644,7 +9644,7 @@ var __assign$1 = undefined && undefined.__assign || function () {
   };
   return __assign$1.apply(this, arguments);
 };
-var __rest$q = undefined && undefined.__rest || function (s, e) {
+var __rest$r = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -9672,7 +9672,7 @@ function IconBase$1(props) {
     var attr = props.attr,
       size = props.size,
       title = props.title,
-      svgProps = __rest$q(props, ["attr", "size", "title"]);
+      svgProps = __rest$r(props, ["attr", "size", "title"]);
     var computedSize = size || conf.size || "1em";
     var className;
     if (conf.className) className = conf.className;
@@ -35618,7 +35618,7 @@ var Simple = function Simple() {
 };
 var SimpleEmptyImg = Simple;
 
-var __rest$p = undefined && undefined.__rest || function (s, e) {
+var __rest$q = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -35636,7 +35636,7 @@ var Empty = function Empty(_a) {
     description = _a.description,
     children = _a.children,
     imageStyle = _a.imageStyle,
-    restProps = __rest$p(_a, ["className", "prefixCls", "image", "description", "children", "imageStyle"]);
+    restProps = __rest$q(_a, ["className", "prefixCls", "image", "description", "children", "imageStyle"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -39560,7 +39560,7 @@ function getIcons(_ref) {
   };
 }
 
-var __rest$o = undefined && undefined.__rest || function (s, e) {
+var __rest$p = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -39594,7 +39594,7 @@ var NoCompactStyle = function NoCompactStyle(_ref) {
 };
 var CompactItem = function CompactItem(_a) {
   var children = _a.children,
-    otherProps = __rest$o(_a, ["children"]);
+    otherProps = __rest$p(_a, ["children"]);
   return /*#__PURE__*/React.createElement(SpaceCompactItemContext.Provider, {
     value: otherProps
   }, children);
@@ -39611,7 +39611,7 @@ var Compact = function Compact(props) {
     customizePrefixCls = props.prefixCls,
     className = props.className,
     children = props.children,
-    restProps = __rest$o(props, ["size", "direction", "block", "prefixCls", "className", "children"]);
+    restProps = __rest$p(props, ["size", "direction", "block", "prefixCls", "className", "children"]);
   var prefixCls = getPrefixCls('space-compact', customizePrefixCls);
   var clx = classNames(prefixCls, (_classNames2 = {}, _defineProperty$1(_classNames2, "".concat(prefixCls, "-rtl"), directionConfig === 'rtl'), _defineProperty$1(_classNames2, "".concat(prefixCls, "-block"), block), _defineProperty$1(_classNames2, "".concat(prefixCls, "-vertical"), direction === 'vertical'), _classNames2), className);
   var compactItemContext = React.useContext(SpaceCompactItemContext);
@@ -39638,7 +39638,7 @@ var Compact = function Compact(props) {
 };
 
 // TODO: 4.0 - codemod should help to change `filterOption` to support node props.
-var __rest$n = undefined && undefined.__rest || function (s, e) {
+var __rest$o = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -39666,7 +39666,7 @@ var InternalSelect = function InternalSelect(_a, ref) {
     notFoundContent = _a.notFoundContent,
     customStatus = _a.status,
     showArrow = _a.showArrow,
-    props = __rest$n(_a, ["prefixCls", "bordered", "className", "getPopupContainer", "dropdownClassName", "popupClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "showArrow"]);
+    props = __rest$o(_a, ["prefixCls", "bordered", "className", "getPopupContainer", "dropdownClassName", "popupClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "showArrow"]);
   var _React$useContext = React.useContext(ConfigContext),
     getContextPopupContainer = _React$useContext.getPopupContainer,
     getPrefixCls = _React$useContext.getPrefixCls,
@@ -40137,7 +40137,7 @@ function getPlacements(config) {
   return placementMap;
 }
 
-var __rest$m = undefined && undefined.__rest || function (s, e) {
+var __rest$n = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -40282,7 +40282,7 @@ var Tooltip = /*#__PURE__*/React.forwardRef(function (props, ref) {
     mouseEnterDelay = _props$mouseEnterDela === void 0 ? 0.1 : _props$mouseEnterDela,
     _props$mouseLeaveDela = props.mouseLeaveDelay,
     mouseLeaveDelay = _props$mouseLeaveDela === void 0 ? 0.1 : _props$mouseLeaveDela,
-    otherProps = __rest$m(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay"]);
+    otherProps = __rest$n(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay"]);
   var customizePrefixCls = props.prefixCls,
     openClassName = props.openClassName,
     getTooltipContainer = props.getTooltipContainer,
@@ -41216,7 +41216,7 @@ function convertItemsToNodes$1(list) {
 
       // MenuItem & Divider
       if (type === 'divider') {
-        return /*#__PURE__*/React.createElement(Divider, _extends$1({
+        return /*#__PURE__*/React.createElement(Divider$2, _extends$1({
           key: mergedKey
         }, restProps));
       }
@@ -42197,7 +42197,7 @@ function MenuItemGroup(_ref2) {
   return /*#__PURE__*/React.createElement(InternalMenuItemGroup, omit(props, ['warnKey']), childList);
 }
 
-function Divider(_ref) {
+function Divider$2(_ref) {
   var className = _ref.className,
     style = _ref.style;
   var _React$useContext = React.useContext(MenuContext$2),
@@ -42216,7 +42216,7 @@ var ExportMenu = Menu$2;
 ExportMenu.Item = MenuItem$2;
 ExportMenu.SubMenu = SubMenu$1;
 ExportMenu.ItemGroup = MenuItemGroup;
-ExportMenu.Divider = Divider;
+ExportMenu.Divider = Divider$2;
 
 // This icon file is generated automatically.
 var BarsOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M912 192H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM104 228a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "bars", "theme": "outlined" };
@@ -42262,7 +42262,7 @@ var isNumeric = function isNumeric(value) {
 };
 var isNumeric$1 = isNumeric;
 
-var __rest$l = undefined && undefined.__rest || function (s, e) {
+var __rest$m = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42307,7 +42307,7 @@ var Basic = /*#__PURE__*/React.forwardRef(function (props, ref) {
     className = props.className,
     children = props.children,
     tagName = props.tagName,
-    others = __rest$l(props, ["prefixCls", "className", "children", "tagName"]);
+    others = __rest$m(props, ["prefixCls", "className", "children", "tagName"]);
   var classString = classNames(prefixCls, className);
   return /*#__PURE__*/React.createElement(tagName, _extends$1(_extends$1({
     className: classString
@@ -42328,7 +42328,7 @@ var BasicLayout = /*#__PURE__*/React.forwardRef(function (props, ref) {
     children = props.children,
     hasSider = props.hasSider,
     Tag = props.tagName,
-    others = __rest$l(props, ["prefixCls", "className", "children", "hasSider", "tagName"]);
+    others = __rest$m(props, ["prefixCls", "className", "children", "hasSider", "tagName"]);
   var classString = classNames(prefixCls, (_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-has-sider"), typeof hasSider === 'boolean' ? hasSider : siders.length > 0), _defineProperty$1(_classNames, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _classNames), className);
   var contextValue = React.useMemo(function () {
     return {
@@ -42376,7 +42376,7 @@ generator({
   displayName: 'Content'
 })(Basic);
 
-var __rest$k = undefined && undefined.__rest || function (s, e) {
+var __rest$l = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42424,7 +42424,7 @@ var Sider = /*#__PURE__*/React.forwardRef(function (_a, ref) {
     breakpoint = _a.breakpoint,
     onCollapse = _a.onCollapse,
     onBreakpoint = _a.onBreakpoint,
-    props = __rest$k(_a, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
+    props = __rest$l(_a, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
   var _useContext = useContext$1(LayoutContext),
     siderHook = _useContext.siderHook;
   var _useState = useState$3('collapsed' in props ? props.collapsed : defaultCollapsed),
@@ -42548,7 +42548,7 @@ if (process.env.NODE_ENV !== 'production') {
   Sider.displayName = 'Sider';
 }
 
-var __rest$j = undefined && undefined.__rest || function (s, e) {
+var __rest$k = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42560,12 +42560,12 @@ var MenuDivider = function MenuDivider(_a) {
   var customizePrefixCls = _a.prefixCls,
     className = _a.className,
     dashed = _a.dashed,
-    restProps = __rest$j(_a, ["prefixCls", "className", "dashed"]);
+    restProps = __rest$k(_a, ["prefixCls", "className", "dashed"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls;
   var prefixCls = getPrefixCls('menu', customizePrefixCls);
   var classString = classNames(_defineProperty$1({}, "".concat(prefixCls, "-item-divider-dashed"), !!dashed), className);
-  return /*#__PURE__*/React.createElement(Divider, _extends$1({
+  return /*#__PURE__*/React.createElement(Divider$2, _extends$1({
     className: classString
   }, restProps));
 };
@@ -42578,7 +42578,7 @@ var MenuContext = /*#__PURE__*/createContext({
 });
 var MenuContext$1 = MenuContext;
 
-var __rest$i = undefined && undefined.__rest || function (s, e) {
+var __rest$j = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42610,7 +42610,7 @@ var MenuItem = /*#__PURE__*/function (_React$Component) {
         title = _b.title,
         icon = _b.icon,
         danger = _b.danger,
-        rest = __rest$i(_b, ["title", "icon", "danger"]);
+        rest = __rest$j(_b, ["title", "icon", "danger"]);
       var tooltipTitle = title;
       if (typeof title === 'undefined') {
         tooltipTitle = firstLevel ? children : '';
@@ -42717,7 +42717,7 @@ function SubMenu(props) {
   })));
 }
 
-var __rest$h = undefined && undefined.__rest || function (s, e) {
+var __rest$i = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42733,7 +42733,7 @@ function convertItemsToNodes(list) {
         children = _a.children,
         key = _a.key,
         type = _a.type,
-        restProps = __rest$h(_a, ["label", "children", "key", "type"]);
+        restProps = __rest$i(_a, ["label", "children", "key", "type"]);
       var mergedKey = key !== null && key !== void 0 ? key : "tmp-".concat(index);
       // MenuItemGroup & SubMenuItem
       if (children || type === 'group') {
@@ -42781,7 +42781,7 @@ function useItems(items) {
   }, [items]);
 }
 
-var __rest$g = undefined && undefined.__rest || function (s, e) {
+var __rest$h = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42794,7 +42794,7 @@ var OverrideContext = /*#__PURE__*/React.createContext(null);
 /** @internal Only used for Dropdown component. Do not use this in your production. */
 var OverrideProvider = function OverrideProvider(_a) {
   var children = _a.children,
-    restProps = __rest$g(_a, ["children"]);
+    restProps = __rest$h(_a, ["children"]);
   var override = React.useContext(OverrideContext);
   var context = React.useMemo(function () {
     return _extends$1(_extends$1({}, override), restProps);
@@ -42809,7 +42809,7 @@ var OverrideProvider = function OverrideProvider(_a) {
   }, children);
 };
 
-var __rest$f = undefined && undefined.__rest || function (s, e) {
+var __rest$g = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -42838,7 +42838,7 @@ var InternalMenu = /*#__PURE__*/forwardRef(function (props, ref) {
     mode = props.mode,
     selectable = props.selectable,
     onClick = props.onClick,
-    restProps = __rest$f(props, ["prefixCls", "className", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "mode", "selectable", "onClick"]);
+    restProps = __rest$g(props, ["prefixCls", "className", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "mode", "selectable", "onClick"]);
   var passedProps = omit(restProps, ['collapsedWidth']);
   // ========================= Items ===========================
   var mergedChildren = useItems(items) || children;
@@ -43453,7 +43453,7 @@ var Wave = /*#__PURE__*/function (_React$Component) {
 Wave.contextType = ConfigContext;
 var Wave$1 = Wave;
 
-var __rest$e = undefined && undefined.__rest || function (s, e) {
+var __rest$f = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43470,7 +43470,7 @@ var ButtonGroup = function ButtonGroup(props) {
   var customizePrefixCls = props.prefixCls,
     size = props.size,
     className = props.className,
-    others = __rest$e(props, ["prefixCls", "size", "className"]);
+    others = __rest$f(props, ["prefixCls", "size", "className"]);
   var prefixCls = getPrefixCls('btn-group', customizePrefixCls);
   // large => lg
   // small => sm
@@ -43546,7 +43546,7 @@ var LoadingIcon = function LoadingIcon(_ref) {
 };
 var LoadingIcon$1 = LoadingIcon;
 
-var __rest$d = undefined && undefined.__rest || function (s, e) {
+var __rest$e = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43627,7 +43627,7 @@ var InternalButton = function InternalButton(props, ref) {
     block = _props$block === void 0 ? false : _props$block,
     _props$htmlType = props.htmlType,
     htmlType = _props$htmlType === void 0 ? 'button' : _props$htmlType,
-    rest = __rest$d(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "disabled", "className", "children", "icon", "ghost", "block", "htmlType"]);
+    rest = __rest$e(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "disabled", "className", "children", "icon", "ghost", "block", "htmlType"]);
   var size = React.useContext(SizeContext$1);
   // ===================== Disabled =====================
   var disabled = React.useContext(DisabledContext$1);
@@ -43822,7 +43822,7 @@ function Item(_ref) {
   }, split));
 }
 
-var __rest$c = undefined && undefined.__rest || function (s, e) {
+var __rest$d = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43862,7 +43862,7 @@ var Space = function Space(props) {
     style = props.style,
     _props$wrap = props.wrap,
     wrap = _props$wrap === void 0 ? false : _props$wrap,
-    otherProps = __rest$c(props, ["size", "align", "className", "children", "direction", "prefixCls", "split", "style", "wrap"]);
+    otherProps = __rest$d(props, ["size", "align", "className", "children", "direction", "prefixCls", "split", "style", "wrap"]);
   var supportFlexGap = useFlexGapSupport();
   var _React$useMemo = React.useMemo(function () {
       return (Array.isArray(size) ? size : [size, size]).map(function (item) {
@@ -43932,7 +43932,7 @@ var CompoundedSpace = Space;
 CompoundedSpace.Compact = Compact;
 var Space$1 = CompoundedSpace;
 
-var __rest$b = undefined && undefined.__rest || function (s, e) {
+var __rest$c = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -43980,7 +43980,7 @@ var DropdownButton = function DropdownButton(props) {
     overlayClassName = props.overlayClassName,
     overlayStyle = props.overlayStyle,
     destroyPopupOnHide = props.destroyPopupOnHide,
-    restProps = __rest$b(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "visible", "open", "onVisibleChange", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide"]);
+    restProps = __rest$c(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "visible", "open", "onVisibleChange", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide"]);
   var prefixCls = getPrefixCls('dropdown-button', customizePrefixCls);
   var dropdownProps = {
     menu: menu,
@@ -44261,7 +44261,7 @@ var Checkbox$3 = /*#__PURE__*/forwardRef(function (props, ref) {
   }));
 });
 
-var __rest$a = undefined && undefined.__rest || function (s, e) {
+var __rest$b = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44279,7 +44279,7 @@ var InternalCheckboxGroup = function InternalCheckboxGroup(_a, ref) {
     className = _a.className,
     style = _a.style,
     onChange = _a.onChange,
-    restProps = __rest$a(_a, ["defaultValue", "children", "options", "prefixCls", "className", "style", "onChange"]);
+    restProps = __rest$b(_a, ["defaultValue", "children", "options", "prefixCls", "className", "style", "onChange"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -44383,7 +44383,7 @@ var InternalCheckboxGroup = function InternalCheckboxGroup(_a, ref) {
 var CheckboxGroup = /*#__PURE__*/React.forwardRef(InternalCheckboxGroup);
 var Group$2 = /*#__PURE__*/React.memo(CheckboxGroup);
 
-var __rest$9 = undefined && undefined.__rest || function (s, e) {
+var __rest$a = undefined && undefined.__rest || function (s, e) {
   var t = {};
   for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
@@ -44405,7 +44405,7 @@ var InternalCheckbox = function InternalCheckbox(_a, ref) {
     _a$skipGroup = _a.skipGroup,
     skipGroup = _a$skipGroup === void 0 ? false : _a$skipGroup,
     disabled = _a.disabled,
-    restProps = __rest$9(_a, ["prefixCls", "className", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
+    restProps = __rest$a(_a, ["prefixCls", "className", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
   var _React$useContext = React.useContext(ConfigContext),
     getPrefixCls = _React$useContext.getPrefixCls,
     direction = _React$useContext.direction;
@@ -44480,6 +44480,56 @@ var Checkbox = InternalCheckbox$1;
 Checkbox.Group = Group$2;
 Checkbox.__ANT_CHECKBOX = true;
 var Checkbox$1 = Checkbox;
+
+var __rest$9 = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+var Divider = function Divider(props) {
+  var _classNames;
+  var _React$useContext = React.useContext(ConfigContext),
+    getPrefixCls = _React$useContext.getPrefixCls,
+    direction = _React$useContext.direction;
+  var customizePrefixCls = props.prefixCls,
+    _props$type = props.type,
+    type = _props$type === void 0 ? 'horizontal' : _props$type,
+    _props$orientation = props.orientation,
+    orientation = _props$orientation === void 0 ? 'center' : _props$orientation,
+    orientationMargin = props.orientationMargin,
+    className = props.className,
+    children = props.children,
+    dashed = props.dashed,
+    plain = props.plain,
+    restProps = __rest$9(props, ["prefixCls", "type", "orientation", "orientationMargin", "className", "children", "dashed", "plain"]);
+  var prefixCls = getPrefixCls('divider', customizePrefixCls);
+  var orientationPrefix = orientation.length > 0 ? "-".concat(orientation) : orientation;
+  var hasChildren = !!children;
+  var hasCustomMarginLeft = orientation === 'left' && orientationMargin != null;
+  var hasCustomMarginRight = orientation === 'right' && orientationMargin != null;
+  var classString = classNames(prefixCls, "".concat(prefixCls, "-").concat(type), (_classNames = {}, _defineProperty$1(_classNames, "".concat(prefixCls, "-with-text"), hasChildren), _defineProperty$1(_classNames, "".concat(prefixCls, "-with-text").concat(orientationPrefix), hasChildren), _defineProperty$1(_classNames, "".concat(prefixCls, "-dashed"), !!dashed), _defineProperty$1(_classNames, "".concat(prefixCls, "-plain"), !!plain), _defineProperty$1(_classNames, "".concat(prefixCls, "-rtl"), direction === 'rtl'), _defineProperty$1(_classNames, "".concat(prefixCls, "-no-default-orientation-margin-left"), hasCustomMarginLeft), _defineProperty$1(_classNames, "".concat(prefixCls, "-no-default-orientation-margin-right"), hasCustomMarginRight), _classNames), className);
+  var innerStyle = _extends$1(_extends$1({}, hasCustomMarginLeft && {
+    marginLeft: orientationMargin
+  }), hasCustomMarginRight && {
+    marginRight: orientationMargin
+  });
+  // Warning children not work in vertical mode
+  if (process.env.NODE_ENV !== 'production') {
+    process.env.NODE_ENV !== "production" ? warning$3(!children || type !== 'vertical', 'Divider', '`children` not working in `vertical` mode.') : void 0;
+  }
+  return /*#__PURE__*/React.createElement("div", _extends$1({
+    className: classString
+  }, restProps, {
+    role: "separator"
+  }), children && type !== 'vertical' && /*#__PURE__*/React.createElement("span", {
+    className: "".concat(prefixCls, "-inner-text"),
+    style: innerStyle
+  }, children));
+};
+var Divider$1 = Divider;
 
 // This icon file is generated automatically.
 var EyeOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" } }] }, "name": "eye", "theme": "outlined" };
@@ -49212,18 +49262,10 @@ const LabelList = {
 };
 
 // THIS FILE IS AUTO GENERATED
-function AiFillCheckCircle (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"}}]})(props);
-}function AiFillCloseCircle (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024","fill":"currentColor","fillRule":"evenodd"},"child":[{"tag":"path","attr":{"d":"M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64Zm127.978 274.82-.034.006c-.023.007-.042.018-.083.059L512 466.745l-127.86-127.86c-.042-.041-.06-.052-.084-.059a.118.118 0 0 0-.07 0c-.022.007-.041.018-.082.059l-45.02 45.019c-.04.04-.05.06-.058.083a.118.118 0 0 0 0 .07l.01.022a.268.268 0 0 0 .049.06L466.745 512l-127.86 127.862c-.041.04-.052.06-.059.083a.118.118 0 0 0 0 .07c.007.022.018.041.059.082l45.019 45.02c.04.04.06.05.083.058a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059L512 557.254l127.862 127.861c.04.041.06.052.083.059a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059l45.02-45.019c.04-.04.05-.06.058-.083a.118.118 0 0 0 0-.07l-.01-.022a.268.268 0 0 0-.049-.06L557.254 512l127.861-127.86c.041-.042.052-.06.059-.084a.118.118 0 0 0 0-.07c-.007-.022-.018-.041-.059-.082l-45.019-45.02c-.04-.04-.06-.05-.083-.058a.118.118 0 0 0-.07 0Z"}}]})(props);
-}function AiFillFileAdd (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M480 580H372a8 8 0 0 0-8 8v48a8 8 0 0 0 8 8h108v108a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8V644h108a8 8 0 0 0 8-8v-48a8 8 0 0 0-8-8H544V472a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v108zm374.6-291.3c6 6 9.4 14.1 9.4 22.6V928c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32h424.7c8.5 0 16.7 3.4 22.7 9.4l215.2 215.3zM790.2 326L602 137.8V326h188.2z"}}]})(props);
-}function AiOutlineMinus (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M872 474H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h720c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"}}]})(props);
-}function AiOutlinePlus (props) {
-  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"}},{"tag":"path","attr":{"d":"M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"}}]})(props);
-}function AiOutlineRotateRight (props) {
-  return GenIcon({"tag":"svg","attr":{"t":"1569683458761","viewBox":"0 0 1024 1024","version":"1.1"},"child":[{"tag":"defs","attr":{},"child":[]},{"tag":"path","attr":{"d":"M480.5 251.2c13-1.6 25.9-2.4 38.8-2.5v63.9c0 6.5 7.5 10.1 12.6 6.1L660 217.6c4-3.2 4-9.2 0-12.3l-128-101c-5.1-4-12.6-0.4-12.6 6.1l-0.2 64c-118.6 0.5-235.8 53.4-314.6 154.2-69.6 89.2-95.7 198.6-81.1 302.4h74.9c-0.9-5.3-1.7-10.7-2.4-16.1-5.1-42.1-2.1-84.1 8.9-124.8 11.4-42.2 31-81.1 58.1-115.8 27.2-34.7 60.3-63.2 98.4-84.3 37-20.6 76.9-33.6 119.1-38.8z"}},{"tag":"path","attr":{"d":"M880 418H352c-17.7 0-32 14.3-32 32v414c0 17.7 14.3 32 32 32h528c17.7 0 32-14.3 32-32V450c0-17.7-14.3-32-32-32z m-44 402H396V494h440v326z"}}]})(props);
+function VscSyncIgnored (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 16 16","fill":"currentColor"},"child":[{"tag":"path","attr":{"fillRule":"evenodd","clipRule":"evenodd","d":"M5.468 3.687l-.757-.706a6 6 0 0 1 9.285 4.799L15.19 6.6l.75.76-2.09 2.07-.76-.01L11 7.31l.76-.76 1.236 1.25a5 5 0 0 0-7.528-4.113zm4.55 8.889l.784.73a6 6 0 0 1-8.796-5.04L.78 9.5 0 8.73l2.09-2.07.76.01 2.09 2.12-.76.76-1.167-1.18a5 5 0 0 0 7.005 4.206z"}},{"tag":"path","attr":{"d":"M1.123 2.949l.682-.732L13.72 13.328l-.682.732z"}}]})(props);
+}function VscSync (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 16 16","fill":"currentColor"},"child":[{"tag":"path","attr":{"fillRule":"evenodd","clipRule":"evenodd","d":"M2.006 8.267L.78 9.5 0 8.73l2.09-2.07.76.01 2.09 2.12-.76.76-1.167-1.18a5 5 0 0 0 9.4 1.983l.813.597a6 6 0 0 1-11.22-2.683zm10.99-.466L11.76 6.55l-.76.76 2.09 2.11.76.01 2.09-2.07-.75-.76-1.194 1.18a6 6 0 0 0-11.11-2.92l.81.594a5 5 0 0 1 9.3 2.346z"}}]})(props);
 }
 
 const padding = 10;
@@ -49244,7 +49286,8 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
     useEffect$5(() => {
         if (!labelSearch.allowFilter || labels.length === 0)
             return;
-        const matchClasses = ((labelSearch.key) === "" && !matchEmptyString) ? [] : labels.filter(label => (textToHumanReadable(label.name || "")).includes(labelSearch.key.toUpperCase()));
+        console.log("RELOAD LABELS");
+        const matchClasses = ((labelSearch.key) === "" && !matchEmptyString) ? [] : labels.filter(label => (textToHumanReadable(label.name || "")).toUpperCase().includes(labelSearch.key.toUpperCase()));
         setMatchLables(matchClasses);
         setSelectedLabel(matchClasses.length ? 0 : null);
     }, [labelSearch, labels]);
@@ -49326,7 +49369,8 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
         scrollElementIntoViewWithinDiv(span, parent);
     }, [selectedLabel]);
     const textToHumanReadable = (text) => {
-        return text.replaceAll("_", " ").toUpperCase();
+        // return text;
+        return text.replaceAll("_", " ");
     };
     if (appMode.mode !== 'EDIT_MODE' || !editor)
         return jsx(Fragment, {});
@@ -49354,7 +49398,7 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
             name: labelSearch.key,
             type: editor.labels.length
         });
-        editor.addLabel(label);
+        editor.labels.unshift(label);
         editor.syncLabels();
     };
     const handleSave = () => {
@@ -49389,8 +49433,8 @@ function AnnotationPopup({ editor, matchEmptyString = false, allowCustomLabels =
                                             })),
                                             selectable: true,
                                             selectedKeys: [rotation]
-                                        }, children: jsx("span", { children: jsx(AiOutlineRotateRight, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), (filter.annotationType !== 'text' && allowLabelUpdate) && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels ? jsx("p", { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? "Type a label for this box." : "Try using different search key." }) : jsx(Fragment, { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? jsx("p", { children: "Type a label for this box." }) :
-                                        jsxs("p", { style: { cursor: "pointer" }, onClick: createNewLabel, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })) })] })] }) }));
+                                        }, children: jsx("span", { children: rotation === 'true' ? jsx(VscSync, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) : jsx(VscSyncIgnored, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) })] }) }), jsxs("div", { className: styles$4["button-group"], children: [jsx("button", { className: styles$4["delete"], onClick: handleDelete, children: "Delete" }), (filter.annotationType !== 'text' && allowLabelUpdate) && jsxs("button", { className: styles$4["save"], onClick: handleSave, children: ["Save ", jsx(IoMdReturnLeft, { size: 18 })] })] }), jsx("div", { className: styles$4["divider"] }), (filter.annotationType !== 'text' || allowLabelUpdate) && jsx("div", { className: styles$4["list-options"], ref: listRef, children: matchLables.length !== 0 ? (jsx(Fragment, { children: matchLables.map((label, index) => (jsx(Fragment, { children: jsx("span", { ref: (() => selectedLabel === index ? activeRef : null)(), onClick: () => { setSelectedLabel(index); }, className: `${selectedLabel === index ? styles$4["active"] : ""}`, children: textToHumanReadable(label.name) }, `${label}_${index}`) }))) })) : (jsx(Fragment, { children: !allowCustomLabels && jsx("p", { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? "Type a label for this box." : "Try using different search key." }) })) }), allowCustomLabels && jsx("div", { className: styles$4['list-options'], style: { marginTop: matchLables.length === 0 ? -15 : 0, paddingTop: matchLables.length === 0 ? 0 : 10, borderTop: matchLables.length !== 0 ? '1px solid #cdcdcd' : '' }, children: jsx(Fragment, { children: (labelSearch.key === "" || !labelSearch.allowFilter) ? jsx("p", { children: "Type a label for this box." }) :
+                                    jsxs("p", { style: { cursor: "pointer" }, onClick: createNewLabel, children: ["Create a new label \"", labelSearch.key, "\" "] }) }) })] })] }) }));
 }
 
 var css_248z$6 = ".Toolbar-module__toolbar__9pZF0 {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  transform: translateY(-50%);\n  background-color: white;\n  display: flex;\n  padding: 10px 5px;\n  flex-direction: column;\n  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;\n  border-radius: 15px;\n  gap: 5px;\n  align-items: center;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__divider__1Dj6r {\n  border-bottom: 1px solid rgba(187, 187, 187, 0.7333333333);\n  width: 100%;\n  margin: 8px 6px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC {\n  padding: 7px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  border: 1px solid transparent;\n  border-radius: 10px;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU {\n  background-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC.Toolbar-module__active__YduqU svg {\n  color: white;\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover {\n  background-color: rgba(66, 72, 255, 0.22);\n  border-color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC:hover svg {\n  color: rgb(66, 72, 255);\n}\n.Toolbar-module__toolbar__9pZF0 .Toolbar-module__item__wszEC svg {\n  width: 22px;\n  height: 22px;\n}";
@@ -49411,6 +49455,19 @@ function LiaHandPaperSolid (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 32 32"},"child":[{"tag":"path","attr":{"d":"M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 L 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 C 19.875 5 23.261719 6.984375 25.21875 10 L 20 10 L 20 12 L 28 12 L 28 4 L 26 4 L 26 7.71875 C 23.617188 4.84375 20.019531 3 16 3 Z"}}]})(props);
 }function LiaUndoAltSolid (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 32 32"},"child":[{"tag":"path","attr":{"d":"M 16 3 C 12 3 8.4 4.7992187 6 7.6992188 L 6 4 L 4 4 L 4 12 L 12 12 L 12 10 L 6.8007812 10 C 8.8007812 7 12.1 5 16 5 C 22.1 5 27 9.9 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 L 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 8.8 23.2 3 16 3 z"}}]})(props);
+}
+
+// THIS FILE IS AUTO GENERATED
+function AiFillCheckCircle (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"}}]})(props);
+}function AiFillCloseCircle (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024","fill":"currentColor","fillRule":"evenodd"},"child":[{"tag":"path","attr":{"d":"M512 64c247.4 0 448 200.6 448 448S759.4 960 512 960 64 759.4 64 512 264.6 64 512 64Zm127.978 274.82-.034.006c-.023.007-.042.018-.083.059L512 466.745l-127.86-127.86c-.042-.041-.06-.052-.084-.059a.118.118 0 0 0-.07 0c-.022.007-.041.018-.082.059l-45.02 45.019c-.04.04-.05.06-.058.083a.118.118 0 0 0 0 .07l.01.022a.268.268 0 0 0 .049.06L466.745 512l-127.86 127.862c-.041.04-.052.06-.059.083a.118.118 0 0 0 0 .07c.007.022.018.041.059.082l45.019 45.02c.04.04.06.05.083.058a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059L512 557.254l127.862 127.861c.04.041.06.052.083.059a.118.118 0 0 0 .07 0c.022-.007.041-.018.082-.059l45.02-45.019c.04-.04.05-.06.058-.083a.118.118 0 0 0 0-.07l-.01-.022a.268.268 0 0 0-.049-.06L557.254 512l127.861-127.86c.041-.042.052-.06.059-.084a.118.118 0 0 0 0-.07c-.007-.022-.018-.041-.059-.082l-45.019-45.02c-.04-.04-.06-.05-.083-.058a.118.118 0 0 0-.07 0Z"}}]})(props);
+}function AiFillFileAdd (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M480 580H372a8 8 0 0 0-8 8v48a8 8 0 0 0 8 8h108v108a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8V644h108a8 8 0 0 0 8-8v-48a8 8 0 0 0-8-8H544V472a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v108zm374.6-291.3c6 6 9.4 14.1 9.4 22.6V928c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32h424.7c8.5 0 16.7 3.4 22.7 9.4l215.2 215.3zM790.2 326L602 137.8V326h188.2z"}}]})(props);
+}function AiOutlineMinus (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M872 474H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h720c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"}}]})(props);
+}function AiOutlinePlus (props) {
+  return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8Z"}},{"tag":"path","attr":{"d":"M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8Z"}}]})(props);
 }
 
 // THIS FILE IS AUTO GENERATED
@@ -49583,9 +49640,10 @@ function RiDeleteBin6Line (props) {
   return GenIcon({"tag":"svg","attr":{"viewBox":"0 0 24 24"},"child":[{"tag":"path","attr":{"d":"M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"}}]})(props);
 }
 
-function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDirection = true, showRotation = false }) {
+function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDirection = true, showRotation = false, allowCustomLabels = false }) {
     const labels = Recoil_index_20(labelListAtom);
     const appMode = Recoil_index_20(appModeAtom);
+    const [customLabel, setCustomLabel] = useState$3("");
     const handleDelete = async () => {
         if (shape instanceof Box) {
             await new RemoveBoxAction({ box: shape, actionsStore: shape.image?.actionStore }).directExecute();
@@ -49603,13 +49661,25 @@ function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDi
         editor.fitToScreen();
         editor.setMode({ mode: 'EDIT_MODE', shapeInEditMode: shape, visible: true, scrollIntoView: false });
     };
+    const createNewLabel = () => {
+        if (customLabel.trim() === '')
+            return;
+        const label = new Label({
+            id: editor.labels.length,
+            name: customLabel,
+            type: editor.labels.length
+        });
+        editor.labels.unshift(label);
+        editor.syncLabels();
+        setCustomLabel("");
+    };
     const active = appMode.mode === "EDIT_MODE" && appMode.shapeInEditMode._id === shape._id;
-    return (jsx(Fragment, { children: jsxs("div", { className: `${styles['label-input-item']} ${active ? styles['active'] : ''}`, onMouseOver: () => shape.showAnchors(), onMouseOut: () => !active && shape.hideAnchors(), children: [jsx("div", { className: styles["color"], style: { backgroundColor: shape.label?.stroke || 'rgb(0, 0, 0,0.1)' }, onClick: handleClick }), allowLabelUpdate ? jsx(Select$1, { showSearch: true, className: styles["label-selector"], placeholder: "Search", value: shape.label?.name, bordered: false, suffixIcon: null, disabled: !allowLabelUpdate, optionFilterProp: "children", onChange: handleLabelChange, 
+    return (jsx(Fragment, { children: jsxs("div", { className: `${styles['label-input-item']} ${active ? styles['active'] : ''}`, onMouseOver: () => shape.showAnchors(), onMouseOut: () => !active && shape.hideAnchors(), children: [jsx("div", { className: styles["color"], style: { backgroundColor: shape.label?.stroke || 'rgb(0, 0, 0,0.1)' }, onClick: handleClick }), allowLabelUpdate ? jsx(Select$1, { showSearch: true, className: styles["label-selector"], placeholder: "Search", value: shape.label?.name, bordered: false, suffixIcon: null, disabled: !allowLabelUpdate, optionFilterProp: "label", onChange: handleLabelChange, dropdownRender: (menu) => (jsxs(Fragment, { children: [menu, allowCustomLabels && jsxs(Fragment, { children: [jsx(Divider$1, { style: { margin: '8px 0' } }), jsxs("div", { style: { display: 'flex', alignItems: 'center', gap: 5, padding: '0 8px 4px' }, children: [jsx(Input$1, { placeholder: "Please enter item", value: customLabel, onChange: (e) => setCustomLabel(e.target.value) }), jsx(Button$1, { type: "text", icon: jsx(FiPlus, {}), onClick: createNewLabel })] })] })] })), 
                     // onSearch={onSearch}
-                    // filterOption={filterOption}
+                    // filterOption={(option)=>option}
                     style: { flex: 1 }, options: labels.map(label => ({
                         label: label.name,
-                        value: label.id,
+                        value: label.name,
                         instance: label
                     })) }) :
                     jsx(Fragment, { children: jsx("span", { style: { flex: 1, cursor: 'default', userSelect: 'none', textAlign: 'start' }, children: shape.label?.name || "" }) }), showDirection && jsx(Dropdown$1, { placement: "bottom", className: styles["direction-selector"], menu: {
@@ -49630,7 +49700,7 @@ function AnnotationInput({ shape, index, editor, allowLabelUpdate = true, showDi
                         })),
                         selectable: true,
                         selectedKeys: [`${shape.rotated}`]
-                    }, children: jsx("span", { children: jsx(AiOutlineRotateRight, { style: { color: 'black', fontSize: 18 } }) }) }), jsx(RiDeleteBin6Line, { style: { fontSize: 17, cursor: "pointer", color: '#d32424f0' }, onClick: handleDelete })] }) }));
+                    }, children: jsx("span", { children: `${shape.rotated}` === 'true' ? jsx(VscSync, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) : jsx(VscSyncIgnored, { style: { color: 'black', fontSize: 18, marginTop: 5 } }) }) }), jsx(RiDeleteBin6Line, { style: { fontSize: 17, cursor: "pointer", color: '#d32424f0' }, onClick: handleDelete })] }) }));
 }
 
 var lib = {};
@@ -67364,7 +67434,7 @@ lodash.exports;
 
 var lodashExports = lodash.exports;
 
-function LeftSidebar({ editor, config = { showInput: true, showCheckBoxes: true, showDirection: true, allowLabelUpdate: true, showRotation: false } }) {
+function LeftSidebar({ editor, config = { showInput: true, showCheckBoxes: true, showDirection: true, allowCustomLabels: false, allowLabelUpdate: true, showRotation: false } }) {
     const entities = Recoil_index_20(entityListAtom);
     const polygons = Recoil_index_20(polygonListAtom);
     const texts = Recoil_index_20(textListAtom);
@@ -67402,7 +67472,7 @@ function LeftSidebar({ editor, config = { showInput: true, showCheckBoxes: true,
                                 { label: jsx("div", { className: styles$1['entity-class-filter-item'], children: jsx("span", { children: "Text" }) }), value: 'text' },
                             ] })] }), renderedAnnotations.length ? jsx("div", { className: styles$1["label-input-list-container"], children: jsx(ViewportList, { ref: ref, 
                         // viewportRef={ref}
-                        items: renderedAnnotations.sort((a, b) => a._id - b._id).map((shape, i) => { shape.setAttr('virtualIndex', i); return shape; }), children: (shape, index) => (jsx(AnnotationInput, { index: index, editor: editor, shape: shape, showDirection: config.showDirection, showRotation: config.showRotation, allowLabelUpdate: config.allowLabelUpdate }, shape._id)) }) })
+                        items: renderedAnnotations.sort((a, b) => a._id - b._id).map((shape, i) => { shape.setAttr('virtualIndex', i); return shape; }), children: (shape, index) => (jsx(AnnotationInput, { index: index, editor: editor, shape: shape, showDirection: config.showDirection, allowCustomLabels: config.allowCustomLabels, showRotation: config.showRotation, allowLabelUpdate: config.allowLabelUpdate }, shape._id)) }) })
                     :
                         jsx("div", { style: { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: '100%' }, children: jsx(Empty$1, { style: { flex: 1 }, image: Empty$1.PRESENTED_IMAGE_SIMPLE }) })] }) }));
 }
@@ -68818,6 +68888,13 @@ class DrawingAreaEditor extends Editor {
         this.drawingAreaLayer = new Konva.Layer();
         this.drawingAreaLayer.canvas._canvas.setAttribute('id', 'DRAWING-AREA-LAYER');
     }
+    addNewImage = async (imImage) => {
+        setRecoil_1(showUploadDraggerAtom, false);
+        const image = await this.addImage(imImage);
+        this.syncImageList();
+        if (!this.activeImage)
+            this.loadImage(image);
+    };
     async importDrawingAreaState(drawingAreaState, labelMappings) {
         if (drawingAreaState.length === 0)
             return;
@@ -68885,7 +68962,7 @@ class DrawingAreaEditor extends Editor {
                     editor: this,
                 });
                 this.images.unshift(img);
-                resolve();
+                resolve(img);
             };
             image.onerror = () => reject("Failed to load image.");
         });
@@ -68947,13 +69024,18 @@ function useDrawingAreaAnnotator() {
             editorRef.current?.removeEventListeners();
         };
     }, [props]);
+    const addNewImage = (imImage) => {
+        if (!editorRef.current)
+            return;
+        editorRef.current.addNewImage(imImage);
+    };
     const handleSave = () => {
         if (!editorRef.current)
             return;
         const editorState = editorRef.current.exportDrawingAreaState();
         return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'drawing-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(DrawingAreaAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, addNewImage, handleSave, setLoader];
 }
 
 class MetaSelectionImage extends Image$1 {
@@ -69061,6 +69143,13 @@ class MetaSelectionEditor extends Editor {
         this.metaSelectionLayer = new Konva.Layer();
         this.metaSelectionLayer.canvas._canvas.setAttribute('id', 'META-SELECTION-LAYER');
     }
+    addNewImage = async (imImage) => {
+        setRecoil_1(showUploadDraggerAtom, false);
+        const image = await this.addImage(imImage);
+        this.syncImageList();
+        if (!this.activeImage)
+            this.loadImage(image);
+    };
     async importMetaSelectionState(metaSelectionState, labelMappings) {
         if (metaSelectionState.length === 0)
             return;
@@ -69137,7 +69226,7 @@ class MetaSelectionEditor extends Editor {
                     editor: this,
                 });
                 this.images.unshift(img);
-                resolve();
+                resolve(img);
             };
             image.onerror = () => reject("Failed to load image.");
         });
@@ -69199,7 +69288,7 @@ function MetaSelectionAnnotation({ editor, labelMappings, metaExtractionState, l
     useEffect$5(() => {
         setLoader(loader);
     }, [loader]);
-    return (jsxs(Fragment, { children: [showUploadDragger && jsx(UploadDragger, { editor: editor, spacingLeft: editorSpacingLeft, uploadRequest: uploadRequest, onUploadSubmit: onUploadSubmit }), jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: false, allowLabelUpdate: true, allowCustomLabels: true }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: false, allowLabelUpdate: true } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 })] }));
+    return (jsxs(Fragment, { children: [showUploadDragger && jsx(UploadDragger, { editor: editor, spacingLeft: editorSpacingLeft, uploadRequest: uploadRequest, onUploadSubmit: onUploadSubmit }), jsx("span", { ref: cursorTextRef, style: { position: 'absolute', fontFamily: 'Roboto', fontSize: 12, zIndex: 9999, color: 'white', backgroundColor: 'black', borderRadius: 10, padding: '3px 6px', fontStyle: 'bold' } }), jsx(AnnotationPopup, { editor: editor, showDirection: false, allowLabelUpdate: true, allowCustomLabels: true }), jsx(LeftSidebar, { editor: editor, config: { showInput: false, showCheckBoxes: false, showDirection: false, allowLabelUpdate: true, allowCustomLabels: true } }), jsx(Toolbar, { editor: editor, style: { left: 10, right: 'auto' } }), jsx(ImageLoader, { spacingRight: 300 })] }));
 }
 
 function useMetaExtractionAnnotator() {
@@ -69232,13 +69321,18 @@ function useMetaExtractionAnnotator() {
             editorRef.current?.removeEventListeners();
         };
     }, [props]);
+    const addNewImage = (imImage) => {
+        if (!editorRef.current)
+            return;
+        editorRef.current.addNewImage(imImage);
+    };
     const handleSave = () => {
         if (!editorRef.current)
             return;
         const editorState = editorRef.current.exportMetaSelectionState();
         return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'meta-selection-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(MetaSelectionAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'meta-selection-area-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(MetaSelectionAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, addNewImage, handleSave, setLoader];
 }
 
 class LegendImage extends Image$1 {
@@ -69353,6 +69447,7 @@ class LegendEditor extends Editor {
     }
     async loadImage(img) {
         return new Promise(async (resolve, reject) => {
+            console.trace("CALLED");
             if (img.src === '') {
                 setRecoil_1(loaderAtom, { visible: true, title: "Loading Image..." });
                 const src = await this.loadImageFromServer(img.id());
@@ -69377,6 +69472,13 @@ class LegendEditor extends Editor {
             }
         });
     }
+    addNewImage = async (imImage) => {
+        setRecoil_1(showUploadDraggerAtom, false);
+        const image = await this.addImage(imImage);
+        this.syncImageList();
+        if (!this.activeImage)
+            this.loadImage(image);
+    };
     async importLegendState(legendState, labelMappings) {
         if (legendState.length === 0)
             return;
@@ -69563,13 +69665,18 @@ function useLegendAnnotator() {
             editorRef.current?.removeEventListeners();
         };
     }, [props]);
+    const addNewImage = (imImage) => {
+        if (!editorRef.current)
+            return;
+        editorRef.current.addNewImage(imImage);
+    };
     const handleSave = () => {
         if (!editorRef.current)
             return;
         const editorState = editorRef.current.exportLegendState();
         return editorState;
     };
-    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'legend-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(LegendAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, handleSave, setLoader];
+    return [(jsxs(Recoil_index_5, { children: [jsx(_default, {}), jsxs("div", { style: { position: 'relative' }, children: [jsx("div", { id: 'legend-editor', style: { width: '100%', height: '100%' } }), (editor && props) ? jsx(LegendAnnotation, { ...props, loader: loader, editor: editor }) : jsx("div", { style: { height: 'calc(100vh - 100px)' }, children: jsx(ImageLoader, { spacingRight: 300, forceShow: true }) })] })] })), init, addNewImage, handleSave, setLoader];
 }
 
 export { useDrawingAreaAnnotator, useHumanAnnotator, useLegendAnnotator, useMetaExtractionAnnotator as useMetaAreaAnnotator };

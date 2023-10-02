@@ -8,9 +8,10 @@ export declare class DrawingAreaEditor<Config extends DrawingAreaConfig = Drawin
     drawingAreaLayer: Konva.Layer;
     constructor(config: Config);
     init(config: Config): void;
+    addNewImage: (imImage: IMImage) => Promise<void>;
     importDrawingAreaState(drawingAreaState: DrawingAreaState, labelMappings: LabelMappings): Promise<void>;
     exportDrawingAreaState(): DrawingAreaState;
-    addImage(imImage: IMImage): Promise<void>;
+    addImage(imImage: IMImage): Promise<DrawingAreaImage>;
     renderAnnotations(): Promise<void>;
     setSelectionBoxesListening(listen: boolean): void;
     setMode(appMode: AppMode): void;

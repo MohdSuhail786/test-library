@@ -57,7 +57,7 @@ export default function MetaSelectionAnnotation({editor, labelMappings, metaExtr
       {showUploadDragger && <UploadDragger editor={editor} spacingLeft={editorSpacingLeft} uploadRequest={uploadRequest} onUploadSubmit={onUploadSubmit}/>}
       <span ref={cursorTextRef} style={{position: 'absolute',fontFamily: 'Roboto', fontSize: 12,zIndex: 9999,color: 'white', backgroundColor: 'black',borderRadius: 10, padding: '3px 6px', fontStyle: 'bold'}} />
       <AnnotationPopup editor={editor} showDirection={false} allowLabelUpdate={true} allowCustomLabels={true}/>
-      <LeftSidebar editor={editor} config={{showInput: false,showCheckBoxes: false,showDirection: false, allowLabelUpdate: true}}/>
+      <LeftSidebar editor={editor} config={{showInput: false,showCheckBoxes: false,showDirection: false, allowLabelUpdate: true,allowCustomLabels: true}}/>
       <Toolbar editor={editor} style={{left: 10, right: 'auto'}}/>
       <ImageLoader spacingRight={300}/>
     </>

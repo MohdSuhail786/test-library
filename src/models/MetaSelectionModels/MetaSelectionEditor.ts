@@ -4,6 +4,8 @@ import { AppMode, IMBox, IMImage, LabelMappings, MetaSelectionState } from "../T
 import { Editor, EditorConfig } from "../BaseModels/Editor";
 import { Vector2d } from "konva/lib/types";
 import { MetaSelectionImage } from "./MetaSelectionImage";
+import { setRecoil } from "recoil-nexus";
+import { showUploadDraggerAtom } from "../../state/editor";
 
 export interface MetaSelectionEditorConfig extends EditorConfig {
 }
@@ -23,6 +25,13 @@ export class MetaSelectionEditor<Config extends MetaSelectionEditorConfig = Meta
 
         this.metaSelectionLayer = new Konva.Layer();
         this.metaSelectionLayer.canvas._canvas.setAttribute('id','META-SELECTION-LAYER')
+    }
+
+    addNewImage = async (imImage: IMImage) => {
+        setRecoil(showUploadDraggerAtom,false); 
+        const image = await this.addImage(imImage)
+        this.syncImageList()
+        if(!this.activeImage) this.loadImage(image)
     }
 
 
@@ -85,7 +94,7 @@ export class MetaSelectionEditor<Config extends MetaSelectionEditorConfig = Meta
         }]
     }
 
-    addImage(imImage: IMImage): Promise<void> {
+    addImage(imImage: IMImage): Promise<MetaSelectionImage> {
         return new Promise((resolve,reject) => {
             let pos:Vector2d = { x:0, y:0 };
             const image = new window.Image();
@@ -104,7 +113,7 @@ export class MetaSelectionEditor<Config extends MetaSelectionEditorConfig = Meta
                     editor: this,
                 });
                 this.images.unshift(img);
-                resolve();
+                resolve(img);
             }
             image.onerror = () => reject("Failed to load image.")
         })

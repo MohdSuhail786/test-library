@@ -20,10 +20,11 @@ interface IProps {
         showDirection?: boolean,
         allowLabelUpdate?: boolean
         showRotation?: boolean
+        allowCustomLabels?: boolean
     }
 }
 
-export default function LeftSidebar({editor,config={showInput: true,showCheckBoxes: true, showDirection: true, allowLabelUpdate: true, showRotation: false}}: IProps) {
+export default function LeftSidebar({editor,config={showInput: true,showCheckBoxes: true, showDirection: true, allowCustomLabels: false, allowLabelUpdate: true, showRotation: false}}: IProps) {
 
     const entities = useRecoilValue(entityListAtom)
     const polygons = useRecoilValue(polygonListAtom)
@@ -88,7 +89,7 @@ export default function LeftSidebar({editor,config={showInput: true,showCheckBox
                             // viewportRef={ref}
                             items={renderedAnnotations.sort((a,b) => a._id - b._id).map((shape,i) => {shape.setAttr('virtualIndex',i); return shape;})}
                         >
-                            {(shape,index) => (<AnnotationInput key={shape._id} index={index} editor={editor} shape={shape} showDirection={config.showDirection} showRotation={config.showRotation} allowLabelUpdate={config.allowLabelUpdate}/> )}
+                            {(shape,index) => (<AnnotationInput key={shape._id} index={index} editor={editor} shape={shape} showDirection={config.showDirection} allowCustomLabels={config.allowCustomLabels} showRotation={config.showRotation} allowLabelUpdate={config.allowLabelUpdate}/> )}
                         </ViewportList>
                     </div>
                     : 

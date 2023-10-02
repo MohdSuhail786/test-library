@@ -9,5 +9,5 @@ interface IProps {
     uploadRequest: (data: FormData, onProgress: (percent: number) => void) => Promise<IMImage>;
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
 }
-export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+export default function useDrawingAreaAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>];
 export {};

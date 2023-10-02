@@ -10,5 +10,5 @@ interface IProps {
     onUploadSubmit: (imImages: IMImage[]) => Promise<void>;
     onImageRequest: (id: number) => Promise<string>;
 }
-export default function useLegendAnnotator(): [ReactNode, (config: IProps) => any, () => any, SetterOrUpdater<LoaderSpinner>];
+export default function useLegendAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>];
 export {};
