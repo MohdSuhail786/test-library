@@ -69477,7 +69477,7 @@ class LegendEditor extends Editor {
         const image = await this.addImage(imImage);
         this.syncImageList();
         if (!this.activeImage)
-            this.loadImage(image);
+            await this.loadImage(image);
     };
     async importLegendState(legendState, labelMappings) {
         if (legendState.length === 0)

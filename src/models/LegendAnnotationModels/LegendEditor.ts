@@ -66,7 +66,7 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
         setRecoil(showUploadDraggerAtom,false); 
         const image = await this.addImage(imImage)
         this.syncImageList()
-        if(!this.activeImage) this.loadImage(image)
+        if(!this.activeImage) await this.loadImage(image)
     }
 
     async importLegendState(legendState: LegendState, labelMappings: LabelMappings) {
