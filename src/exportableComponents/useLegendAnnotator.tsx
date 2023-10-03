@@ -16,7 +16,7 @@ interface IProps {
   onImageRequest: (id: number) => Promise<string>
 }
 
-export default function useLegendAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>] {
+export default function useLegendAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => Promise<void>, () => any, SetterOrUpdater<LoaderSpinner>] {
     const [editor, setEditor] = useState<LegendEditor | null>(null);
     const editorRef = useRef<LegendEditor | null>(null)
     const [props, setProps] = useState<IProps | null>(null)
@@ -49,9 +49,9 @@ export default function useLegendAnnotator(): [ReactNode, (config: IProps) => an
         }
       },[props])
 
-    const addNewImage = (imImage: IMImage) => {
+    const addNewImage = async (imImage: IMImage) => {
       if(!editorRef.current) return;
-      editorRef.current.addNewImage(imImage)
+      await editorRef.current.addNewImage(imImage)
     }
 
     const handleSave = () => {

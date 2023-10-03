@@ -69024,10 +69024,10 @@ function useDrawingAreaAnnotator() {
             editorRef.current?.removeEventListeners();
         };
     }, [props]);
-    const addNewImage = (imImage) => {
+    const addNewImage = async (imImage) => {
         if (!editorRef.current)
             return;
-        editorRef.current.addNewImage(imImage);
+        await editorRef.current.addNewImage(imImage);
     };
     const handleSave = () => {
         if (!editorRef.current)
@@ -69321,10 +69321,10 @@ function useMetaExtractionAnnotator() {
             editorRef.current?.removeEventListeners();
         };
     }, [props]);
-    const addNewImage = (imImage) => {
+    const addNewImage = async (imImage) => {
         if (!editorRef.current)
             return;
-        editorRef.current.addNewImage(imImage);
+        await editorRef.current.addNewImage(imImage);
     };
     const handleSave = () => {
         if (!editorRef.current)
@@ -69665,10 +69665,10 @@ function useLegendAnnotator() {
             editorRef.current?.removeEventListeners();
         };
     }, [props]);
-    const addNewImage = (imImage) => {
+    const addNewImage = async (imImage) => {
         if (!editorRef.current)
             return;
-        editorRef.current.addNewImage(imImage);
+        await editorRef.current.addNewImage(imImage);
     };
     const handleSave = () => {
         if (!editorRef.current)

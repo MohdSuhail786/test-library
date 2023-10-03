@@ -15,7 +15,7 @@ interface IProps {
   onUploadSubmit: (imImages: IMImage[]) => Promise<void>
 }
 
-export default function useMetaExtractionAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => void, () => any, SetterOrUpdater<LoaderSpinner>] {
+export default function useMetaExtractionAnnotator(): [ReactNode, (config: IProps) => any, (imImage: IMImage) => Promise<void>, () => any, SetterOrUpdater<LoaderSpinner>] {
     const [editor, setEditor] = useState<MetaSelectionEditor | null>(null);
     const editorRef = useRef<MetaSelectionEditor | null>(null)
     const [props, setProps] = useState<IProps | null>(null)
@@ -47,9 +47,9 @@ export default function useMetaExtractionAnnotator(): [ReactNode, (config: IProp
         }
       },[props])
     
-    const addNewImage = (imImage: IMImage) => {
+    const addNewImage = async (imImage: IMImage) => {
       if(!editorRef.current) return;
-      editorRef.current.addNewImage(imImage)
+      await editorRef.current.addNewImage(imImage)
     }
 
     const handleSave = () => {
