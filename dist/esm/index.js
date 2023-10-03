@@ -69480,8 +69480,6 @@ class LegendEditor extends Editor {
             await this.loadImage(image);
     };
     async importLegendState(legendState, labelMappings) {
-        if (legendState.length === 0)
-            return;
         labelMappings.forEach(label => {
             const newLabel = new Label({
                 id: label.id,
@@ -69491,6 +69489,8 @@ class LegendEditor extends Editor {
             this.addLabel(newLabel);
         });
         this.syncLabels();
+        if (legendState.length === 0)
+            return;
         await Promise.all(legendState.map(async (state) => {
             const image = await this.addImage({ ...state.image, src: '' });
             state.bounding_box.forEach(box => {

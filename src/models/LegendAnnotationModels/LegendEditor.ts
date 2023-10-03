@@ -70,7 +70,6 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
     }
 
     async importLegendState(legendState: LegendState, labelMappings: LabelMappings) {
-        if(legendState.length === 0) return;
         labelMappings.forEach(label => {
             const newLabel = new Label({
                 id: label.id,
@@ -80,6 +79,7 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
             this.addLabel(newLabel)
         })
         this.syncLabels()
+        if(legendState.length === 0) return;
         await Promise.all(legendState.map(async state => {
             const image = await this.addImage({...state.image, src: ''})
             
