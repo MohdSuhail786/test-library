@@ -138,7 +138,7 @@ export class LegendEditor<Config extends LegendEditorConfig = LegendEditorConfig
                 image: image,
                 editor: this,
             });
-            this.images.unshift(img);
+            this.images.push(img);
             resolve(img);
         })
     }

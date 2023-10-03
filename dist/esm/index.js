@@ -69547,7 +69547,7 @@ class LegendEditor extends Editor {
                 image: image,
                 editor: this,
             });
-            this.images.unshift(img);
+            this.images.push(img);
             resolve(img);
         });
     }
