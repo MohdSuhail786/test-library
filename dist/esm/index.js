@@ -9927,7 +9927,7 @@ var Global = {};
 	            : {};
 	exports.Konva = {
 	    _global: exports.glob,
-	    version: '9.2.1',
+	    version: '9.2.2',
 	    isBrowser: detectBrowser(),
 	    isUnminified: /param/.test(function (param) { }.toString()),
 	    dblClickWindow: 400,
@@ -11167,11 +11167,13 @@ var CONTEXT_PROPERTIES = [
     'shadowBlur',
     'shadowOffsetX',
     'shadowOffsetY',
+    'letterSpacing',
     'lineCap',
     'lineDashOffset',
     'lineJoin',
     'lineWidth',
     'miterLimit',
+    'direction',
     'font',
     'textAlign',
     'textBaseline',
@@ -18405,7 +18407,8 @@ function stringToArray$2(string) {
     return Array.from(string);
 }
 Text$1.stringToArray = stringToArray$2;
-var AUTO = 'auto', CENTER = 'center', JUSTIFY = 'justify', CHANGE_KONVA = 'Change.konva', CONTEXT_2D = '2d', DASH = '-', LEFT$2 = 'left', TEXT = 'text', TEXT_UPPER = 'Text', TOP = 'top', BOTTOM = 'bottom', MIDDLE = 'middle', NORMAL$1 = 'normal', PX_SPACE = 'px ', SPACE = ' ', RIGHT$1 = 'right', WORD = 'word', CHAR = 'char', NONE = 'none', ELLIPSIS = '…', ATTR_CHANGE_LIST$1 = [
+var AUTO = 'auto', CENTER = 'center', INHERIT = 'inherit', JUSTIFY = 'justify', CHANGE_KONVA = 'Change.konva', CONTEXT_2D = '2d', DASH = '-', LEFT$2 = 'left', TEXT = 'text', TEXT_UPPER = 'Text', TOP = 'top', BOTTOM = 'bottom', MIDDLE = 'middle', NORMAL$1 = 'normal', PX_SPACE = 'px ', SPACE = ' ', RIGHT$1 = 'right', RTL = 'rtl', WORD = 'word', CHAR = 'char', NONE = 'none', ELLIPSIS = '…', ATTR_CHANGE_LIST$1 = [
+    'direction',
     'fontFamily',
     'fontSize',
     'fontStyle',
@@ -18474,11 +18477,15 @@ class Text extends Shape_1$3.Shape {
         if (!this.text()) {
             return;
         }
-        var padding = this.padding(), fontSize = this.fontSize(), lineHeightPx = this.lineHeight() * fontSize, verticalAlign = this.verticalAlign(), alignY = 0, align = this.align(), totalWidth = this.getWidth(), letterSpacing = this.letterSpacing(), fill = this.fill(), textDecoration = this.textDecoration(), shouldUnderline = textDecoration.indexOf('underline') !== -1, shouldLineThrough = textDecoration.indexOf('line-through') !== -1, n;
+        var padding = this.padding(), fontSize = this.fontSize(), lineHeightPx = this.lineHeight() * fontSize, verticalAlign = this.verticalAlign(), direction = this.direction(), alignY = 0, align = this.align(), totalWidth = this.getWidth(), letterSpacing = this.letterSpacing(), fill = this.fill(), textDecoration = this.textDecoration(), shouldUnderline = textDecoration.indexOf('underline') !== -1, shouldLineThrough = textDecoration.indexOf('line-through') !== -1, n;
+        direction = direction === INHERIT ? context.direction : direction;
         var translateY = 0;
         var translateY = lineHeightPx / 2;
         var lineTranslateX = 0;
         var lineTranslateY = 0;
+        if (direction === RTL) {
+            context.setAttr('direction', direction);
+        }
         context.setAttr('font', this._getContextFont());
         context.setAttr('textBaseline', MIDDLE);
         context.setAttr('textAlign', LEFT$2);
@@ -18532,7 +18539,7 @@ class Text extends Shape_1$3.Shape {
                 context.stroke();
                 context.restore();
             }
-            if (letterSpacing !== 0 || align === JUSTIFY) {
+            if (direction !== RTL && (letterSpacing !== 0 || align === JUSTIFY)) {
                 spacesNumber = text.split(' ').length - 1;
                 var array = stringToArray$2(text);
                 for (var li = 0; li < array.length; li++) {
@@ -18548,6 +18555,9 @@ class Text extends Shape_1$3.Shape {
                 }
             }
             else {
+                if (letterSpacing !== 0) {
+                    context.setAttr('letterSpacing', `${letterSpacing}px`);
+                }
                 this._partialTextX = lineTranslateX;
                 this._partialTextY = translateY + lineTranslateY;
                 this._partialText = text;
@@ -18763,6 +18773,7 @@ Text.prototype._attrsAffectingSize = [
 (0, Global_1$3._registerNode)(Text);
 Factory_1$i.Factory.overWriteSetter(Text, 'width', (0, Validators_1$i.getNumberOrAutoValidator)());
 Factory_1$i.Factory.overWriteSetter(Text, 'height', (0, Validators_1$i.getNumberOrAutoValidator)());
+Factory_1$i.Factory.addGetterSetter(Text, 'direction', INHERIT);
 Factory_1$i.Factory.addGetterSetter(Text, 'fontFamily', 'Arial');
 Factory_1$i.Factory.addGetterSetter(Text, 'fontSize', 12, (0, Validators_1$i.getNumberValidator)());
 Factory_1$i.Factory.addGetterSetter(Text, 'fontStyle', NORMAL$1);
@@ -33501,7 +33512,9 @@ var ScrollBar = /*#__PURE__*/React.forwardRef(function (props, ref) {
     onScroll = props.onScroll,
     horizontal = props.horizontal,
     spinSize = props.spinSize,
-    containerSize = props.containerSize;
+    containerSize = props.containerSize,
+    style = props.style,
+    propsThumbStyle = props.thumbStyle;
   var _React$useState = React.useState(false),
     _React$useState2 = _slicedToArray(_React$useState, 2),
     dragging = _React$useState2[0],
@@ -33691,13 +33704,13 @@ var ScrollBar = /*#__PURE__*/React.forwardRef(function (props, ref) {
   return /*#__PURE__*/React.createElement("div", {
     ref: scrollbarRef,
     className: classNames(scrollbarPrefixCls, (_classNames = {}, _defineProperty$1(_classNames, "".concat(scrollbarPrefixCls, "-horizontal"), horizontal), _defineProperty$1(_classNames, "".concat(scrollbarPrefixCls, "-vertical"), !horizontal), _defineProperty$1(_classNames, "".concat(scrollbarPrefixCls, "-visible"), visible), _classNames)),
-    style: containerStyle,
+    style: _objectSpread2$1(_objectSpread2$1({}, containerStyle), style),
     onMouseDown: onContainerMouseDown,
     onMouseMove: delayHidden
   }, /*#__PURE__*/React.createElement("div", {
     ref: thumbRef,
     className: classNames("".concat(scrollbarPrefixCls, "-thumb"), _defineProperty$1({}, "".concat(scrollbarPrefixCls, "-thumb-moving"), dragging)),
-    style: thumbStyle,
+    style: _objectSpread2$1(_objectSpread2$1({}, thumbStyle), propsThumbStyle),
     onMouseDown: onThumbMouseDown
   }));
 });
@@ -33772,8 +33785,9 @@ function useHeights(getKey, onItemAdd, onItemRemove) {
     wrapperRaf$1.cancel(collectRafRef.current);
   }
   function collectHeight() {
+    var sync = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     cancelRaf();
-    collectRafRef.current = wrapperRaf$1(function () {
+    var doCollect = function doCollect() {
       instanceRef.current.forEach(function (element, key) {
         if (element && element.offsetParent) {
           var htmlElement = findDOMNode(element);
@@ -33787,7 +33801,12 @@ function useHeights(getKey, onItemAdd, onItemRemove) {
       setUpdatedMark(function (c) {
         return c + 1;
       });
-    });
+    };
+    if (sync) {
+      doCollect();
+    } else {
+      collectRafRef.current = wrapperRaf$1(doCollect);
+    }
   }
   function setInstanceRef(item, instance) {
     var key = getKey(item);
@@ -33813,8 +33832,103 @@ function useHeights(getKey, onItemAdd, onItemRemove) {
   return [setInstanceRef, collectHeight, heightsRef.current, updatedMark];
 }
 
+var MAX_TIMES = 10;
 function useScrollTo(containerRef, data, heights, itemHeight, getKey, collectHeight, syncScrollTop, triggerFlash) {
   var scrollRef = React.useRef();
+  var _React$useState = React.useState(null),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    syncState = _React$useState2[0],
+    setSyncState = _React$useState2[1];
+  // ========================== Sync Scroll ==========================
+  useLayoutEffect$1(function () {
+    if (syncState && syncState.times < MAX_TIMES) {
+      // Never reach
+      if (!containerRef.current) {
+        setSyncState(function (ori) {
+          return _objectSpread2$1({}, ori);
+        });
+        return;
+      }
+      collectHeight();
+      var targetAlign = syncState.targetAlign,
+        originAlign = syncState.originAlign,
+        index = syncState.index,
+        offset = syncState.offset;
+      var height = containerRef.current.clientHeight;
+      var needCollectHeight = false;
+      var newTargetAlign = targetAlign;
+      var targetTop = null;
+      // Go to next frame if height not exist
+      if (height) {
+        var mergedAlign = targetAlign || originAlign;
+        // Get top & bottom
+        var stackTop = 0;
+        var itemTop = 0;
+        var itemBottom = 0;
+        var maxLen = Math.min(data.length - 1, index);
+        for (var i = 0; i <= maxLen; i += 1) {
+          var key = getKey(data[i]);
+          itemTop = stackTop;
+          var cacheHeight = heights.get(key);
+          itemBottom = itemTop + (cacheHeight === undefined ? itemHeight : cacheHeight);
+          stackTop = itemBottom;
+        }
+        // Check if need sync height (visible range has item not record height)
+        var leftHeight = mergedAlign === 'top' ? offset : height - offset;
+        for (var _i = maxLen; _i >= 0; _i -= 1) {
+          var _key = getKey(data[_i]);
+          var _cacheHeight = heights.get(_key);
+          if (_cacheHeight === undefined) {
+            needCollectHeight = true;
+            break;
+          }
+          leftHeight -= _cacheHeight;
+          if (leftHeight <= 0) {
+            break;
+          }
+        }
+        // Scroll to
+        switch (mergedAlign) {
+          case 'top':
+            targetTop = itemTop - offset;
+            break;
+          case 'bottom':
+            targetTop = itemBottom - height + offset;
+            break;
+          default:
+            {
+              var scrollTop = containerRef.current.scrollTop;
+              var scrollBottom = scrollTop + height;
+              if (itemTop < scrollTop) {
+                newTargetAlign = 'top';
+              } else if (itemBottom > scrollBottom) {
+                newTargetAlign = 'bottom';
+              }
+            }
+        }
+        if (targetTop !== null) {
+          syncScrollTop(targetTop);
+        }
+        // One more time for sync
+        if (targetTop !== syncState.lastTop) {
+          needCollectHeight = true;
+        }
+      }
+      // Trigger next effect
+      if (needCollectHeight) {
+        setSyncState(function (ori) {
+          return _objectSpread2$1(_objectSpread2$1({}, ori), {}, {
+            times: ori.times + 1,
+            targetAlign: newTargetAlign,
+            lastTop: targetTop
+          });
+        });
+      }
+    } else if (process.env.NODE_ENV !== 'production' && (syncState === null || syncState === void 0 ? void 0 : syncState.times) === MAX_TIMES) {
+      warningOnce(false, 'Seems `scrollTo` with `rc-virtual-list` reach the max limitation. Please fire issue for us. Thanks.');
+    }
+  }, [syncState, containerRef.current]);
+  // =========================== Scroll To ===========================
   return function (arg) {
     // When not argument provided, we think dev may want to show the scrollbar
     if (arg === null || arg === undefined) {
@@ -33837,64 +33951,12 @@ function useScrollTo(containerRef, data, heights, itemHeight, getKey, collectHei
       }
       var _arg$offset = arg.offset,
         offset = _arg$offset === void 0 ? 0 : _arg$offset;
-      // We will retry 3 times in case dynamic height shaking
-      var syncScroll = function syncScroll(times, targetAlign) {
-        if (times < 0 || !containerRef.current) return;
-        var height = containerRef.current.clientHeight;
-        var needCollectHeight = false;
-        var newTargetAlign = targetAlign;
-        // Go to next frame if height not exist
-        if (height) {
-          var mergedAlign = targetAlign || align;
-          // Get top & bottom
-          var stackTop = 0;
-          var itemTop = 0;
-          var itemBottom = 0;
-          var maxLen = Math.min(data.length, index);
-          for (var i = 0; i <= maxLen; i += 1) {
-            var key = getKey(data[i]);
-            itemTop = stackTop;
-            var cacheHeight = heights.get(key);
-            itemBottom = itemTop + (cacheHeight === undefined ? itemHeight : cacheHeight);
-            stackTop = itemBottom;
-            if (i === index && cacheHeight === undefined) {
-              needCollectHeight = true;
-            }
-          }
-          // Scroll to
-          var targetTop = null;
-          switch (mergedAlign) {
-            case 'top':
-              targetTop = itemTop - offset;
-              break;
-            case 'bottom':
-              targetTop = itemBottom - height + offset;
-              break;
-            default:
-              {
-                var scrollTop = containerRef.current.scrollTop;
-                var scrollBottom = scrollTop + height;
-                if (itemTop < scrollTop) {
-                  newTargetAlign = 'top';
-                } else if (itemBottom > scrollBottom) {
-                  newTargetAlign = 'bottom';
-                }
-              }
-          }
-          if (targetTop !== null && targetTop !== containerRef.current.scrollTop) {
-            syncScrollTop(targetTop);
-          }
-        }
-        // We will retry since element may not sync height as it described
-        scrollRef.current = wrapperRaf$1(function () {
-          if (needCollectHeight) {
-            collectHeight();
-          }
-          syncScroll(times - 1, newTargetAlign);
-        }, 2); // Delay 2 to wait for List collect heights
-      };
-
-      syncScroll(3);
+      setSyncState({
+        times: 0,
+        index: index,
+        offset: offset,
+        originAlign: align
+      });
     }
   };
 }
@@ -34209,7 +34271,7 @@ function useGetSize(mergedData, getKey, heights, itemHeight) {
   return getSize;
 }
 
-var _excluded$j = ["prefixCls", "className", "height", "itemHeight", "fullHeight", "style", "data", "children", "itemKey", "virtual", "direction", "scrollWidth", "component", "onScroll", "onVirtualScroll", "onVisibleChange", "innerProps", "extraRender"];
+var _excluded$j = ["prefixCls", "className", "height", "itemHeight", "fullHeight", "style", "data", "children", "itemKey", "virtual", "direction", "scrollWidth", "component", "onScroll", "onVirtualScroll", "onVisibleChange", "innerProps", "extraRender", "styles"];
 var EMPTY_DATA = [];
 var ScrollStyle = {
   overflowY: 'auto',
@@ -34237,6 +34299,7 @@ function RawList(props, ref) {
     onVisibleChange = props.onVisibleChange,
     innerProps = props.innerProps,
     extraRender = props.extraRender,
+    styles = props.styles,
     restProps = _objectWithoutProperties(props, _excluded$j);
   // ================================= MISC =================================
   var useVirtual = !!(virtual !== false && height && itemHeight);
@@ -34381,7 +34444,10 @@ function RawList(props, ref) {
     size = _React$useState2[0],
     setSize = _React$useState2[1];
   var onHolderResize = function onHolderResize(sizeInfo) {
-    setSize(sizeInfo);
+    setSize({
+      width: sizeInfo.width || sizeInfo.offsetWidth,
+      height: sizeInfo.height || sizeInfo.offsetHeight
+    });
   };
   // Hack on scrollbar to enable flash call
   var verticalScrollBarRef = useRef$6();
@@ -34503,13 +34569,23 @@ function RawList(props, ref) {
       componentEle.removeEventListener('MozMousePixelScroll', onMozMousePixelScroll);
     };
   }, [useVirtual]);
+  // Sync scroll left
+  useLayoutEffect$1(function () {
+    if (scrollWidth) {
+      setOffsetLeft(function (left) {
+        return keepInHorizontalRange(left);
+      });
+    }
+  }, [size.width, scrollWidth]);
   // ================================= Ref ==================================
   var delayHideScrollBar = function delayHideScrollBar() {
     var _verticalScrollBarRef, _horizontalScrollBarR;
     (_verticalScrollBarRef = verticalScrollBarRef.current) === null || _verticalScrollBarRef === void 0 ? void 0 : _verticalScrollBarRef.delayHidden();
     (_horizontalScrollBarR = horizontalScrollBarRef.current) === null || _horizontalScrollBarR === void 0 ? void 0 : _horizontalScrollBarR.delayHidden();
   };
-  var _scrollTo = useScrollTo(componentRef, mergedData, heights, itemHeight, getKey, collectHeight, syncScrollTop, delayHideScrollBar);
+  var _scrollTo = useScrollTo(componentRef, mergedData, heights, itemHeight, getKey, function () {
+    return collectHeight(true);
+  }, syncScrollTop, delayHideScrollBar);
   React.useImperativeHandle(ref, function () {
     return {
       getScrollInfo: getVirtualScrollInfo,
@@ -34602,7 +34678,9 @@ function RawList(props, ref) {
     onStartMove: onScrollbarStartMove,
     onStopMove: onScrollbarStopMove,
     spinSize: verticalScrollBarSpinSize,
-    containerSize: size.height
+    containerSize: size.height,
+    style: styles === null || styles === void 0 ? void 0 : styles.verticalScrollBar,
+    thumbStyle: styles === null || styles === void 0 ? void 0 : styles.verticalScrollBarThumb
   }), inVirtual && scrollWidth && /*#__PURE__*/React.createElement(ScrollBar, {
     ref: horizontalScrollBarRef,
     prefixCls: prefixCls,
@@ -34614,7 +34692,9 @@ function RawList(props, ref) {
     onStopMove: onScrollbarStopMove,
     spinSize: horizontalScrollBarSpinSize,
     containerSize: size.width,
-    horizontal: true
+    horizontal: true,
+    style: styles === null || styles === void 0 ? void 0 : styles.horizontalScrollBar,
+    thumbStyle: styles === null || styles === void 0 ? void 0 : styles.horizontalScrollBarThumb
   }));
 }
 var List$1 = /*#__PURE__*/React.forwardRef(RawList);
@@ -47538,42 +47618,34 @@ function getError(option, xhr) {
   err.url = option.action;
   return err;
 }
-
 function getBody(xhr) {
   var text = xhr.responseText || xhr.response;
-
   if (!text) {
     return text;
   }
-
   try {
     return JSON.parse(text);
   } catch (e) {
     return text;
   }
 }
-
 function upload(option) {
   // eslint-disable-next-line no-undef
   var xhr = new XMLHttpRequest();
-
   if (option.onProgress && xhr.upload) {
     xhr.upload.onprogress = function progress(e) {
       if (e.total > 0) {
         e.percent = e.loaded / e.total * 100;
       }
-
       option.onProgress(e);
     };
-  } // eslint-disable-next-line no-undef
-
-
+  }
+  // eslint-disable-next-line no-undef
   var formData = new FormData();
-
   if (option.data) {
     Object.keys(option.data).forEach(function (key) {
-      var value = option.data[key]; // support key-value array data
-
+      var value = option.data[key];
+      // support key-value array data
       if (Array.isArray(value)) {
         value.forEach(function (item) {
           // { list: [ 11, 22 ] }
@@ -47582,45 +47654,37 @@ function upload(option) {
         });
         return;
       }
-
       formData.append(key, value);
     });
-  } // eslint-disable-next-line no-undef
-
-
+  }
+  // eslint-disable-next-line no-undef
   if (option.file instanceof Blob) {
     formData.append(option.filename, option.file, option.file.name);
   } else {
     formData.append(option.filename, option.file);
   }
-
   xhr.onerror = function error(e) {
     option.onError(e);
   };
-
   xhr.onload = function onload() {
     // allow success when 2xx status
     // see https://github.com/react-component/upload/issues/34
     if (xhr.status < 200 || xhr.status >= 300) {
       return option.onError(getError(option, xhr), getBody(xhr));
     }
-
     return option.onSuccess(getBody(xhr), xhr);
   };
-
-  xhr.open(option.method, option.action, true); // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
-
+  xhr.open(option.method, option.action, true);
+  // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
   if (option.withCredentials && 'withCredentials' in xhr) {
     xhr.withCredentials = true;
   }
-
-  var headers = option.headers || {}; // when set headers['X-Requested-With'] = null , can close default XHR header
+  var headers = option.headers || {};
+  // when set headers['X-Requested-With'] = null , can close default XHR header
   // see https://github.com/react-component/upload/issues/33
-
   if (headers['X-Requested-With'] !== null) {
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   }
-
   Object.keys(headers).forEach(function (h) {
     if (headers[h] !== null) {
       xhr.setRequestHeader(h, headers[h]);
@@ -47648,61 +47712,51 @@ var attrAccept = (function (file, acceptedFiles) {
     var mimeType = file.type || '';
     var baseMimeType = mimeType.replace(/\/.*$/, '');
     return acceptedFilesArray.some(function (type) {
-      var validType = type.trim(); // This is something like */*,*  allow all files
-
+      var validType = type.trim();
+      // This is something like */*,*  allow all files
       if (/^\*(\/\*)?$/.test(type)) {
         return true;
-      } // like .jpg, .png
-
-
+      }
+      // like .jpg, .png
       if (validType.charAt(0) === '.') {
         var lowerFileName = fileName.toLowerCase();
         var lowerType = validType.toLowerCase();
         var affixList = [lowerType];
-
         if (lowerType === '.jpg' || lowerType === '.jpeg') {
           affixList = ['.jpg', '.jpeg'];
         }
-
         return affixList.some(function (affix) {
           return lowerFileName.endsWith(affix);
         });
-      } // This is something like a image/* mime type
-
-
+      }
+      // This is something like a image/* mime type
       if (/\/\*$/.test(validType)) {
         return baseMimeType === validType.replace(/\/.*$/, '');
-      } // Full match
-
-
+      }
+      // Full match
       if (mimeType === validType) {
         return true;
-      } // Invalidate type should skip
-
-
+      }
+      // Invalidate type should skip
       if (/^\w+$/.test(validType)) {
         warningOnce(false, "Upload takes an invalidate 'accept' type '".concat(validType, "'.Skip for check."));
         return true;
       }
-
       return false;
     });
   }
-
   return true;
 });
 
 function loopFiles(item, callback) {
   var dirReader = item.createReader();
   var fileList = [];
-
   function sequence() {
     dirReader.readEntries(function (entries) {
       var entryList = Array.prototype.slice.apply(entries);
-      fileList = fileList.concat(entryList); // Check if all the file has been viewed
-
+      fileList = fileList.concat(entryList);
+      // Check if all the file has been viewed
       var isFinished = !entryList.length;
-
       if (isFinished) {
         callback(fileList);
       } else {
@@ -47710,16 +47764,16 @@ function loopFiles(item, callback) {
       }
     });
   }
-
   sequence();
 }
-
 var traverseFileTree = function traverseFileTree(files, callback, isAccepted) {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   var _traverseFileTree = function _traverseFileTree(item, path) {
+    if (!item) {
+      return;
+    }
     // eslint-disable-next-line no-param-reassign
     item.path = path || '';
-
     if (item.isFile) {
       item.file(function (file) {
         if (isAccepted(file)) {
@@ -47729,8 +47783,8 @@ var traverseFileTree = function traverseFileTree(files, callback, isAccepted) {
               webkitRelativePath: {
                 writable: true
               }
-            }); // eslint-disable-next-line no-param-reassign
-
+            });
+            // eslint-disable-next-line no-param-reassign
             file.webkitRelativePath = item.fullPath.replace(/^\//, '');
             Object.defineProperties(file, {
               webkitRelativePath: {
@@ -47738,7 +47792,6 @@ var traverseFileTree = function traverseFileTree(files, callback, isAccepted) {
               }
             });
           }
-
           callback([file]);
         }
       });
@@ -47750,28 +47803,21 @@ var traverseFileTree = function traverseFileTree(files, callback, isAccepted) {
       });
     }
   };
-
   files.forEach(function (file) {
     _traverseFileTree(file.webkitGetAsEntry());
   });
 };
 
 var _excluded = ["component", "prefixCls", "className", "disabled", "id", "style", "multiple", "accept", "capture", "children", "directory", "openFileDialogOnClick", "onMouseEnter", "onMouseLeave"];
-
 var AjaxUploader = /*#__PURE__*/function (_Component) {
   _inherits(AjaxUploader, _Component);
-
   var _super = _createSuper(AjaxUploader);
-
   function AjaxUploader() {
     var _this;
-
     _classCallCheck(this, AjaxUploader);
-
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-
     _this = _super.call.apply(_super, [this].concat(args));
     _this.state = {
       uid: uid()
@@ -47779,60 +47825,46 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
     _this.reqs = {};
     _this.fileInput = void 0;
     _this._isMounted = void 0;
-
     _this.onChange = function (e) {
       var _this$props = _this.props,
-          accept = _this$props.accept,
-          directory = _this$props.directory;
+        accept = _this$props.accept,
+        directory = _this$props.directory;
       var files = e.target.files;
-
       var acceptedFiles = _toConsumableArray(files).filter(function (file) {
         return !directory || attrAccept(file, accept);
       });
-
       _this.uploadFiles(acceptedFiles);
-
       _this.reset();
     };
-
     _this.onClick = function (e) {
       var el = _this.fileInput;
-
       if (!el) {
         return;
       }
-
       var _this$props2 = _this.props,
-          children = _this$props2.children,
-          onClick = _this$props2.onClick;
-
+        children = _this$props2.children,
+        onClick = _this$props2.onClick;
       if (children && children.type === 'button') {
         var parent = el.parentNode;
         parent.focus();
         parent.querySelector('button').blur();
       }
-
       el.click();
-
       if (onClick) {
         onClick(e);
       }
     };
-
     _this.onKeyDown = function (e) {
       if (e.key === 'Enter') {
         _this.onClick(e);
       }
     };
-
     _this.onFileDrop = function (e) {
       var multiple = _this.props.multiple;
       e.preventDefault();
-
       if (e.type === 'dragover') {
         return;
       }
-
       if (_this.props.directory) {
         traverseFileTree(Array.prototype.slice.call(e.dataTransfer.items), _this.uploadFiles, function (_file) {
           return attrAccept(_file, _this.props.accept);
@@ -47841,29 +47873,25 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
         var files = _toConsumableArray(e.dataTransfer.files).filter(function (file) {
           return attrAccept(file, _this.props.accept);
         });
-
         if (multiple === false) {
           files = files.slice(0, 1);
         }
-
         _this.uploadFiles(files);
       }
     };
-
     _this.uploadFiles = function (files) {
       var originFiles = _toConsumableArray(files);
-
       var postFiles = originFiles.map(function (file) {
         // eslint-disable-next-line no-param-reassign
         file.uid = uid();
         return _this.processFile(file, originFiles);
-      }); // Batch upload files
-
+      });
+      // Batch upload files
       Promise.all(postFiles).then(function (fileList) {
         var onBatchStart = _this.props.onBatchStart;
         onBatchStart === null || onBatchStart === void 0 ? void 0 : onBatchStart(fileList.map(function (_ref) {
           var origin = _ref.origin,
-              parsedFile = _ref.parsedFile;
+            parsedFile = _ref.parsedFile;
           return {
             file: origin,
             parsedFile: parsedFile
@@ -47876,132 +47904,109 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
         });
       });
     };
-
+    /**
+     * Process file before upload. When all the file is ready, we start upload.
+     */
     _this.processFile = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(file, fileList) {
         var beforeUpload, transformedFile, action, mergedAction, data, mergedData, parsedData, parsedFile, mergedParsedFile;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                beforeUpload = _this.props.beforeUpload;
-                transformedFile = file;
-
-                if (!beforeUpload) {
-                  _context.next = 14;
-                  break;
-                }
-
-                _context.prev = 3;
-                _context.next = 6;
-                return beforeUpload(file, fileList);
-
-              case 6:
-                transformedFile = _context.sent;
-                _context.next = 12;
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              beforeUpload = _this.props.beforeUpload;
+              transformedFile = file;
+              if (!beforeUpload) {
+                _context.next = 14;
                 break;
-
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](3);
-                // Rejection will also trade as false
-                transformedFile = false;
-
-              case 12:
-                if (!(transformedFile === false)) {
-                  _context.next = 14;
-                  break;
-                }
-
-                return _context.abrupt("return", {
-                  origin: file,
-                  parsedFile: null,
-                  action: null,
-                  data: null
+              }
+              _context.prev = 3;
+              _context.next = 6;
+              return beforeUpload(file, fileList);
+            case 6:
+              transformedFile = _context.sent;
+              _context.next = 12;
+              break;
+            case 9:
+              _context.prev = 9;
+              _context.t0 = _context["catch"](3);
+              // Rejection will also trade as false
+              transformedFile = false;
+            case 12:
+              if (!(transformedFile === false)) {
+                _context.next = 14;
+                break;
+              }
+              return _context.abrupt("return", {
+                origin: file,
+                parsedFile: null,
+                action: null,
+                data: null
+              });
+            case 14:
+              // Get latest action
+              action = _this.props.action;
+              if (!(typeof action === 'function')) {
+                _context.next = 21;
+                break;
+              }
+              _context.next = 18;
+              return action(file);
+            case 18:
+              mergedAction = _context.sent;
+              _context.next = 22;
+              break;
+            case 21:
+              mergedAction = action;
+            case 22:
+              // Get latest data
+              data = _this.props.data;
+              if (!(typeof data === 'function')) {
+                _context.next = 29;
+                break;
+              }
+              _context.next = 26;
+              return data(file);
+            case 26:
+              mergedData = _context.sent;
+              _context.next = 30;
+              break;
+            case 29:
+              mergedData = data;
+            case 30:
+              parsedData =
+              // string type is from legacy `transformFile`.
+              // Not sure if this will work since no related test case works with it
+              (_typeof$1(transformedFile) === 'object' || typeof transformedFile === 'string') && transformedFile ? transformedFile : file;
+              if (parsedData instanceof File) {
+                parsedFile = parsedData;
+              } else {
+                parsedFile = new File([parsedData], file.name, {
+                  type: file.type
                 });
-
-              case 14:
-                // Get latest action
-                action = _this.props.action;
-
-                if (!(typeof action === 'function')) {
-                  _context.next = 21;
-                  break;
-                }
-
-                _context.next = 18;
-                return action(file);
-
-              case 18:
-                mergedAction = _context.sent;
-                _context.next = 22;
-                break;
-
-              case 21:
-                mergedAction = action;
-
-              case 22:
-                // Get latest data
-                data = _this.props.data;
-
-                if (!(typeof data === 'function')) {
-                  _context.next = 29;
-                  break;
-                }
-
-                _context.next = 26;
-                return data(file);
-
-              case 26:
-                mergedData = _context.sent;
-                _context.next = 30;
-                break;
-
-              case 29:
-                mergedData = data;
-
-              case 30:
-                parsedData = // string type is from legacy `transformFile`.
-                // Not sure if this will work since no related test case works with it
-                (_typeof$1(transformedFile) === 'object' || typeof transformedFile === 'string') && transformedFile ? transformedFile : file;
-
-                if (parsedData instanceof File) {
-                  parsedFile = parsedData;
-                } else {
-                  parsedFile = new File([parsedData], file.name, {
-                    type: file.type
-                  });
-                }
-
-                mergedParsedFile = parsedFile;
-                mergedParsedFile.uid = file.uid;
-                return _context.abrupt("return", {
-                  origin: file,
-                  data: mergedData,
-                  parsedFile: mergedParsedFile,
-                  action: mergedAction
-                });
-
-              case 35:
-              case "end":
-                return _context.stop();
-            }
+              }
+              mergedParsedFile = parsedFile;
+              mergedParsedFile.uid = file.uid;
+              return _context.abrupt("return", {
+                origin: file,
+                data: mergedData,
+                parsedFile: mergedParsedFile,
+                action: mergedAction
+              });
+            case 35:
+            case "end":
+              return _context.stop();
           }
         }, _callee, null, [[3, 9]]);
       }));
-
       return function (_x, _x2) {
         return _ref2.apply(this, arguments);
       };
     }();
-
     _this.saveFileInput = function (node) {
       _this.fileInput = node;
     };
-
     return _this;
   }
-
   _createClass(AjaxUploader, [{
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -48017,23 +48022,20 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
     key: "post",
     value: function post(_ref3) {
       var _this2 = this;
-
       var data = _ref3.data,
-          origin = _ref3.origin,
-          action = _ref3.action,
-          parsedFile = _ref3.parsedFile;
-
+        origin = _ref3.origin,
+        action = _ref3.action,
+        parsedFile = _ref3.parsedFile;
       if (!this._isMounted) {
         return;
       }
-
       var _this$props3 = this.props,
-          onStart = _this$props3.onStart,
-          customRequest = _this$props3.customRequest,
-          name = _this$props3.name,
-          headers = _this$props3.headers,
-          withCredentials = _this$props3.withCredentials,
-          method = _this$props3.method;
+        onStart = _this$props3.onStart,
+        customRequest = _this$props3.customRequest,
+        name = _this$props3.name,
+        headers = _this$props3.headers,
+        withCredentials = _this$props3.withCredentials,
+        method = _this$props3.method;
       var uid = origin.uid;
       var request = customRequest || upload;
       var requestOption = {
@@ -48073,21 +48075,17 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
     key: "abort",
     value: function abort(file) {
       var reqs = this.reqs;
-
       if (file) {
         var uid = file.uid ? file.uid : file;
-
         if (reqs[uid] && reqs[uid].abort) {
           reqs[uid].abort();
         }
-
         delete reqs[uid];
       } else {
         Object.keys(reqs).forEach(function (uid) {
           if (reqs[uid] && reqs[uid].abort) {
             reqs[uid].abort();
           }
-
           delete reqs[uid];
         });
       }
@@ -48096,26 +48094,24 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var _classNames;
-
       var _this$props4 = this.props,
-          Tag = _this$props4.component,
-          prefixCls = _this$props4.prefixCls,
-          className = _this$props4.className,
-          disabled = _this$props4.disabled,
-          id = _this$props4.id,
-          style = _this$props4.style,
-          multiple = _this$props4.multiple,
-          accept = _this$props4.accept,
-          capture = _this$props4.capture,
-          children = _this$props4.children,
-          directory = _this$props4.directory,
-          openFileDialogOnClick = _this$props4.openFileDialogOnClick,
-          onMouseEnter = _this$props4.onMouseEnter,
-          onMouseLeave = _this$props4.onMouseLeave,
-          otherProps = _objectWithoutProperties(_this$props4, _excluded);
-
-      var cls = classNames((_classNames = {}, _defineProperty$1(_classNames, prefixCls, true), _defineProperty$1(_classNames, "".concat(prefixCls, "-disabled"), disabled), _defineProperty$1(_classNames, className, className), _classNames)); // because input don't have directory/webkitdirectory type declaration
-
+        Tag = _this$props4.component,
+        prefixCls = _this$props4.prefixCls,
+        className = _this$props4.className,
+        disabled = _this$props4.disabled,
+        id = _this$props4.id,
+        style = _this$props4.style,
+        multiple = _this$props4.multiple,
+        accept = _this$props4.accept,
+        capture = _this$props4.capture,
+        children = _this$props4.children,
+        directory = _this$props4.directory,
+        openFileDialogOnClick = _this$props4.openFileDialogOnClick,
+        onMouseEnter = _this$props4.onMouseEnter,
+        onMouseLeave = _this$props4.onMouseLeave,
+        otherProps = _objectWithoutProperties(_this$props4, _excluded);
+      var cls = classNames((_classNames = {}, _defineProperty$1(_classNames, prefixCls, true), _defineProperty$1(_classNames, "".concat(prefixCls, "-disabled"), disabled), _defineProperty$1(_classNames, className, className), _classNames));
+      // because input don't have directory/webkitdirectory type declaration
       var dirProps = directory ? {
         directory: 'directory',
         webkitdirectory: 'webkitdirectory'
@@ -48138,6 +48134,7 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
         data: true
       }), {
         id: id,
+        disabled: disabled,
         type: "file",
         ref: this.saveFileInput,
         onClick: function onClick(e) {
@@ -48157,36 +48154,26 @@ var AjaxUploader = /*#__PURE__*/function (_Component) {
       } : {})), children);
     }
   }]);
-
   return AjaxUploader;
 }(Component);
 
 function empty() {}
-
 var Upload$3 = /*#__PURE__*/function (_Component) {
   _inherits(Upload, _Component);
-
   var _super = _createSuper(Upload);
-
   function Upload() {
     var _this;
-
     _classCallCheck(this, Upload);
-
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-
     _this = _super.call.apply(_super, [this].concat(args));
     _this.uploader = void 0;
-
     _this.saveUploader = function (node) {
       _this.uploader = node;
     };
-
     return _this;
   }
-
   _createClass(Upload, [{
     key: "abort",
     value: function abort(file) {
@@ -48200,10 +48187,8 @@ var Upload$3 = /*#__PURE__*/function (_Component) {
       }));
     }
   }]);
-
   return Upload;
 }(Component);
-
 Upload$3.defaultProps = {
   component: 'span',
   prefixCls: 'rc-upload',
